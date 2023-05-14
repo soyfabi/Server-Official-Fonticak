@@ -17,8 +17,8 @@ Functions:
 	Player:getAchievementPoints()
 	Player:addAchievementProgress()
 Storages:
-	PlayerStorageKeys.achievementsBase -- base storage
-	PlayerStorageKeys.achievementsCounter -- this storage will be used to save the process to obtain the certain achievement
+	Storage.achievementsBase -- base storage
+	Storage.achievementsCounter -- this storage will be used to save the process to obtain the certain achievement
 	(Ex: this storage + the id of achievement 'Allowance Collector' to save how many piggy banks has been broken
 ]]
 
@@ -469,7 +469,7 @@ function getAchievementInfoById(id)
 		if k == id then
 			local targetAchievement = {}
 			targetAchievement.id = k
-			targetAchievement.actionStorage = PlayerStorageKeys.achievementsCounter + k
+			targetAchievement.actionStorage = Storage.achievementsCounter + k
 			for inf, it in pairs(v) do
 				targetAchievement[inf] = it
 			end
@@ -484,7 +484,7 @@ function getAchievementInfoByName(name)
 		if v.name:lower() == name:lower() then
 			local targetAchievement = {}
 			targetAchievement.id = k
-			targetAchievement.actionStorage = PlayerStorageKeys.achievementsCounter + k
+			targetAchievement.actionStorage = Storage.achievementsCounter + k
 			for inf, it in pairs(v) do
 				targetAchievement[inf] = it
 			end
@@ -545,7 +545,7 @@ function Player.hasAchievement(self, ach)
 		return false
 	end
 
-	return self:getStorageValue(PlayerStorageKeys.achievementsBase + achievement.id) > 0
+	return self:getStorageValue(Storage.achievementsBase + achievement.id) > 0
 end
 
 function Player.getAchievements(self)
@@ -571,7 +571,7 @@ function Player.addAchievement(self, ach, hideMsg)
 	end
 
 	if not self:hasAchievement(achievement.id) then
-		self:setStorageValue(PlayerStorageKeys.achievementsBase + achievement.id, 1)
+		self:setStorageValue(Storage.achievementsBase + achievement.id, 1)
 		if not hideMsg then
 			self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Congratulations! You earned the achievement \"" .. achievement.name .. "\".")
 		end
@@ -592,7 +592,7 @@ function Player.removeAchievement(self, ach)
 	end
 
 	if self:hasAchievement(achievement.id) then
-		self:setStorageValue(PlayerStorageKeys.achievementsBase + achievement.id, -1)
+		self:setStorageValue(Storage.achievementsBase + achievement.id, -1)
 	end
 	return true
 end
@@ -654,7 +654,7 @@ function Player.addAchievementProgress(self, ach, value)
 		return true
 	end
 
-	local storage = PlayerStorageKeys.achievementsCounter + achievement.id
+	local storage = Storage.achievementsCounter + achievement.id
 	local progress = self:getStorageValue(storage)
 	if progress < value then
 		self:setStorageValue(storage, math.max(1, progress) + 1)
