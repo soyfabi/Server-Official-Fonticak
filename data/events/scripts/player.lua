@@ -126,6 +126,15 @@ local function useStamina(player)
 end
 
 function Player:onGainExperience(source, exp, rawExp)
+
+	-- Monster Level --
+	if source:isMonster() then
+        local bonusExperience = source:getMonsterLevel() * 0.03
+        if source:getMonsterLevel() > 0 and bonusExperience > 1 then
+            exp = exp * bonusExperience
+        end
+    end
+
 	if not source or source:isPlayer() then
 		return exp
 	end
