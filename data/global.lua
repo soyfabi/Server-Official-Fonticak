@@ -154,3 +154,8 @@ function getPlayerDatabaseInfo(name_or_guid)
 	result.free(query)
 	return info
 end
+
+-- Monster Type --
+function isInteger(n)
+	return (type(n) == "number") and (math.floor(n) == n)
+end
