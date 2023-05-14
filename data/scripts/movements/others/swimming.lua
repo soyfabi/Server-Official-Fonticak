@@ -9,19 +9,26 @@ local conditions = {
 	CONDITION_BLEEDING
 }
 
-function onStepIn(creature, item, position, fromPosition)
+local swimming = MoveEvent()
+
+function swimming.onStepIn(creature, item, position, fromPosition)
 	if not creature:isPlayer() then
 		return false
 	end
 	for i = 1, #conditions do
 		creature:removeCondition(conditions[i])
 	end
-	creature:addAchievementProgress("Waverider", 100000)
 	creature:addCondition(condition)
 	return true
 end
 
-function onStepOut(creature, item, position, fromPosition)
+swimming:type("stepin")
+swimming:id(629, 630, 631, 632, 633, 634)
+swimming:register()
+
+swimming = MoveEvent()
+
+function swimming.onStepOut(creature, item, position, fromPosition)
 	if not creature:isPlayer() then
 		return false
 	end
@@ -29,3 +36,7 @@ function onStepOut(creature, item, position, fromPosition)
 	creature:removeCondition(CONDITION_OUTFIT)
 	return true
 end
+
+swimming:type("stepout")
+swimming:id(629, 630, 631, 632, 633, 634)
+swimming:register()
