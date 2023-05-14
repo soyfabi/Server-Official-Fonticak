@@ -1,6 +1,6 @@
-local ec = EventCallback
+local event = Event()
 
-ec.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
+event.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
 	if toPosition.x ~= CONTAINER_POSITION then
 		return true
 	end
@@ -30,4 +30,4 @@ ec.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCylind
 	return true
 end
 
-ec:register()
+event:register()

@@ -1,6 +1,6 @@
-local ec = EventCallback
+local event = Event()
 
-ec.onDropLoot = function(self, corpse)
+event.onDropLoot = function(self, corpse)
 	if configManager.getNumber(configKeys.RATE_LOOT) == 0 then
 		return
 	end
@@ -36,4 +36,4 @@ ec.onDropLoot = function(self, corpse)
 	end
 end
 
-ec:register()
+event:register()
