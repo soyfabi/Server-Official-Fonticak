@@ -124,3 +124,10 @@ function Player:onInventoryUpdate(item, slot, equip)
 		Event.onInventoryUpdate(self, item, slot, equip)
 	end
 end
+
+function Player:onStepTile(fromPosition, toPosition)
+    if hasEvent.onStepTile then
+        return Event.onStepTile(self, fromPosition, toPosition)
+    end
+    return true
+end

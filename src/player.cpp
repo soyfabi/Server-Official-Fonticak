@@ -1288,6 +1288,12 @@ bool Player::closeShopWindow(bool sendCloseShopWindow /*= true*/)
 
 void Player::onWalk(Direction& dir)
 {
+	const Position& fromPos = getPosition();
+	const Position& toPos = getNextPosition(dir, fromPos);
+	if (!g_events->eventPlayerOnStepTile(this, fromPos, toPos)) {
+		return;
+	}
+	
 	Creature::onWalk(dir);
 	setNextActionTask(nullptr);
 	// Removing this line fixes exhausted when opening backpack while running.
