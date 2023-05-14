@@ -1582,6 +1582,8 @@ void Player::drainMana(Creature* attacker, int32_t manaLoss)
 
 	if (attacker) {
 		addDamagePoints(attacker, manaLoss);
+		// Receiving Infight with manashield
+		addInFightTicks();
 	}
 
 	sendStats();
