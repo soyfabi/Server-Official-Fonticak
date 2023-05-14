@@ -27,6 +27,7 @@ ec.onChangeMount = {}
 ec.onAreaCombat = {returnValue=true}
 ec.onTargetCombat = {returnValue=true}
 ec.onHear = {}
+ec.onChangeZone = {}
 -- Party
 ec.onJoin = {}
 ec.onLeave = {}
