@@ -199,6 +199,7 @@ do
 			self:onThink(value)
 			return
 		elseif key == "onTime" then
+			self:type("timer")
 			self:onTime(value)
 			return
 		elseif key == "onStartup" then
@@ -1256,8 +1257,10 @@ function doSetGameState(state)
 end
 
 function doExecuteRaid(raidName)
-	return Game.startRaid(raidName)
+	debugPrint("Deprecated function, use Game.startEvent('" .. raidName .. "') instead.")
+	return Game.startEvent(raidName)
 end
+Game.startRaid = doExecuteRaid
 
 numberToVariant = Variant
 stringToVariant = Variant

@@ -29,7 +29,6 @@
 #include "talkaction.h"
 #include "movement.h"
 #include "weapons.h"
-#include "raids.h"
 #include "quests.h"
 #include "globalevent.h"
 #include "monster.h"
@@ -97,10 +96,6 @@ void sighupHandler()
 
 	Npcs::reload();
 	std::cout << "Reloaded npcs." << std::endl;
-
-	g_game.raids.reload();
-	g_game.raids.startup();
-	std::cout << "Reloaded raids." << std::endl;
 
 	g_monsters.reload();
 	std::cout << "Reloaded monsters." << std::endl;
