@@ -2553,6 +2553,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Monster", "isMonster", LuaScriptInterface::luaMonsterIsMonster);
 
 	registerMethod("Monster", "getType", LuaScriptInterface::luaMonsterGetType);
+	registerMethod("Monster", "getMonsterLevel", LuaScriptInterface::luaMonsterGetLevel);
 
 	registerMethod("Monster", "rename", LuaScriptInterface::luaMonsterRename);
 
@@ -9952,6 +9953,18 @@ int LuaScriptInterface::luaMonsterGetType(lua_State* L)
 		lua_pushnil(L);
 	}
 	return 1;
+}
+
+int LuaScriptInterface::luaMonsterGetLevel(lua_State* L)
+{
+    // monster:getMonsterLevel()
+    const Monster* monster = getUserdata<const Monster>(L, 1);
+    if (monster) {
+        lua_pushnumber(L, monster->getLevel());
+    } else {
+        lua_pushnil(L);
+    }
+    return 1;
 }
 
 int LuaScriptInterface::luaMonsterRename(lua_State* L)

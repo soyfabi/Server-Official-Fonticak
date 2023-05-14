@@ -3752,9 +3752,9 @@ Skulls_t Player::getSkullClient(const Creature* creature) const
 	}
 
 	const Player* player = creature->getPlayer();
-	if (!player || player->getSkull() != SKULL_NONE) {
-		return Creature::getSkullClient(creature);
-	}
+	if (!player || creature->getSkull() != SKULL_NONE) {
+        return Creature::getSkullClient(creature);
+    }
 
 	if (player->hasAttacked(this)) {
 		return SKULL_YELLOW;

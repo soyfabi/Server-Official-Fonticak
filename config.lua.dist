@@ -142,6 +142,11 @@ rateMagic = 3
 rateSpawn = 1
 rateSpellCooldown = 1
 
+-- Monster Level System --
+monsterBonusHealth = 0.5
+monsterBonusSpeed = 0.02
+monsterBonusDamage = 0.02
+
 -- Sort loot by chance, most rare items drop first
 -- it is good to be setted when you have a higher
 -- rateLoot to avoid losing all rare items when
