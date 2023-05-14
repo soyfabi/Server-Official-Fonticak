@@ -312,3 +312,11 @@ function Player.getWeaponType(self)
 	end
 	return WEAPON_NONE
 end
+
+function Player.hasStorageKey(self, key)
+	return self:getStorageValue(self, key, nil) ~= nil
+end
+
+function Player.clearStorageValue(self, key)
+	return self:setStorageValue(key, nil)
+end

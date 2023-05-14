@@ -2503,6 +2503,7 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Player", "getStorageValue", LuaScriptInterface::luaPlayerGetStorageValue);
 	registerMethod("Player", "setStorageValue", LuaScriptInterface::luaPlayerSetStorageValue);
+	registerMethod("Player", "clearStorageValues", LuaScriptInterface::luaPlayerClearStorageValues);
 
 	registerMethod("Player", "addItem", LuaScriptInterface::luaPlayerAddItem);
 	registerMethod("Player", "addItemEx", LuaScriptInterface::luaPlayerAddItemEx);
@@ -9002,7 +9003,7 @@ int LuaScriptInterface::luaPlayerSetBankBalance(lua_State* L)
 
 int LuaScriptInterface::luaPlayerGetStorageValue(lua_State* L)
 {
-	// player:getStorageValue(key)
+	// player:getStorageValue(key[, defaultValue = -1])
 	Player* player = getUserdata<Player>(L, 1);
 	if (!player) {
 		lua_pushnil(L);
@@ -9013,8 +9014,10 @@ int LuaScriptInterface::luaPlayerGetStorageValue(lua_State* L)
 	int32_t value;
 	if (player->getStorageValue(key, value)) {
 		lua_pushnumber(L, value);
+	} else if (lua_gettop(L) >= 3 && lua_isnil(L, 3)) {
+		lua_pushnil(L);
 	} else {
-		lua_pushnumber(L, -1);
+		lua_pushnumber(L, getNumber<int32_t>(L, 3, value));
 	}
 	return 1;
 }
@@ -9022,7 +9025,6 @@ int LuaScriptInterface::luaPlayerGetStorageValue(lua_State* L)
 int LuaScriptInterface::luaPlayerSetStorageValue(lua_State* L)
 {
 	// player:setStorageValue(key, value)
-	int32_t value = getNumber<int32_t>(L, 3);
 	uint32_t key = getNumber<uint32_t>(L, 2);
 	Player* player = getUserdata<Player>(L, 1);
 	if (IS_IN_KEYRANGE(key, RESERVED_RANGE)) {
@@ -9032,7 +9034,21 @@ int LuaScriptInterface::luaPlayerSetStorageValue(lua_State* L)
 	}
 
 	if (player) {
+		auto value = lua_isnil(L, 3) ? std::nullopt : std::make_optional(getNumber<int32_t>(L, 3));
 		player->addStorageValue(key, value);
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerClearStorageValues(lua_State* L)
+{
+	// player:clearStorageValues()
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		player->clearStorageValues();
 		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
