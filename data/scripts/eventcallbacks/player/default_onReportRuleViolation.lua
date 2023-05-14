@@ -9,7 +9,6 @@ local function hasPendingReport(name, targetName, reportType)
 end
 
 local event = Event()
-
 event.onReportRuleViolation = function(self, targetName, reportType, reportReason, comment, translation)
 	local name = self:getName()
 	if hasPendingReport(name, targetName, reportType) then

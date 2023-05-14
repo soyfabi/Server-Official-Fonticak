@@ -1,5 +1,4 @@
 local event = Event()
-
 event.onReportBug = function(self, message, position, category)
 	if self:getAccountType() == ACCOUNT_TYPE_NORMAL then
 		return false

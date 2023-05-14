@@ -1,9 +1,75 @@
 local event = Event()
 
+local stoneSkinAmuletExhausted = {}
+
+local tileLimit = 0
+local protectionTileLimit = 20
+local houseTileLimit = 7
+
+CONTAINER_WEIGHT_CHECK = true -- true = enable / false = disable
+CONTAINER_WEIGHT_MAX = 1000000 -- 1000000 = 10k = 10000.00 oz
+
 event.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
-	if toPosition.x ~= CONTAINER_POSITION then
-		return true
+	-- No move items with actionID = 100 --
+	if item:getActionId() == 100 then
+		addEvent(function()self:sendCancelMessage("You can't pick up this item.") end, 100)
+		return false
 	end
+
+	-- No move parcel very heavy
+	if CONTAINER_WEIGHT_CHECK and ItemType(item:getId()):isContainer()
+	and item:getWeight() > CONTAINER_WEIGHT_MAX then
+		self:sendCancelMessage("Your cannot move this item too heavy.")
+		return false
+	end
+	
+	-- Players cannot throw items on teleports
+	if toPosition.x ~= CONTAINER_POSITION then
+		local thing = Tile(toPosition):getItemByType(ITEM_TYPE_TELEPORT)
+		if thing then
+			self:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
+			self:getPosition():sendMagicEffect(CONST_ME_POFF)
+			return false
+		end
+	end
+	
+	-- Bath tube
+	local toTile = Tile(toCylinder:getPosition())
+	local topDownItem = toTile:getTopDownItem()
+	if topDownItem and table.contains({ BATHTUB_EMPTY, BATHTUB_FILLED }, topDownItem:getId()) then
+		return false
+	end
+	
+	-- SSA exhaust
+	if toPosition.x == CONTAINER_POSITION and toPosition.y == CONST_SLOT_NECKLACE
+	and item:getId() == 3081 then
+		local pid = self:getId()
+		if stoneSkinAmuletExhausted[pid] then
+			addEvent(function()self:sendCancelMessage("Wait 2 seconds for equip SSA again.") end, 100)
+			return false
+		else
+			stoneSkinAmuletExhausted[pid] = true
+			addEvent(function() stoneSkinAmuletExhausted[pid] = false end, 2000, pid)
+			return true
+		end
+	end
+	
+	-- Max Tile --
+	local tile = Tile(toPosition)
+    if tile then
+        local itemLimit = tile:getHouse() and houseTileLimit or tile:hasFlag(TILESTATE_PROTECTIONZONE) and protectionTileLimit or tileLimit
+        if itemLimit > 0 and tile:getThingCount() > itemLimit and item:getType():getType() ~= ITEM_TYPE_MAGICFIELD then
+			addEvent(function()self:sendCancelMessage("You can not add more items on this tile.") end, 100)
+            return false
+        end
+    end
+	
+	-- Block Throw in Depot
+	local tile = Tile(toPosition)
+    if tile and tile:hasFlag(TILESTATE_DEPOT) and self:getPosition():getDistance(toPosition) > 1 then
+		addEvent(function()self:sendCancelMessage("You can't throw items on top of this depot.") end, 100)
+        return false
+    end
 
 	if item:getTopParent() == self and bit.band(toPosition.y, 0x40) == 0 then
 		local itemType, moveItem = ItemType(item:getId())

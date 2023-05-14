@@ -7,7 +7,7 @@ event.onDropLoot = function(self, corpse)
 		corpse:registerReward()
 		return
 	end
-
+	
 	if configManager.getNumber(configKeys.RATE_LOOT) == 0 then
 		return
 	end
