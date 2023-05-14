@@ -8,27 +8,27 @@
 local exhaust = {}
 local potions = {
 	-- Mana Potion --
-	[268] = {vocations = {1,2,3,4,5,6,7,8}, exhaustTime = 700, manaMin = 120, manaMax = 220, healthMin = 0, healthMax = 0},
+	[268] = {vocations = {1,2,3,4,5,6,7,8}, exhaustTime = 700, manaMin = 120, manaMax = 220, healthMin = 0, healthMax = 0, flask = 285},
 	-- Strong Mana Potion --
-	[237] = {vocations = {1,2,3,5,6,7}, exhaustTime = 700, manaMin = 275, manaMax = 325, healthMin = 0, healthMax = 0},
+	[237] = {vocations = {1,2,3,5,6,7}, exhaustTime = 700, manaMin = 275, manaMax = 325, healthMin = 0, healthMax = 0, flask = 283},
 	-- Great Mana Potion --
-	[238] = {vocations = {1,2,5,6}, exhaustTime = 700, manaMin = 385, manaMax = 455, healthMin = 0, healthMax = 0},
+	[238] = {vocations = {1,2,5,6}, exhaustTime = 700, manaMin = 385, manaMax = 455, healthMin = 0, healthMax = 0, flask = 284},
 	-- Ultimate Mana Potion --
-	[23373] = {vocations = {1,2,5,6}, exhaustTime = 700, manaMin = 455, manaMax = 520, healthMin = 0, healthMax = 0},
+	[23373] = {vocations = {1,2,5,6}, exhaustTime = 700, manaMin = 455, manaMax = 520, healthMin = 0, healthMax = 0, flask = 284},
 	-- Health Potion --
-	[266] = {vocations = {1,2,3,4,5,6,7,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 80, healthMax = 130},
+	[266] = {vocations = {1,2,3,4,5,6,7,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 80, healthMax = 130, flask = 285},
 	-- Strong Health Potion --
-	[236] = {vocations = {3,4,7,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 245, healthMax = 325},
+	[236] = {vocations = {3,4,7,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 245, healthMax = 325, flask = 283},
 	-- Great Health Potion --
-	[239] = {vocations = {4,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 360, healthMax = 410},
+	[239] = {vocations = {4,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 360, healthMax = 410, flask = 284},
 	-- Ultimate Health Potion --
-	[7643] = {vocations = {4,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 455, healthMax = 530},
+	[7643] = {vocations = {4,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 455, healthMax = 530, flask = 284},
 	-- Supreme Health Potion --
-	[23375] = {vocations = {4,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 530, healthMax = 620},
+	[23375] = {vocations = {4,8}, exhaustTime = 700, manaMin = 0, manaMax = 0, healthMin = 530, healthMax = 620, flask = 284},
 	-- Great Spirit Potion --
-	[7642] = {vocations = {3,7}, exhaustTime = 700, manaMin = 280, manaMax = 315, healthMin = 390, healthMax = 480},
+	[7642] = {vocations = {3,7}, exhaustTime = 700, manaMin = 280, manaMax = 315, healthMin = 390, healthMax = 480, flask = 284},
 	-- Ultimate Spirit Potion --
-	[23374] = {vocations = {3,7}, exhaustTime = 700, manaMin = 300, manaMax = 350, healthMin = 415, healthMax = 520},
+	[23374] = {vocations = {3,7}, exhaustTime = 700, manaMin = 300, manaMax = 350, healthMin = 415, healthMax = 520, flask = 284},
 }
 
 ---- Potions ---
@@ -71,9 +71,15 @@ function mana_potion.onUse(cid, item, fromPosition, target, toPosition, isHotkey
 	
 	exhaust[playerId] = currentTime + potion.exhaustTime
 	
+	if player:getStorageValue(80008) == 1 then
+		player:addItem(potion.flask)
+		return true
+	end
+	
 	if not configManager.getBoolean(configKeys.REMOVE_POTION_CHARGES) then
 		return true
 	end
+	
 	item:remove(1)
 	return true
 end
@@ -83,6 +89,25 @@ for itemId, _ in pairs(potions) do
 end
 mana_potion:register()
 
+local talkAction = TalkAction("!flaskpotion", "!flaskpotions")
+
+function talkAction.onSay(player, words, param, type)
+	if param == "on" then
+		player:setStorageValue(80008, 1)
+		player:sendTextMessage(MESSAGE_INFO_DESCR, "[ON]: You will now receive flasks of potions.")
+		return false
+	elseif param == "off" then
+		player:setStorageValue(80008, -1)
+		player:sendTextMessage(MESSAGE_INFO_DESCR, "[OFF]: Now you will no longer receive potion flasks.")
+		return false
+	end
+
+	player:sendTextMessage(MESSAGE_INFO_DESCR, "Usage: \n!flaskpotions On or Off.")
+	return false
+end
+
+talkAction:separator(" ")
+talkAction:register()
 
 -------POTIONS SPECIAL BUFFER-------
 

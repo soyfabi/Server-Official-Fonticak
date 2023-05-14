@@ -4170,6 +4170,9 @@ bool Game::combatChangeMana(Creature* attacker, Creature* target, CombatDamage& 
 		int32_t realManaChange = targetPlayer->getMana();
 		targetPlayer->changeMana(manaChange);
 		realManaChange = targetPlayer->getMana() - realManaChange;
+		if (realManaChange > 0 && !targetPlayer->isInGhostMode()) {
+		addAnimatedText(fmt::format("+{:d}", realManaChange), targetPlayer->getPosition(), TEXTCOLOR_WHITE);
+		}
 	} else {
 		const Position& targetPos = target->getPosition();
 		if (!target->isAttackable()) {
