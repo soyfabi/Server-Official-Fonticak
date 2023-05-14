@@ -1,7 +1,8 @@
+local playerDeath = CreatureEvent("PlayerDeath")
 local deathListEnabled = true
 local maxDeathRecords = 5
 
-function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
+function playerDeath.onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
 	local playerId = player:getId()
 	if nextUseStaminaTime[playerId] then
 		nextUseStaminaTime[playerId] = nil
@@ -87,3 +88,75 @@ function onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, m
 		end
 	end
 end
+playerDeath:register()
+
+
+
+local event = CreatureEvent("PlayerDeath")
+function event.onLogin(player)
+player:registerEvent("PlayerDeath")
+	return true
+end
+
+event:register()
+
+
+
+local config = {
+    channelId = 12,
+
+    subTypes = {
+        { count = 1, message = 'was killed by' },
+        { count = 2, message = 'was slain by' },
+        { count = 5, message = 'was crushed by' },
+        { count = 8, message = 'was eliminated by' },
+        { count = 10, message = 'was annihilated by' }
+    }
+}
+
+local creatureEvent = CreatureEvent("DeathChannelOnDeath")
+
+function creatureEvent.onDeath(player, corpse, killer)
+    local attackersCount, description, creatures = 0, {}, {}
+    for uid, cb in pairs(player:getDamageMap()) do
+        local attacker = Creature(uid)
+        if attacker then
+            if attacker:isPlayer() then
+                attackersCount = attackersCount + 1
+                description[attackersCount] = attacker:getName()
+            elseif attacker:isMonster() then
+                local attackerName = attacker:getName()
+                if not creatures[attackerName] then
+                    local master = attacker:getMaster()
+                    if master then
+                        attackersCount = attackersCount + 1
+                        description[attackersCount] = string.format('a %s summoned by %s', attackerName, master:isPlayer() and master:getName() or master:getType():getNameDescription())
+                    else
+                        attackersCount = attackersCount + 1
+                        description[attackersCount] = string.format('a %s', attackerName)
+                    end
+                    creatures[attackerName] = true
+                end
+            end
+        end
+    end
+    local subType = nil
+    for _, info in pairs(config.subTypes) do
+        if attackersCount >= info.count then
+            subType = info.message
+        end
+    end
+	
+    sendChannelMessage(config.channelId, TALKTYPE_CHANNEL_O, string.format("%s (%d) %s %s.", player:getName(), player:getLevel(), subType, table.concat(description, ', '):gsub('(.*),', '%1 and')))
+end
+
+creatureEvent:register()
+
+local creatureEvent = CreatureEvent("DeathChannelOnLogin")
+
+function creatureEvent.onLogin(player)
+    player:registerEvent("DeathChannelOnDeath")
+    return true
+end
+
+creatureEvent:register()

@@ -86,11 +86,6 @@ bool ScriptingManager::loadScriptSystems()
 	g_talkActions = new TalkActions();
 	g_moveEvents = new MoveEvents();
 	g_creatureEvents = new CreatureEvents();
-	if (!g_creatureEvents->loadFromXml()) {
-		std::cout << "> ERROR: Unable to load creature events!" << std::endl;
-		return false;
-	}
-
 	g_globalEvents = new GlobalEvents();
 	if (!g_globalEvents->loadFromXml()) {
 		std::cout << "> ERROR: Unable to load global events!" << std::endl;
