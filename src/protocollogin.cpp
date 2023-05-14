@@ -136,6 +136,12 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 		disconnectClient("Gameworld is under maintenance.\nPlease re-connect in a while.");
 		return;
 	}
+	
+	if (g_config.getBoolean(ConfigManager::BLOCK_LOGIN)) {
+		const std::string customMessage = g_config.getString(ConfigManager::BLOCK_LOGIN_TEXT);
+		disconnectClient(customMessage);
+		return;
+	}
 
 	BanInfo banInfo;
 	auto connection = getConnection();

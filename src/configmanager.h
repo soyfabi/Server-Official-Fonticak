@@ -72,6 +72,7 @@ class ConfigManager
 			SORT_LOOT_BY_CHANCE,
 			STAMINA_TRAINER,
 			STAMINA_PZ,
+			BLOCK_LOGIN,
 
 			LAST_BOOLEAN_CONFIG /* this must be the last one */
 		};
@@ -95,6 +96,7 @@ class ConfigManager
 			DEFAULT_PRIORITY,
 			MAP_AUTHOR,
 			CONFIG_FILE,
+			BLOCK_LOGIN_TEXT,
 
 			LAST_STRING_CONFIG /* this must be the last one */
 		};
