@@ -859,6 +859,7 @@ void Combat::doTargetCombat(Creature* caster, Creature* target, CombatDamage& da
 				if (chance > 0 && skill > 0 && normal_random(1, 100) <= chance) {
 					damage.primary.value += std::round(damage.primary.value * (skill / 100.));
 					damage.secondary.value += std::round(damage.secondary.value * (skill / 100.));
+					g_game.addMagicEffect(target->getPosition(), CONST_ME_CRITICAL_HIT);
 					damage.critical = true;
 				}
 			}
