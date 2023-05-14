@@ -1,4 +1,5 @@
-function onStartup()
+local serverstartup = GlobalEvent("serverstartup")
+function serverstartup.onStartup()
 
 	db.query("TRUNCATE TABLE `players_online`")
 	db.asyncQuery("DELETE FROM `guild_wars` WHERE `status` = 0")
@@ -42,3 +43,4 @@ function onStartup()
 		db.query("INSERT INTO `towns` (`id`, `name`, `posx`, `posy`, `posz`) VALUES (" .. town:getId() .. ", " .. db.escapeString(town:getName()) .. ", " .. position.x .. ", " .. position.y .. ", " .. position.z .. ")")
 	end
 end
+serverstartup:register()
