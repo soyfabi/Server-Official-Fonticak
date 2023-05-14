@@ -118,3 +118,9 @@ function Player:onGainSkillTries(skill, tries)
 		Event.onGainSkillTries(self, skill, tries)
 	end
 end
+
+function Player:onInventoryUpdate(item, slot, equip)
+	if hasEvent.onInventoryUpdate then
+		Event.onInventoryUpdate(self, item, slot, equip)
+	end
+end
