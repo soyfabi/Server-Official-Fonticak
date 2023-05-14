@@ -421,6 +421,74 @@ bool Spell::configureSpell(const pugi::xml_node& node)
 	}
 
 	pugi::xml_attribute attr;
+	if ((attr = node.attribute("spellid"))) {
+		spellId = pugi::cast<uint16_t>(attr.value());
+	}
+
+	if ((attr = node.attribute("group"))) {
+		std::string tmpStr = asLowerCaseString(attr.as_string());
+		if (tmpStr == "none" || tmpStr == "0") {
+			group = SPELLGROUP_NONE;
+		} else if (tmpStr == "attack" || tmpStr == "1") {
+			group = SPELLGROUP_ATTACK;
+		} else if (tmpStr == "healing" || tmpStr == "2") {
+			group = SPELLGROUP_HEALING;
+		} else if (tmpStr == "support" || tmpStr == "3") {
+			group = SPELLGROUP_SUPPORT;
+		} else if (tmpStr == "special" || tmpStr == "4") {
+			group = SPELLGROUP_SPECIAL;
+		} else if (tmpStr == "conjure" || tmpStr == "5") {
+			group = SPELLGROUP_CONJURE;
+		} else if (tmpStr == "crippling" || tmpStr == "6") {
+			group = SPELLGROUP_CRIPPLING;
+		} else if (tmpStr == "focus" || tmpStr == "7") {
+			group = SPELLGROUP_FOCUS;
+		} else if (tmpStr == "ultimatestrikes" || tmpStr == "8") {
+			group = SPELLGROUP_ULTIMATESTRIKES;
+		} else {
+			std::cout << "[Warning - Spell::configureSpell] Unknown group: " << attr.as_string() << std::endl;
+		}
+	}
+
+	if ((attr = node.attribute("cooldown")) || (attr = node.attribute("exhaustion")) || (attr = node.attribute("exhaust"))) {
+		cooldown = pugi::cast<uint32_t>(attr.value());
+	}
+
+	if ((attr = node.attribute("groupcooldown"))) {
+		groupCooldown = pugi::cast<uint32_t>(attr.value());
+	} else {
+		groupCooldown = cooldown;
+	}
+
+	if ((attr = node.attribute("secondarygroup"))) {
+		std::string tmpStr = asLowerCaseString(attr.as_string());
+		if (tmpStr == "none" || tmpStr == "0") {
+			secondaryGroup = SPELLGROUP_NONE;
+		} else if (tmpStr == "attack" || tmpStr == "1") {
+			secondaryGroup = SPELLGROUP_ATTACK;
+		} else if (tmpStr == "healing" || tmpStr == "2") {
+			secondaryGroup = SPELLGROUP_HEALING;
+		} else if (tmpStr == "support" || tmpStr == "3") {
+			secondaryGroup = SPELLGROUP_SUPPORT;
+		} else if (tmpStr == "special" || tmpStr == "4") {
+			secondaryGroup = SPELLGROUP_SPECIAL;
+		} else if (tmpStr == "conjure" || tmpStr == "5") {
+			secondaryGroup = SPELLGROUP_CONJURE;
+		} else if (tmpStr == "crippling" || tmpStr == "6") {
+			secondaryGroup = SPELLGROUP_CRIPPLING;
+		} else if (tmpStr == "focus" || tmpStr == "7") {
+			secondaryGroup = SPELLGROUP_FOCUS;
+		} else if (tmpStr == "ultimatestrikes" || tmpStr == "8") {
+			secondaryGroup = SPELLGROUP_ULTIMATESTRIKES;
+		} else {
+			std::cout << "[Warning - Spell::configureSpell] Unknown secondarygroup: " << attr.as_string() << std::endl;
+		}
+	}
+
+	if ((attr = node.attribute("secondarygroupcooldown"))) {
+		secondaryGroupCooldown = pugi::cast<uint32_t>(attr.value());
+	}
+	
 	if ((attr = node.attribute("level")) || (attr = node.attribute("lvl"))) {
 		level = pugi::cast<uint32_t>(attr.value());
 	}
@@ -547,18 +615,7 @@ bool Spell::playerSpellCheck(Player* player) const
 	}
 
 	if (!player->hasFlag(PlayerFlag_HasNoExhaustion)) {
-		bool exhaust = false;
-		if (aggressive) {
-			if (player->hasCondition(CONDITION_EXHAUST_COMBAT)) {
-				exhaust = true;
-			}
-		} else {
-			if (player->hasCondition(CONDITION_EXHAUST_HEAL)) {
-				exhaust = true;
-			}
-		}
-
-		if (exhaust) {
+		if (player->hasCondition(CONDITION_SPELLGROUPCOOLDOWN, group) || player->hasCondition(CONDITION_SPELLCOOLDOWN, spellId) || (secondaryGroup != SPELLGROUP_NONE && player->hasCondition(CONDITION_SPELLGROUPCOOLDOWN, secondaryGroup))) {
 			player->sendCancelMessage(RETURNVALUE_YOUAREEXHAUSTED);
 
 			if (isInstant()) {
@@ -703,6 +760,7 @@ bool Spell::playerRuneSpellCheck(Player* player, const Position& toPos)
 
 	ReturnValue ret = Combat::canDoCombat(player, tile, aggressive);
 	if (ret != RETURNVALUE_NOERROR) {
+		applyCooldownConditions(player);
 		player->sendCancelMessage(ret);
 		g_game.addMagicEffect(player->getPosition(), CONST_ME_POFF);
 		return false;
@@ -736,23 +794,33 @@ bool Spell::playerRuneSpellCheck(Player* player, const Position& toPos)
 	return true;
 }
 
+void Spell::applyCooldownConditions(Player* player) const
+{
+	if (cooldown > 0) {
+		Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT, CONDITION_SPELLCOOLDOWN, cooldown / g_config.getFloat(ConfigManager::RATE_SPELL_COOLDOWN), 0, false, spellId);
+		player->addCondition(condition);
+	}
+
+	if (groupCooldown > 0) {
+		Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT, CONDITION_SPELLGROUPCOOLDOWN, groupCooldown / g_config.getFloat(ConfigManager::RATE_SPELL_COOLDOWN), 0, false, group);
+		player->addCondition(condition);
+	}
+
+	if (secondaryGroupCooldown > 0) {
+		Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT, CONDITION_SPELLGROUPCOOLDOWN, secondaryGroupCooldown / g_config.getFloat(ConfigManager::RATE_SPELL_COOLDOWN), 0, false, secondaryGroup);
+		player->addCondition(condition);
+	}
+}
+
 void Spell::postCastSpell(Player* player, bool finishedCast /*= true*/, bool payCost /*= true*/) const
 {
 	if (finishedCast) {
 		if (!player->hasFlag(PlayerFlag_HasNoExhaustion)) {
-			if (cooldown > 0) {
-				if (aggressive) {
-					player->addCombatExhaust(cooldown);
-				} else {
-					player->addHealExhaust(cooldown);
-				}
-			}
+			applyCooldownConditions(player);
+		}
 
-			if (!player->hasFlag(PlayerFlag_NotGainInFight)) {
-				if (aggressive) {
-					player->addInFightTicks();
-				}
-			}
+		if (aggressive) {
+			player->addInFightTicks();
 		}
 	}
 
@@ -846,6 +914,13 @@ bool InstantSpell::playerCastInstant(Player* player, std::string& param)
 		if (hasParam) {
 			Player* playerTarget = nullptr;
 			ReturnValue ret = g_game.getPlayerByNameWildcard(param, playerTarget);
+			
+			if (ret != RETURNVALUE_NOERROR) {
+				applyCooldownConditions(player);
+				player->sendCancelMessage(ret);
+				g_game.addMagicEffect(player->getPosition(), CONST_ME_POFF);
+				return false;
+			}
 
 			if (playerTarget && playerTarget->isAccessPlayer() && !player->isAccessPlayer()) {
 				playerTarget = nullptr;
@@ -854,7 +929,7 @@ bool InstantSpell::playerCastInstant(Player* player, std::string& param)
 			target = playerTarget;
 			if (!target || target->getHealth() <= 0) {
 				if (!casterTargetOrDirection) {
-					player->addHealExhaust(cooldown);
+					applyCooldownConditions(player);
 					player->sendCancelMessage(ret);
 					g_game.addMagicEffect(player->getPosition(), CONST_ME_POFF);
 					return false;
@@ -870,6 +945,7 @@ bool InstantSpell::playerCastInstant(Player* player, std::string& param)
 			target = player->getAttackedCreature();
 			if (!target || target->getHealth() <= 0) {
 				if (!casterTargetOrDirection) {
+					applyCooldownConditions(player);
 					player->sendCancelMessage(RETURNVALUE_YOUCANONLYUSEITONCREATURES);
 					g_game.addMagicEffect(player->getPosition(), CONST_ME_POFF);
 					return false;

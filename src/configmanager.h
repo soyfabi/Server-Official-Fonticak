@@ -140,7 +140,7 @@ class ConfigManager
 		};
 		
 		enum floating_config_t {
-			//RATE_SPELL_COOLDOWN,
+			RATE_SPELL_COOLDOWN,
 
 			LAST_FLOATING_CONFIG
 		};

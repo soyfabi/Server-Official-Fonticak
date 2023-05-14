@@ -1238,6 +1238,14 @@ SpellGroup_t stringToSpellGroup(const std::string& value)
 		return SPELLGROUP_SUPPORT;
 	} else if (tmpStr == "special" || tmpStr == "4") {
 		return SPELLGROUP_SPECIAL;
+	} else if (tmpStr == "conjure" || tmpStr == "5") {
+		return SPELLGROUP_CONJURE;
+	} else if (tmpStr == "crippling" || tmpStr == "6") {
+		return SPELLGROUP_CRIPPLING;
+	} else if (tmpStr == "focus" || tmpStr == "7") {
+		return SPELLGROUP_FOCUS;
+	} else if (tmpStr == "ultimatestrikes" || tmpStr == "8") {
+		return SPELLGROUP_ULTIMATESTRIKES;
 	}
 
 	return SPELLGROUP_NONE;

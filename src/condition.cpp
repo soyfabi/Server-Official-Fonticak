@@ -215,7 +215,14 @@ Condition* Condition::createCondition(ConditionId_t id, ConditionType_t type, in
 
 		case CONDITION_DRUNK:
 			return new ConditionDrunk(id, type, ticks, buff, subId, param, aggressive);
+			
+		case CONDITION_SPELLCOOLDOWN:
+			return new ConditionSpellCooldown(id, type, ticks, buff, subId);
 
+		case CONDITION_SPELLGROUPCOOLDOWN:
+			return new ConditionSpellGroupCooldown(id, type, ticks, buff, subId);
+
+		case CONDITION_ROOTED:
 		case CONDITION_INFIGHT:
 		case CONDITION_EXHAUST_WEAPON:
 		case CONDITION_EXHAUST_COMBAT:
@@ -1916,4 +1923,35 @@ bool ConditionDrunk::setParam(ConditionParam_t param, int32_t value)
 			return ret;
 		}
 	}
+}
+
+void ConditionSpellCooldown::addCondition(Creature*, const Condition* condition)
+{
+	if (updateCondition(condition)) {
+		setTicks(condition->getTicks());
+	}
+}
+
+bool ConditionSpellCooldown::startCondition(Creature* creature)
+{
+	if (!Condition::startCondition(creature)) {
+		return false;
+	}
+
+	return true;
+}
+
+void ConditionSpellGroupCooldown::addCondition(Creature*, const Condition* condition)
+{
+	if (updateCondition(condition)) {
+		setTicks(condition->getTicks());
+	}
+}
+
+bool ConditionSpellGroupCooldown::startCondition(Creature* creature)
+{
+	if (!Condition::startCondition(creature)) {
+		return false;
+	}
+	return true;
 }
