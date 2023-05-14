@@ -1566,6 +1566,12 @@ void Player::removeMessageBuffer()
 void Player::drainHealth(Creature* attacker, int32_t damage)
 {
 	Creature::drainHealth(attacker, damage);
+	
+	// Add Condition InFight only when receive damage
+    if (damage > 0) {
+        addInFightTicks();
+    }
+	
 	sendStats();
 }
 
@@ -3488,7 +3494,8 @@ void Player::onAttackedCreature(Creature* target, bool addFightTicks /* = true *
 			sendIcons();
 		}
 
-		targetPlayer->addInFightTicks();
+		// Not receiving Condition when attacked by player.
+		//targetPlayer->addInFightTicks();
 
 		if (getSkull() == SKULL_NONE && getSkullClient(targetPlayer) == SKULL_YELLOW) {
 			addAttacked(targetPlayer);
@@ -3526,7 +3533,7 @@ void Player::onAttacked()
 {
 	Creature::onAttacked();
 
-	addInFightTicks();
+	//addInFightTicks();
 }
 
 void Player::onIdleStatus()
