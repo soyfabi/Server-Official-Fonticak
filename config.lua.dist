@@ -176,6 +176,17 @@ staminaSystem = true
 timeToRegenMinuteStamina = 3 * 60
 timeToRegenMinutePremiumStamina = 6 * 60
 
+-- Stamina in Trainers
+staminaTrainer = true
+staminaTrainerDelay = 5
+staminaTrainerGain = 1
+
+-- Stamina in PZ
+staminaPz = true
+staminaOrangeDelay = 1
+staminaGreenDelay = 5
+staminaPzGain = 1
+
 -- Scripts
 warnUnsafeScripts = true
 convertUnsafeScripts = true
