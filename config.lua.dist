@@ -140,6 +140,13 @@ rateLoot = 2
 rateMagic = 3
 rateSpawn = 1
 
+-- Sort loot by chance, most rare items drop first
+-- it is good to be setted when you have a higher
+-- rateLoot to avoid losing all rare items when
+-- the corpse size is less than the total of loots
+-- the monster can drop
+sortLootByChance = false
+
 -- Monster Despawn Config
 -- despawnRange is the amount of floors a monster can be from its spawn position
 -- despawnRadius is how many tiles away it can be from its spawn position
