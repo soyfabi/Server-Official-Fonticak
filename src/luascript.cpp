@@ -2062,8 +2062,17 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::RATE_MAGIC)
 	registerEnumIn("configKeys", ConfigManager::RATE_SPAWN)
 	registerEnumIn("configKeys", ConfigManager::HOUSE_PRICE)
-	registerEnumIn("configKeys", ConfigManager::KILLS_TO_RED)
-	registerEnumIn("configKeys", ConfigManager::KILLS_TO_BLACK)
+	
+	// Frags System
+	registerEnumIn("configKeys", ConfigManager::RED_DAILY_LIMIT);
+	registerEnumIn("configKeys", ConfigManager::RED_WEEKLY_LIMIT);
+	registerEnumIn("configKeys", ConfigManager::RED_MONTHLY_LIMIT);
+	registerEnumIn("configKeys", ConfigManager::RED_SKULL_LENGTH);
+	registerEnumIn("configKeys", ConfigManager::BLACK_DAILY_LIMIT);
+	registerEnumIn("configKeys", ConfigManager::BLACK_WEEKLY_LIMIT);
+	registerEnumIn("configKeys", ConfigManager::BLACK_MONTHLY_LIMIT);
+	registerEnumIn("configKeys", ConfigManager::BLACK_SKULL_LENGTH);
+	
 	registerEnumIn("configKeys", ConfigManager::MAX_MESSAGEBUFFER)
 	registerEnumIn("configKeys", ConfigManager::ACTIONS_DELAY_INTERVAL)
 	registerEnumIn("configKeys", ConfigManager::EX_ACTIONS_DELAY_INTERVAL)
@@ -2071,7 +2080,6 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::PROTECTION_LEVEL)
 	registerEnumIn("configKeys", ConfigManager::DEATH_LOSE_PERCENT)
 	registerEnumIn("configKeys", ConfigManager::STATUSQUERY_TIMEOUT)
-	registerEnumIn("configKeys", ConfigManager::FRAG_TIME)
 	registerEnumIn("configKeys", ConfigManager::WHITE_SKULL_TIME)
 	registerEnumIn("configKeys", ConfigManager::GAME_PORT)
 	registerEnumIn("configKeys", ConfigManager::LOGIN_PORT)
