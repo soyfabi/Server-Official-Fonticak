@@ -140,7 +140,7 @@ class ConfigManager
 		};
 		
 		enum floating_config_t {
-			
+			//RATE_SPELL_COOLDOWN,
 
 			LAST_FLOATING_CONFIG
 		};
@@ -150,6 +150,7 @@ class ConfigManager
 
 		const std::string& getString(string_config_t what) const;
 		int32_t getNumber(integer_config_t what) const;
+		bool getBoolean(boolean_config_t what) const;
 		float getFloat(floating_config_t what) const;
 		float getExperienceStage(uint32_t level) const;
 
