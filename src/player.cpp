@@ -1293,7 +1293,7 @@ void Player::onWalk(Direction& dir)
 	if (!g_events->eventPlayerOnStepTile(this, fromPos, toPos)) {
 		return;
 	}
-
+	
 	Creature::onWalk(dir);
 	setNextActionTask(nullptr);
 	// Removing this line fixes exhausted when opening backpack while running.
@@ -1912,7 +1912,7 @@ BlockType_t Player::blockHit(Creature* attacker, CombatType_t combatType, int32_
 {
 	BlockType_t blockType = Creature::blockHit(attacker, combatType, damage, checkDefense, checkArmor, field, ignoreResistances);
 
-	if (attacker) {
+	if (attacker && combatType != COMBAT_HEALING) {
 		sendCreatureSquare(attacker, SQ_COLOR_BLACK);
 	}
 
@@ -3038,6 +3038,9 @@ void Player::postAddNotification(Thing* thing, const Cylinder* oldParent, int32_
 
 			for (const auto& it : openContainers) {
 				Container* container = it.second.container;
+				if (!container) {
+					continue;
+				}
 				if (!Position::areInRange<1, 1, 0>(container->getPosition(), getPosition())) {
 					containers.push_back(container);
 				}

@@ -2095,12 +2095,12 @@ void ProtocolGame::sendOutfitWindow()
 	AddOutfit(msg, currentOutfit);
 
 	std::vector<ProtocolOutfit> protocolOutfits;
+	protocolOutfits.reserve(outfits.size());
 	if (player->isAccessPlayer()) {
 		static const std::string gamemasterOutfitName = "Gamemaster";
 		protocolOutfits.emplace_back(gamemasterOutfitName, 75, 0);
 	}
 
-	protocolOutfits.reserve(outfits.size());
 	for (const Outfit& outfit : outfits) {
 		uint8_t addons;
 		if (!player->getOutfitAddons(outfit, addons)) {
@@ -2216,7 +2216,7 @@ void ProtocolGame::AddPlayerStats(NetworkMessage& msg)
 	msg.add<uint16_t>(std::min<int32_t>(player->getHealth(), std::numeric_limits<uint16_t>::max()));
 	msg.add<uint16_t>(std::min<int32_t>(player->getMaxHealth(), std::numeric_limits<uint16_t>::max()));
 
-	msg.add<uint32_t>(player->getFreeCapacity());
+	msg.add<uint32_t>(player->hasFlag(PlayerFlag_HasInfiniteCapacity) ? 1000000 : player->getFreeCapacity());
 
 	msg.add<uint32_t>(std::min<uint32_t>(player->getExperience(), 0x7FFFFFFF));
 
