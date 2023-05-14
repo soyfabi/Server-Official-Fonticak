@@ -81,6 +81,7 @@ class Spawn
 		bool spawnMonster(uint32_t spawnId, spawnBlock_t sb, bool startup = false);
 		bool spawnMonster(uint32_t spawnId, MonsterType* mType, const Position& pos, Direction dir, bool startup = false);
 		void checkSpawn();
+		void scheduleSpawn(uint32_t spawnId, spawnBlock_t sb, uint32_t interval);
 };
 
 class Spawns

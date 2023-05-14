@@ -153,6 +153,12 @@ monsterBonusHealth = 0.5
 monsterBonusSpeed = 0.02
 monsterBonusDamage = 0.02
 
+-- Rate Spawn Effect --
+-- timeStartEffect = Effect time that it will do when this point reappears.
+-- timeBetweenTeleportEffects = Time of effect that it will do at the beginning.
+timeStartEffect = 4200
+timeBetweenTeleportEffects = 1400
+
 -- Sort loot by chance, most rare items drop first
 -- it is good to be setted when you have a higher
 -- rateLoot to avoid losing all rare items when

@@ -2099,6 +2099,10 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::STAMINA_GREEN_DELAY);
 	registerEnumIn("configKeys", ConfigManager::STAMINA_TRAINER_DELAY);
 	registerEnumIn("configKeys", ConfigManager::STAMINA_TRAINER_GAIN);
+	
+	// Spawn Effect Rates
+	registerEnumIn("configKeys", ConfigManager::RATE_START_EFFECT);
+	registerEnumIn("configKeys", ConfigManager::RATE_BETWEEN_EFFECT);
 
 	// os
 	registerMethod("os", "mtime", LuaScriptInterface::luaSystemTime);

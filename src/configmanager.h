@@ -148,6 +148,8 @@ class ConfigManager
 			STAMINA_GREEN_DELAY,
 			STAMINA_TRAINER_DELAY,
 			STAMINA_TRAINER_GAIN,
+			RATE_START_EFFECT,
+			RATE_BETWEEN_EFFECT,
 
 			LAST_INTEGER_CONFIG /* this must be the last one */
 		};

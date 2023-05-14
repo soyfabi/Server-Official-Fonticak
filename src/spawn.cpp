@@ -375,16 +375,31 @@ void Spawn::checkSpawn()
 		}
 
 		spawnBlock_t& sb = it.second;
+		
 		if (OTSYS_TIME() >= sb.lastSpawn + sb.interval) {
-			if (!spawnMonster(spawnId, sb)) {
+			
+			//Try when ignoreSpawnBlock is false, no teleport effect.
+			
+			/*if (!spawnMonster(spawnId, sb)) {
 				sb.lastSpawn = OTSYS_TIME();
 				continue;
-			}
+			}*/
+			scheduleSpawn(spawnId, sb, static_cast<uint32_t>(g_config.getNumber(ConfigManager::RATE_START_EFFECT)));
 		}
 	}
-
+	
 	if (spawnedMap.size() < spawnMap.size()) {
 		checkSpawnEvent = g_scheduler.addEvent(createSchedulerTask(getInterval(), std::bind(&Spawn::checkSpawn, this)));
+	}
+}
+
+void Spawn::scheduleSpawn(uint32_t spawnId, spawnBlock_t sb, uint32_t interval)
+{
+	if (interval <= 0) {
+		spawnMonster(spawnId, sb);
+	} else {
+		g_game.addMagicEffect(sb.pos, CONST_ME_TELEPORT);
+		g_scheduler.addEvent(createSchedulerTask(static_cast<uint32_t>(g_config.getNumber(ConfigManager::RATE_BETWEEN_EFFECT)), std::bind(&Spawn::scheduleSpawn, this, spawnId, sb, interval - static_cast<uint32_t>(g_config.getNumber(ConfigManager::RATE_BETWEEN_EFFECT)))));
 	}
 }
 

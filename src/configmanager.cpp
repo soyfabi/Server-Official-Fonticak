@@ -332,6 +332,8 @@ bool ConfigManager::load()
 	integer[STAMINA_GREEN_DELAY] = getGlobalNumber(L, "staminaGreenDelay", 5);
 	integer[STAMINA_TRAINER_DELAY] = getGlobalNumber(L, "staminaTrainerDelay", 5);
 	integer[STAMINA_TRAINER_GAIN] = getGlobalNumber(L, "staminaTrainerGain", 1);
+	integer[RATE_START_EFFECT] = getGlobalNumber(L, "timeStartEffect", 4200);
+	integer[RATE_BETWEEN_EFFECT] = getGlobalNumber(L, "timeBetweenTeleportEffects", 1400);
 	
 	//Floating Config
 	floating[MLVL_BONUSDMG] = getGlobalFloat(L, "monsterBonusDamage", 0);
