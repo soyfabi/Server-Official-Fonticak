@@ -756,6 +756,10 @@ bool Creature::dropCorpse(Creature* lastHitCreature, Creature* mostDamageCreatur
 			case RACE_BLOOD:
 				splash = Item::CreateItem(ITEM_FULLSPLASH, FLUID_BLOOD);
 				break;
+				
+			case RACE_INK:
+				splash = Item::CreateItem(ITEM_FULLSPLASH, FLUID_INK);
+				break;
 
 			default:
 				splash = nullptr;
