@@ -153,6 +153,16 @@ monsterBonusHealth = 0.5
 monsterBonusSpeed = 0.02
 monsterBonusDamage = 0.02
 
+-- Today regeneration condition over an loop every 1 second,
+-- So values which should regenerated less then 1 second or won't will work
+rateHealthRegen = 1.0
+rateHealthRegenSpeed = 1.0
+rateManaRegen = 1.0
+rateManaRegenSpeed = 1.0
+rateSoulRegen = 1.0
+rateSoulRegenSpeed = 1.0
+rateAttackSpeed = 1.0
+
 -- Rate Spawn Effect --
 -- timeStartEffect = Effect time that it will do when this point reappears.
 -- timeBetweenTeleportEffects = Time of effect that it will do at the beginning.

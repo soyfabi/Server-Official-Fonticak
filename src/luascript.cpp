@@ -2100,6 +2100,16 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::STAMINA_TRAINER_DELAY);
 	registerEnumIn("configKeys", ConfigManager::STAMINA_TRAINER_GAIN);
 	
+	// Rates
+	registerEnumIn("configKeys", ConfigManager::RATE_HEALTH_REGEN);
+	registerEnumIn("configKeys", ConfigManager::RATE_HEALTH_REGEN_SPEED);
+	registerEnumIn("configKeys", ConfigManager::RATE_MANA_REGEN);
+	registerEnumIn("configKeys", ConfigManager::RATE_MANA_REGEN_SPEED);
+	registerEnumIn("configKeys", ConfigManager::RATE_SOUL_REGEN);
+	registerEnumIn("configKeys", ConfigManager::RATE_SOUL_REGEN_SPEED);
+	registerEnumIn("configKeys", ConfigManager::RATE_ATTACK_SPEED);
+	registerEnumIn("configKeys", ConfigManager::RATE_SPELL_COOLDOWN);
+	
 	// Spawn Effect Rates
 	registerEnumIn("configKeys", ConfigManager::RATE_START_EFFECT);
 	registerEnumIn("configKeys", ConfigManager::RATE_BETWEEN_EFFECT);
