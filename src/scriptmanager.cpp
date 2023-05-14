@@ -88,10 +88,6 @@ bool ScriptingManager::loadScriptSystems()
 	}
 
 	g_actions = new Actions();
-	if (!g_actions->loadFromXml()) {
-		std::cout << "> ERROR: Unable to load actions!" << std::endl;
-		return false;
-	}
 	g_talkActions = new TalkActions();
 	g_moveEvents = new MoveEvents();
 	if (!g_moveEvents->loadFromXml()) {

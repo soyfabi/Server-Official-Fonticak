@@ -14,6 +14,7 @@ function spellwand.onUse(player, item, fromPosition, target, toPosition, isHotke
 	if math.random(100) <= 33 then
 		item:remove()
 		player:say("The spellwand broke.", TALKTYPE_MONSTER_SAY)
+		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 		if math.random(100) <= 75 and player:getStorageValue(PlayerStorageKeys.madSheepSummon) <= os.time() then
 			Game.createMonster("Mad Sheep", fromPosition)
 			player:setStorageValue(PlayerStorageKeys.madSheepSummon, os.time() + 12 * 60 * 60)
@@ -26,5 +27,5 @@ function spellwand.onUse(player, item, fromPosition, target, toPosition, isHotke
 	return true
 end
 
-spellwand:id(7735)
+spellwand:id(651)
 spellwand:register()
