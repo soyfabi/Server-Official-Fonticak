@@ -535,6 +535,9 @@ enum item_t : uint16_t {
 
 	ITEM_DEPOT = 3502,
 	ITEM_LOCKER = 3497,
+	
+	ITEM_REWARD_CONTAINER = 19202, // Bag of Loot
+	ITEM_REWARD_CHEST = 19250, // Chest of Reward Boss
 
 	ITEM_MALE_CORPSE = 4240,
 	ITEM_FEMALE_CORPSE = 4247,

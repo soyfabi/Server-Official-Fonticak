@@ -1277,6 +1277,10 @@ ReturnValue Game::internalAddItem(Cylinder* toCylinder, Item* item, int32_t inde
 	if (ret != RETURNVALUE_NOERROR) {
 		return ret;
 	}
+	
+	if (ret != RETURNVALUE_NOERROR && toCylinder->getItem() && toCylinder->getItem()->getID() != ITEM_REWARD_CONTAINER) {
+		return ret;
+	}
 
 	if (test) {
 		return RETURNVALUE_NOERROR;

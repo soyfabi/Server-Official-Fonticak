@@ -152,6 +152,7 @@ class MonsterType
 		bool pushable = true;
 		bool isAttackable = true;
 		bool isBoss = false;
+		bool isRewardBoss = false;
 		bool isChallengeable = true;
 		bool isConvinceable = false;
 		bool isHostile = true;
