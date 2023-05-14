@@ -187,3 +187,6 @@ pip-log.txt
 config.lua
 client_assertions.txt
 fonticakmap.otbm
+testmap.otbm
+testmap-house.xml
+testmap-spawn.xml
