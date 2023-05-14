@@ -171,10 +171,15 @@ registerMonsterType.voices = function(mtype, mask)
 		end
 	end
 end
-registerMonsterType.summons = function(mtype, mask)
-	if type(mask.summons) == "table" then
-		for k, v in pairs(mask.summons) do
-			mtype:addSummon(v.name, v.interval, v.chance)
+registerMonsterType.summon = function(mtype, mask)
+	if mask.summon then
+		if mask.summon.maxSummons then
+			mtype:maxSummons(mask.summon.maxSummons)
+		end
+		if type(mask.summon.summons) == "table" then
+			for k, v in pairs(mask.summon.summons) do
+				mtype:addSummon(v.name, v.interval, v.chance, v.count)
+			end
 		end
 	end
 end
@@ -302,6 +307,9 @@ local function AbilityTableToSpell(ability)
 						spell:setConditionSpeedChange(ability.speed.min, ability.speed.max)
 					end
 				end
+			end
+			if ability.speedChange then
+				spell:setConditionSpeedChange(ability.speedChange)
 			end
 			if ability.target then
 				spell:setNeedTarget(ability.target)
