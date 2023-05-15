@@ -17,55 +17,35 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef FS_DEPOTLOCKER_H_53AD8E0606A34070B87F792611F4F3F8
-#define FS_DEPOTLOCKER_H_53AD8E0606A34070B87F792611F4F3F8
+#ifndef FS_INBOX_H_C3EF10190329447883B9C3479234EE5C
+#define FS_INBOX_H_C3EF10190329447883B9C3479234EE5C
 
 #include "container.h"
-#include "inbox.h"
-#include "supplystash.h"
 
-using DepotLocker_ptr = std::shared_ptr<DepotLocker>;
-
-class DepotLocker final : public Container
+class Inbox final : public Container
 {
 	public:
-		explicit DepotLocker(uint16_t type);
+		explicit Inbox(uint16_t type);
 
-		DepotLocker* getDepotLocker() override {
-			return this;
-		}
-		const DepotLocker* getDepotLocker() const override {
-			return this;
-		}
-		
-		void removeInbox(Inbox* inbox);
-		void removeSupplyStash(SupplyStash* supplystash);
-
-		//serialization
-		Attr_ReadValue readAttr(AttrTypes_t attr, PropStream& propStream) override;
-
-		uint16_t getDepotId() const {
-			return depotId;
-		}
-		void setDepotId(uint16_t depotId) {
-			this->depotId = depotId;
-		}
-
-		bool needsSave() {
-			return save;
-		}
+		//cylinder implementations
+		ReturnValue queryAdd(int32_t index, const Thing& thing, uint32_t count,
+				uint32_t flags, Creature* actor = nullptr) const override;
 
 		void postAddNotification(Thing* thing, const Cylinder* oldParent, int32_t index, cylinderlink_t link = LINK_OWNER) override;
 		void postRemoveNotification(Thing* thing, const Cylinder* newParent, int32_t index, cylinderlink_t link = LINK_OWNER) override;
 
+		//overrides
 		bool canRemove() const override {
 			return false;
 		}
+		bool isRemoved() const override {
+			return false;
+		}
 
-	private:
-		uint16_t depotId = 0;
-		bool save = false;
+		Cylinder* getParent() const override;
+		Cylinder* getRealParent() const override {
+			return parent;
+		}
 };
 
 #endif
-

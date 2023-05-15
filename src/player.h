@@ -31,6 +31,8 @@
 #include "party.h"
 #include "depotchest.h"
 #include "depotlocker.h"
+#include "inbox.h"
+#include "supplystash.h"
 #include "guild.h"
 #include "groups.h"
 #include "town.h"
@@ -209,7 +211,15 @@ class Player final : public Creature, public Cylinder
 		void setLastWalkthroughPosition(Position walkthroughPosition) {
 			lastWalkthroughPosition = walkthroughPosition;
 		}
-
+		
+		Inbox* getInbox() const { 
+			return inbox; 
+		}
+		
+		SupplyStash* getSupplyStash() const { 
+			return supplystash; 
+		}
+		
 		uint16_t getClientIcons() const;
 
 		const GuildWarVector& getGuildWarVector() const {
@@ -311,14 +321,7 @@ class Player final : public Creature, public Cylinder
 		Group* getGroup() const {
 			return group;
 		}
-
-		void setLastDepotId(int16_t newId) {
-			lastDepotId = newId;
-		}
-		int16_t getLastDepotId() const {
-			return lastDepotId;
-		}
-
+		
 		void resetIdleTime() {
 			idleTime = 0;
 		}
@@ -461,7 +464,7 @@ class Player final : public Creature, public Cylinder
 		RewardChest* getRewardChest();
 
 		DepotChest* getDepotChest(uint32_t depotId, bool autoCreate);
-		DepotLocker* getDepotLocker(uint32_t depotId);
+		DepotLocker& getDepotLocker();
 		void onReceiveMail() const;
 		bool isNearDepotBox() const;
 
@@ -1107,7 +1110,6 @@ class Player final : public Creature, public Cylinder
 		std::unordered_set<uint32_t> VIPList;
 
 		std::map<uint8_t, OpenContainer> openContainers;
-		std::map<uint32_t, DepotLocker_ptr> depotLockerMap;
 		std::map<uint32_t, DepotChest*> depotChests;
 		std::map<uint32_t, int32_t> storageMap;
 		
@@ -1150,6 +1152,8 @@ class Player final : public Creature, public Cylinder
 		Guild* guild = nullptr;
 		GuildRank_ptr guildRank = nullptr;
 		Group* group = nullptr;
+		Inbox* inbox;
+		SupplyStash* supplystash;
 		Item* tradeItem = nullptr;
  		Item* inventory[CONST_SLOT_LAST + 1] = {};
 		Item* writeItem = nullptr;
@@ -1161,6 +1165,7 @@ class Player final : public Creature, public Cylinder
 		SchedulerTask* walkTask = nullptr;
 		Town* town = nullptr;
 		Vocation* vocation = nullptr;
+		DepotLocker_ptr depotLocker = nullptr;
 		RewardChest* rewardChest = nullptr;
 
 		uint32_t inventoryWeight = 0;
@@ -1193,7 +1198,6 @@ class Player final : public Creature, public Cylinder
 
 		uint16_t staminaMinutes = 2520;
 		uint16_t maxWriteLen = 0;
-		int16_t lastDepotId = -1;
 
 		uint8_t soul = 0;
 		std::bitset<6> blessings;

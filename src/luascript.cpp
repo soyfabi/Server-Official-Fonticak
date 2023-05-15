@@ -1621,6 +1621,8 @@ void LuaScriptInterface::registerFunctions()
 	registerEnum(ITEM_AMULETOFLOSS)
 	registerEnum(ITEM_PARCEL)
 	registerEnum(ITEM_LABEL)
+	registerEnum(ITEM_INBOX);
+	registerEnum(ITEM_SUPPLY_STASH);
 	registerEnum(ITEM_FIREFIELD_PVP_FULL)
 	registerEnum(ITEM_FIREFIELD_PVP_MEDIUM)
 	registerEnum(ITEM_FIREFIELD_PVP_SMALL)
@@ -2473,6 +2475,8 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Player", "getRewardList", LuaScriptInterface::luaPlayerGetRewardList);
 
 	registerMethod("Player", "getDepotChest", LuaScriptInterface::luaPlayerGetDepotChest);
+	registerMethod("Player", "getInbox", LuaScriptInterface::luaPlayerGetInbox);
+	registerMethod("Player", "getSupplyStash", LuaScriptInterface::luaPlayerGetSupplyStash);
 
 	registerMethod("Player", "getSkullTime", LuaScriptInterface::luaPlayerGetSkullTime);
 	registerMethod("Player", "setSkullTime", LuaScriptInterface::luaPlayerSetSkullTime);
@@ -8346,9 +8350,46 @@ int LuaScriptInterface::luaPlayerGetDepotChest(lua_State* L)
 	bool autoCreate = getBoolean(L, 3, false);
 	DepotChest* depotChest = player->getDepotChest(depotId, autoCreate);
 	if (depotChest) {
-		player->setLastDepotId(depotId); // FIXME: workaround for #2251
 		pushUserdata<Item>(L, depotChest);
 		setItemMetatable(L, -1, depotChest);
+	} else {
+		pushBoolean(L, false);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerGetInbox(lua_State* L)
+{
+	// player:getInbox()
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	Inbox* inbox = player->getInbox();
+	if (inbox) {
+		pushUserdata<Item>(L, inbox);
+		setItemMetatable(L, -1, inbox);
+	} else {
+		pushBoolean(L, false);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerGetSupplyStash(lua_State* L)
+{
+	// player:getSupplyStash()
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	SupplyStash* supplystash = player->getSupplyStash();
+	if (supplystash) {
+		pushUserdata<Item>(L, supplystash);
+		setItemMetatable(L, -1, supplystash);
 	} else {
 		pushBoolean(L, false);
 	}

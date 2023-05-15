@@ -62,6 +62,7 @@ std::string formatDate(time_t time);
 std::string formatDateShort(time_t time);
 std::string convertIPToString(uint32_t ip);
 
+uint16_t getDepotBoxId(uint16_t index);
 void trimString(std::string& str);
 
 MagicEffectClasses getMagicEffect(const std::string& strValue);

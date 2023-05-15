@@ -22134,7 +22134,7 @@
 	<item fromid="12878" toid="12879" name="RESERVED SPRITE"/>
 	<item fromid="12880" toid="12901" article="a" name="hive structure"/>
 	<item id="12902" name="your inbox">
-		<attribute key="containersize" value="30"/>
+		<attribute key="containersize" value="52"/>
 	</item>
 	<item id="12903" article="the" name="market"/>
 	<item id="12904" article="a" name="dread doll">
