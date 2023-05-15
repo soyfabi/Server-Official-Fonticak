@@ -13156,7 +13156,12 @@ int LuaScriptInterface::luaMonsterTypeIsRewardBoss(lua_State* L)
 	// monsterType:isRewardBoss()
 	MonsterType* monsterType = getUserdata<MonsterType>(L, 1);
 	if (monsterType) {
+		if (lua_gettop(L) == 1) {
 		pushBoolean(L, monsterType->info.isRewardBoss);
+	} else {
+		monsterType->info.isRewardBoss = getBoolean(L, 2);
+		pushBoolean(L, true);
+	}
 	} else {
 		lua_pushnil(L);
 	}

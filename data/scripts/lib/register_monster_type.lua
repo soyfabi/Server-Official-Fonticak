@@ -115,6 +115,9 @@ registerMonsterType.flags = function(mtype, mask)
 		if mask.flags.canPushItems ~= nil then
 			mtype:canPushItems(mask.flags.canPushItems)
 		end
+		if mask.flags.rewardBoss ~= nil then
+			mtype:isRewardBoss(mask.flags.rewardBoss)
+		end
 		if mask.flags.canPushCreatures ~= nil then
 			mtype:canPushCreatures(mask.flags.canPushCreatures)
 		end

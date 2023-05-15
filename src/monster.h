@@ -110,6 +110,9 @@ class Monster final : public Creature
 		bool canPushCreatures() const {
 			return mType->info.canPushCreatures;
 		}
+		bool isRewardBoss() const {
+			return mType->info.isRewardBoss;
+		}
 		bool isHostile() const {
 			return mType->info.isHostile;
 		}
