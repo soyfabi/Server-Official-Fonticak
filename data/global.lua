@@ -159,3 +159,8 @@ end
 function isInteger(n)
 	return (type(n) == "number") and (math.floor(n) == n)
 end
+
+-- Exercise Training --
+if onExerciseTraining == nil then
+	onExerciseTraining = {}
+end

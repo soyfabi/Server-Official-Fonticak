@@ -202,6 +202,10 @@ staminaOrangeDelay = 1
 staminaGreenDelay = 5
 staminaPzGain = 1
 
+-- Max players allowed on a dummy.
+maxAllowedOnADummy = 5
+rateExerciseTrainingSpeed = rateAttackSpeed
+
 -- Scripts
 warnUnsafeScripts = true
 convertUnsafeScripts = true

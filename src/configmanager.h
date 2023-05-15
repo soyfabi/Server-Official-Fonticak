@@ -152,6 +152,8 @@ class ConfigManager
 			STAMINA_TRAINER_GAIN,
 			RATE_START_EFFECT,
 			RATE_BETWEEN_EFFECT,
+			MAX_ALLOWED_ON_A_DUMMY,
+			RATE_EXERCISE_TRAINING_SPEED,
 
 			LAST_INTEGER_CONFIG /* this must be the last one */
 		};

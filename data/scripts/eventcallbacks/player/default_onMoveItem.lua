@@ -1,5 +1,32 @@
 local event = Event()
 
+local exercise_ids = {
+	28540,
+	28552,
+	35279,
+	35285,
+	28553,	
+	28541,
+	35280,
+	35286,
+	28554,
+	28542,
+	35281,
+	35287,
+	28544,
+	28556,
+	35283,
+	35289,
+	28543,
+	28555,
+	35282,
+	35288,
+	28545,
+	28557,
+	35284,
+	35290,
+}
+
 local stoneSkinAmuletExhausted = {}
 
 local tileLimit = 0
@@ -15,6 +42,12 @@ event.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCyl
 		addEvent(function()self:sendCancelMessage("You can't pick up this item.") end, 100)
 		return false
 	end
+	
+	-- Exercise Weapons
+    if isInArray(exercise_ids,item.itemid) then
+        self:sendCancelMessage('You cannot move this item outside this container.')
+        return false
+    end
 
 	-- No move parcel very heavy
 	if CONTAINER_WEIGHT_CHECK and ItemType(item:getId()):isContainer()

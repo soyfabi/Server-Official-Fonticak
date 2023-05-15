@@ -2105,6 +2105,7 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::MAX_PACKETS_PER_SECOND)
 	registerEnumIn("configKeys", ConfigManager::PLAYER_CONSOLE_LOGS)
 	registerEnumIn("configKeys", ConfigManager::SORT_LOOT_BY_CHANCE);
+	registerEnumIn("configKeys", ConfigManager::MAX_ALLOWED_ON_A_DUMMY);
 	
 	// Stamina Configs
 	registerEnumIn("configKeys", ConfigManager::STAMINA_REGEN_MINUTE);
@@ -2126,6 +2127,7 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::RATE_SOUL_REGEN_SPEED);
 	registerEnumIn("configKeys", ConfigManager::RATE_ATTACK_SPEED);
 	registerEnumIn("configKeys", ConfigManager::RATE_SPELL_COOLDOWN);
+	registerEnumIn("configKeys", ConfigManager::RATE_EXERCISE_TRAINING_SPEED);
 	
 	// Spawn Effect Rates
 	registerEnumIn("configKeys", ConfigManager::RATE_START_EFFECT);
