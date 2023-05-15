@@ -106,6 +106,8 @@ enum AttrTypes_t {
 	//ATTR_WRAPID = 36,
 	//ATTR_STOREITEM = 37,
 	ATTR_ATTACK_SPEED = 38,
+	ATTR_REFLECT = 39,
+	ATTR_BOOST = 40,
 };
 
 enum Attr_ReadValue {
@@ -349,6 +351,7 @@ class ItemAttributes
 		static int64_t emptyInt;
 		static double emptyDouble;
 		static bool emptyBool;
+		static Reflect emptyReflect;
 
 		typedef std::unordered_map<std::string, CustomAttribute> CustomAttributeMap;
 
@@ -416,6 +419,18 @@ class ItemAttributes
 
 		std::vector<Attribute> attributes;
 		uint32_t attributeBits = 0;
+		
+		std::map<CombatType_t, Reflect> reflect;
+		std::map<CombatType_t, uint16_t> boostPercent;
+
+		const Reflect& getReflect(CombatType_t combatType) {
+			auto it = reflect.find(combatType);
+			return it != reflect.end() ? it->second : emptyReflect;
+		}
+		int16_t getBoostPercent(CombatType_t combatType) {
+			auto it = boostPercent.find(combatType);
+			return it != boostPercent.end() ? it->second : 0;
+		}
 
 		const std::string& getStrAttr(itemAttrTypes type) const;
 		void setStrAttr(itemAttrTypes type, const std::string& value);
@@ -894,6 +909,16 @@ class Item : virtual public Thing
 
 		uint32_t getWorth() const;
 		LightInfo getLightInfo() const;
+		
+		void setReflect(CombatType_t combatType, const Reflect& reflect) {
+			getAttributes()->reflect[combatType] = reflect;
+		}
+		Reflect getReflect(CombatType_t combatType, bool total = true) const;
+
+		void setBoostPercent(CombatType_t combatType, uint16_t value) {
+			getAttributes()->boostPercent[combatType] = value;
+		}
+		uint16_t getBoostPercent(CombatType_t combatType, bool total = true) const;
 
 		bool hasProperty(ITEMPROPERTY prop) const;
 		bool isBlocking() const {
