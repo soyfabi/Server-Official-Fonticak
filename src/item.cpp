@@ -1355,6 +1355,83 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 
 				s << "speed " << std::showpos << (it.abilities->speed >> 1) << std::noshowpos;
 			}
+			
+			// Show maxHitPoints on item
+            if (it.abilities->stats[STAT_MAXHITPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "health " << std::showpos << it.abilities->stats[STAT_MAXHITPOINTS] << std::noshowpos;
+            }
+      
+            // Show maxManaPoints on item
+            if (it.abilities->stats[STAT_MAXMANAPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "mana " << std::showpos << it.abilities->stats[STAT_MAXMANAPOINTS] << std::noshowpos;
+            }
+      
+            // Show maxHitPointsPercent on item
+            if (it.abilities->statsPercent[STAT_MAXHITPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "health " << std::showpos << it.abilities->statsPercent[STAT_MAXHITPOINTS] - 100 << std::noshowpos << "%";
+            }
+      
+            // Show maxManaPointsPercent on item
+            if (it.abilities->statsPercent[STAT_MAXMANAPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "mana " << std::showpos << it.abilities->statsPercent[STAT_MAXMANAPOINTS] - 100 << std::noshowpos << "%";
+            }
+      
+            // Show healthGain/healthTicks on item
+            if (it.abilities->regeneration) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+				s << "Mana Recovery +" << it.abilities->healthGain << " each/" << std::fixed << std::setprecision(1) << it.abilities->healthTicks / 1000. << "s";
+            }
+            // Show manaGain/manaTicks on item
+            if (it.abilities->regeneration) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "Mana Recovery +" << it.abilities->manaGain << " each/" << std::fixed << std::setprecision(1) << it.abilities->manaTicks / 1000. << "s";
+            }	
 		}
 
 		if (!begin) {
@@ -1643,6 +1720,83 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 
 				s << "speed " << std::showpos << (it.abilities->speed >> 1) << std::noshowpos;
 			}
+			
+			// Show maxHitPoints on item
+            if (it.abilities->stats[STAT_MAXHITPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "health " << std::showpos << it.abilities->stats[STAT_MAXHITPOINTS] << std::noshowpos;
+            }
+      
+            // Show maxManaPoints on item
+            if (it.abilities->stats[STAT_MAXMANAPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "mana " << std::showpos << it.abilities->stats[STAT_MAXMANAPOINTS] << std::noshowpos;
+            }
+      
+            // Show maxHitPointsPercent on item
+            if (it.abilities->statsPercent[STAT_MAXHITPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "health " << std::showpos << it.abilities->statsPercent[STAT_MAXHITPOINTS] - 100 << std::noshowpos << "%";
+            }
+      
+            // Show maxManaPointsPercent on item
+            if (it.abilities->statsPercent[STAT_MAXMANAPOINTS]) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "mana " << std::showpos << it.abilities->statsPercent[STAT_MAXMANAPOINTS] - 100 << std::noshowpos << "%";
+            }
+      
+            // Show healthGain/healthTicks on item
+            if (it.abilities->regeneration) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+				s << "Mana Recovery +" << it.abilities->healthGain << " each/" << std::fixed << std::setprecision(1) << it.abilities->healthTicks / 1000. << "s";
+            }
+            // Show manaGain/manaTicks on item
+            if (it.abilities->regeneration) {
+                if (begin) {
+                    begin = false;
+                    s << " (";
+                }
+                else {
+                    s << ", ";
+                }
+
+                s << "Mana Recovery +" << it.abilities->manaGain << " each/" << std::fixed << std::setprecision(1) << it.abilities->manaTicks / 1000. << "s";
+            }
 		}
 
 		if (!begin) {
