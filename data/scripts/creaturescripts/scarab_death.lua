@@ -1,11 +1,27 @@
-local creatureevent = CreatureEvent("ScarabDeath")
+local Monster_Name = "Scarab"
 
-function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
+local event = CreatureEvent("Kill_Scarab")
+
+function event.onKill(creature, target)
+	if target:isPlayer() or target:getMaster()  or target:getName():lower() ~= Monster_Name:lower() then
+        return true
+    end
+	
 	if math.random(100) < 10 then
-		Game.createMonster("Scorpion", creature:getPosition())
-		creature:say("Horestis' curse spawns a vengeful scorpion from the body!", TALKTYPE_MONSTER_SAY)
+		addEvent(function()Game.createMonster("Scorpion", target:getPosition()) end, 100)
+		target:say("Horestis' curse spawns a vengeful scorpion from the body!")
 	end
-	return true
+	
+    return true
 end
 
-creatureevent:register()
+event:register()
+
+local login = CreatureEvent("Register_Scarab")
+
+function login.onLogin(player)
+    player:registerEvent("Kill_Scarab")
+    return true
+end
+
+login:register()
