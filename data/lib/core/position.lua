@@ -79,3 +79,36 @@ function Position:notifySummonAppear(summon)
 		end
 	end
 end
+
+function Position:moveDownstairs()
+	local swap = function (lhs, rhs)
+		lhs.x, rhs.x = rhs.x, lhs.x
+		lhs.y, rhs.y = rhs.y, lhs.y
+		lhs.z, rhs.z = rhs.z, lhs.z
+	end
+
+	self.z = self.z + 1
+
+	local defaultPosition = self + Position.directionOffset[DIRECTION_SOUTH]
+	local tile = Tile(defaultPosition)
+	if not tile then return false end
+
+	if not tile:isWalkable(false, false, false, false, true) then
+		for direction = DIRECTION_NORTH, DIRECTION_NORTHEAST do
+			if direction == DIRECTION_SOUTH then
+				direction = DIRECTION_WEST
+			end
+
+			local position = self + Position.directionOffset[direction]
+			local newTile = Tile(position)
+			if not newTile then return false end
+
+			if newTile:isWalkable(false, false, false, false, true) then
+				swap(self, position)
+				return self
+			end
+		end
+	end
+	swap(self, defaultPosition)
+	return self
+end
