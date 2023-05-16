@@ -2090,8 +2090,6 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::BLACK_SKULL_LENGTH);
 	
 	registerEnumIn("configKeys", ConfigManager::MAX_MESSAGEBUFFER)
-	registerEnumIn("configKeys", ConfigManager::ACTIONS_DELAY_INTERVAL)
-	registerEnumIn("configKeys", ConfigManager::EX_ACTIONS_DELAY_INTERVAL)
 	registerEnumIn("configKeys", ConfigManager::KICK_AFTER_MINUTES)
 	registerEnumIn("configKeys", ConfigManager::PROTECTION_LEVEL)
 	registerEnumIn("configKeys", ConfigManager::DEATH_LOSE_PERCENT)

@@ -58,13 +58,9 @@ houseOwnedByAccount = false
 houseDoorShowPrice = true
 onlyInvitedCanMoveHouseItems = true
 
--- Item Usage
-timeBetweenActions = 0
-timeBetweenExActions = 0
-
 -- Map
 -- NOTE: set mapName WITHOUT .otbm at the end
-mapName = "testmap"
+mapName = "fonticakmap"
 mapAuthor = "Fabian Marzan"
 
 -- Market

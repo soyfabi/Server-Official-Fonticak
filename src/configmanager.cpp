@@ -309,8 +309,6 @@ bool ConfigManager::load()
 	integer[BLACK_WEEKLY_LIMIT] = getGlobalNumber(L, "blackWeeklyLimit", 10);
 	integer[BLACK_MONTHLY_LIMIT] = getGlobalNumber(L, "blackMonthlyLimit", 20);
 	integer[BLACK_SKULL_LENGTH] = getGlobalNumber(L, "blackSkullLength", 45 * 24 * 60 * 60);
-	integer[ACTIONS_DELAY_INTERVAL] = getGlobalNumber(L, "timeBetweenActions", 200);
-	integer[EX_ACTIONS_DELAY_INTERVAL] = getGlobalNumber(L, "timeBetweenExActions", 1000);
 	integer[MAX_MESSAGEBUFFER] = getGlobalNumber(L, "maxMessageBuffer", 4);
 	integer[KICK_AFTER_MINUTES] = getGlobalNumber(L, "kickIdlePlayerAfterMinutes", 15);
 	integer[PROTECTION_LEVEL] = getGlobalNumber(L, "protectionLevel", 1);
