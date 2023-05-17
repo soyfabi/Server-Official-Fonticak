@@ -17,16 +17,12 @@ monster.health = 6250
 monster.maxHealth = 6250
 monster.race = "venom"
 monster.corpse = 11667
-monster.speed = 135
+monster.speed = 230
 monster.manaCost = 0
 
 monster.changeTarget = {
 	interval = 4000,
 	chance = 10
-}
-
-monster.strategiesTarget = {
-	nearest = 100,
 }
 
 monster.flags = {

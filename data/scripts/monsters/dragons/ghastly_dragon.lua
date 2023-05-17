@@ -17,19 +17,12 @@ monster.health = 7800
 monster.maxHealth = 7800
 monster.race = "undead"
 monster.corpse = 10445
-monster.speed = 160
+monster.speed = 320
 monster.manaCost = 0
 
 monster.changeTarget = {
 	interval = 4000,
 	chance = 5
-}
-
-monster.strategiesTarget = {
-	nearest = 70,
-	health = 10,
-	damage = 10,
-	random = 10,
 }
 
 monster.flags = {

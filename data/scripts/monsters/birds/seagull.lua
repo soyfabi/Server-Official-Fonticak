@@ -13,36 +13,16 @@ monster.outfit = {
 	lookMount = 0
 }
 
-monster.raceId = 264
-monster.Bestiary = {
-	class = "Bird",
-	race = BESTY_RACE_BIRD,
-	toKill = 250,
-	FirstUnlock = 10,
-	SecondUnlock = 100,
-	CharmsPoints = 5,
-	Stars = 1,
-	Occurrence = 0,
-	Locations = "Various locations, sighted in the Shattered Isles, Venore, Thais, Femor Hills, \z
-		Cormaya, Edron Troll-Goblin Peninsula, Liberty Bay, Port Hope, Fibula, Drefia, Factory Quarter, \z
-		bordering Orc Fort, Rookgaard Premium Zone (not reachable), AbDendriel elf caves, \z
-		Northern coast of Tibia between Dalbrect and Northport."
-	}
-
 monster.health = 25
 monster.maxHealth = 25
 monster.race = "blood"
 monster.corpse = 6076
-monster.speed = 160
+monster.speed = 260
 monster.manaCost = 250
 
 monster.changeTarget = {
 	interval = 5000,
 	chance = 0
-}
-
-monster.strategiesTarget = {
-	nearest = 100,
 }
 
 monster.flags = {
@@ -59,7 +39,7 @@ monster.flags = {
 	targetDistance = 11,
 	runHealth = 25,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = true,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false

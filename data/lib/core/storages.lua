@@ -1072,6 +1072,10 @@ Storage = {
 		DoorToQuara = 51248,
 		DoorToReward = 51249
 	},
+	Marapur = {
+		-- Timira
+		Timira = 100800 
+	},
 	ChildrenoftheRevolution = {
 		-- Reserved storage from 55145 - 51279
 		Questline = 55145,
@@ -1800,6 +1804,50 @@ Storage = {
 					BananaPremium = 40022
 				}
 			},
+		},
+		FeasterOfSouls = {
+			Bosses = {
+				BrainHead = {
+					Timer = 284700,
+					Killed = 284701,
+				},
+				UnazTheMean = {
+					Timer = 284702,
+					Killed = 284712,
+				},
+				IrgixTheFlimsy = {
+					Timer = 284703,
+					Killed = 284713,
+				},
+				VokTheFreakish = {
+					Timer = 284704,
+					Killed = 284714,
+				},
+				TheUnwelcome = {
+					Timer = 284705,
+					Killed = 284715,
+				},
+				TheDreadMaiden = {
+					Timer = 284706,
+					Souls = 284707,
+					Killed = 284716,
+				},
+				TheFearFeaster = {
+					Timer = 284708,
+					Totem = 284709,
+					Killed = 284717,
+				},
+				ThePaleWorm = {
+					Timer = 284710,
+					WeakSpot = 284711,
+					Killed = 284718,
+				}
+			}
+		},
+		PoltergeistOutfits = {
+			Outfit = 284719,
+			Addon1 = 284720,
+			Addon2 = 284721,
 		},
 		U6_1 = { -- update 6.1 - Reserved Storages 40031 - 40050
 			EmperorsCookies = {

@@ -13,33 +13,16 @@ monster.outfit = {
 	lookMount = 0
 }
 
-monster.raceId = 217
-monster.Bestiary = {
-	class = "Bird",
-	race = BESTY_RACE_BIRD,
-	toKill = 250,
-	FirstUnlock = 10,
-	SecondUnlock = 100,
-	CharmsPoints = 5,
-	Stars = 1,
-	Occurrence = 0,
-	Locations = "In the jungle of Tiquanda, Liberty Bay, the Shattered Isles, and as a house pet in Meriana."
-	}
-
 monster.health = 25
 monster.maxHealth = 25
 monster.race = "blood"
 monster.corpse = 6056
-monster.speed = 160
+monster.speed = 320
 monster.manaCost = 250
 
 monster.changeTarget = {
 	interval = 5000,
 	chance = 0
-}
-
-monster.strategiesTarget = {
-	nearest = 100,
 }
 
 monster.flags = {
@@ -56,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 25,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = true,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false

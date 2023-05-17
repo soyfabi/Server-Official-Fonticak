@@ -13,33 +13,16 @@ monster.outfit = {
 	lookMount = 0
 }
 
-monster.raceId = 318
-monster.Bestiary = {
-	class = "Bird",
-	race = BESTY_RACE_BIRD,
-	toKill = 250,
-	FirstUnlock = 10,
-	SecondUnlock = 100,
-	CharmsPoints = 5,
-	Stars = 1,
-	Occurrence = 0,
-	Locations = "In and north of Formorgar Glacier, Nibelor, Helheim, Grimlund, south of Svargrond, Chyllfroest."
-	}
-
 monster.health = 33
 monster.maxHealth = 33
 monster.race = "blood"
 monster.corpse = 7334
-monster.speed = 58
+monster.speed = 180
 monster.manaCost = 300
 
 monster.changeTarget = {
 	interval = 4000,
 	chance = 0
-}
-
-monster.strategiesTarget = {
-	nearest = 100,
 }
 
 monster.flags = {
@@ -56,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 32,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = true,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false

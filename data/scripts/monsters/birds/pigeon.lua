@@ -13,33 +13,16 @@ monster.outfit = {
 	lookMount = 0
 }
 
-monster.raceId = 915
-monster.Bestiary = {
-	class = "Bird",
-	race = BESTY_RACE_BIRD,
-	toKill = 25,
-	FirstUnlock = 5,
-	SecondUnlock = 10,
-	CharmsPoints = 1,
-	Stars = 1,
-	Occurrence = 1,
-	Locations = "Streets of Venore, Gardens of Night."
-	}
-
 monster.health = 30
 monster.maxHealth = 30
 monster.race = "blood"
 monster.corpse = 17429
-monster.speed = 65
+monster.speed = 260
 monster.manaCost = 0
 
 monster.changeTarget = {
 	interval = 4000,
 	chance = 0
-}
-
-monster.strategiesTarget = {
-	nearest = 100,
 }
 
 monster.flags = {
@@ -56,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 30,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = true,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false

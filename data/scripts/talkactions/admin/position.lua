@@ -2,9 +2,9 @@ local position = TalkAction("/pos", "!pos")
 
 function position.onSay(player, words, param)
 
-	if not player:getGroup():getAccess() or player:getAccountType() < ACCOUNT_TYPE_GOD then
+	--[[if not player:getGroup():getAccess() or player:getAccountType() < ACCOUNT_TYPE_GOD then
 		return true
-	end
+	end]]
 
 	local param = string.gsub(param, "%s+", "")
 	local position = player:getPosition()
