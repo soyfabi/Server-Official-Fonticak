@@ -112,3 +112,225 @@ function Position:moveDownstairs()
 	swap(self, defaultPosition)
 	return self
 end
+
+function Position.hasPlayer(centerPosition, rangeX, rangeY)
+	local spectators = Game.getSpectators(centerPosition, false, true, rangeX, rangeX, rangeY, rangeY)
+	if #spectators ~= 0 then
+		return true
+	end
+	return false
+end
+
+function Position.removeMonster(centerPosition, rangeX, rangeY)
+	local spectators = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
+	local spectators,
+	spectator = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
+	for i = 1, #spectators do
+		spectator = spectators[i]
+		if spectator:isMonster() then
+			spectator:remove()
+		end
+	end
+end
+
+function Position.getFreePosition(from, to)
+	local result, tries = Position(from.x, from.y, from.z), 0
+	repeat
+		local x, y, z = math.random(from.x, to.x), math.random(from.y, to.y), math.random(from.z, to.z)
+		result = Position(x, y, z)
+		tries = tries + 1
+		if tries >= 20 then
+			return result
+		end
+
+		local tile = Tile(result)
+
+	until tile and tile:isWalkable(false, false, false, false, true)
+	return result
+end
+
+function Position.getFreeSand()
+	local from, to = ghost_detector_area.from, ghost_detector_area.to
+	local result, tries = Position(from.x, from.y, from.z), 0
+	repeat
+		local x, y, z = math.random(from.x, to.x), math.random(from.y, to.y), math.random(from.z, to.z)
+		result = Position(x, y, z)
+		tries = tries + 1
+		if tries >= 50 then
+			return result
+		end
+
+		local tile = Tile(result)
+
+	until tile and tile:isWalkable(false, false, false, false, true) and tile:getGround():getName() == "grey sand"
+	return result
+end
+
+function Position.getDirectionTo(pos1, pos2)
+	local dir = DIRECTION_NORTH
+	if (pos1.x > pos2.x) then
+		dir = DIRECTION_WEST
+		if(pos1.y > pos2.y) then
+			dir = DIRECTION_NORTHWEST
+		elseif(pos1.y < pos2.y) then
+			dir = DIRECTION_SOUTHWEST
+		end
+	elseif (pos1.x < pos2.x) then
+		dir = DIRECTION_EAST
+		if(pos1.y > pos2.y) then
+			dir = DIRECTION_NORTHEAST
+		elseif(pos1.y < pos2.y) then
+			dir = DIRECTION_SOUTHEAST
+		end
+	else
+		if (pos1.y > pos2.y) then
+			dir = DIRECTION_NORTH
+		elseif(pos1.y < pos2.y) then
+			dir = DIRECTION_SOUTH
+		end
+	end
+	return dir
+end
+
+-- Checks if there is a creature in a certain position (self)
+-- If so, teleports to another position (teleportTo)
+function Position:hasCreature(teleportTo)
+	local creature = Tile(self):getTopCreature()
+	if creature then
+		creature:teleportTo(teleportTo, true)
+	end
+end
+
+function Position:hasItem(itemId)
+	local tile = Tile(self)
+	if tile then
+		local item = tile:getItemById(itemId)
+		if item then
+			return true
+		end
+	end
+end
+
+function Position.hasCreatureInArea(fromPosition, toPosition, removeCreatures, removePlayer, teleportTo)
+	for positionX = fromPosition.x, toPosition.x do
+		for positionY = fromPosition.y, toPosition.y do
+        	for positionZ = fromPosition.z, toPosition.z do
+		        local room = {x = positionX, y = positionY, z= positionZ}
+				local tile = Tile(room)
+				if tile then
+					local creatures = tile:getCreatures()
+					if creatures and #creatures > 0 then
+						for _, creature in pairs(creatures) do
+							if removeCreatures == true then
+								if removePlayer == true then
+									if isPlayer(creature) then
+										creature:teleportTo(teleportTo)
+									end
+								end
+								if isMonster(creature) then
+									creature:remove()
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+function Position.revertItem(positionCreateItem, itemIdCreate, positionTransform, itemId, itemTransform, effect)
+	local tile = Tile(positionTransform)
+	if tile then
+		local lever = tile:getItemById(itemId)
+		if lever then
+			lever:transform(itemTransform)
+		end
+	end
+
+	local getItemTile = Tile(positionCreateItem)
+	if getItemTile then
+		local getItemId = getItemTile:getItemById(itemIdCreate)
+		if not getItemId then
+			Game.createItem(itemIdCreate, 1, positionCreateItem)
+			Position(positionCreateItem):sendMagicEffect(effect)
+		end
+	end
+end
+
+-- Position.transformItem(itemPosition, itemId, itemTransform, effect)
+-- Variable "effect" is optional
+function Position:transformItem(itemId, itemTransform, effect)
+	local thing = Tile(self):getItemById(itemId)
+	if thing then
+		thing:transform(itemTransform)
+		Position(self):sendMagicEffect(effect)
+	end
+end
+
+-- Position.createItem(tilePosition, itemId, effect)
+-- Variable "effect" is optional
+function Position:createItem(itemId, effect)
+	local tile = Tile(self)
+	if not tile then
+		return true
+	end
+
+	local thing = tile:getItemById(itemId)
+	if not thing then
+		Game.createItem(itemId, 1, self)
+		Position(self):sendMagicEffect(effect)
+	end
+end
+
+-- Position.removeItem(position, itemId, effect)
+-- Variable "effect" is optional
+function Position:removeItem(itemId, effect)
+	local tile = Tile(self)
+	if not tile then
+		return true
+	end
+
+	local thing = tile:getItemById(itemId)
+	if thing then
+		thing:remove(1)
+		Position(self):sendMagicEffect(effect)
+	end
+end
+
+function Position:relocateTo(toPos)
+	if self == toPos then
+		return false
+	end
+
+	local fromTile = Tile(self)
+	if fromTile == nil then
+		return false
+	end
+
+	if Tile(toPos) == nil then
+		return false
+	end
+
+	for i = fromTile:getThingCount() - 1, 0, -1 do
+		local thing = fromTile:getThing(i)
+		if thing then
+			if thing:isItem() then
+				if ItemType(thing:getId()):isMovable() then
+					thing:moveTo(toPos)
+				end
+			elseif thing:isCreature() then
+				thing:teleportTo(toPos)
+			end
+		end
+	end
+	return true
+end
+
+function Position:isProtectionZoneTile()
+	local tile = Tile(self)
+	if not tile then
+		return false
+	end
+	return tile:hasFlag(TILESTATE_PROTECTIONZONE)
+end

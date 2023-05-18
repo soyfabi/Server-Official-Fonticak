@@ -44451,6 +44451,7 @@
 	<item id="32620" article="a" name="ghost backpack">
 		<attribute key="containersize" value="26"/>
 		<attribute key="weight" value="500"/>
+		<attribute key="slotType" value="backpack" />
 	</item>
 	<item id="32621" article="a" name="ring of souls">
 		<attribute key="stopduration" value="1"/>
