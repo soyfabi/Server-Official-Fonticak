@@ -280,6 +280,7 @@ bool ConfigManager::load()
 	boolean[STAMINA_PZ] = getGlobalBoolean(L, "staminaPz", false);
 	boolean[BLOCK_LOGIN] = getGlobalBoolean(L, "blockLogin", false);
 	boolean[SHOW_PACKETS] = getGlobalBoolean(L, "showPackets", false);
+	boolean[NPCS_USING_BANK_MONEY] = getGlobalBoolean(L, "npcsUsingBankMoney", false);
 
 	string[DEFAULT_PRIORITY] = getGlobalString(L, "defaultPriority", "high");
 	string[SERVER_NAME] = getGlobalString(L, "serverName", "");

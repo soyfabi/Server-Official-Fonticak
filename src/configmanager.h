@@ -73,6 +73,7 @@ class ConfigManager
 			STAMINA_PZ,
 			BLOCK_LOGIN,
 			SHOW_PACKETS,
+			NPCS_USING_BANK_MONEY,
 
 			LAST_BOOLEAN_CONFIG /* this must be the last one */
 		};

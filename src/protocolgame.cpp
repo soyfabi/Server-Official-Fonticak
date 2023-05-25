@@ -1358,11 +1358,17 @@ void ProtocolGame::sendSaleItemList(const std::list<ShopInfo>& shop)
 	uint16_t moneyType = player->shopOwner ? player->shopOwner->getMoneyType() : 0;
 	
 	if (moneyType == 0) {
-		msg.add<uint32_t>(player->getMoney());
+		uint32_t playerMoney = player->getMoney();
+		if (g_config.getBoolean(ConfigManager::NPCS_USING_BANK_MONEY)) {
+			uint32_t playerBank = player->getBankBalance();
+			msg.add<uint32_t>(playerBank + playerMoney); // deprecated and ignored by QT client. OTClient still uses it.
+			} else {
+			msg.add<uint32_t>(playerMoney);
+		}
 	} else {
 		msg.add<uint32_t>(player->getItemTypeCount(moneyType));
 	}
-
+	
 	std::map<uint16_t, uint32_t> saleMap;
 
 	if (shop.size() <= 5) {

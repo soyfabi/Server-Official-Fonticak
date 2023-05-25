@@ -2103,6 +2103,7 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::MAX_PACKETS_PER_SECOND)
 	registerEnumIn("configKeys", ConfigManager::SORT_LOOT_BY_CHANCE);
 	registerEnumIn("configKeys", ConfigManager::MAX_ALLOWED_ON_A_DUMMY);
+	registerEnumIn("configKeys", ConfigManager::NPCS_USING_BANK_MONEY);
 	
 	// Stamina Configs
 	registerEnumIn("configKeys", ConfigManager::STAMINA_REGEN_MINUTE);
