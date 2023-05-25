@@ -123,7 +123,7 @@ class Npc final : public Creature
 
 		void setID() override {
 			if (id == 0) {
-				id = npcAutoID++;
+				id = ++npcAutoID;
 			}
 		}
 
@@ -147,6 +147,10 @@ class Npc final : public Creature
 		CreatureType_t getType() const override {
 			return CREATURETYPE_NPC;
 		}
+		
+		uint16_t getMoneyType() const {
+    		return moneyType;
+    	}
 
 		void doSay(const std::string& text);
 		void doSayToPlayer(Player* player, const std::string& text);
@@ -238,6 +242,8 @@ class Npc final : public Creature
 		bool loaded;
 		bool isIdle;
 		bool pushable;
+		
+		uint16_t moneyType;
 
 		static NpcScriptInterface* scriptInterface;
 
