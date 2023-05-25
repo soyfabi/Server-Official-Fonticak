@@ -277,6 +277,7 @@ bool ConfigManager::load()
 	boolean[BLOCK_LOGIN] = getGlobalBoolean(L, "blockLogin", false);
 	boolean[SHOW_PACKETS] = getGlobalBoolean(L, "showPackets", false);
 	boolean[NPCS_USING_BANK_MONEY] = getGlobalBoolean(L, "npcsUsingBankMoney", false);
+	boolean[CHECK_DUPLICATE_STORAGE_KEYS] = getGlobalBoolean(L, "checkDuplicateStorageKeys", false);
 
 	string[DEFAULT_PRIORITY] = getGlobalString(L, "defaultPriority", "high");
 	string[SERVER_NAME] = getGlobalString(L, "serverName", "");
