@@ -223,6 +223,8 @@ class Tile : public Cylinder
 				return ZONE_NOPVP;
 			} else if (hasFlag(TILESTATE_PVPZONE)) {
 				return ZONE_PVP;
+			} else if (hasFlag(TILESTATE_NOLOGOUT)) {
+				return ZONE_NOLOGOUT;
 			}
 			return ZONE_NORMAL;
 		}
