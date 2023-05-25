@@ -2131,9 +2131,10 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::RATE_START_EFFECT);
 	registerEnumIn("configKeys", ConfigManager::RATE_BETWEEN_EFFECT);
 	
-	// Login Text when Server is Closed
+	// Login Text when Server is Closed and Packets
 	registerEnumIn("configKeys", ConfigManager::BLOCK_LOGIN);
 	registerEnumIn("configKeys", ConfigManager::BLOCK_LOGIN_TEXT);
+	registerEnumIn("configKeys", ConfigManager::SHOW_PACKETS);
 
 	// os
 	registerMethod("os", "mtime", LuaScriptInterface::luaSystemTime);

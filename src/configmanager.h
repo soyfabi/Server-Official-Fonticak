@@ -73,6 +73,7 @@ class ConfigManager
 			STAMINA_TRAINER,
 			STAMINA_PZ,
 			BLOCK_LOGIN,
+			SHOW_PACKETS,
 
 			LAST_BOOLEAN_CONFIG /* this must be the last one */
 		};
