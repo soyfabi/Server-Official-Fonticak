@@ -128,20 +128,25 @@ serverSaveShutdown = true
 -- maxlevel is OPTIONAL, but is considered infinite by default
 -- to disable stages, create a stage with minlevel 1 and no maxlevel
 experienceStages = {
-	{ minlevel = 1, maxlevel = 8, multiplier = 7 },
-	{ minlevel = 9, maxlevel = 20, multiplier = 6 },
-	{ minlevel = 21, maxlevel = 50, multiplier = 5 },
-	{ minlevel = 51, maxlevel = 100, multiplier = 4 },
-	{ minlevel = 101, multiplier = 3 }
+	{ minlevel = 1, maxlevel = 50, multiplier = 100},
+	{ minlevel = 51, maxlevel = 70, multiplier = 80},
+	{ minlevel = 71, maxlevel = 80, multiplier = 65},
+	{ minlevel = 81, maxlevel = 100, multiplier = 45},
+	{ minlevel = 101, maxlevel = 120, multiplier = 25},
+	{ minlevel = 121, maxlevel = 140, multiplier = 10},
+	{ minlevel = 141, maxlevel = 175, multiplier = 8},
+	{ minlevel = 176, maxlevel = 180, multiplier = 2},
+	{ minlevel = 181, maxlevel = 200, multiplier = 1.5},
+	{ minlevel = 201, maxlevel = 500, multiplier = 1}
 }
 
 -- Rates
 -- NOTE: rateExp is not used if you have enabled stages above
 -- rateSpellCooldown lowering it makes the cooldown less.
-rateExp = 5
-rateSkill = 3
-rateLoot = 2
-rateMagic = 3
+rateExp = 0
+rateSkill = 10
+rateLoot = 3.5
+rateMagic = 4.5
 rateSpellCooldown = 1
 
 -- Monster Level System --
