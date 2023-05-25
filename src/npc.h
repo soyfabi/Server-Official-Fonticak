@@ -182,6 +182,8 @@ class Npc final : public Creature
 		NpcScriptInterface* getScriptInterface();
 
 		static uint32_t npcAutoID;
+		
+		const auto& getSpectators() { return spectators; }
 
 	private:
 		explicit Npc(const std::string& name);
