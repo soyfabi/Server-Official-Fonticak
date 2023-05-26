@@ -3,48 +3,75 @@
 	<health now="100" max="100" />
 	<look type="136" head="0" body="36" legs="13" feet="76" addons="0" />
 <parameters>
-		<parameter key="message_greet" value="Welcome |PLAYERNAME|. What is your need today? Ask me for a {trade} to check out my offers." />
-		<parameter key="message_farewell" value="Good bye, |PLAYERNAME|." />
+		<parameter key="message_greet" value="Welcome {|PLAYERNAME|}. What is your need today? Ask me for a {trade} to check out my {offers}." />
+		<parameter key="message_farewell" value="Good bye, {|PLAYERNAME|}." />
 		<parameter key="module_keywords" value="1" />
 		<parameter key="keywords" value="job;" />
-		<parameter key="keyword_reply1" value="I am selling several kinds of equipment and decoration. What is your need?" />
+		<parameter key="keyword_reply1" value="I am selling several kinds of {equipment} and {decoration}. What is your need?" />
 		<parameter key="module_shop" value="1" />
 		<parameter key="shop_buyable" value="
-			birdcage kit, 3922, 50;
-			book, 1971, 15;
-			book, 1972, 15;
-			book, 1973, 15;
-			candelabrum, 2041, 8;
-			candlestick, 2047, 2;
-			chimney kit, 8692, 200;
-			coal basin kit, 3932, 25;
-			cuckoo clock, 1877, 40;
-			document, 1968, 12;
-			goldfish bowl, 5928, 50;
-			globe kit, 3923, 50;
-			hand auger, 36169, 25;
-			net, 36324, 50;
-			oven kit, 6372, 80;
-			parchment, 1969, 8;
-			pendulum clock kit, 3927, 75;
-			picture, 1852, 50;
-			picture, 1853, 50;
-			picture, 1854, 50;
-			present, 1990, 10;
-			red backpack, 2000, 20;
-			red bag, 1993, 5;
-			rocking horse kit, 3926, 30;
-			scroll, 1949, 5;
-			table lamp kit, 3924, 35;
-			telescope kit, 3925, 70;
-			torch, 2050, 2;
-			vial of oil, 2006, 20, 11;
-			watch, 6091, 20;
-			wall mirror, 1845, 40;
-			wall mirror, 1848, 40;
-			wall mirror, 1851, 40;
-			water pipe, 2093, 40;" />
+			birdcage kit, 2796, 50;
+			book, 2844, 15;
+			book, 2838, 15;
+			book, 2837, 15;
+			candelabrum, 2911, 8;
+			candlestick, 2917, 2;
+			chimney kit, 7864, 200;
+			coal basin kit, 2806, 25;
+			cuckoo clock, 2664, 40;		
+			document, 2834, 12;	
+			empty goldfish bowl, 5928, 50;
+			globe kit, 2797, 50;
+			hand auger, 31334, 25;
+			net, 31489, 50;
+			oven kit, 6371, 80;		
+			parchment, 2817, 8;		
+			pendulum clock kit, 2801, 75;
+			picture, 2639, 50;
+			picture, 2640, 50;
+			picture, 2641, 50;		
+			present, 2856, 10;		
+			red backpack, 2867, 20;
+			red bag, 2859, 5;
+			rocking horse kit, 2800, 30;	
+			scroll, 2815, 5;	
+			table lamp kit, 2798, 35;
+			telescope kit, 2799, 70;
+			torch, 2920, 2;	
+			vial of oil, 2874, 20, 11;
+			watch, 2906, 20;
+			wall mirror, 2632, 40;
+			wall mirror, 2635, 40;
+			wall mirror, 2638, 40;
+			basket, 2855, 15;
+			candelabrum, 2911, 15;
+			valentine's card, 6538, 30;
+			inkwell, 3509, 10;
+			valentine's card, 6538, 30;	
+			worm, 3492, 1;
+			shovel, 3457, 50;
+			scythe, 3453, 50;
+			rope, 3003, 50;
+			machete, 3308, 35;	
+			greeting card, 6386, 30;
+			fishing rod, 3483, 150;
+			closed trap, 3481, 280;
+			crowbar, 3304, 260;
+			water pipe, 2974, 40;" />
 		<parameter key="shop_sellable" value="
-			vial, 2006, 5;" />
+			inkwell, 3509, 8;
+			shovel, 3457, 8;
+			closed trap, 3481, 75;
+			fishing rod, 3483, 40;
+			crowbar, 3304, 50;
+			rope, 3003, 15;
+			book, 2843, 15;
+			scythe, 3453, 10;
+			machete, 3308, 6;
+			green book, 2846, 15;
+			pick, 3456, 15;
+			wooden hammer, 3459, 15;
+			vial, 2874, 5;" />
+			
 	</parameters>
 </npc>

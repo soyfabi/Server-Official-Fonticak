@@ -2,21 +2,58 @@ local keywordHandler = KeywordHandler:new()
 local npcHandler = NpcHandler:new(keywordHandler)
 NpcSystem.parseParameters(npcHandler)
 
-function onCreatureAppear(cid)			npcHandler:onCreatureAppear(cid)			end
-function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
-function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
-function onThink()				npcHandler:onThink()					end
+function onCreatureAppear(cid) npcHandler:onCreatureAppear(cid) end
+function onCreatureDisappear(cid) npcHandler:onCreatureDisappear(cid) end
+function onCreatureSay(cid, type, msg) npcHandler:onCreatureSay(cid, type, msg) end
+function onThink() npcHandler:onThink() end
+local shopWindow = {}
+
+local shop = {
+	{ name = "scroll of heroic deeds", id = 11510, buy = 230 },
+	{ name = "small notebook", id = 11450, buy = 480 }
+}
+
+local onBuy = function(cid, item, subType, amount, ignoreCap, inBackpacks)
+	if doPlayerRemoveMoney(cid, shopWindow[item].Price) then
+		local thing = doPlayerAddItem(cid, shopWindow[item].ID, 1)
+		doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, "Bought x" .. amount .. " "..shopWindow[item].KeyName.." for "..shopWindow[item].Price.." gold coins.")
+      else
+      selfSay("You don't have enough money.", cid)
+   end
+   return true
+end
+
+local onSell = function(cid, item, subType, amount, ignoreCap, inBackpacks)
+	if getPlayerItemCount(cid, item) >= amount and doPlayerRemoveItem(cid, item, amount) then
+		doPlayerAddMoney(cid, amount * shopWindow[item].Price)
+		local thing = doPlayerAddItem(cid, shopWindow[item].ID, 1)
+		doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, "Sold x" .. amount .. " " .. shopWindow[item].KeyName .. " for " .. shopWindow[item].Price * amount .. " gold coins.")
+	else
+		selfSay("You do not have that item.", cid)
+	end
+	return true
+end
 
 local function creatureSayCallback(cid, type, msg)
+
 	if not npcHandler:isFocused(cid) then
 		return false
 	end
+	
 	if msgcontains(msg, "interesting") then
-		npcHandler:say({
-			"I'd really like to rebuild my reputation someday and maybe find a nice girl. If you come across scrolls of heroic deeds or addresses of lovely maidens... let me know! ...",
-			"Oh no, it doesn't matter what name is on the scrolls. I'm, uhm... flexible! And money - yes, I can pay. My, erm... uncle died recently and left me a pretty sum. Yes."
-		}, cid)
+	npcHandler:say({
+		"I'd really like to rebuild my reputation someday and maybe find a nice girl. If you come across scrolls of heroic deeds or addresses of lovely maidens... let me know! ...",
+		"Oh no, it doesn't matter what name is on the scrolls. I'm, uhm... flexible! And money - yes, I can pay. My, erm... uncle died recently and left me a pretty sum. Yes."
+	}, cid)
+end
+
+if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
+	for var, item in pairs(shop) do
+		shopWindow[item.id] = {ID = item.id, Price = item.buy, KeyName = item.name, count = item.count}
 	end
+	openShopWindow(cid, shop, onBuy, onSell)
+end
+	return true
 end
 
 keywordHandler:addKeyword({'job'}, StdModule.say, {npcHandler = npcHandler, text = "I am... a traveler. Just leave me alone if you have nothing {interesting} to talk about."})

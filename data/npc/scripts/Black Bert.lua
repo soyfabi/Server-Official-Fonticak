@@ -2,149 +2,136 @@ local keywordHandler = KeywordHandler:new()
 local npcHandler = NpcHandler:new(keywordHandler)
 NpcSystem.parseParameters(npcHandler)
 
-function onCreatureAppear(cid)			npcHandler:onCreatureAppear(cid)			end
-function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
-function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
-function onThink()		npcHandler:onThink()		end
+function onCreatureAppear(cid) npcHandler:onCreatureAppear(cid) end
+function onCreatureDisappear(cid) npcHandler:onCreatureDisappear(cid) end
+function onCreatureSay(cid, type, msg) npcHandler:onCreatureSay(cid, type, msg) end
+function onThink() npcHandler:onThink() end
+local shopWindow = {}
 
-local voices = { {text = 'Psst! Over here!'} }
-npcHandler:addModule(VoiceModule:new(voices))
+local shop = {
+	{name = "toy mouse", id = 123, buy = 16000, sell = 16000, count = 1},
+	{name = "exploding cookie.", id = 130, buy = 100, count = 1},
+	{name = "special flask", id = 135, buy = 5000, count = 1},
+	{name = "toy mouse", id = 138, buy = 600, count = 1},
+	{name = "toy mouse", id = 141, buy = 2000, count = 1},
+	{name = "toy mouse", id = 142, buy = 6000, count = 1},
+	{name = "toy mouse", id = 349, buy = 15000, count = 1},
+	{name = "toy mouse", id = 396, buy = 5000, count = 1},
+	{name = "toy mouse", id = 406, buy = 15000, count = 1},
+	{name = "toy mouse", id = 3216, buy = 8000, count = 1},
+	{name = "toy mouse", id = 3217, buy = 8000, count = 1},
+	{name = "toy mouse", id = 3232, buy = 3000, count = 1},
+	{name = "toy mouse", id = 3233, buy = 16000, count = 1},
+	{name = "toy mouse", id = 3234, buy = 150, count = 1},
+	{name = "toy mouse", id = 4827, buy = 18000, count = 1},
+	{name = "toy mouse", id = 4832, buy = 24000, count = 1},
+	{name = "toy mouse", id = 4834, buy = 1000, count = 1},
+	{name = "toy mouse", id = 4835, buy = 8000, count = 1},
+	{name = "toy mouse", id = 4836, buy = 15000, count = 1},
+	{name = "toy mouse", id = 4841, buy = 3000, count = 1},
+	{name = "toy mouse", id = 4843, buy = 500, count = 1},
+	{name = "toy mouse", id = 4846, buy = 4000, count = 1},
+	{name = "toy mouse", id = 4847, buy = 6000, count = 1},
+	{name = "toy mouse", id = 5940, buy = 10000, count = 1},
+	{name = "toy mouse", id = 6124, buy = 40000, count = 1},
+	{name = "toy mouse", id = 7281, buy = 500, count = 1},
+	{name = "toy mouse", id = 7924, buy = 10000, count = 1},
+	{name = "toy mouse", id = 7936, buy = 7000, count = 1},
+	{name = "toy mouse", id = 8453, buy = 50000, count = 1},
+	{name = "toy mouse", id = 8746, buy = 50000, count = 1},
+	{name = "toy mouse", id = 8818, buy = 8000, count = 1},
+	{name = "toy mouse", id = 8822, buy = 20000, count = 1},
+	{name = "toy mouse", id = 9107, buy = 600, count = 1},
+	{name = "toy mouse", id = 9188, buy = 5000, count = 1},
+	{name = "toy mouse", id = 9191, buy = 5000, count = 1},
+	{name = "toy mouse", id = 9236, buy = 10000, count = 1},
+	{name = "toy mouse", id = 9237, buy = 12500, count = 1},
+	{name = "toy mouse", id = 9238, buy = 17000, count = 1},
+	{name = "toy mouse", id = 9239, buy = 12500, count = 1},
+	{name = "toy mouse", id = 9240, buy = 13000, count = 1},
+	{name = "toy mouse", id = 9241, buy = 10000, count = 1},
+	{name = "toy mouse", id = 9247, buy = 13500, count = 1},
+	{name = "toy mouse", id = 9248, buy = 12500, count = 1},
+	{name = "toy mouse", id = 9249, buy = 13000, count = 1},
+	{name = "toy mouse", id = 9251, buy = 8000, count = 1},
+	{name = "toy mouse", id = 9252, buy = 13000, count = 1},
+	{name = "toy mouse", id = 9255, buy = 25000, count = 1},
+	{name = "toy mouse", id = 9308, buy = 5250, count = 1},
+	{name = "toy mouse", id = 9390, buy = 8500, count = 1},
+	{name = "toy mouse", id = 9391, buy = 10000, count = 1},
+	{name = "toy mouse", id = 9537, buy = 350, count = 1},
+	{name = "toy mouse", id = 9696, buy = 1000, count = 1},
+	{name = "toy mouse", id = 9698, buy = 1000, count = 1},
+	{name = "toy mouse", id = 9699, buy = 1000, count = 1},
+	{name = "toy mouse", id = 10009, buy = 700, count = 1},
+	{name = "toy mouse", id = 10011, buy = 650, count = 1},
+	{name = "toy mouse", id = 10025, buy = 600, count = 1},
+	{name = "toy mouse", id = 10028, buy = 666, count = 1},
+	{name = "toy mouse", id = 10183, buy = 1000, count = 1},
+	{name = "toy mouse", id = 10187, buy = 1000, count = 1},
+	{name = "toy mouse", id = 10189, buy = 1000, count = 1},
+	{name = "toy mouse", id = 11329, buy = 1000, count = 1},
+	{name = "toy mouse", id = 11339, buy = 550, count = 1},
+	{name = "toy mouse", id = 11341, buy = 1000, count = 1},
+	{name = "toy mouse", id = 11544, buy = 600, count = 1},
+	{name = "toy mouse", id = 11545, buy = 4000, count = 1},
+	{name = "toy mouse", id = 11546, buy = 4000, count = 1},
+	{name = "toy mouse", id = 11547, buy = 4000, count = 1},
+	{name = "toy mouse", id = 11548, buy = 4000, count = 1},
+	{name = "toy mouse", id = 11549, buy = 4000, count = 1},
+	{name = "toy mouse", id = 11550, buy = 4000, count = 1},
+	{name = "toy mouse", id = 11551, buy = 4000, count = 1},
+	{name = "toy mouse", id = 11552, buy = 4000, count = 1},
+	{name = "toy mouse", id = 13974, buy = 5000, count = 1},
+	{name = "toy mouse", id = 31414, buy = 50000, count = 1},
+	{name = "toy mouse", id = 31447, buy = 5000, count = 1}
+}
 
-local function getTable(player)
-	local itemsList = {}
-	local buyList = {
-		{name = "Almanac of Magic", id = 10942, buy = 600},		-- Almanac of Magic
-		{name = "Animal Fetish", id = 10154, buy = 10000},		-- Animal Fetish
-		{name = "Baby Rotworm", id = 10943, buy = 600},		-- Baby Rotworm
-		{name = "Bale of White Cloth", id = 7500, buy = 6000},		-- Bale of White Cloth
-		{name = "Bill", id = 2329, buy = 8000},		-- Bill
-		{name = "Blood Crystal", id = 9369, buy = 50000},		-- Blood Crystal
-		{name = "Bloodkiss Flower", id = 10159, buy = 10000},		-- Bloodkiss Flower
-		{name = "Bundle of Rags", id = 10109, buy = 5000},		-- Bundle of Rags
-		{name = "Carrying Device", id = 10615, buy = 1000},		-- Carrying Device
-		{name = "Cigar", id = 7499, buy = 2000},		-- Cigar
-		{name = "Cookbook", id = 2347, buy = 150},			-- Cookbook
-		{name = "Damaged Logbook", id = 14338, buy = 40000},		-- Damaged Logbook
-		{name = "Dark Essence", id = 14352, buy = 17000},		-- Dark Essence
-		{name = "Deep Crystal", id = 10158, buy = 13000},		-- Deep Crystal
-		{name = "Elemental Crystal", id = 10169, buy = 8000},		-- Elemental Crystal
-		{name = "Empty Beer Bottle", id = 11397, buy = 600},		-- Empty Beer Bottle
-		{name = "Exploding Cookie", id = 8111, buy = 100},			-- Exploding Cookie
-		{name = "Exquisite Silk", id = 12501, buy = 4000},		-- Exquisite Silk
-		{name = "Exquisite Wood", id = 12503, buy = 4000},		-- Exquisite Wood
-		{name = "Faded Last Will", id = 12500, buy = 600},		-- Faded Last Will
-		{name = "Family Brooch", id = 4845, buy = 1000},		-- Family Brooch
-		{name = "Family Signet Ring", id = 7708, buy = 15000},		-- Family Signet Ring
-		{name = "Fan Club Membership Card", id = 10308, buy = 10000},		-- Fan Club Membership Card
-		{name = "Filled Carrying Device", id = 10616, buy = 1000},		-- Filled Carrying Device
-		{name = "Fishnapped Goldfish", id = 8766, buy = 7000},		-- Fishnapped Goldfish
-		{name = "Flask of Crown Polisher", id = 10926, buy = 700},		-- Flask of Crown Polisher
-		{name = "Flask of Extra Greasy Oil", id = 11106, buy = 1000},		-- Flask of Extra Greasy Oil
-		{name = "Flask of Poison", id = 10760, buy = 1000},		-- Flask of Poison
-		{name = "Flexible Dragon Scale", id = 12506, buy = 4000},		-- Flexible Dragon Scale
-		{name = "Formula for a Memory Potion", id = 14351, buy = 5000},		-- Formula for a Memory Potion
-		{name = "Funeral Urn", id = 4858, buy = 6000},		-- Funeral Urn
-		{name = "Ghost Charm", id = 9737, buy = 20000},       -- Ghost Charm
-		{name = "Ghost's Tear", id = 9662, buy = 50000},		-- Ghost's Tear
-		{name = "Giant Ape's Hair", id = 4843, buy = 24000},		-- Giant Ape's Hair
-		{name = "Golem Blueprint", id = 10165, buy = 13500},		-- Golem Blueprint
-		{name = "Golem Head", id = 10173, buy = 25000},		-- Golem Head
-		{name = "Headache Pill", id = 10454, buy = 350},		-- Headache Pill
-		{name = "Ivory Lyre", id = 36282, buy = 5000},		-- Ivory Lyre
-		{name = "Letterbag", id = 2330, buy = 8000},		-- Letterbag
-		{name = "Lump of Clay", id = 12285, buy = 1000},		-- Lump of Clay
-		{name = "Machine Crate", id = 10307, buy = 8500},		-- Machine Crate
-		{name = "Magic Crystal", id = 12508, buy = 4000},		-- Magic Crystal
-		{name = "Mago Mechanic Core", id = 10167, buy = 13000},		-- Mago Mechanic Core
-		{name = "Map to the Unknown", id = 10928, buy = 650},		-- Map to the Unknown
-		{name = "Memory Crystal", id = 7281, buy = 500},			-- Memory Crystal
-		{name = "Memory Stone", id = 4852, buy = 3000},		-- Memory Stone
-		{name = "Mystic Root", id = 12507, buy = 4000},		-- Mystic Root
-		{name = "Nautical Map", id = 10225, buy = 5250},		-- Nautical Map
-		{name = "Old Iron", id = 12505, buy = 4000},		-- Old Iron
-		{name = "Old Power Core", id = 10170, buy = 13000},		-- Old Power Core
-		{name = "Plans for a Strange Device", id = 10613, buy = 1000},		-- Plans for a Strange Device
-		{name = "Rare Crystal", id = 11104, buy = 1000},		-- Rare Crystal
-		{name = "Sacred Earth", id = 12297, buy = 1000},		-- Sacred Earth
-		{name = "Sceptre of Sun and Sea", id = 36249, buy = 50000},		-- Sceptre of Sun and Sea
-		{name = "Shadow Orb", id = 10155, buy = 12500},		-- Shadow Orb
-		{name = "Sheet of Tracing Paper", id = 4854, buy = 500},			-- Sheet of Tracing Paper
-		{name = "Suspicious Signet Ring", id = 7697, buy = 15000},		-- Suspicious Signet Ring
-		{name = "Snake Destroyer", id = 4846, buy = 8000},		-- Snake Destroyer
-		{name = "Soul Contract", id = 10945, buy = 666},		-- Soul Contract
-		{name = "Special Flask", id = 14323, buy = 5000},		-- Special Flask
-		{name = "Spectral Cloth", id = 12502, buy = 4000},		-- Spectral Cloth
-		{name = "Spectral Dress", id = 4847, buy = 15000},		-- Spectral Dress
-		{name = "Spyreport", id = 2345, buy = 3000},		-- Spyreport
-		{name = "Stabilizer", id = 10166, buy = 12500},		-- Stabilizer
-		{name = "Strange Powder", id = 15389, buy = 5000},		-- Strange Powder
-		{name = "Strong Sinew", id = 12504, buy = 4000},		-- Strong Sinew
-		{name = "Tear of Daraman", id = 2346, buy = 16000},		-- Tear of Daraman
-		{name = "Technomancer Beard", id = 7699, buy = 5000},		-- Technomancer Beard
-		{name = "The Alchemists' Formulas", id = 9733, buy = 8000},		-- The Alchemists' Formulas
-		{name = "The Ring of the Count", id = 8752, buy = 10000},		-- The Ring of the Count
-		{name = "Toy Mouse", id = 7487, buy = 16000},		-- Toy Mouse
-		{name = "Universal Tool", id = 10944, buy = 550},		-- Universal Tool
-		{name = "Unworked Sacred Wood", id = 12295, buy = 1000},		-- Unworked Sacred Wood
-		{name = "Whisper Moss", id = 4838, buy = 18000},		-- Whisper Moss
-		{name = "Worm Queen Tooth", id = 10157, buy = 12500},		-- Worm Queen Tooth
-		{name = "Wrinkled Parchment", id = 14336, buy = 4000}		-- Wrinkled Parchment
-	}
-
-		for i = 1, #buyList do
-			table.insert(itemsList, buyList[i])
-		end
-	return itemsList
+local onBuy = function(cid, item, subType, amount, ignoreCap, inBackpacks)
+	if doPlayerRemoveMoney(cid, shopWindow[item].Price) then
+		local thing = doPlayerAddItem(cid, shopWindow[item].ID, 1)
+		doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, "Bought x" .. amount .. " "..shopWindow[item].KeyName.." for "..shopWindow[item].Price.." gold coins.")
+      else
+      selfSay("You don't have enough money.", cid)
+   end
+   return true
 end
 
-local function setNewTradeTable(table)
-	local items, item = {}
-	for i = 1, #table do
-		item = table[i]
-		items[item.id] = {itemId = item.id, buyPrice = item.buy, sellPrice = item.sell, subType = 0, realName = item.name}
-	end
-	return items
-end
-
-local function onBuy(cid, item, subType, amount, ignoreCap, inBackpacks)
-	local player = Player(cid)
-	local items = setNewTradeTable(getTable(player))
-	if not ignoreCap and player:getFreeCapacity() < ItemType(items[item].itemId):getWeight(amount) then
-		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'You don\'t have enough cap.')
-	end
-	if not player:removeMoneyNpc(items[item].buyPrice * amount) then
-		selfSay("You don't have enough money.", cid)
+local onSell = function(cid, item, subType, amount, ignoreCap, inBackpacks)
+	if getPlayerItemCount(cid, item) >= amount and doPlayerRemoveItem(cid, item, amount) then
+		doPlayerAddMoney(cid, amount * shopWindow[item].Price)
+		local thing = doPlayerAddItem(cid, shopWindow[item].ID, 1)
+		doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, "Sold x" .. amount .. " " .. shopWindow[item].KeyName .. " for " .. shopWindow[item].Price * amount .. " gold coins.")
 	else
-		player:addItem(items[item].itemId, amount)
-		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Bought '..amount..'x '..items[item].realName..' for '..items[item].buyPrice * amount..' gold coins.')
-	end
-	return true
-end
-
-local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
-	local player = Player(cid)
-	local items = setNewTradeTable(getTable(player))
-	if items[item].sellPrice and player:removeItem(items[item].itemId, amount) then
-		player:addMoney(items[item].sellPrice * amount)
-		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Sold '..amount..'x '..items[item].realName..' for '..items[item].sellPrice * amount..' gold coins.')
-	else
-		selfSay("You don't have item to sell.", cid)
+		selfSay("You do not have that item.", cid)
 	end
 	return true
 end
 
 local function creatureSayCallback(cid, type, msg)
-	if msgcontains(msg, "trade") then
-		local player = Player(cid)
-		local items = setNewTradeTable(getTable(player))
-		openShopWindow(cid, getTable(player), onBuy, onSell)
-		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
+
+	if not npcHandler:isFocused(cid) then
+		return false
 	end
+	
+	if msgcontains(msg, "interesting") then
+	npcHandler:say({
+		"I'd really like to rebuild my reputation someday and maybe find a nice girl. If you come across scrolls of heroic deeds or addresses of lovely maidens... let me know! ...",
+		"Oh no, it doesn't matter what name is on the scrolls. I'm, uhm... flexible! And money - yes, I can pay. My, erm... uncle died recently and left me a pretty sum. Yes."
+	}, cid)
+end
+
+if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
+	for var, item in pairs(shop) do
+		shopWindow[item.id] = {name = "toy mouse", id = item.id, Price = item.buy, KeyName = item.name, count = item.count}
+	end
+	openShopWindow(cid, shop, onBuy, onSell)
+end
 	return true
 end
 
-npcHandler:setMessage(MESSAGE_GREET, 'Hello.')
-npcHandler:setMessage(MESSAGE_FAREWELL, 'It was a pleasure to help you, |PLAYERNAME|.')
+npcHandler:setMessage(MESSAGE_GREET, "Hi there, |PLAYERNAME|! You look like you are eager to {trade}!")
+npcHandler:setMessage(MESSAGE_FAREWELL, "Bye, |PLAYERNAME|")
 
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new())

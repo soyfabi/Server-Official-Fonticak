@@ -17,7 +17,7 @@ local function greetCallback(cid)
 		npcHandler:setMessage(MESSAGE_GREET, "Oh, hello |PLAYERNAME|, your hair looks great! Who did it for you?")
 		npcHandler.topic[cid] = 1
 	else
-		npcHandler:setMessage(MESSAGE_GREET, "Oh, hello, handsome! It's a pleasure to meet you, |PLAYERNAME|. Gladly I have the time to {chat} a bit.")
+		npcHandler:setMessage(MESSAGE_GREET, "Oh, hello, handsome! It's a pleasure to meet you, {|PLAYERNAME|}. Gladly I have the time to {chat} a bit.")
 		npcHandler.topic[cid] = nil
 	end
 	Price[cid] = nil
@@ -43,7 +43,7 @@ local function creatureSayCallback(cid, type, msg)
 		end
 		npcHandler.topic[cid] = nil
 		Price[cid] = nil
-	elseif npcHandler.topic[cid] == 3 and player:removeItem(2036, 1) then
+	elseif npcHandler.topic[cid] == 3 and player:removeItem(2906, 1) then
 		npcHandler:say("Take some time to talk to me!", cid)
 		npcHandler.topic[cid] = nil
 	elseif npcHandler.topic[cid] == 4 and (msgcontains(msg, "spouse") or msgcontains(msg, "girlfriend")) then

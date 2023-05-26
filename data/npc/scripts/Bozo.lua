@@ -23,7 +23,7 @@ local config = {
 			[3] = 'Indeed. This flower will do the trick, so to say. Just ask me about another mission whenever you\'re ready.'
 		},
 		yes = true,
-		removeItem = {itemId = 7476},
+		removeItem = {itemId = 102},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission1, value = 2},
 			{key = Storage.WhatAFoolish.Questline, value = 2}
@@ -38,7 +38,7 @@ local config = {
 				'Take this special vial and fill it with the perfect stench. Then return here and we will talk about your mission.'
 			}
 		},
-		addItem = {itemId = 7478},
+		addItem = {itemId = 107},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission2, value = 1},
 			{key = Storage.WhatAFoolish.Questline, value = 3}
@@ -51,7 +51,7 @@ local config = {
 			[3] = 'Ugh. You got some efficient stuff there. I have to admit you have a talent for such distasteful matters. Perhaps you feel ready for another mission. Just ask me about it.'
 		},
 		yes = true,
-		removeItem = {itemId = 7477},
+		removeItem = {itemId = 9170},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission2, value = 2},
 			{key = Storage.WhatAFoolish.Questline, value = 4}
@@ -82,7 +82,7 @@ local config = {
 			}
 		},
 		yes = true,
-		removeItem = {itemId = 7484},
+		removeItem = {itemId = 119},
 		pie = true,
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission3, value = 2},
@@ -112,12 +112,12 @@ local config = {
 			}
 		},
 		yes = true,
-		removeItem = {itemId = 2006, count = 18, subType = 15},
+		removeItem = {itemId = 2874, count = 18, subType = 15},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission4, value = 2},
 			{key = Storage.WhatAFoolish.Questline, value = 8}
 		},
-		addItem = {itemId = 7482}
+		addItem = {itemId = 117}
 	},
 	[8] = {
 		text = {
@@ -126,7 +126,7 @@ local config = {
 			[3] = 'I see. I guess we can expect a few drunken mages soon! Am I mistaken or are you up for some more challenging missions? Just ask me about if you feel foolish enough.'
 		},
 		yes = true,
-		removeItem = {itemId = 7483},
+		removeItem = {itemId = 118},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission4, value = 3},
 			{key = Storage.WhatAFoolish.Questline, value = 9}
@@ -159,7 +159,7 @@ local config = {
 			}
 		},
 		yes = true,
-		checkItemCount = 8187,
+		checkItemCount = 112,
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission5, value = 2},
 			{key = Storage.WhatAFoolish.Questline, value = 11}
@@ -176,7 +176,7 @@ local config = {
 		},
 		yes = true,
 		checkStorage = Storage.WhatAFoolish.EmperorBeardShave,
-		removeItem = {itemId = 7479},
+		removeItem = {itemId = 113},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission5, value = 3},
 			{key = Storage.WhatAFoolish.Questline, value = 12}
@@ -230,7 +230,7 @@ local config = {
 				'Don\'t speak! I already know what you have in your impish mind my friend and I agree fully. You will bring this cushion to Carlin and place it right on Queen Eloise\'s throne! Then return here and talk to me about your mission.'
 			}
 		},
-		addItem = {itemId = 7485},
+		addItem = {itemId = 121},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission6, value = 4},
 			{key = Storage.WhatAFoolish.Questline, value = 17}
@@ -296,7 +296,7 @@ local config = {
 			[3] = 'So much for part one of my foolish master plan. Now travel to Tiquanda and use a kitchen knife to cut some leaves of the jungle dweller bush for me. Bring them with you when you report about your mission.'
 		},
 		yes = true,
-		removeItem = {itemId = 8204},
+		removeItem = {itemId = 124},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission8, value = 2},
 			{key = Storage.WhatAFoolish.Questline, value = 22}
@@ -309,7 +309,7 @@ local config = {
 			[3] = 'So far so good. I will prepare some nasty surprise for your next mission. Talk to me about it whenever you feel ready.'
 		},
 		yes = true,
-		removeItem = {itemId = 8109},
+		removeItem = {itemId = 3129},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission8, value = 3},
 			{key = Storage.WhatAFoolish.Questline, value = 23}
@@ -322,7 +322,7 @@ local config = {
 				'Take this cigar and give it to Theodore Loveless, the Venorean representative in Liberty Bay. After you [1]ed our little\'present\', report here about the outcome of your mission.'
 			}
 		},
-		addItem = {itemId = 7499},
+		addItem = {itemId = 141},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission8, value = 4},
 			{key = Storage.WhatAFoolish.Questline, value = 24}
@@ -340,7 +340,7 @@ local config = {
 			{key = Storage.WhatAFoolish.Mission8, value = 5},
 			{key = Storage.WhatAFoolish.Questline, value = 25}
 		},
-		addItem = {itemId = 7958},
+		addItem = {itemId = 895},
 		addon = 1
 	},
 	[25] = {
@@ -354,7 +354,7 @@ local config = {
 			{key = Storage.WhatAFoolish.Mission9, value = 1},
 			{key = Storage.WhatAFoolish.Questline, value = 26}
 		},
-		addItem = {itemId = 7478}
+		addItem = {itemId = 107}
 	},
 	[26] = {
 		text = {
@@ -366,12 +366,12 @@ local config = {
 			}
 		},
 		yes = true,
-		removeItem = {itemId = 7488},
+		removeItem = {itemId = 125},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission9, value = 2},
 			{key = Storage.WhatAFoolish.Questline, value = 27}
 		},
-		addItem = {itemId = 7478}
+		addItem = {itemId = 107}
 	},
 	[27] = {
 		text = {
@@ -380,7 +380,7 @@ local config = {
 			[3] = 'Excellent. As a true fool you have of course no clue what these ingredients are good for, but I will enlighten you. Just ask about your next mission and I\'ll tell you everything you need to know.'
 		},
 		yes = true,
-		removeItem = {itemId = 7489},
+		removeItem = {itemId = 9149},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission9, value = 3},
 			{key = Storage.WhatAFoolish.Questline, value = 28}
@@ -399,7 +399,7 @@ local config = {
 			{key = Storage.WhatAFoolish.Mission9, value = 4},
 			{key = Storage.WhatAFoolish.Questline, value = 29}
 		},
-		addItem = {itemId = 7490}
+		addItem = {itemId = 127}
 	},
 	[29] = {
 		text = {
@@ -433,7 +433,7 @@ local config = {
 			{key = Storage.WhatAFoolish.Mission10, value = 1},
 			{key = Storage.WhatAFoolish.Questline, value = 31}
 		},
-		addItem = {itemId = 8111, count = 10}
+		addItem = {itemId = 130, count = 10}
 	},
 	[31] = {
 		text = {
@@ -475,7 +475,7 @@ local config = {
 			{key = Storage.WhatAFoolish.Mission11, value = 2},
 			{key = Storage.WhatAFoolish.Questline, value = 34}
 		},
-		addItem = {itemId = 7500}
+		addItem = {itemId = 142}
 	},
 	[34] = {
 		text = {
@@ -488,12 +488,12 @@ local config = {
 			}
 		},
 		yes = true,
-		removeItem = {itemId = 7501},
+		removeItem = {itemId = 143},
 		updateStorages = {
 			{key = Storage.WhatAFoolish.Mission11, value = 3},
 			{key = Storage.WhatAFoolish.Questline, value = 35}
 		},
-		addItem = {itemId = 7502}
+		addItem = {itemId = 144}
 	},
 	[35] = {
 		text = {
@@ -750,7 +750,7 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler:say('You won\'t be successful in the fool\'s world with such an attitude.', cid)
 			elseif player:getStorageValue(Storage.WhatAFoolish.Questline) == 35
 					and player:getStorageValue(Storage.WhatAFoolish.LostDisguise) ~= 1 then
-				player:addItem(7502, 1)
+				player:addItem(144, 1)
 				player:setStorageValue(Storage.WhatAFoolish.LostDisguise, 1)
 				npcHandler:say('You wasted the disguise?? Why do only fools apply for the fools guild? Here... try again, but be wittier this time.', cid)
 			else

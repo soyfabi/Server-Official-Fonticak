@@ -84,6 +84,8 @@ GlobalStorageKeys = {
 }
 
 Storage = {
+	achievementsBase = 300000,
+	achievementsCounter = 200000,
 	-- General storages
 	isTraining = 30000,
 	Dragonfetish = 30003,
