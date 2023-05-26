@@ -77,6 +77,12 @@ Reserved player action storage key ranges (const.h)
 	Questline = Storage through the Quest
 ]]
 
+AccountStorageKeys = {
+}
+
+GlobalStorageKeys = {
+}
+
 Storage = {
 	-- General storages
 	isTraining = 30000,
