@@ -28,7 +28,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler:say('I hope you did not make this little pest too nervous. He isn\'t serving us too well by hiding under some stone or something like that. However, nicely done for your first job.', cid)
 			npcHandler.topic[cid] = 0
 		elseif npcHandler.topic[cid] == 3 then
-			if player:removeItem(7705, 1) then
+			if player:removeItem(403, 1) then
 				player:setStorageValue(Storage.secretService.AVINMission02, 2)
 				player:setStorageValue(Storage.secretService.Quest, 5)
 				npcHandler:say('Ah, yes. This will be a most interesting lecture.', cid)
@@ -47,7 +47,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler:say('Good work getting rid of that nuisance.', cid)
 			npcHandler.topic[cid] = 0
 		elseif npcHandler.topic[cid] == 6 then
-			if player:removeItem(7708, 1) then
+			if player:removeItem(406, 1) then
 				player:setStorageValue(Storage.secretService.AVINMission05, 2)
 				player:setStorageValue(Storage.secretService.Quest, 11)
 				npcHandler:say('Fine, fine. This will serve us quite well. Ah, don\'t give me that look... you are not that stupid, are you?', cid)
@@ -61,10 +61,10 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler:say('Even if the present has not improved our relations, the weapons will enable the barbarians to put more pressure on Svargrond and Carlin. So in any case we profited from the present.', cid)
 			npcHandler.topic[cid] = 0
 		elseif npcHandler.topic[cid] == 8 then
-			if player:removeItem(7699, 1) then
+			if player:removeItem(396, 1) then
 				player:setStorageValue(Storage.secretService.Mission07, 2)
 				player:setStorageValue(Storage.secretService.Quest, 15)
-				player:addItem(7962, 1)
+				player:addItem(899, 1)
 				npcHandler:say({
 				'You have proven yourself as very efficient. The future may hold great things for you in store ...',
 				'Take this token of gratitude. I hope you can use well what you will find inside!'
@@ -91,7 +91,7 @@ local function creatureSayCallback(cid, type, msg)
 		if player:getStorageValue(Storage.secretService.Quest) == 1 and player:getStorageValue(Storage.secretService.TBIMission01) < 1 and player:getStorageValue(Storage.secretService.CGBMission01) < 1 then
 			player:setStorageValue(Storage.secretService.Quest, 2)
 			player:setStorageValue(Storage.secretService.AVINMission01, 1)
-			player:addItem(14326, 1)
+			player:addItem(402, 1)
 			npcHandler:say('Let\'s start with a rather simple job. There is a contact in Thais with that we need to get in touch again. Deliver this note to Gamel in Thais. Get an answer from him. If he is a bit reluctant, be \'persuasive\'.', cid)
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.secretService.AVINMission01) == 3 then
@@ -112,7 +112,7 @@ local function creatureSayCallback(cid, type, msg)
 		elseif player:getStorageValue(Storage.secretService.AVINMission02) == 2 and player:getStorageValue(Storage.secretService.Quest) == 5 then
 			player:setStorageValue(Storage.secretService.Quest, 6)
 			player:setStorageValue(Storage.secretService.AVINMission03, 1)
-			player:addItem(7706, 1)
+			player:addItem(404, 1)
 			npcHandler:say({
 				'The oppression of Carlin\'s men by their lunatic women is unbearable to some of our authorities. We see it as our honourable duty to support the male resistance in Carlin ...',
 				'The poor guys have some speakeasy in the sewers. Bring them this barrel of beer with our kind regards to strengthen their resistance.'
@@ -147,7 +147,7 @@ local function creatureSayCallback(cid, type, msg)
 		elseif player:getStorageValue(Storage.secretService.AVINMission05) == 2 and player:getStorageValue(Storage.secretService.Quest) == 11 then
 			player:setStorageValue(Storage.secretService.Quest, 12)
 			player:setStorageValue(Storage.secretService.AVINMission06, 1)
-			player:addItem(7707, 1)
+			player:addItem(405, 1)
 			npcHandler:say({
 				'We try to establish new trade agreements with various potential customers. Sometimes we have to offer some presents in advance to ensure that trade is prospering and flourishing. It will be your task to deliver one of those little presents ...',
 				'The northern barbarians are extremely hostile to us. The ones living in Svargrond are poisoned by the lies of agitators from Carlin. The barbarians that are also known as raiders are another story though ...',

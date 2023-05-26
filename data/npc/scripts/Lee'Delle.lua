@@ -15,6 +15,111 @@ local voices = {
 }
 npcHandler:addModule(VoiceModule:new(voices))
 
+local function getTable(player)
+local itemsList = {}
+	
+local buyList = {
+	{ name = "axe", id = 3274, buy = 18, sell = 7 },
+	{ name = "backpack", id = 2854, buy = 9 },
+	{ name = "bag", id = 2853, buy = 4 },
+	{ name = "bone club", id = 3337, sell = 5 },
+	{ name = "brass helmet", id = 3354, sell = 22 },
+	{ name = "brass shield", id = 3411, sell = 25 },
+	{ name = "chain armor", id = 3358, sell = 40 },
+	{ name = "chain helmet", id = 3352, buy = 49, sell = 12 },
+	{ name = "coat", id = 3562, buy = 7 },
+	{ name = "copper shield", id = 3430, sell = 50 },
+	{ name = "dagger", id = 3267, buy = 4, sell = 2 },
+	{ name = "doublet", id = 3379, buy = 14, sell = 3 },
+	{ name = "fishing rod", id = 3483, buy = 140, sell = 30 },
+	{ name = "hand axe", id = 3268, buy = 7, sell = 4 },
+	{ name = "hatchet", id = 3276, sell = 25 },
+	{ name = "jacket", id = 3561, buy = 9 },
+	{ name = "katana", id = 3300, sell = 35 },
+	{ name = "leather armor", id = 3361, buy = 22, sell = 5 },
+	{ name = "leather boots", id = 3552, sell = 2 },
+	{ name = "leather helmet", id = 3355, buy = 11, sell = 3 },
+	{ name = "leather legs", id = 3559, buy = 9, sell = 2 },
+	{ name = "legion helmet", id = 3374, sell = 22 },
+	{ name = "mace", id = 3286, sell = 30 },
+	{ name = "machete", id = 3308, sell = 6 },
+	{ name = "plate shield", id = 3410, sell = 40 },
+	{ name = "rapier", id = 3272, buy = 13, sell = 5 },
+	{ name = "rope", id = 3003, buy = 45, sell = 8 },
+	{ name = "sabre", id = 3273, buy = 22, sell = 12 },
+	{ name = "scroll", id = 2815, buy = 5 },
+	{ name = "scythe", id = 3453, buy = 10, sell = 3 },
+	{ name = "short sword", id = 3294, buy = 26, sell = 10 },
+	{ name = "shovel", id = 3457, buy = 9, sell = 2 },
+	{ name = "sickle", id = 3293, sell = 2 },
+	{ name = "sickle", id = 3293, buy = 7 },
+	{ name = "spear", id = 3277, buy = 9, sell = 3 },
+	{ name = "studded armor", id = 3378, sell = 10 },
+	{ name = "studded helmet", id = 3376, buy = 58, sell = 20 },
+	{ name = "studded legs", id = 3362, sell = 15 },
+	{ name = "studded shield", id = 3426, buy = 47, sell = 16 },
+	{ name = "sword", id = 3264, sell = 25 },
+	{ name = "torch", id = 2920, buy = 2 },
+	{ name = "viking helmet", id = 3367, sell = 25 },
+	{ name = "waterball", id = 893, buy = 200 },
+	{ name = "wooden shield", id = 3412, buy = 13, sell = 3 },
+	{ name = "worm", id = 3492, buy = 1 }
+}
+
+	for i = 1, #buyList do
+		table.insert(itemsList, buyList[i])
+	end
+	return itemsList
+end
+
+local function setNewTradeTable(table)
+	local items, item = {}
+	for i = 1, #table do
+		item = table[i]
+		items[item.id] = {itemId = item.id, buyPrice = item.buy, sellPrice = item.sell, subType = 0, realName = item.name}
+	end
+	return items
+end
+
+local function onBuy(cid, item, subType, amount, ignoreCap, inBackpacks)
+	local player = Player(cid)
+	local items = setNewTradeTable(getTable(player))
+	if not ignoreCap and player:getFreeCapacity() < ItemType(items[item].itemId):getWeight(amount) then
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'You don\'t have enough cap.')
+	end
+	if not player:removeMoneyNpc(items[item].buyPrice * amount) then
+		selfSay("You don't have enough money.", cid)
+	else
+		player:addItem(items[item].itemId, amount)
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Bought '..amount..'x '..items[item].realName..' for '..items[item].buyPrice * amount..' gold coins.')
+	end
+	return true
+end
+
+local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
+	local player = Player(cid)
+	local items = setNewTradeTable(getTable(player))
+	if items[item].sellPrice and player:removeItem(items[item].itemId, amount) then
+		player:addMoney(items[item].sellPrice * amount)
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Sold '..amount..'x '..items[item].realName..' for '..items[item].sellPrice * amount..' gold coins.')
+	else
+		selfSay("You don't have item to sell.", cid)
+	end
+	return true
+end
+
+local function creatureSayCallback(cid, type, msg)
+	local player = Player(cid)
+	if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
+		local items = setNewTradeTable(getTable(player))
+		openShopWindow(cid, getTable(player), onBuy, onSell)
+		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
+	end
+	return true
+end
+
+npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
+
 -- Basic keywords
 keywordHandler:addKeyword({'name'}, StdModule.say, {npcHandler = npcHandler, text = 'My name is Lee\'Delle.'})
 keywordHandler:addKeyword({'job'}, StdModule.say, {npcHandler = npcHandler, text = 'I\'m a merchant. If you like to see my offers, just ask me for a {trade}.'})
@@ -88,7 +193,7 @@ local footballKeyword = keywordHandler:addKeyword({'football'}, StdModule.say, {
 			function(player) return player:getMoney() + player:getBankBalance() >= 111 end,
 			function(player)
 				if player:removeMoneyNpc(111) then
-					player:addItem(2109, 1)
+					player:addItem(2990, 1)
 				end
 			end
 	)
@@ -97,8 +202,8 @@ local footballKeyword = keywordHandler:addKeyword({'football'}, StdModule.say, {
 
 -- Honey Flower
 keywordHandler:addKeyword({'honey', 'flower'}, StdModule.say, {npcHandler = npcHandler, text = 'Oh, thank you so much! Please take this piece of armor as reward.'},
-	function(player) return player:getItemCount(2103) > 0 end,
-	function(player) player:removeItem(2103, 1) player:addItem(2468, 1) end
+	function(player) return player:getItemCount(2984) > 0 end,
+	function(player) player:removeItem(2984, 1) player:addItem(3362, 1) end
 )
 keywordHandler:addKeyword({'honey', 'flower'}, StdModule.say, {npcHandler = npcHandler, text = 'Honey flowers are my favourites <sighs>.'})
 

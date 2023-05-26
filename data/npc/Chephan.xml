@@ -11,7 +11,5 @@
 		<parameter key="module_keywords" value="1" />
 		<parameter key="keywords" value="job;" />
 		<parameter key="keyword_reply1" value="I sell all the cooking utensils you can dream of." />
-		<parameter key="module_shop" value="1" />
-		<parameter key="shop_buyable" value="			Baking Tray,3464,20;			Bottle,2875,3,0;			Bucket,2873,4;			Cleaver,3471,15;			Fork,3467,10;			Jug,7244,10;			Kitchen Knife,3469,10;			Mug,2880,4,0;			Oven Spatula,3472,12;			Pan,3466,20;			Plate,2905,6;			Pot,3465,30,0;			Rolling Pin,3473,12;			Spoon,3468,10;			Wooden Spoon,3470,5		" />
 	</parameters>
 </npc>

@@ -15,6 +15,81 @@ local voices = {
 }
 npcHandler:addModule(VoiceModule:new(voices))
 
+local function getTable(player)
+local itemsList = {}
+	
+local buyList = {
+	{ name = "axe", id = 3274, buy = 20, sell = 7 },
+	{ name = "bone club", id = 3337, sell = 5 },
+	{ name = "dagger", id = 3267, buy = 5, sell = 2 },
+	{ name = "hand axe", id = 3268, buy = 8, sell = 4 },
+	{ name = "hatchet", id = 3276, sell = 25 },
+	{ name = "katana", id = 3300, sell = 35 },
+	{ name = "mace", id = 3286, sell = 30 },
+	{ name = "machete", id = 3308, sell = 30 },
+	{ name = "rapier", id = 3272, buy = 15, sell = 5 },
+	{ name = "sabre", id = 3273, buy = 25, sell = 12 },
+	{ name = "scythe", id = 3453, buy = 12, sell = 3 },
+	{ name = "short sword", id = 3294, buy = 30, sell = 10 },
+	{ name = "sickle", id = 3293, buy = 8, sell = 2 },
+	{ name = "spear", id = 3277, buy = 10, sell = 3 },
+	{ name = "sword", id = 3264, sell = 25 }
+}
+
+	for i = 1, #buyList do
+		table.insert(itemsList, buyList[i])
+	end
+	return itemsList
+end
+
+local function setNewTradeTable(table)
+	local items, item = {}
+	for i = 1, #table do
+		item = table[i]
+		items[item.id] = {itemId = item.id, buyPrice = item.buy, sellPrice = item.sell, subType = 0, realName = item.name}
+	end
+	return items
+end
+
+local function onBuy(cid, item, subType, amount, ignoreCap, inBackpacks)
+	local player = Player(cid)
+	local items = setNewTradeTable(getTable(player))
+	if not ignoreCap and player:getFreeCapacity() < ItemType(items[item].itemId):getWeight(amount) then
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'You don\'t have enough cap.')
+	end
+	if not player:removeMoneyNpc(items[item].buyPrice * amount) then
+		selfSay("You don't have enough money.", cid)
+	else
+		player:addItem(items[item].itemId, amount)
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Bought '..amount..'x '..items[item].realName..' for '..items[item].buyPrice * amount..' gold coins.')
+	end
+	return true
+end
+
+local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
+	local player = Player(cid)
+	local items = setNewTradeTable(getTable(player))
+	if items[item].sellPrice and player:removeItem(items[item].itemId, amount) then
+		player:addMoney(items[item].sellPrice * amount)
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Sold '..amount..'x '..items[item].realName..' for '..items[item].sellPrice * amount..' gold coins.')
+	else
+		selfSay("You don't have item to sell.", cid)
+	end
+	return true
+end
+
+local function creatureSayCallback(cid, type, msg)
+	local player = Player(cid)
+	if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
+		local items = setNewTradeTable(getTable(player))
+		openShopWindow(cid, getTable(player), onBuy, onSell)
+		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
+	end
+	return true
+end
+
+npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
+
 -- Basic keywords
 keywordHandler:addKeyword({'hint'}, StdModule.rookgaardHints, {npcHandler = npcHandler})
 keywordHandler:addKeyword({'help'}, StdModule.say, {npcHandler = npcHandler, text = 'Well, how can I help you? Do you need some general {hints}? Or, if you\'re interested in a {trade}, just ask.'})

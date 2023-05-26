@@ -12,16 +12,5 @@
 		<parameter key="message_greet" value="Hello Trunkillo and welcome to my {furniture} store." />
 		<parameter key="message_farewell" value="Good bye |PLAYERNAME|." />
 		<parameter key="message_walkaway" value="Good bye |PLAYERNAME|." />
-		<parameter key="module_shop" value="1" />
-		<parameter key="shop_buyable" value="
-			bamboo drawer kit,3921,20;
-			bamboo table kit,3914,25;
-			ivory chair kit,3907,25;
-			stone table kit,3912,30;
-			trunk chair kit,3935,20;
-			trunk table kit,3936,20;
-			tusk chair kit,3906,25;
-			tusk table kit,3913,25;" />
-		<parameter key="shop_sellable" value="tusk,3956,100;" />
 	</parameters>
 </npc>

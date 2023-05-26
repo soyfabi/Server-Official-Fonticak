@@ -21,7 +21,5 @@
 		<parameter key="keyword_reply7" value="In a parcel you can send items to another Tibian's {depot}. Put your items into the parcel and also place a completed {label} with the name and the {city} of the {receiver} inside. Then drag your parcel on one of the blue {mailboxes} here to send it." />
 		<parameter key="keyword_reply8" value="The depots you can send parcels or letters to are in the following cities" />
 		<parameter key="keyword_reply9" value="With our mail system you can send {letters} and {parcels} to other Tibians. I can either explain how {letters} and {parcels} work or sell them to you if you ask me for a {trade}." />
-		<parameter key="module_shop" value="1" />
-		<parameter key="shop_buyable" value="parcel,2595,15;letter,2597,8;label,2599,1;" />
 	</parameters>
 </npc>
