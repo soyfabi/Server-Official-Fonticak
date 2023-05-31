@@ -60,11 +60,14 @@ local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
 end
 
 local function creatureSayCallback(cid, type, msg)
-	if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
+	local player = Player(cid)
+	if player:getStorageValue(Storage.ThievesGuild.Mission08) == 3  then
+		if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
 		local player = Player(cid)
 		local items = setNewTradeTable(getTable(player))
 		openShopWindow(cid, getTable(player), onBuy, onSell)
 		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
+		end
 	end
 	return true
 end

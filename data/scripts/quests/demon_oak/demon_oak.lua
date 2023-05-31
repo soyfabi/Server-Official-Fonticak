@@ -1,3 +1,6 @@
+local DEMON_OAK_POSITION = Position(32716, 32351, 7)
+local DEMON_OAK_KICK_POSITION = Position(32716, 32340, 7)
+
 local config = {
 	demonOakIds = {914, 915, 916, 917},
 	sounds = {

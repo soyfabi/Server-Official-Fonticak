@@ -23,7 +23,7 @@ keywordHandler:addKeyword({'excalibug'}, StdModule.say, {npcHandler = npcHandler
 keywordHandler:addKeyword({'port hope'}, StdModule.say, {npcHandler = npcHandler, text = 'Hairless apes strange people are. '})
 
 local function greetCallback(cid)
-	npcHandler:setMessage(MESSAGE_GREET, "Be greeted, friend of the apes.")
+	npcHandler:setMessage(MESSAGE_GREET, "Be greeted, friend of the apes, do you want a {transport}?.")
 	return true
 end
 
@@ -34,13 +34,14 @@ local function creatureSayCallback(cid, type, msg)
 
 	local player = Player(cid)
 	if msgcontains(msg, "transport") or msgcontains(msg, "passage") then
-		npcHandler:say("You want me to transport you to forbidden land?", cid)
+		npcHandler:say("You want me to {transport} you to {forbidden land}?", cid)
 		npcHandler.topic[cid] = 1
 	elseif npcHandler.topic[cid] == 1 then
 		if msgcontains(msg, 'yes') then
 			npcHandler:say("Take care!", cid)
-			local destination = Position(33025, 32580, 6)
+			local destination = Position(33026, 32580, 6)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+			player:setDirection(DIRECTION_WEST)
 			player:teleportTo(destination)
 			destination:sendMagicEffect(CONST_ME_TELEPORT)
 		elseif msgcontains(msg, 'no') then

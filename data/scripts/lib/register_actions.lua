@@ -687,7 +687,7 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 				Game.createItem(5815, 1, lava[i])
 			end
 			target:transform(3141)
-			toPosition:sendMagicEffect(CONST_ME_SMOKE)
+			toPosition:sendMagicEffect(CONST_ME_HITAREA)
 		elseif target.actionid == 50058 then
 			-- naginata quest
 			local stoneStorage = Game.getStorageValue(GlobalStorage.NaginataStone)
@@ -882,8 +882,8 @@ function onUseCrowbar(player, item, fromPosition, target, toPosition, isHotkey)
 			local apeCityStorage = player:getStorageValue(Storage.TheApeCity.Casks)
 			if apeCityStorage < 3 then
 				player:setStorageValue(Storage.TheApeCity.Casks, math.max(0, apeCityStorage) + 1)
-				target:transform(3134)
-				toPosition:sendMagicEffect(CONST_ME_EXPLOSIONAREA)
+				target:transform(4849)
+				toPosition:sendMagicEffect(CONST_ME_DRAWBLOOD)
 				addEvent(revertCask, 3 * 60 * 1000, toPosition)
 			end
 		end

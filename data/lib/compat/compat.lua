@@ -1277,6 +1277,7 @@ function getGlobalStorageValue(key)
 end
 getStorage = getGlobalStorageValue
 function setGlobalStorageValue(key, value)
+	db.query("INSERT INTO `global_storage` (`key`, `value`) VALUES (".. key ..", ".. value ..") ON DUPLICATE KEY UPDATE `value` = ".. value ..";")
 	Game.setStorageValue(key, value)
 	return true
 end

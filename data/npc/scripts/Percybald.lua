@@ -13,15 +13,15 @@ local function creatureSayCallback(cid, type, msg)
 	end
 	local player = Player(cid)
 	if msgcontains(msg, 'disguise') then
-		if player:getStorageValue(Storage.thievesGuild.TheatreScript) < 0 then
+		if player:getStorageValue(Storage.ThievesGuild.TheatreScript) < 0 then
 			npcHandler:say({
 				'Hmpf. Why should I waste my time to help some amateur? I\'m afraid I can only offer my assistance to actors that are as great as I am. ...',
 				'Though, your futile attempt to prove your worthiness could be amusing. Grab a copy of a script from the prop room at the theatre cellar. Then talk to me again about your test!'
 			}, cid)
-			player:setStorageValue(Storage.thievesGuild.TheatreScript, 0)
+			player:setStorageValue(Storage.ThievesGuild.TheatreScript, 0)
 		end
 	elseif msgcontains(msg, 'test') then
-		if player:getStorageValue(Storage.thievesGuild.Mission04) == 5 then
+		if player:getStorageValue(Storage.ThievesGuild.Mission04) == 5 then
 			npcHandler:say('I hope you learnt your role! I\'ll tell you a line from the script and you\'ll have to answer with the corresponding line! Ready?', cid)
 			npcHandler.topic[cid] = 1
 		end
@@ -43,8 +43,8 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 10
 		elseif npcHandler.topic[cid] == 11 then
 			npcHandler:say('Ah well, I think you passed the test! Here is your disguise kit! Now get lost, fate awaits me!', cid)
-			player:setStorageValue(Storage.thievesGuild.Mission04, 6)
-			player:addItem(8693, 1)
+			player:setStorageValue(Storage.ThievesGuild.Mission04, 6)
+			player:addItem(7865, 1)
 			npcHandler.topic[cid] = 0
 		end
 	elseif npcHandler.topic[cid] == 2 then
@@ -91,6 +91,6 @@ local function creatureSayCallback(cid, type, msg)
 	return true
 end
 
-npcHandler:setMessage(MESSAGE_GREET, "Be greeted |PLAYERNAME|!")
+npcHandler:setMessage(MESSAGE_GREET, "Be greeted |PLAYERNAME|! Please don't {interrupt} me for too long!")
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new())

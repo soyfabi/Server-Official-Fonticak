@@ -17,7 +17,7 @@ local function creatureSayCallback(cid, type, msg)
 	local totalBlessPrice = getBlessingsCost(player:getLevel()) * 5 * 1.1
 
 	if msgcontains(msg, "inquisitor") then
-		npcHandler:say("The churches of the gods entrusted me with the enormous and responsible task to lead the inquisition. I leave the field work to inquisitors who I recruit from fitting people that cross my way.", cid)
+		npcHandler:say("The churches of the gods entrusted me with the enormous and responsible task to lead {the inquisition}. I leave the field work to inquisitors who I recruit from fitting people that cross my way.", cid)
 	elseif msgcontains(msg, "join") then
 		if player:getStorageValue(Storage.TheInquisition.Questline) < 1 then
 			npcHandler:say("Do you want to join the inquisition?", cid)
@@ -25,10 +25,10 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif msgcontains(msg, "blessing") or msgcontains(msg, "bless") then
 		if player:getStorageValue(Storage.TheInquisition.Questline) == 25 then --if quest is done
-			npcHandler:say("Do you want to receive the blessing of the inquisition - which means all five available blessings - for " .. totalBlessPrice .. " gold?", cid)
+			npcHandler:say("Do you want to receive the blessing of {the inquisition} - which means all five available blessings - for " .. totalBlessPrice .. " gold?", cid)
 			npcHandler.topic[cid] = 7
 		else
-			npcHandler:say("You cannot get this blessing unless you have completed The Inquisition Quest.", cid)
+			npcHandler:say("You cannot get this blessing unless you have completed {The Inquisition Quest}.", cid)
 			npcHandler.topic[cid] = 0
 		end
     elseif msgcontains(msg, "flask") or msgcontains(msg, "special flask") then
@@ -63,10 +63,10 @@ local function creatureSayCallback(cid, type, msg)
 			}, cid)
 			player:setStorageValue(Storage.TheInquisition.Questline, 4)
 			player:setStorageValue(Storage.TheInquisition.Mission02, 1) -- The Inquisition Questlog- "Mission 2: Eclipse"
-			player:addItem(7494, 1)
+			player:addItem(133, 1)
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 5 then
-			if player:removeItem(8702, 1) then
+			if player:removeItem(7874, 1) then
 				npcHandler:say({
 					"I think it's time to truly test your abilities. One of our allies has requested assistance. I think you are just the right person to help him ...",
 					"Storkus is an old and grumpy dwarf who works as a vampire hunter since many, many decades. He's quite successful but even hehas his limits. ...",
@@ -85,15 +85,15 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 4
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 11 then
 			npcHandler:say({
-				"We've got a report about an abandoned and haunted house in Liberty Bay. I want you to examine this house. It's the only ruin in Liberty Bay so you should have no trouble finding it. ...",
+				"We've got a report about an abandoned and haunted house in Liberty Bay. I want you to examine this house. It's the only ruin in {Liberty Bay} so you should have no trouble finding it. ...",
 				"There's an evil being somewhere. I assume that it will be easier to find the right spot at night. Use this vial of holy water on that spot to drive out the evil being."
 			}, cid)
 			player:setStorageValue(Storage.TheInquisition.Questline, 12)
 			player:setStorageValue(Storage.TheInquisition.Mission04, 1) -- The Inquisition Questlog- "Mission 4: The Haunted Ruin"
-			player:addItem(7494, 1)
+			player:addItem(133, 1)
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 12 or player:getStorageValue(Storage.TheInquisition.Questline) == 13 then
-			npcHandler:say("Your current mission is to exorcise an evil being from a house in Liberty Bay. Are you done with that mission? ", cid)
+			npcHandler:say("Your current mission is to exorcise an evil being from a house in Liberty Bay. Are you done with that {mission}? ", cid)
 			npcHandler.topic[cid] = 5
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 14 then
 			npcHandler:say({
@@ -104,15 +104,15 @@ local function creatureSayCallback(cid, type, msg)
 			player:setStorageValue(Storage.TheInquisition.Mission05, 1) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 15 then
-			if player:removeItem(6500, 20) then
+			if player:removeItem(6499, 20) then
 				npcHandler:say({
-					"You're indeed a dedicated protector of the true believers. Don't stop now. Kill as many of these creatures as you can. ...",
+					"You're indeed a dedicated protector of the true believers. Don't stop now. Kill as many of these creatures as you can...",
 					"I also have a reward for your great efforts. Talk to me about your {demon hunter outfit} anytime from now on. Afterwards, let's talk about the next mission that's awaiting you."
 				}, cid)
 				player:setStorageValue(Storage.TheInquisition.Questline, 16)
 				player:setStorageValue(Storage.TheInquisition.Mission05, 2) -- The Inquisition Questlog- "Mission 5: Essential Gathering"
 			else
-				npcHandler:say("You need 20 of them.", cid)
+				npcHandler:say("You need {20 Demonic Essence} of them.", cid)
 			end
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 17 then
@@ -136,13 +136,13 @@ local function creatureSayCallback(cid, type, msg)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 20 then
-			npcHandler:say("Destroy the shadow nexus using this vial of holy water and kill all demon lords.", cid)
+			npcHandler:say("Destroy the {shadow nexus} using this {vial of holy water} and {kill} all {demon lords}.", cid)
 			player:setStorageValue(Storage.TheInquisition.Questline, 21)
 			player:setStorageValue(Storage.TheInquisition.Mission07, 1) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
-			player:addItem(7494, 1)
+			player:addItem(133, 1)
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 21 or player:getStorageValue(Storage.TheInquisition.Questline) == 22 then
-			npcHandler:say("Your current mission is to destroy the shadow nexus in the Demon Forge. Are you done with that mission?", cid)
+			npcHandler:say("Your current mission is to {destroy} the {shadow nexus} in the {Demon Forge}. Are you done with that {mission}?", cid)
 			npcHandler.topic[cid] = 6
 		end
 	elseif msgcontains(msg, "yes") then
@@ -164,7 +164,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 0
 		elseif npcHandler.topic[cid] == 4 then
 			if player:getStorageValue(Storage.TheInquisition.Questline) == 10 then
-				npcHandler:say("Good, you've returned. Your skill in practical matters seems to be useful. If you're ready for a further mission, just ask. ", cid)
+				npcHandler:say("Good, you've returned. Your skill in practical matters seems to be useful. If you're ready for a further {mission}, just ask. ", cid)
 				player:setStorageValue(Storage.TheInquisition.Questline, 11)
 				player:setStorageValue(Storage.TheInquisition.Mission03, 6) -- The Inquisition Questlog- "Mission 3: Vampire Hunt"
 			else
@@ -183,8 +183,8 @@ local function creatureSayCallback(cid, type, msg)
 		elseif npcHandler.topic[cid] == 6 then
 			if player:getStorageValue(Storage.TheInquisition.Questline) == 22 then
 				npcHandler:say({
-					"Incredible! You're a true defender of faith! I grant you the title of a High Inquisitor for your noble deeds. From now on you can obtain the blessing of the inquisition which makes the pilgrimage of ashes obsolete ...",
-					"The blessing of the inquisition will bestow upon you all available blessings for the price of 60000 gold. Also, don't forget to ask me about your {outfit} to receive the final addon as demon hunter."
+					"Incredible! You're a true defender of faith! I grant you the title of a High Inquisitor for your noble deeds. From now on you can obtain the {blessing of the inquisition} which makes the pilgrimage of ashes obsolete ...",
+					"{The blessing of the inquisition} will bestow upon you all available blessings for the price of 60000 gold. Also, don't forget to ask me about your {outfit} to receive the final addon as demon hunter."
 				}, cid)
 				player:setStorageValue(Storage.TheInquisition.Questline, 23)
 				player:setStorageValue(Storage.TheInquisition.Mission07, 3) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
@@ -196,7 +196,7 @@ local function creatureSayCallback(cid, type, msg)
         elseif npcHandler.topic[cid] == 8 then
             if player:removeMoneyNpc(flaskCost) then
             npcHandler:say("Here is your new flask!, |PLAYERNAME|.", cid)
-            player:addItem(7494, 1)     
+            player:addItem(133, 1)     
             else
 			npcHandler:say("Come back when you have enough money.", cid)
 		end              

@@ -34323,9 +34323,17 @@
 		<attribute key="weight" value="600"/>
 	</item>
 	<item id="23739" name="unknown wall"/>
-	<item id="23740" name="brass-shod chest"/>
+	<item id="23740" name="brass-shod chest">
+		<attribute key="containersize" value="15"/>
+		<attribute key="rotateto" value="23741"/>
+		<attribute key="weight" value="12000"/>
+	</item>
 	<!-- Forgotten Knowledge Quest -->
-	<item id="23741" name="brass-shod chest"/>
+	<item id="23741" name="brass-shod chest">
+	<attribute key="containersize" value="15"/>
+		<attribute key="rotateto" value="23740"/>
+		<attribute key="weight" value="12000"/>
+	</item>
 	<!-- Forgotten Knowledge Quest -->
 	<item fromid="23742" toid="23809" name="RESERVED SPRITE"/>
 	<item id="23810" article="a" name="phial of fresh water">

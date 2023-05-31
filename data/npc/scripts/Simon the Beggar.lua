@@ -83,7 +83,7 @@ local function creatureSayCallback(cid, type, msg)
 		npcHandler.topic[cid] = 2
 	elseif msgcontains(msg, 'yes') then
 		if npcHandler.topic[cid] == 1 then
-			if not player:removeItem(8111, 1) then
+			if not player:removeItem(130, 1) then
 				npcHandler:say('You have no cookie that I\'d like.', cid)
 				npcHandler.topic[cid] = 0
 				return true
@@ -123,7 +123,7 @@ local function creatureSayCallback(cid, type, msg)
 				return true
 			end
 
-			local key = player:addItem(2087, 1)
+			local key = player:addItem(2968, 1)
 			if key then
 				key:setActionId(3940)
 			end

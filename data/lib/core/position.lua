@@ -358,3 +358,7 @@ function Position:isProtectionZoneTile()
 	end
 	return tile:hasFlag(TILESTATE_PROTECTIONZONE)
 end
+
+function Position.getTile(self)
+	return Tile(self)
+end

@@ -38,7 +38,7 @@ CONTAINER_WEIGHT_MAX = 1000000 -- 1000000 = 10k = 10000.00 oz
 
 event.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
 	-- No move items with actionID = 100 --
-	if item:getActionId() == 100 then
+	if item:getActionId() == 8000 then
 		addEvent(function()self:sendCancelMessage("You can't pick up this item.") end, 100)
 		return false
 	end

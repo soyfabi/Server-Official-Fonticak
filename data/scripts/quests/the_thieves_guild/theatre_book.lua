@@ -1,0 +1,9 @@
+local theatre_book = Action()
+
+function theatre_book.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	player:showTextDialog(item:getId(), "Knight Brave: At last we meet face-to-face!\nDoctor Darkness: Too late, puny knight. You can't stop my master plan anymore!\n1st Knave: Watch out! It's a trap!\nKnight Brave: Don't quail, my faithful follower! We have mastered worse obstacles to get here!\nDoctor Darkness: Haha! You may not fear for your own life, but how about hers!?\n2nd Knave: Oh no! Look! It's Princess Buttercup! He's holding her hostage!\nDoctor Darkness: Indeed I do! Wouldn't it be a pity for such a beautiful young lady to die so tragically?\nPrincess Buttercup: Don\'t care about me! Save the world!\nDoctor Darkness: Keep quiet! Else your hair will make the acquaintance of these scissors!\nAll: You're such a monster!\nDoctor Darkness: Hahaha! Now drop your weapons or else...\n1st Knave: Never!\n2nd Knave: But what about the princess?\nKnight Brave: Trust me, my loyal minions. Drop your weapons.\nDoctor Darkness: At last! The brave Knight Brave in my hands! Your death is near!\nKnight Brave: Not that fast, Doctor Dumbness!\nDoctor Darkness: How dare you? Are you mad? I hold the princess hostage and you drop your weapons. You're all lost!\nKnight Brave: I don't think so, dear doctor!\n1st Knave: What's this? Behind the doctor?\n2nd Knave: Look! It's Lucky, the wonder dog!\nLucky: Woof! Woof!\nDoctor Darkness: Noooooo!\nKnight Brave: Get him, boy!\nLucky: Grrr!\nDoctor Darkness: Ahhhhhh!\nAll: Hooray!\nKnight Brave: Lucky, once again you saved the day!\nLucky: Woof!")
+	return true
+end
+
+theatre_book:id(8117)
+theatre_book:register()

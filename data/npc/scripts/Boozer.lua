@@ -7,35 +7,6 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
-local function creatureSayCallback(cid, type, msg)
-	if not npcHandler:isFocused(cid) then
-		return false
-	end
-
-	local player = Player(cid)
-	if msgcontains(msg, "mission") then
-		if player:getStorageValue(Storage.TibiaTales.ultimateBoozeQuest) == 2 and player:removeItem(136, 1) then
-			player:setStorageValue(Storage.TibiaTales.ultimateBoozeQuest, 3)
-			npcHandler.topic[cid] = 0
-			player:addItem(5710, 1)
-			player:addItem(3035, 10)
-			player:addExperience(100, true)
-			npcHandler:say("Yessss! Now I only need to build my own small brewery, figure out the secret recipe, duplicate the dwarvish brew and BANG I'll be back in business! Here take this as a reward.", cid)
-		elseif player:getStorageValue(Storage.TibiaTales.ultimateBoozeQuest) < 1 then
-			npcHandler.topic[cid] = 1
-			npcHandler:say("Shush!! I don't want everybody to know what I am up to. Listen, things are not going too well, I need a new attraction. Do you want to help me?", cid)
-		end
-	elseif msgcontains(msg, "yes") then
-		if npcHandler.topic[cid] == 1 then
-			player:setStorageValue(Storage.TibiaTales.DefaultStart, 1)
-			player:setStorageValue(Storage.TibiaTales.ultimateBoozeQuest, 1)
-			player:addItem(138, 1)
-			npcHandler:say("Good! Listen closely. Take this bottle and go to Kazordoon. I need a sample of their very special brown ale. You may find a cask in their brewery. Come back as soon as you got it.", cid)
-		end
-	end
-	return true
-end
-
 local function getTable(player)
 local itemsList = {}
 	
@@ -96,12 +67,53 @@ local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
 end
 
 local function creatureSayCallback(cid, type, msg)
+	if not npcHandler:isFocused(cid) then
+		return false
+	end
+	local player = Player(cid)
 	if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
-		local player = Player(cid)
 		local items = setNewTradeTable(getTable(player))
 		openShopWindow(cid, getTable(player), onBuy, onSell)
 		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
 	end
+	
+	if msgcontains(msg, "mission") then
+		if player:getStorageValue(Storage.TibiaTales.ultimateBoozeQuest) == 2 and player:removeItem(136, 1) then
+			player:setStorageValue(Storage.TibiaTales.ultimateBoozeQuest, 3)
+			npcHandler.topic[cid] = 0
+			player:addItem(5710, 1)
+			player:addItem(3035, 10)
+			player:addExperience(100, true)
+			npcHandler:say("Yessss! Now I only need to build my own small brewery, figure out the secret recipe, duplicate the dwarvish brew and BANG I'll be back in business! Here take this as a reward.", cid)
+		elseif player:getStorageValue(Storage.TibiaTales.ultimateBoozeQuest) < 1 then
+			npcHandler.topic[cid] = 1
+			npcHandler:say("Shush!! I don't want everybody to know what I am up to. Listen, things are not going too well, I need a new attraction. Do you want to help me?", cid)
+		end
+	elseif msgcontains(msg, "yes") then
+		if npcHandler.topic[cid] == 1 then
+			player:setStorageValue(Storage.TibiaTales.DefaultStart, 1)
+			player:setStorageValue(Storage.TibiaTales.ultimateBoozeQuest, 1)
+			player:addItem(138, 1)
+			npcHandler:say("Good! Listen closely. Take this bottle and go to Kazordoon. I need a sample of their very special brown ale. You may find a cask in their brewery. Come back as soon as you got it.", cid)
+		end
+	end
+	
+	
+	if msgcontains(msg, "mission") then
+		if player:getStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard) == 1 then
+			npcHandler.topic[cid] = 1
+			npcHandler:say("You are soooo locky. Only recently I finished my first cask. As this would never have been possible without you, I make you a special offer. 3000 Gold! Alright?", cid)
+		end
+	elseif msgcontains(msg, "yes") then
+		if npcHandler.topic[cid] == 1 then
+			player:removeMoneyNpc(3000)
+			player:setStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard, 1)
+			player:setStorageValue(Storage.HiddenCityOfBeregar.DefaultStart, 1)
+			player:addItem(8774, 1)
+			npcHandler:say("Here it is. Have fun with this delicious brew.", cid)
+		end
+	end
+
 	return true
 end
 
