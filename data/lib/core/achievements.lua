@@ -459,6 +459,9 @@ achievements =
 	-- 10.94
 	[397] = {name = "Ender of the End", grade = 2, points = 5, description = "You have entered the heart of destruction and valiantly defeated the world devourer. By your actions you have postponed the end of the world — at least for a while."},
 	[398] = {name = "Vortex Tamer", grade = 2, points = 5, description = "After a long journey and dedication you were favoured by fortune and have tamed all three elusive beasts of the vortex. Unless the Vortexion decides you're a tasty morsel you can enjoy your small stable of ravaging beasts from beyond."},
+	
+	-- 8.60 (Tunnel Secret)
+	[399] = {name = "Unlikely Pathfinder", grade = 1, points = 3, secret = true, description = "Wow - what was that? You don't know you ended up here, but somehow you did. How to get from Beregar to Kazordoon in a jiffly - that's something those dwarves would love to know, but you're not quite sure how to reproduce it."},
 }
 
 ACHIEVEMENT_FIRST = 1

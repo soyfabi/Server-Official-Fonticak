@@ -825,7 +825,7 @@
 			<missionstate id="5" description="You informed emperor Rehal about your recent discoveries and he acquitted Nokmir of being a thief." />
 			<missionstate id="6" description="You told Nokmir about his acquittal and he granted you access to the northern mine." />
 		</mission>
-		<mission name="Pythius the Rotten" storageid="51459" startvalue="1" endvalue="1">
+		<mission name="Pythius the Rotten" storageid="51459" startvalue="0" endvalue="1">
 			<missionstate id="1" description="You won the battle against the malicious undead dragon Pythius the Rotten. He granted you firewalker boots as a reward." />
 		</mission>
 		<mission name="Sweet as Chocolate Cake" storageid="51456" startvalue="1" endvalue="3">
@@ -833,13 +833,20 @@
 			<missionstate id="2" description="Report back to Frafnar by telling him about the mission." />
 			<missionstate id="3" description="You told Frafnar that you did everything he asked you to do. You may now enter the western part of the mine." />
 		</mission>
-		<mission name="The Good Guard" storageid="51458" startvalue="1" endvalue="2">
+		<mission name="The Good Guard" storageid="51458" startvalue="1" endvalue="3">
 			<missionstate id="1" description="Grombur asked you to get him a cask of dwarven brown ale. You heard that Boozer in Venore tried to brew some. Maybe you should pay him a visit." />
-			<missionstate id="2" description="Grombur liked the ale and you are now allowed to enter his part of the mine." />
+			<missionstate id="2" description="Now go to Grombur and deliver the cask of brown ale." />
+			<missionstate id="3" description="Grombur liked the ale and you are now allowed to enter his part of the mine." />
 		</mission>
-		<mission name="Royal Rescue" storageid="51457" startvalue="1" endvalue="2">
+		<mission name="Royal Rescue" storageid="51457" startvalue="1" endvalue="5">
 			<missionstate id="1" description="Emperor Rehal told you about the missing explorers and his own son Rehon among them. Use the ore wagon to the deeper mines to find and rescue them. Ask Xorlosh if you encounter any problems." />
-			<missionstate id="2" description="Grombur liked the ale and you are now allowed to enter his part of the mine." />
+			<missionstate id="2" description="You have been able to cross the bridge with the wagon in perfect condition, it will continue a long way until you find Tehlim." />
+			<missionstate id="3" description="You have to find the prison key, then go to Rehon and free him." />
+			<missionstate id="4" description="You have given the prison key to Rehon, now go back to Emperor Rehal." />
+			<missionstate id="5" description="You have to find the prison key, then go to Rehon and free him." />
+		</mission>
+		<mission name="A forgotten passage" storageid="51465" startvalue="0" endvalue="1">
+			<missionstate id="1" description="You discovered a forgotten passage between Beregar and Kazordoon." />
 		</mission>
 	</quest>
 	<quest name="The Ice Islands Quest" startstorageid="12200" startstoragevalue="1">

@@ -12,7 +12,6 @@ local itemsList = {}
 	
 local buyList = {
 	{ name = "bread", id = 3600, buy = 4 },
-	{ name = "cask of brown ale", id = 8774, buy = 3000 },
 	{ name = "cheese", id = 3607, buy = 6 },
 	{ name = "cookie", id = 3598, buy = 5 },
 	{ name = "ham", id = 3582, buy = 8 },
@@ -99,7 +98,7 @@ local function creatureSayCallback(cid, type, msg)
 	end
 	
 	
-	if msgcontains(msg, "mission") then
+	if msgcontains(msg, "dwarven brown ale") then
 		if player:getStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard) == 1 then
 			npcHandler.topic[cid] = 1
 			npcHandler:say("You are soooo locky. Only recently I finished my first cask. As this would never have been possible without you, I make you a special offer. 3000 Gold! Alright?", cid)
@@ -107,7 +106,7 @@ local function creatureSayCallback(cid, type, msg)
 	elseif msgcontains(msg, "yes") then
 		if npcHandler.topic[cid] == 1 then
 			player:removeMoneyNpc(3000)
-			player:setStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard, 1)
+			player:setStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard, 2)
 			player:setStorageValue(Storage.HiddenCityOfBeregar.DefaultStart, 1)
 			player:addItem(8774, 1)
 			npcHandler:say("Here it is. Have fun with this delicious brew.", cid)

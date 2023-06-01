@@ -49,23 +49,30 @@ function hammer.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local targetActionId = target:getActionId()
 	local position = Position(32571, 31508, 9)
 	local tile = Tile(position)
-	if targetActionId == 40021 and tile:getItemById(4597) then
+	if targetActionId == 50109 and tile:getItemById(4600) then
 		if player:getItemCount(5901) >= 3 and player:getItemCount(953) >= 3 then
 			player:removeItem(5901, 3)
 			player:removeItem(953, 3)
-			player:say("KLING KLONG!", TALKTYPE_MONSTER_SAY)
-			tile:getItemById(295):remove()
-			tile:getItemById(291):remove()
-			Game.createItem(5770, 1, position):setActionId(40021)
+			player:say("TOCK TOCK TOCK", TALKTYPE_MONSTER_SAY, false, 0, toPosition)
+			local thing = tile:getItemById(291)
+			if thing then
+			thing:remove()
+			end
+			local thing2 = tile:getItemById(295)
+			if thing2 then
+			thing2:remove()
+			end
+			tile:getItemById(4600):remove()
+			Game.createItem(5770, 1, position):setActionId(50109)
 		end
 		return true
 	-- Lay down the rails
-	elseif targetActionId == 40021 and tile:getItemById(5770) then
+	elseif targetActionId == 50109 and tile:getItemById(5770) then
 		if player:getItemCount(9114) >= 1 and player:getItemCount(9115) >= 2 and player:getItemCount(953) >= 3 then
 			player:removeItem(9114, 1)
 			player:removeItem(9115, 2)
 			player:removeItem(953, 3)
-			player:say("KLING KLONG!", TALKTYPE_MONSTER_SAY)
+			player:say("TOCK TOCK TOCK", TALKTYPE_MONSTER_SAY, false, 0, toPosition)
 			Game.createItem(7122, 1, position)
 		end
 		return true

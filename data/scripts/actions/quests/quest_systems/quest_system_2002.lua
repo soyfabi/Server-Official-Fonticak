@@ -483,11 +483,11 @@ function questSystem2.onUse(player, item, fromPosition, target, toPosition, isHo
 		end
 
 		if items[1].text then
-			reward:setText(items[1].text)
+			reward:setAttribute("text", items[1].text)
 		end
 		
 		if items[1].name then
-			reward:setName(items[1].name)
+			reward:setAttribute("name", items[1].name)
 		end
 
 		if items[1].decay then
@@ -511,11 +511,11 @@ function questSystem2.onUse(player, item, fromPosition, target, toPosition, isHo
 				end
 
 				if items[i].text then
-					tmp:setText(items[i].text)
+					tmp:setAttribute("text", items[i].text)
 				end
 				
 				if items[i].name then
-					tmp:setName(items[i].name)
+					tmp:setAttribute("name", items[i].name)
 				end
 
 				if items[i].decay then

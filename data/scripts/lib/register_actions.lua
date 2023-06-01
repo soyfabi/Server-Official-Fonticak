@@ -433,26 +433,30 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 		player:addItem(18933, 1)
 		player:setStorageValue(Storage.GravediggerOfDrefia.Mission70, 1)
+		
+		-- The Hidden City of Beregar
 	elseif target.actionid == 50118 then
 		local wagonItem = Tile(Position(32717, 31492, 11)):getItemById(7131)
 		if wagonItem then
-			if Tile(Position(32717, 31492, 11)):getItemById(7921) then
+			if Tile(Position(32717, 31492, 11)):getItemById(9118) then
 				return true
 			end
-			Game.createItem(7921, 1, wagonItem:getPosition()):setActionId(40023)
-			toPosition:sendMagicEffect(CONST_ME_POFF)
+			Game.createItem(9118, 1, wagonItem:getPosition()):setActionId(50117)
+			Tile(Position(32717, 31492, 11)):getItemById(7131):remove()
+			Position(32717, 31492, 11):sendMagicEffect(CONST_ME_POFF)
 		end
-	elseif target.itemid == 7921 then
-		local coalItem = Tile(Position(32699, 31492, 11)):getItemById(7921)
+	elseif target.itemid == 9118 then
+		local coalItem = Tile(Position(32699, 31492, 11)):getItemById(9118)
 		if coalItem then
 			coalItem:remove(1)
 			toPosition:sendMagicEffect(CONST_ME_POFF)
-			Tile(Position(32699, 31492, 11)):getItemById(7131):setActionId(40023)
+			Game.createItem(7131, 1, toPosition):setActionId(50117)
 			local crucibleItem = Tile(Position(32699, 31494, 11)):getItemById(7814)
 			if crucibleItem then
-				crucibleItem:setActionId(50119)
+				crucibleItem:setActionId(50120)
 			end
 		end
+		
 	elseif table.contains({8716, 17950, 15047, 16306, 16300}, target.itemid) then
 		if player:getStorageValue(Storage.SwampDiggingTimeout) >= os.time() then
 			toPosition:sendMagicEffect(CONST_ME_POFF)
@@ -707,14 +711,15 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 		toPosition:sendMagicEffect(CONST_ME_POFF)
 	elseif target.actionid == 50090 then
 		-- The Hidden City of Beregar Quest
-		if player:getStorageValue(Storage.hiddenCityOfBeregar.WayToBeregar) == 1 then
+		if player:getStorageValue(Storage.HiddenCityOfBeregar.WayToBeregar) ~= 1 then
 			player:teleportTo(Position(32566, 31338, 10))
+			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		end
-	elseif target.actionid == 40028 then
-		if Tile(Position(32617, 31513, 9)):getItemById(1272)
-		and Tile(Position(32617, 31514, 9)):getItemById(1624) then
+	elseif target.actionid == 50114 then
+		if Tile(Position(32617, 31513, 9)):getItemById(1272) and Tile(Position(32617, 31514, 9)):getItemById(1624) then
 			local rubbleItem = Tile(Position(32619, 31514, 9)):getItemById(5709)
 			if rubbleItem then
+				toPosition:sendMagicEffect(CONST_ME_HITAREA)
 				rubbleItem:remove(1)
 			end
 		else
