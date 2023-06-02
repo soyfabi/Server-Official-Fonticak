@@ -22,7 +22,7 @@ local function creatureSayCallback(cid, type, msg)
 			return true
 		end
 
-		npcHandler:say('Do you want to purchase a weekly ticket for the ore wagons? With it you can travel freely and swiftly through Kazordoon for one week. 250 gold only. Deal?', cid)
+		npcHandler:say('Do you want to {purchase} a weekly {ticket} for the ore wagons? With it you can travel freely and swiftly through {Kazordoon} for one week. {250 gold coins} only. Deal?', cid)
 		npcHandler.topic[cid] = 1
 	elseif msgcontains(msg, 'yes') and npcHandler.topic[cid] > 0 then
 		local player = Player(cid)

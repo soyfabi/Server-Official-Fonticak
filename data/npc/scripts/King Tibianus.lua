@@ -1,4 +1,3 @@
--- https://github.com/opentibiabr/OTServBR-Global
 local keywordHandler = KeywordHandler:new()
 local npcHandler = NpcHandler:new(keywordHandler)
 NpcSystem.parseParameters(npcHandler)
@@ -8,120 +7,173 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)	npcHandler:onCreatureSay(cid, type, msg)	end
 function onThink()						npcHandler:onThink()						end
 
+local TheNewFrontier = Storage.Quest.U8_54.TheNewFrontier
+
 local function creatureSayCallback(cid, type, msg)
 	if not npcHandler:isFocused(cid) then 
 		return false 
 	end
 	local player = Player(cid)
-	if(msgcontains(msg, "outfit")) or (msgcontains(msg, "addon")) then
-		selfSay("In exchange for a truly generous donation, I will offer a special outfit. Do you want to make a donation?", cid)
+	if msgcontains(msg, "farmine") and player:getStorageValue(TheNewFrontier.Questline) == 14 then
+		if player:getStorageValue(TheNewFrontier.Mission05.KingTibianus) == 1 then
+			npcHandler:say(
+			"Ah, I vaguely remember that our little allies were eager to build some base. So speak up, what do you want?",
+			cid)
+			npcHandler.topic[cid] = 10
+		else
+			npcHandler:say("Do you have anything that might change my mind?", cid)
+			npcHandler.topic[cid] = 6
+		end
+	elseif msgcontains(msg, "flatter") and player:getStorageValue(TheNewFrontier.Mission05.KingTibianus) == 1 then
+		if npcHandler.topic[cid] == 10 then
+			npcHandler:say(
+			"Indeed, indeed. Without the help of Thais, our allies stand no chance! Well, I'll send some money to support their cause.",
+			cid)
+			player:setStorageValue(TheNewFrontier.Mission05.KingTibianus, 3)
+		end
+	elseif (msgcontains(msg, "outfit")) or (msgcontains(msg, "addon")) then
+		npcHandler:say(
+		"In exchange for a truly generous donation, I will offer a special outfit. Do you want to make a donation?",
+		cid)
 		npcHandler.topic[cid] = 1
-	elseif(msgcontains(msg, "yes")) then
-		-- vamos tratar todas condições para YES aqui
+	elseif (msgcontains(msg, "yes")) then
+		-- Vamos tratar todas condições para YES aqui
 		if npcHandler.topic[cid] == 1 then
-			-- para o primeiro Yes, o npc deve explicar como obter o outfit
-			selfSay("Excellent! Now, let me explain. If you donate 10.000.000.000 gold pieces, you will be entitled to wear a unique outfit. ...", cid)
-			selfSay("You will be entitled to wear the {armor} for 5.000.000.000 gold pieces, {helmet} for an additional 2.500.000.000 and the {boots} for another 2.500.000.000 gold pieces. ...", cid)
-			selfSay("What will it be?", cid)
+			-- Para o primeiro Yes, o npc deve explicar como obter o outfit
+			npcHandler:say(
+			{"Excellent! Now, let me explain. If you donate 1.000.000.000 gold pieces, you will be entitled to wear a unique outfit. ...",
+				"You will be entitled to wear the {armor} for 500.000.000 gold pieces, {helmet} for an additional 250.000.000 and the {boots} for another 250.000.000 gold pieces. ...",
+			"What will it be?"}, cid)
 			npcHandler.topic[cid] = 2
-		-- O NPC só vai oferecer os addons se o player já tiver escolhido.
+			-- O NPC só vai oferecer os addons se o player já tiver escolhido.
 		elseif npcHandler.topic[cid] == 2 then
 			-- caso o player repita o yes, resetamos o tópico para começar de novo?
-			selfSay("In that case, return to me once you made up your mind.", cid)
-			npcHandler.topic[cid] = 0
-		-- Inicio do outfit
+			npcHandler:say("In that case, return to me once you made up your mind.", cid)
+			npcHandler:setTopic(playerId, 0)
+			-- Inicio do outfit
 		elseif npcHandler.topic[cid] == 3 then -- ARMOR/OUTFIT
 			if player:getStorageValue(Storage.OutfitQuest.GoldenOutfit) < 1 then
-				if player:getMoney() + player:getBankBalance() >= 5000000000 then
-					local inbox = player:getSlotItem(CONST_SLOT_BACKPACK)
+				if player:getMoney() + player:getBankBalance() >= 500000000 then
+					local inbox = player:getSlotItem(CONST_SLOT_STORE_INBOX)
 					if inbox and inbox:getEmptySlots() > 0 then
 						local decoKit = inbox:addItem(23398, 1)
 						local decoItemName = ItemType(31510):getName()
-							decoKit:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, "You bought this item in the Store.\nUnwrap it in your own house to create a " .. decoItemName .. ".")
-							decoKit:setActionId(36345)
-							selfSay("Take this armor as a token of great gratitude. Let us forever remember this day, my friend!", cid)
-							player:removeMoneyNpc(500000000)
-							player:addOutfit(1211)
-							player:addOutfit(1210)
-							player:getPosition():sendMagicEffect(171)
-							player:setStorageValue(Storage.OutfitQuest.GoldenOutfit, 1)
+						decoKit:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION,
+						"Unwrap it in your own house to create a " .. decoItemName .. ".")
+						decoKit:setCustomAttribute("unWrapId", 31510)
+						npcHandler:say(
+						"Take this armor as a token of great gratitude. Let us forever remember this day, my friend!",
+						cid)
+						player:removeMoneyBank(500000000)
+						player:addOutfit(1211)
+						player:addOutfit(1210)
+						player:getPosition():sendMagicEffect(171)
+						player:setStorageValue(Storage.OutfitQuest.GoldenOutfit, 1)
 					else
-						selfSay("Please make sure you have free slots in your store inbox.", cid)
-					end				
+						npcHandler:say("Please make sure you have free slots in your store inbox.", cid)
+					end
 				else
-					selfSay("You do not have enough money to donate that amount.", cid)
+					npcHandler:say("You do not have enough money to donate that amount.", cid)
 				end
 			else
-				selfSay("You alread have that addon.", cid)
+				npcHandler:say("You alread have that addon.", cid)
 			end
 			npcHandler.topic[cid] = 2
-		-- Fim do outfit
-		-- Inicio do helmet
+			-- Fim do outfit
+			-- Inicio do helmet
 		elseif npcHandler.topic[cid] == 4 then
 			if player:getStorageValue(Storage.OutfitQuest.GoldenOutfit) == 1 then
 				if player:getStorageValue(Storage.OutfitQuest.GoldenOutfit) < 2 then
-					if player:getMoney() + player:getBankBalance() >= 2500000000 then
-						selfSay("Take this helmet as a token of great gratitude. Let us forever remember this day, my friend. ", cid)
-						player:removeMoneyNpc(2500000000)
-						player:addOutfitAddon(1210, 1)
-						player:addOutfitAddon(1211, 1)
+					if player:getMoney() + player:getBankBalance() >= 250000000 then
+						npcHandler:say(
+						"Take this helmet as a token of great gratitude. Let us forever remember this day, my friend. ",
+						cid)
+						player:removeMoneyBank(250000000)
+						player:addOutfitAddon(1210, 2)
+						player:addOutfitAddon(1211, 2)
 						player:getPosition():sendMagicEffect(171)
 						player:setStorageValue(Storage.OutfitQuest.GoldenOutfit, 2)
 						npcHandler.topic[cid] = 2
 					else
-						selfSay("You do not have enough money to donate that amount.", cid)
+						npcHandler:say("You do not have enough money to donate that amount.", cid)
 						npcHandler.topic[cid] = 2
 					end
 				else
-					selfSay("You alread have that outfit.", cid)
+					npcHandler:say("You alread have that outfit.", cid)
 					npcHandler.topic[cid] = 2
 				end
 			else
-				selfSay("You need to donate {armor} outfit first.", cid)
+				npcHandler:say("You need to donate {armor} outfit first.", cid)
 				npcHandler.topic[cid] = 2
 			end
 			npcHandler.topic[cid] = 2
-		-- Fim do helmet
-		-- Inicio da boots
+			-- Fim do helmet
+			-- Inicio da boots
 		elseif npcHandler.topic[cid] == 5 then
 			if player:getStorageValue(Storage.OutfitQuest.GoldenOutfit) == 2 then
 				if player:getStorageValue(Storage.OutfitQuest.GoldenOutfit) < 3 then
-					if player:getMoney() + player:getBankBalance() >= 2500000000 then
-						selfSay("Take this boots as a token of great gratitude. Let us forever remember this day, my friend. ", cid)
-						player:removeMoneyNpc(2500000000)
-						player:addOutfitAddon(1210, 2)
-						player:addOutfitAddon(1211, 2)
+					if player:getMoney() + player:getBankBalance() >= 250000000 then
+						npcHandler:say(
+						"Take this boots as a token of great gratitude. Let us forever remember this day, my friend. ",
+						cid)
+						player:removeMoneyBank(250000000)
+						player:addOutfitAddon(1210, 1)
+						player:addOutfitAddon(1211, 1)
 						player:getPosition():sendMagicEffect(171)
 						player:setStorageValue(Storage.OutfitQuest.GoldenOutfit, 3)
 						npcHandler.topic[cid] = 2
 					else
-						selfSay("You do not have enough money to donate that amount.", cid)
+						npcHandler:say("You do not have enough money to donate that amount.", cid)
 						npcHandler.topic[cid] = 2
 					end
 				else
-					selfSay("You alread have that outfit.", cid)
+					npcHandler:say("You alread have that outfit.", cid)
 					npcHandler.topic[cid] = 2
 				end
 			else
-				selfSay("You need to donate {helmet} addon first.", cid)
+				npcHandler:say("You need to donate {helmet} addon first.", cid)
 				npcHandler.topic[cid] = 2
 			end
 			-- Fim da boots
 			npcHandler.topic[cid] = 2
-	end
-	--inicio das opções armor/helmet/boots
-	-- caso o player não diga YES, dirá alguma das seguintes palavras:
-	elseif(msgcontains(msg, "armor")) and npcHandler.topic[cid] == 2 then
-		selfSay("So you wold like to donate 500.000.000 gold pieces which in return will entitle you to wear a unique armor?", cid)
+			-- Reseting word The New Frontier: Mission 5
+		elseif npcHandler.topic[cid] == 6 then
+			if player:getStorageValue(TheNewFrontier.Questline) == 14 and
+			player:getStorageValue(TheNewFrontier.Mission05.KingTibianus) == 2 and player:removeItem(10009, 1) then
+				npcHandler:say(
+				"Ah, I vaguely remember that our little allies were eager to build some base. So speak up, what do you want?",
+				cid)
+				player:setStorageValue(TheNewFrontier.Mission05.KingTibianus, 1)
+				npcHandler.topic[cid] = 10
+			end
+
+		end
+		-- inicio das opções armor/helmet/boots
+		-- caso o player não diga YES, dirá alguma das seguintes palavras:
+	elseif (msgcontains(msg, "armor")) and npcHandler.topic[cid] == 2 then
+		npcHandler:say(
+		"So you wold like to donate 500.000.000 gold pieces which in return will entitle you to wear a unique armor?",
+		cid)
 		npcHandler.topic[cid] = 3 -- alterando o tópico para que no próximo YES ele faça o outfit
-	elseif(msgcontains(msg, "helmet")) and npcHandler.topic[cid] == 2 then
-		selfSay("So you would like to donate 250.000.000 gold pieces which in return will entitle you to wear unique helmet?", cid)
+	elseif (msgcontains(msg, "helmet")) and npcHandler.topic[cid] == 2 then
+		npcHandler:say(
+		"So you would like to donate 250.000.000 gold pieces which in return will entitle you to wear unique helmet?",
+		cid)
 		npcHandler.topic[cid] = 4 -- alterando o tópico para que no próximo YES ele faça o helmet
-	elseif(msgcontains(msg, "boots")) and npcHandler.topic[cid] == 2 then
-		selfSay("So you would like to donate 250.000.000 gold pieces which in return will entitle you to wear a unique boots?", cid)
+	elseif (msgcontains(msg, "boots")) and npcHandler.topic[cid] == 2 then
+		npcHandler:say(
+		"So you would like to donate 250.000.000 gold pieces which in return will entitle you to wear a unique boots?",
+		cid)
 		npcHandler.topic[cid] = 5 -- alterando o tópico para que no próximo YES ele faça a boots
+	else
+		if player:getStorageValue(TheNewFrontier.Questline) == 14 and
+		player:getStorageValue(TheNewFrontier.Mission05.KingTibianus) == 1 then
+			npcHandler:say("Wrong Word, Now you will have to bring me something in return. I {need} an {Flask of Crown polished}.", cid)
+			player:setStorageValue(TheNewFrontier.Mission05.KingTibianus, 2)
+			npcHandler:releaseFocus(cid)
+		end
 	end
-	-- fim das opções armor/helmet/boots
+	
 end
 -- Promotion
 local node1 = keywordHandler:addKeyword({'promot'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'I can promote you for {20000 gold coins}. Do you want me to {promote} you?'})

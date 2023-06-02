@@ -35,6 +35,10 @@ end
 
 local event = Event()
 event.onGainExperience = function(self, source, exp, rawExp)
+
+	if not source:isMonster() then
+		return false
+	end
 	
 	-- Monster Level --
 	if source:isMonster() then

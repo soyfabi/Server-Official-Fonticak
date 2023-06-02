@@ -16,6 +16,7 @@ local function creatureSayCallback(cid, type, msg)
 	if msgcontains(msg, "report") then
 		if player:getStorageValue(Storage.InServiceofYalahar.Questline) == 7 or player:getStorageValue(Storage.InServiceofYalahar.Questline) == 13 then
 			npcHandler:say("Uhm, report, eh? <slowly gives a clumsy description of recent problems>. ", cid)
+			player:getPosition():sendMagicEffect(CONST_ME_BLOCKHIT)
 			player:setStorageValue(Storage.InServiceofYalahar.Questline, math.max(1, player:getStorageValue(Storage.InServiceofYalahar.Questline) +1))
 			player:setStorageValue(Storage.InServiceofYalahar.Mission02, math.max(1, player:getStorageValue(Storage.InServiceofYalahar.Mission02) +1)) -- StorageValue for Questlog "Mission 02: Watching the Watchmen"
 			npcHandler.topic[cid] = 0

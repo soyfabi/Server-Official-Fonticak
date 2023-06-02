@@ -37,7 +37,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler:say({
 				"I hope your first mission will not scare you off. Even though, we cut off our sewer system from other parts of the city to prevent the worst, it still has deteriorated in the last decades. ...",
 				"Certain parts of the controls are rusty and the drains are stuffed with garbage. Get yourself a crowbar, loosen the controls and clean the pipes from the garbage. ...",
-				"We were able to locate the 4 worst spots in the sewers. I will mark them for you on your map so you have no trouble finding them. Report to me when you have finished your {mission}. ..."
+				"We were able to locate the {4 worst spots} in the sewers. I will mark them for you on your map so you have no trouble finding them. {Report} to me when you have finished your {mission}. ..."
 			}, cid)
 			player:addMapMark(Position(32823, 31161, 8), 4, "Sewer Problem 1")
 			player:addMapMark(Position(32795, 31152, 8), 4, "Sewer Problem 2")

@@ -6,7 +6,7 @@ function deeperMineWagon.onUse(player, item, fromPosition, target, toPosition, i
 		player:teleportTo(Position(32611, 31513, 9))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		player:setDirection(DIRECTION_EAST)
-	elseif player:getStorageValue(Storage.HiddenCityOfBeregar.RoyalRescue) == 3 then
+	elseif player:getStorageValue(Storage.HiddenCityOfBeregar.RoyalRescue) >= 3 then
 		player:teleportTo(Position(32687, 31471, 13))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		player:setDirection(DIRECTION_NORTH)
@@ -16,10 +16,12 @@ function deeperMineWagon.onUse(player, item, fromPosition, target, toPosition, i
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	end
 	
-	if player:getStorageValue(Storage.HiddenCityOfBeregar.TunnelSecret) == 1 then
-		player:teleportTo(Position(32588, 31478, 14))
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:setDirection(DIRECTION_EAST)
+	if item.actionid == 50129 then
+		if player:getStorageValue(Storage.HiddenCityOfBeregar.TunnelSecret) == 1 then
+			player:teleportTo(Position(32588, 31478, 14))
+			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+			player:setDirection(DIRECTION_EAST)
+		end
 	end
 	
 	return true
@@ -164,10 +166,10 @@ function coalWagon.onUse(player, item, fromPosition, target, toPosition, isHotke
 
 	local tile = Tile(wagonPosition)
 	if item.itemid == 7131 and item.actionid == 50117 then
-		wagonPosition.x = wagonPosition.x + 3
+		wagonPosition.x = wagonPosition.x + 1
 		tile:getItemById(7131):moveTo(wagonPosition)
 	elseif item.itemid == 9118 and item.actionid == 50117 then
-		wagonPosition.x = wagonPosition.x - 3
+		wagonPosition.x = wagonPosition.x - 1
 		tile:getItemById(9118):moveTo(wagonPosition)
 	end
 
@@ -198,21 +200,28 @@ function coalLevers.onUse(player, item, fromPosition, target, toPosition, isHotk
 		return false
 	end
 	
+	local bellow = Tile(Position(32699, 31495, 11)):getItemById(9121)
+	if not bellow then
+		return false
+	end
+	
 	if Tile(Position(32690, 31495, 11)):getItemById(7132) or Tile(Position(32692, 31495, 11)):getItemById(7132) or Tile(Position(32694, 31495, 11)):getItemById(7132) or Tile(Position(32696, 31495, 11)):getItemById(7132) then
 		player:say("There is already a wagon in use.", TALKTYPE_MONSTER_SAY, false, 0, player:getPosition())
 		return true
 	end
 	
-	if machine.actionid == 50120 and machine.itemid == 7813 then 
+	if machine.actionid == 50120 and machine.itemid == 7813 then
+	if bellow.actionid == 50132 and bellow.itemid == 9121 then
 		local wagon = Game.createItem(7132, 1, useItem.wagonPos)
-		Tile(Position(32699, 31495, 11)):getItemById(9120):remove()
-		Game.createItem(9121, 1, Position(32699, 31495, 11)):setActionId(50107)
+		Tile(Position(32699, 31495, 11)):getItemById(9121):remove()
+		Game.createItem(9121, 1, Position(32699, 31495, 11)):setActionId(50110)
 		Game.createItem(7814, 1, Position(32699, 31494, 11))
 		machine:remove(1)
 		if wagon then
 		wagon:setActionId(useItem.actionId)
 		end
 	end
+end
 
 	item:transform(item.itemid == 9125 and 9126 or 9125)
 	return true
@@ -221,30 +230,72 @@ end
 coalLevers:uid(50108, 50109, 50110, 50111)
 coalLevers:register()
 
---[[local bellow = MoveEvent()
+local bellow = MoveEvent()
+
+local exhaust = {}
+local exhaustTime = 2
 
 function bellow.onStepIn(creature, item, position, fromPosition)
 	if not creature:isPlayer() then
 		return true
 	end
 	
-	local tile = Tile(Position(32699, 31495, 11))
-	
-	if item.actionid == 50107 and (item.itemid == 9120) then
-		Position(32696, 31494, 11):sendMagicEffect(CONST_ME_SMOKE)
-		Position(32693, 31494, 11):sendMagicEffect(CONST_ME_SMOKE)
-		Position(32689, 31494, 11):sendMagicEffect(CONST_ME_SMOKE)
-		Game.createItem(9121, 1, Position(32699, 31495, 11)):setActionId(50240)
-		creature:say('TSSSSHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32695, 31494, 11))
-		creature:say('TSSSSHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32692, 31494, 11))
-		Tile(Position(32699, 31495, 11)):getItemById(9120):remove()
+	local playerId = creature:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		return true
 	end
+	
+	local crucibleItem = Tile(Position(32699, 31495, 11)):getItemById(9120)
+	if not crucibleItem then
+		return true
+	end
+	
+	
+	if crucibleItem.actionid == 50110 then
+		crucibleItem:setActionId(50120)
+		Position(32697, 31494, 11):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32695, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32696, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+	elseif crucibleItem.actionid == 50120 then
+		crucibleItem:setActionId(50121)
+		Position(32697, 31494, 11):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32695, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32696, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+		creature:say('TSSSSHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32695, 31494, 11))
+		creature:say('CHOOOOOOOHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32698, 31493, 11))
+	elseif crucibleItem.actionid == 50121 then
+		crucibleItem:setActionId(50130)
+		Position(32697, 31494, 11):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32695, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32696, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+		creature:say('TSSSSHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32695, 31494, 11))
+		creature:say('CHOOOOOOOHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32698, 31493, 11))
+	elseif crucibleItem.actionid == 50130 then
+		crucibleItem:setActionId(50131)
+		Position(32697, 31494, 11):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32695, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+		Position(32696, 31494, 10):sendMagicEffect(CONST_ME_SMOKE)
+		creature:say('TSSSSHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32695, 31494, 11))
+		creature:say('CHOOOOOOOHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32698, 31493, 11))
+	elseif crucibleItem.actionid == 50131 then
+		crucibleItem:setActionId(50132)
+		creature:say('TSSSSHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32695, 31494, 11))
+		creature:say('CHOOOOOOOHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32698, 31493, 11))
+	elseif crucibleItem.actionid == 50132 then
+		crucibleItem:transform(9121)
+		creature:say('TSSSSHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32695, 31494, 11))
+		creature:say('CHOOOOOOOHHHHH', TALKTYPE_MONSTER_SAY, false, 0, Position(32698, 31493, 11))
+	end
+	
+	exhaust[playerId] = currentTime + exhaustTime
+	
 	return true
 end
 
 bellow:type("stepin")
-bellow:aid(50107)
-bellow:register()]]
+bellow:aid(50110, 50120, 50121, 50130, 50131, 50132)
+bellow:register()
 
 local coalExitWagons = Action()
 

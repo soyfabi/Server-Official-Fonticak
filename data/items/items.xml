@@ -628,7 +628,7 @@
 	<item fromid="392" toid="393" name="stalagmites"/>
 	<item id="394" article="a" name="hole">
 		<attribute key="floorchange" value="down"/>
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="50"/>
 		<attribute key="decayTo" value="354"/>
 	</item>
 	<item id="395" name="RESERVED SPRITE"/>
@@ -810,7 +810,7 @@
 	<item id="614" article="a" name="sand"/>
 	<item id="615" article="a" name="hole">
 		<attribute key="floorchange" value="down"/>
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="50"/>
 		<attribute key="decayTo" value="606"/>
 	</item>
 	<item id="616" name="DEPRECATED item"/>

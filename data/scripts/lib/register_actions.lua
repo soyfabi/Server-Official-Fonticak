@@ -828,11 +828,16 @@ function onUseCrowbar(player, item, fromPosition, target, toPosition, isHotkey)
 		-- In service of yalahar quest
 		if player:getStorageValue(Storage.InServiceofYalahar.SewerPipe01) < 1 then
 			doSetMonsterOutfit(player, "skeleton", 3 * 1000)
-			fromPosition:sendMagicEffect(CONST_ME_ENERGYHIT)
+			fromPosition:sendMagicEffect(CONST_ME_YELLOWENERGY)
+			Position(32824, 31162, 8):sendMagicEffect(CONST_ME_YELLOWENERGY)
+			Position(32822, 31162, 8):sendMagicEffect(CONST_ME_YELLOWENERGY)
+			Position(32824, 31162, 8):sendMagicEffect(CONST_ME_YELLOWENERGY)
+			Position(32824, 31161, 8):sendMagicEffect(CONST_ME_YELLOWENERGY)
+			toPosition:sendMagicEffect(CONST_ME_YELLOWENERGY)
 			player:setStorageValue(Storage.InServiceofYalahar.SewerPipe01, 1)
 			-- StorageValue for Questlog "Mission 01: Something Rotten"
 			player:setStorageValue(Storage.InServiceofYalahar.Mission01,
-					player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
+			player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
 			local position = player:getPosition()
 			for x = -1, 1 do
 				for y = -1, 1 do
@@ -844,9 +849,10 @@ function onUseCrowbar(player, item, fromPosition, target, toPosition, isHotkey)
 	elseif target.uid == 3072 then
 		if player:getStorageValue(Storage.InServiceofYalahar.SewerPipe02) < 1 then
 			player:setStorageValue(Storage.InServiceofYalahar.SewerPipe02, 1)
+			toPosition:sendMagicEffect(CONST_ME_HITAREA)
 			-- StorageValue for Questlog "Mission 01: Something Rotten"
 			player:setStorageValue(Storage.InServiceofYalahar.Mission01,
-					player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
+			player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
 			local position = player:getPosition()
 			for x = -1, 1 do
 				for y = -1, 1 do
@@ -862,18 +868,28 @@ function onUseCrowbar(player, item, fromPosition, target, toPosition, isHotkey)
 		if player:getStorageValue(Storage.InServiceofYalahar.SewerPipe03) < 1 then
 			player:say("You have used the crowbar on a grate.", TALKTYPE_MONSTER_SAY)
 			player:setStorageValue(Storage.InServiceofYalahar.SewerPipe03, 1)
+			Position(32795, 31152, 8):sendMagicEffect(CONST_ME_FIREATTACK)
+			Position(32795, 31151, 8):sendMagicEffect(CONST_ME_FIREATTACK)
+			Position(32795, 31150, 8):sendMagicEffect(CONST_ME_FIREATTACK)
+			Position(32795, 31149, 8):sendMagicEffect(CONST_ME_FIREATTACK)
+			Position(32795, 31148, 8):sendMagicEffect(CONST_ME_FIREATTACK)
+			Position(32795, 31149, 8):sendMagicEffect(CONST_ME_BUBBLES)
+			Position(32795, 31148, 8):sendMagicEffect(CONST_ME_BUBBLES)
 			-- StorageValue for Questlog "Mission 01: Something Rotten"
 			player:setStorageValue(Storage.InServiceofYalahar.Mission01,
-					player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
+			player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
 		end
 	elseif target.uid == 3074 then
 		if player:getStorageValue(Storage.InServiceofYalahar.SewerPipe04) < 1 then
 			doSetMonsterOutfit(player, "bog raider", 5 * 1000)
 			player:say("You have used the crowbar on a knot.", TALKTYPE_MONSTER_SAY)
 			player:setStorageValue(Storage.InServiceofYalahar.SewerPipe04, 1)
+			toPosition:sendMagicEffect(CONST_ME_STUN)
+			player:getPosition():sendMagicEffect(CONST_ME_POISONAREA)
+			Position(32797, 31191, 8):sendMagicEffect(CONST_ME_HITBYPOISON)
 			-- StorageValue for Questlog "Mission 01: Something Rotten"
 			player:setStorageValue(Storage.InServiceofYalahar.Mission01,
-					player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
+			player:getStorageValue(Storage.InServiceofYalahar.Mission01) + 1)
 		end
 	elseif target.actionid == 100 then
 		if target.itemid == 3501 then

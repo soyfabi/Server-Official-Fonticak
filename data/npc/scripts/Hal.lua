@@ -17,6 +17,7 @@ local function creatureSayCallback(cid, type, msg)
 		if(player:getStorageValue(Storage.InServiceofYalahar.Questline) == 8 or player:getStorageValue(Storage.InServiceofYalahar.Questline) == 12) then
 			npcHandler:say("Hicks! I... I... <he is obviously drunk and his report more than confusing>. ", cid)
 			player:setStorageValue(Storage.InServiceofYalahar.Questline, player:getStorageValue(Storage.InServiceofYalahar.Questline) + 1)
+			player:getPosition():sendMagicEffect(CONST_ME_BLOCKHIT)
 			player:setStorageValue(Storage.InServiceofYalahar.Mission02, player:getStorageValue(Storage.InServiceofYalahar.Mission02) + 1) -- StorageValue for Questlog "Mission 02: Watching the Watchmen"
 			npcHandler.topic[cid] = 0
 		end

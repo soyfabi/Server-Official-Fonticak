@@ -22,7 +22,7 @@ function fireBug.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if target.itemid == 7814 and target.actionid == 50120 then
 		target:transform(7813)
 		Tile(Position(32699, 31495, 11)):getItemById(9121):remove()
-		Game.createItem(9120, 1, Position(32699, 31495, 11)):setActionId(50107)
+		Game.createItem(9120, 1, Position(32699, 31495, 11)):setActionId(50110)
 		return true
 	end
 

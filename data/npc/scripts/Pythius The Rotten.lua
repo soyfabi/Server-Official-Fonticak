@@ -22,7 +22,7 @@ local function creatureSayCallback(cid, type, msg)
 	if msgcontains(msg, "offer") and player:getLevel() > 99 then
 		npcHandler.topic[cid] = 1
 		npcHandler:say("I GRANT YOU ACCESS TO THE DUNGEON IN THE NORTH. YOU'LL FIND SOME OF MY LIVING BROTHERS THERE....BUT.....EVERY TIME YOU WANT TO ENTER YOU HAVE TO GIVE ME SOMETHING PRECIOUS. ALRIGHT?", cid)
-	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 1  then
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 1 then
 		npcHandler.topic[cid] = 2
 		npcHandler:say("AS YOU WISH. WHAT DO YOU HAVE TO OFFER?", cid)
 	elseif msgcontains(msg, "golden mug") and npcHandler.topic[cid] == 2 and player:removeItem(2903, 1) then
@@ -30,11 +30,12 @@ local function creatureSayCallback(cid, type, msg)
 	player:setStorageValue(Storage.HiddenCityOfBeregar.PythiusTheRotten, os.time() + 180)
 	player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Now you have access for 3 hours.")
+	elseif msgcontains(msg, "offer") and player:getLevel() < 99 then
+	npcHandler:say("YOU LITTLE MAGGOT. COME BACK TO ME WHEN YOU CAN HANDLE A FIGHT AGAINST MY KIND.", cid)
 	else
 	npcHandler:say("THIS IS NOT WORTH BEING PART OF MY TREASURE! BRING ME SOMETHING ELSE.", cid)
 	end
 	
-	--npcHandler:say("YOU LITTLE MAGGOT. COME BACK TO ME WHEN YOU CAN HANDLE A FIGHT AGAINST MY KIND.", cid)
 
 	return true
 end
