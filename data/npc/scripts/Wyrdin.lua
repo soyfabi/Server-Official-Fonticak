@@ -95,20 +95,20 @@ local function creatureSayCallback(cid, type, msg)
 				{"Well, it can't be wrong to be there when new discoveries are made. Also, all those soldiers of fortune that might travel there could turn out to be a good source of income for a magic shop. ...",
 				"I think we'll send a representative. At least, for some time."}, cid)
 			end
-			player:setStorageValue(TheNewFrontier.Mission05.Wyrdin, 3)
+			player:setStorageValue(TheNewFrontier.Mission05.Wyrdin, 4)
 		end
 	elseif msgcontains(msg, "bluff") and player:getStorageValue(TheNewFrontier.Mission05.WyrdinKeyword) == 2 and
 	player:getStorageValue(TheNewFrontier.Mission05.Wyrdin) == 1 then
 		npcHandler:say(
 		"What do you mean the druids of Carlin could provide the service as well? They are incompetent imposters! I will not allow them to ruin our reputation! I'll send some trader with supplies right away!",
 		cid)
-		player:setStorageValue(TheNewFrontier.Mission05.Wyrdin, 3)
+		player:setStorageValue(TheNewFrontier.Mission05.Wyrdin, 4)
 	elseif msgcontains(msg, "flatter") and player:getStorageValue(TheNewFrontier.Mission05.WyrdinKeyword) == 3 and
 	player:getStorageValue(TheNewFrontier.Mission05.Wyrdin) == 1 then
 		npcHandler:say(
 		"Hm, you are right, we are at the forefront of knowledge and innovation. Our dwarven friends could learn much from one of our representatives.",
 		cid)
-		player:setStorageValue(TheNewFrontier.Mission05.Wyrdin, 3)
+		player:setStorageValue(TheNewFrontier.Mission05.Wyrdin, 4)
 	else
 		if player:getStorageValue(TheNewFrontier.Questline) == 14 and
 		player:getStorageValue(TheNewFrontier.Mission05.Wyrdin) == 1 then

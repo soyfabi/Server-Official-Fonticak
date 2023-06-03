@@ -16,45 +16,51 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	local player = Player(cid)
-
-	if msgcontains(msg, "farmine") then
-		if player:getStorageValue(TheNewFrontier.Questline) == 14 then
-			if player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 1 then
+	
+	if msgcontains(msg, "farmine") and player:getStorageValue(TheNewFrontier.Questline) == 14 then
+		if player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 1 then
+			npcHandler:say(
+			"Bah, Farmine here, Farmine there. Is there nothing else than Farmine to talk about these days? Hrmpf, whatever. So what do you want?",
+			cid)
+			npcHandler.topic[cid] = 1
+		else
+			npcHandler:say(
+			"You are here to apologise? Have you got anything that would make me reconsider my decision never to talk to you again about this subject?",
+			cid)
+			npcHandler.topic[cid] = 2
+		end
+	elseif msgcontains(msg, "flatter") and player:getStorageValue(TheNewFrontier.Mission05.HumgolfKeyword) == 1 and player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 1 then
+		if npcHandler.topic[cid] == 1 then
+			if player:getStorageValue(TheNewFrontier.Mission05.HumgolfKeyword) == 1 then
 				npcHandler:say(
-				"Bah, Farmine here, Farmine there. Is there nothing else than Farmine to talk about these days? Hrmpf, whatever. So what do you want?",
+				"Hah! Now you talk like a dwarf! That's the spirit! Of course you can have some of my worms. I'll send a bunch to Farmine as soon as possible.",
 				cid)
-				npcHandler.topic[cid] = 1
-			elseif player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 2 then
-				npcHandler:say(
-				"You are here to apologise? Have you got anything that would make me reconsider my decision never to talk to you again about this subject?",
-				cid)
-				npcHandler.topic[cid] = 2
+				player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 4)
+			else
+				npcHandler:say("Wrong Word, Now you will have to bring me something in return. I {need} an {Baby Rotworm}.", cid)
+				npcHandler:releaseFocus(cid)
+				player:setStorageValue(TheNewFrontier.Mission05.HumgolfKeyword, math.random(1, 2))
+				player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 2)
 			end
 		end
-	elseif msgcontains(msg, "flatter") and npcHandler.topic[cid] == 1 then
-		if player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 1 and
-		player:getStorageValue(TheNewFrontier.Mission05.HumgolfKeyword) == 1 then
-			npcHandler:say(
-			"Yeah, of course they can't do without my worms. Mining and worms go hand in hand. Well, in the case of the worms it is only an imaginary hand of course. I'll send them some of my finest worms.",
-			cid)
-			player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 3)
-		end
-	elseif msgcontains(msg, "threaten") and npcHandler.topic[cid] == 1 then
-		if player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 1 and
-		player:getStorageValue(TheNewFrontier.Mission05.HumgolfKeyword) == 2 then
-			npcHandler:say(
-			"Hah! Now you talk like a dwarf! That's the spirit! Of course you can have some of my worms. I'll send a bunch to Farmine as soon as possible.",
-			cid)
-			player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 3)
+	elseif msgcontains(msg, "threaten") and player:getStorageValue(TheNewFrontier.Mission05.HumgolfKeyword) == 2 and
+	player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 1 then
+		if npcHandler.topic[cid] == 1 then
+				npcHandler:say(
+				"Hah! Now you talk like a dwarf! That's the spirit! Of course you can have some of my worms. I'll send a bunch to Farmine as soon as possible.",
+				cid)
+				player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 4)
 		end
 	elseif msgcontains(msg, "yes") then
-		if npcHandler.topic[cid] == 2 and player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 2 and
-		player:removeItem(10026, 1) then
-			npcHandler:say(
-			"Uh, how cute! Look how he's snapping for my fingers! You really know how to make an old dwarf happy! Well, so let's try again. Why do you think I should send my precious worms to Farmine?",
-			cid)
-			player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 1)
-			npcHandler.topic[cid] = 1
+		if npcHandler.topic[cid] == 2 then
+			if player:getStorageValue(TheNewFrontier.Questline) == 14 and
+			player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 2 and player:removeItem(10026, 1) then
+				npcHandler:say(
+				"Uh, how cute! Look how he's snapping for my fingers! You really know how to make an old dwarf happy! Well, so let's try again. Why do you think I should send my precious worms to Farmine?",
+				cid)
+				player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 1)
+				npcHandler.topic[cid] = 1
+			end
 		end
 	else
 		if player:getStorageValue(TheNewFrontier.Questline) == 14 and
@@ -64,6 +70,21 @@ local function creatureSayCallback(cid, type, msg)
 			player:setStorageValue(TheNewFrontier.Mission05.Humgolf, 2)
 		end
 	end
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	return true

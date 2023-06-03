@@ -130,6 +130,24 @@ local config = {
 		},
 		storage = Storage.TheApeCity.HolyApeHair
 	},
+	[4050] = {
+		items = {
+			{itemId = 2995}
+		},
+		storage = Storage.Quest.U8_54.TheNewFrontier.Reward.PigBank
+	},
+	[4051] = {
+		items = {
+			{itemId = 9058, count = 2}
+		},
+		storage = Storage.Quest.U8_54.TheNewFrontier.Reward.GoldIngot
+	},
+	[4052] = {
+		items = {
+			{itemId = 7439}, {itemId = 7440}, {itemId = 7443}
+		},
+		storage = Storage.Quest.U8_54.TheNewFrontier.Reward.Potions
+	},
 	[5556] = {
 		items = {
 			{itemId = 3357}
@@ -495,7 +513,7 @@ function questSystem2.onUse(player, item, fromPosition, target, toPosition, isHo
 		end
 
 	else
-		if size > 8 then
+		if size > 3 then
 			reward = Game.createItem(2854, 1)
 		else
 			reward = Game.createItem(2853, 1)

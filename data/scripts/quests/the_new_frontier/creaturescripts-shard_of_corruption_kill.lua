@@ -15,6 +15,8 @@ function shardOfCorruptionKill.onKill(creature, target)
 	local player = creature:getPlayer()
 	if player:getStorageValue(TheNewFrontier.Questline) == 11 then
 		player:setStorageValue(TheNewFrontier.Questline, 12)
+		player:setStorageValue(TheNewFrontier.Mission04, 2)
+		
 		player:say("You just killed him Shard Of Corruption.")
 	end
 	return true

@@ -37,11 +37,11 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler:say(
 				"Your pathetic whimpering amuses me. For this I grant you my assistance. But listen, one day I'll ask you to return this favour. From now on, you owe me one.",
 				cid)
-				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 3)
+				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 4)
 			else
 				npcHandler:say("Wrong Word, Now you will have to bring me something in return. I {need} an {Soul Contract}.", cid)
 				npcHandler:releaseFocus(cid)
-				player:setStorageValue(TheNewFrontier.Mission05.LeelandKeyword, math.random(3, 4))
+				player:setStorageValue(TheNewFrontier.Mission05.LeelandKeyword, math.random(1, 2))
 				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 2)
 			end
 		end
@@ -54,12 +54,12 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler:say(
 				"The idea of a promising market and new resources suits us quite well. I think it is reasonable to send some assistance.",
 				cid)
-				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 3)
+				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 4)
 			elseif msgcontains(msg, "flatter") and player:getStorageValue(TheNewFrontier.Mission05.LeelandKeyword) == 4 then
 				npcHandler:say(
 				"Oh yes, that project the whole dwarven community is so excited about. I guess I already know why you are here, but speak up.",
 				cid)
-				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 3)
+				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 4)
 			else
 				player:setStorageValue(TheNewFrontier.Mission05.Leeland, 2)
 			end

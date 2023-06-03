@@ -123,7 +123,7 @@ local function creatureSayCallback(cid, type, msg)
                 "Shortly after you killed that creature, the others crumbled to dust and stone. I hope this incident does not foreshadow similar problems in our mines. However, for now I have other things to take care of and you have other {missions} to accomplish. ",
                 cid)
             player:setStorageValue(TheNewFrontier.Questline, 13)
-            player:setStorageValue(TheNewFrontier.Mission04, 2) -- Questlog, The New Frontier Quest 'Mission 04: The Mine Is Mine'
+            player:setStorageValue(TheNewFrontier.Mission04, 3) -- Questlog, The New Frontier Quest 'Mission 04: The Mine Is Mine'
             npcHandler.topic[cid] = 0
         elseif player:getStorageValue(TheNewFrontier.Questline) == 13 then
             npcHandler:say(
@@ -159,12 +159,12 @@ local function creatureSayCallback(cid, type, msg)
             player:setStorageValue(TheNewFrontier.Mission05.HumgolfKeyword, math.random(1, 2)) -- The New Frontier Quest "Mission 5-6"
             npcHandler.topic[cid] = 0
         elseif player:getStorageValue(TheNewFrontier.Questline) == 14 then
-            if player:getStorageValue(TheNewFrontier.Mission05.KingTibianus) == 3 and
-                player:getStorageValue(TheNewFrontier.Mission05.Leeland) == 3 and
-                player:getStorageValue(TheNewFrontier.Mission05.Angus) == 3 and
-                player:getStorageValue(TheNewFrontier.Mission05.Wyrdin) == 3 and
-                player:getStorageValue(TheNewFrontier.Mission05.Telas) == 3 and
-                player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 3 then
+            if player:getStorageValue(TheNewFrontier.Mission05.KingTibianus) == 4 and
+                player:getStorageValue(TheNewFrontier.Mission05.Leeland) == 4 and
+                player:getStorageValue(TheNewFrontier.Mission05.Angus) == 4 and
+                player:getStorageValue(TheNewFrontier.Mission05.Wyrdin) == 4 and
+                player:getStorageValue(TheNewFrontier.Mission05.Telas) == 4 and
+                player:getStorageValue(TheNewFrontier.Mission05.Humgolf) == 4 then
                 npcHandler:say(
                     "You did an excellent job! With all this help Farmine will grow and prosper. While we put all available resources into building this base, I have another urgent {mission} for you.",
                     cid)

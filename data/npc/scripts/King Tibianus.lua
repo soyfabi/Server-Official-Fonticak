@@ -29,7 +29,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler:say(
 			"Indeed, indeed. Without the help of Thais, our allies stand no chance! Well, I'll send some money to support their cause.",
 			cid)
-			player:setStorageValue(TheNewFrontier.Mission05.KingTibianus, 3)
+			player:setStorageValue(TheNewFrontier.Mission05.KingTibianus, 4)
 		end
 	elseif (msgcontains(msg, "outfit")) or (msgcontains(msg, "addon")) then
 		npcHandler:say(

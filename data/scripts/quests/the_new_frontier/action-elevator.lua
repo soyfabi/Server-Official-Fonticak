@@ -27,9 +27,9 @@ function farmineElevatorLevers.onUse(player, item, fromPosition, target, toPosit
 			teleportTo = config.farmineElevator[4]
 		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValue(TheNewFrontier.Questline) < 9 then
 			teleportTo = config.farmineElevator[1] -- if Farmine is on Stage 1
-		elseif player:getPosition() == config.farmineElevator[4]and player:getStorageValue(TheNewFrontier.Questline) >= 9 and player:getStorageValue(TheNewFrontier.Questline) < 19 then
+		elseif player:getPosition() == config.farmineElevator[4]and player:getStorageValue(TheNewFrontier.Questline) >= 9 and player:getStorageValue(TheNewFrontier.Questline) <= 14 then
 			teleportTo = config.farmineElevator[2] -- if Farmine is on Stage 2
-		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValue(TheNewFrontier.Questline) >= 19 then
+		elseif player:getPosition() == config.farmineElevator[4] and player:getStorageValue(TheNewFrontier.Questline) >= 15 then
 			teleportTo = config.farmineElevator[3] -- if Farmine is on Stage 3
 		elseif player:getPosition() == config.farmineElevator[5] then
 			teleportTo = config.farmineElevator[6] -- if going to flying carpet
@@ -38,9 +38,9 @@ function farmineElevatorLevers.onUse(player, item, fromPosition, target, toPosit
 
 		elseif player:getPosition() == config.farmineElevator[7] or player:getPosition() == config.farmineElevator[8] then
 			teleportTo = config.farmineElevator[9] -- if going to the mines
-		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValue(TheNewFrontier.Questline) < 19 then
+		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValue(TheNewFrontier.Questline) <= 14 then
 			teleportTo = config.farmineElevator[7] -- if returning from mines to Farmine on Stage 2
-		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValue(TheNewFrontier.Questline) >= 19 then
+		elseif player:getPosition() == config.farmineElevator[9] and player:getStorageValue(TheNewFrontier.Questline) >= 15 then
 			teleportTo = config.farmineElevator[8] -- if returning from mines to Farmine on Stage 3
 
 		end

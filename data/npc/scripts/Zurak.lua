@@ -8,20 +8,26 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()		npcHandler:onThink()		end
 
+local TheNewFrontier = Storage.Quest.U8_54.TheNewFrontier
+
 local function creatureSayCallback(cid, type, msg)
 	if not npcHandler:isFocused(cid) then
 		return false
-	elseif msgcontains(msg, "trip") or msgcontains(msg, "passage") then
-		--if Player(cid):getStorageValue(Storage.TheNewFrontier.Questline) >= 24 then
-			npcHandler:say("You want trip to Izzle of Zztrife?", cid)
+	end
+	
+	local player = Player(cid)
+	
+	if msgcontains(msg, "trip") or msgcontains(msg, "passage") then
+		if player:getStorageValue(TheNewFrontier.Questline) >= 24 then
+			npcHandler:say("You want trip to {Izzle of Zztrife}?", cid)
 			npcHandler.topic[cid] = 1
-			--else
-			--npcHandler:say("You need The New Frontier Quest to travel.", cid)
-		--end
+		else
+			npcHandler:say("You need {permission} to {travel} to. You need to do the {New Frontier} mission.", cid)
+		end
 	elseif msgcontains(msg, "yes") then
 		if npcHandler.topic[cid] == 1 then
-			npcHandler:say("It'zz your doom you travel to.", cid)
-			local player, destination = Player(cid), Position(33102, 31056, 7)
+			npcHandler:say("It'zz your doom you {travel} to.", cid)
+			local destination = Position(33102, 31056, 7)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 			player:teleportTo(destination)
 			destination:sendMagicEffect(CONST_ME_TELEPORT)
@@ -33,10 +39,12 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 0
 		end
 	elseif msgcontains(msg, 'hurry') or msgcontains(msg, 'job')  then
-		npcHandler:say('Me zzimple ferryman. I arrange {trip} to Izzle of Zztrife.', cid)
+		npcHandler:say('Me zzimple ferryman. I arrange {trip} to {Izzle of Zztrife}.', cid)
 		npcHandler.topic[cid] = 0
 	end
+	
 	return true
 end
+npcHandler:setMessage(MESSAGE_GREET, "{Hurry} before zzomeone will zee uzz.")
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new())

@@ -9,18 +9,40 @@ function onThink()				npcHandler:onThink()					end
 
 -- Travel
 local TheNewFrontier = Storage.Quest.U8_54.TheNewFrontier
+
+
+
+local function creatureSayCallback(cid, type, msg)
+	if not npcHandler:isFocused(cid) then
+		return false
+	end
+
+	local player = Player(cid)
+	
+	if msgcontains(msg, "farmine") and player:getStorageValue(TheNewFrontier.Mission10[1]) >= 1 then
+		npcHandler.topic[cid] = 1
+		npcHandler:say("Do you seek a ride to {Farmine} for {60 gold coins}?", cid)
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 1 then
+		player:teleportTo(Position(32983, 31539, 1))
+		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+		npcHandler:say("Have a nice trip!", cid)
+	elseif msgcontains(msg, "farmine") and player:getStorageValue(TheNewFrontier.Mission10[1]) <= 0 then
+		npcHandler:say("To travel to {Farmine}, you need to do {New Frontier Mission}.", cid)
+	end
+	
+	return true
+end
+
 local function addTravelKeyword(keyword, text, cost, destination, condition, action)
 	if condition then
 		keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Never heard about a place like this.'}, condition)
 	end
 
-	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Do you seek a passage to ' .. keyword:titleCase() .. ' for |TRAVELCOST|?', cost = cost, discount = 'postman'})
+	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Do you seek a passage to ' .. keyword:titleCase() .. ' for {'.. cost .. ' gold coins}?', cost = cost, discount = 'postman'})
 		travelKeyword:addChildKeyword({'yes'}, StdModule.travel, {npcHandler = npcHandler, premium = false, cost = cost, discount = 'postman', destination = destination}, nil, action)
 		travelKeyword:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, text = 'We would like to serve you some time.', reset = true})
 end
 
-addTravelKeyword('farmine', 'Do you seek a ride to Farmine for |TRAVELCOST|?', 60, Position(32983, 31539, 1), function(player) return player:getStorageValue(TheNewFrontier.Mission10[1]) ~= 2 end)
-addTravelKeyword('zao', 'Do you seek a ride to Farmine for |TRAVELCOST|?', 60, Position(32983, 31539, 1), function(player) return player:getStorageValue(TheNewFrontier.Mission10[1]) ~= 2 end)
 addTravelKeyword('darashia', 'Darashia on Darama', 40, Position(33270, 32441, 6))
 addTravelKeyword('darama', 'Darashia on Darama', 40, Position(33270, 32441, 6))
 addTravelKeyword('kazordoon', 'Kazordoon', 70, Position(32588, 31941, 0))

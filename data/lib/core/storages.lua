@@ -2405,7 +2405,9 @@ Storage = {
 		U8_54 = { -- update 8.54 - Reserved Storages 42551 - 42950
 			AnUneasyAlliance = {
 				Questline = 42551,
-				QuestDoor = 42552
+				QuestDoor = 42552,
+				TheWrathoftheKahn = 42553,
+				TheMawoftheDragon = 42554
 			}, -- 42551 - 42600
 			ChildrenOfTheRevolution = {}, -- 42601 - 42650
 			SeaOfLight = {}, -- 42651 - 42700

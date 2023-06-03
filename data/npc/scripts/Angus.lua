@@ -140,9 +140,8 @@ local function creatureSayCallback(cid, type, msg)
 			if player:getStorageValue(TheNewFrontier.Mission05.Angus) == 1 then
 				npcHandler:say(
 				{"Those stories are just amazing! Men with faces on their stomach instead of heads you say? And hens that lay golden eggs? Whereas, most amazing is this fountain of youth you've mentioned! ...",
-				"I'll immediately send some of our most dedicated explorers to check those things out!"}, npc,
-				creature)
-				player:setStorageValue(TheNewFrontier.Mission05.Angus, 3)
+				"I'll immediately send some of our most dedicated explorers to check those things out!"}, cid)
+				player:setStorageValue(TheNewFrontier.Mission05.Angus, 4)
 			end
 		end
 	elseif msgcontains(msg, "impress") and player:getStorageValue(TheNewFrontier.Mission05.AngusKeyword) == 2 and
@@ -153,14 +152,14 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler:say(
 				{"A whole new land is indeed very tempting. I can hardly imagine all the wonders that await us there. I doubt I could stop our explorers from going there even if I tried to."},
 				cid)
-				player:setStorageValue(TheNewFrontier.Mission05.Angus, 3)
+				player:setStorageValue(TheNewFrontier.Mission05.Angus, 4)
 			end
 		elseif npcHandler.topic[cid] == 2 then
 			if player:getStorageValue(TheNewFrontier.Mission05.Angus) == 1 then
 				npcHandler:say(
 				{"For all I've heard, this is rather a barren isle than a whole new land. There are so many places to explore in this world, I won't send our best explorers on account of a rumour."},
 				cid)
-				player:setStorageValue(TheNewFrontier.Mission05.Angus, 3)
+				player:setStorageValue(TheNewFrontier.Mission05.Angus, 4)
 			end
 		end
 		-- The New Frontier End

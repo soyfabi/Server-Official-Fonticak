@@ -172,40 +172,46 @@
 			<missionstate id="3" description="You have completed this Test! You can now be a citizen of Svargrond!" />
 		</mission>
 	</quest>
-	<quest name="Children of the Revolution" startstorageid="12300" startstoragevalue="1">
-		<mission name="Prove Your Worzz!" storageid="12301" startvalue="1" endvalue="2">
-			<missionstate id="1" description="Your Mission is to go to a little camp of lizards at north-east of the Dragonblaze Peaks. You have to find and deliver the Tactical map complete the mission." />
-			<missionstate id="2" description="You delivered the Tactical map to Zalamon." />
+	<quest name="Children of the Revolution" startstorageid="55145" startstoragevalue="1">
+		<mission name="Prove Your Worzz!" storageid="55146" startvalue="1" endvalue="2">
+			<missionstate id="1" description="Zalomon wants to test your loyalty. Fight your way to the outpost on the foot of the mountains towards the muggy plains. The enemy may hide some information about their where abouts there." />
+			<missionstate id="2" description="You have returned to Zalomon to deliver the secret documents you found in the outpost." />
 		</mission>
-		<mission name="Mission 1: Corruption" storageid="12302" startvalue="1" endvalue="3">
-			<missionstate id="1" description="Go to the Temple of Equilibrium (it's marked on your map) and find out what happened there." />
+		<mission name="Mission 1: Corruption" storageid="51262" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Zalamon has sent you on a mission to find out what happened to the last uncorrupted bastion throughout the plains - the former Temple of Equilibrium." />
 			<missionstate id="2" description="The temple has been corrupted and is lost. Zalamon should be informed about this as soon as possible." />
-			<missionstate id="3" description="You already reported Zalamon about the Temple! Ask him for new mission!" />
+			<missionstate id="3" description="You have returned to Zalamon and told him that the temple is lost." />
 		</mission>
-		<mission name="Mission 2: Imperial Zzecret Weaponzz" storageid="12303" startvalue="1" endvalue="5">
-			<missionstate id="1" description="Go into the small camp Chaochai to the north of the Dragonblaze Peaks (Zalamon marks the entrance on your map). There are 3 buildings which you have to spy" />
+		<mission name="Mission 2: Imperial Zzecret Weaponzz" storageid="51263" startvalue="1" endvalue="5">
+			<missionstate id="1" description="You are on a mission to find indications of the strenght and supplies of the Emperor's army in Chaochai. Look carefully for clues and search every building." />
 			<missionstate id="2" description="You spied 1 of 3 buildings of the camp." />
 			<missionstate id="3" description="You spied 2 of 3 buildings of the camp." />
 			<missionstate id="4" description="You spied 3 of 3 buildings of the camp. Zalamon should be informed about this as soon as possible." />
 			<missionstate id="5" description="You already reported Zalamon about the camp! Ask him for new mission!" />
 		</mission>
-		<mission name="Mission 3: Zee Killing Fieldzz" storageid="12304" startvalue="1" endvalue="3">
-			<missionstate id="1" description="Get the poison from Zalamon's storage room. Then go to the teleporter to the Muggy Plains and head east from there to the rice fields. Go to the very top rice field and use the poison anywhere on the water." />
+		<mission name="Mission 3: Zee Killing Fieldzz" storageid="51264" startvalue="1" endvalue="3">
+			<missionstate id="1" description="You have been sent to the rice fields east of the village Chaochai. You will need to drop some of the poison from Zalamon's storage into the water on the top terrace." />
 			<missionstate id="2" description="The rice has been poisoned. This will weaken the Emperor's army significantly. Return and tell Zalamon about your success." />
 			<missionstate id="3" description="You already reported Zalamon about your success! Ask him for new mission!" />
 		</mission>
-		<mission name="Mission 4: Zze Way of Zztonezz" storageid="12305" startvalue="1" endvalue="6">
+		<mission name="Mission 4: Zze Way of Zztonezz" storageid="55148" startvalue="1" endvalue="6">
 			<missionstate id="1" description="Your mission is to find a way to enter the north of the valley and find a passage to the great gate itself. Search any temples or settlements you come across for hidden passages." />
 			<missionstate id="2" description="Report Zalamon about the strange symbols that you found." />
-			<missionstate id="3" description="Get the greasy oil from Zalamon's storage room and put them on the levers that you found." />
-			<missionstate id="4" description="Due to being extra greasy, the leavers can now be moved." />
+			<missionstate id="3" description="You have found a strange puzzle in the mountains. To make the mechanism working again you will need extra greasy oil from Zalamon's storage." />
+			<missionstate id="4" description="You have used the greasy oil on the levers of the strange mechanism in the mountain temple. The levers are movable again and the puzzle can be solved." />
 			<missionstate id="5" description="You found the right combination for the puzzle in the mountains and triggered some kind of mechanism. You should head back to Zalamon to report your success." />
-			<missionstate id="6" description="You already reported Zalamon about your success! You got a Tome of Knowledge as reward! Ask him for new mission!" />
+			<missionstate id="6" description="Zalamon was impressed of your skills in solving the puzzle of the mountain temple. Return to him once you are ready for your next mission." />
 		</mission>
-		<mission name="Mission 5: Phantom Army" storageid="12306" startvalue="1" endvalue="3">
-			<missionstate id="1" description="Your mission is to use the portal in the chamber beyond the mechanism. It will lead you to the great gate." />
+		<mission name="Mission 5: Phantom Army" storageid="51266" startvalue="1" endvalue="4">
+			<missionstate id="1" description="Zalamon has sent you on a quest to find out what lies beneath the secret portal in the temple. Find it and explore the other side." />
 			<missionstate id="2" description="Eternal guardians and lizard chosen has been awaken. Survive them and report it to Zalamon!" />
 			<missionstate id="3" description="You Survived the Waves and reported Zalamon about your success! You got a Serpent Crest as reward!" />
+			<missionstate id="4" description="You have completed all the missions of Children of the Revolution." />
+		</mission>
+		<mission name="Strange Symbols" storageid="55154" startvalue="1" endvalue="3">
+			<missionstate id="1" description="You found an array of strange symbols in a temple in the mountains. A scholar or priest might be able to explain the symbols to you." />
+			<missionstate id="2" description="To the right where Zalamon is located, there is a room where you will find a drawer." />
+			<missionstate id="3" description="This greasy oil is great for moving the lever." />
 		</mission>
 	</quest>
 	<quest name="Factions" startstorageid="50716" startstoragevalue="1">
@@ -987,40 +993,64 @@
 			<missionstate id="2" description="You have talked to the leader of the primitive humans and have assured their peacefulness. Report this to Ongulf back in the base." />
 			<missionstate id="3" description="You have negotiated a peaceful agreement between the dwarfs and the local primitives." />
 		</mission>
-		<mission name="Mission 04: The Mine Is Mine" storageid="42709" startvalue="1" endvalue="2">
+		<mission name="Mission 04: The Mine Is Mine" storageid="42709" startvalue="1" endvalue="3">
 			<missionstate id="1" description="Free the mine of the monstrous threat. Use a lift to reach the mines and look for a leader of the stone creatures. Slay this creature and report back to Ongulf." />
-			<missionstate id="2" description="You have slain the monster that terrorised the mines." />
+			<missionstate id="2" description="You have slain the monster that terrorized the mines. Now go back to Ongulf to report the mission." />
+			<missionstate id="3" description="You have slain the monster that terrorised the mines." />
 		</mission>
-		<mission name="Mission 05: Getting Things Busy" storageid="42710" startvalue="1" endvalue="7">
-			<missionstate id="1" description="This mission consists of getting support from 6 people (King Tibianus in Thais, Leeland in Venore, Angus in Port Hope, Wyrdin in the Ivory Towers, Telas in Edron, Humgolf in Kazordoon  around Tibia. You need to ask for farmine and then you either need to Flatter, Threaten, Impress, Bluff, Reason or Plea him!" />
-			<missionstate id="2" description="You got support from 1 of 6 people, King Tibianus in Thais, Leeland in Venore, Angus in Port Hope, Wyrdin in the Ivory Towers, Telas in Edron and Humgolf in Kazordoon. You need to ask for farmine and then you either need to Flatter, Threaten, Impress, Bluff, Reason or Plea him!" />
-			<missionstate id="3" description="You got support from 2 of 6 people, King Tibianus in Thais, Leeland in Venore, Angus in Port Hope, Wyrdin in the Ivory Towers, Telas in Edron and Humgolf in Kazordoon. You need to ask for farmine and then you either need to Flatter, Threaten, Impress, Bluff, Reason or Plea him!" />
-			<missionstate id="4" description="You got support from 3 of 6 people, King Tibianus in Thais, Leeland in Venore, Angus in Port Hope, Wyrdin in the Ivory Towers, Telas in Edron and Humgolf in Kazordoon. You need to ask for farmine and then you either need to Flatter, Threaten, Impress, Bluff, Reason or Plea him!" />
-			<missionstate id="5" description="You got support from 4 of 6 people, King Tibianus in Thais, Leeland in Venore, Angus in Port Hope, Wyrdin in the Ivory Towers, Telas in Edron and Humgolf in Kazordoon. You need to ask for farmine and then you either need to Flatter, Threaten, Impress, Bluff, Reason or Plea him!" />
-			<missionstate id="6" description="You got support from 5 of 6 people, King Tibianus in Thais, Leeland in Venore, Angus in Port Hope, Wyrdin in the Ivory Towers, Telas in Edron and Humgolf in Kazordoon. You need to ask for farmine and then you either need to Flatter, Threaten, Impress, Bluff, Reason or Plea him!" />
-			<missionstate id="7" description="You got support from all needed people to help farmine! Return to Ongulf and report your mission!" />
+		<mission name="Mission 05: Getting Things Busy" storageid="42710" startvalue="1" endvalue="2">
+			<missionstate id="1" description="Try getting the support of the people mentioned. Talk to them about 'farmine', then choose the 'flatter', 'threaten', 'impress', 'bluff', 'reason' or 'plea'. Report any progress to Ongulf." />
+			<missionstate id="2" description="You have gained the necessary support for Farmine." />
 		</mission>
-		<mission name="Mission 06: Days Of Doom" storageid="42717" startvalue="1" endvalue="3">
-			<missionstate id="1" description="Go to Curos, leader of the Orcs, in the middle of the Zao Steppe in the north-east area of an Orc camp. Ask for a mission and accept it." />
-			<missionstate id="2" description="Enter the ring of battle, close to Curos quarter. Face Mooh'Tah Master in a battle and survive for two minutes. Return to him after you have passed this test." />
-			<missionstate id="3" description="You passed the test of Curos. Return to Ongulf and report your mission!" />
+		<mission name="Mission 5: Support of Kazordoon's Worm Tamer" storageid="42716" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Talk to the worm tamer in Kazordoon." />
+			<missionstate id="2" description="You gave angered your target and should look for an appropriate bribe at Black Bert in Thais, so you can continue your negotiation." />
 		</mission>
-		<mission name="Mission 07: Messengers Of Peace" storageid="42718" startvalue="1" endvalue="3">
-			<missionstate id="1" description="You now have to contact the Lizards, the real rulers of Zao. Find them, contact them, talk to them, scare them, bribe them, whatever." />
-			<missionstate id="2" description="You have been trapped! Find a way out!" />
-			<missionstate id="3" description="You found the Lizards!" />
+		<mission name="Mission 5: Support of the Edron Academy" storageid="42714" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Talk to the magician Wyrdin in the Edron Academy." />
+			<missionstate id="2" description="You gave angered your target and should look for an appropriate bribe at Black Bert in Thais, so you can continue your negotiation." />
+		</mission>
+		<mission name="Mission 5: Support of the Explorer Society" storageid="42713" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Talk to the representative of the Explorer Society in Port Hope." />
+			<missionstate id="2" description="You gave angered your target and should look for an appropriate bribe at Black Bert in Thais, so you can continue your negotiation." />
+		</mission>
+		<mission name="Mission 5: Support of the Inventor Telas" storageid="42715" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Talk to the inventor Telas in Edron." />
+			<missionstate id="2" description="You gave angered your target and should look for an appropriate bribe at Black Bert in Thais, so you can continue your negotiation." />
+		</mission>
+		<mission name="Mission 5: Support of the Thaian King" storageid="42711" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Talk to King Tibianus in the Thaian Castle." />
+			<missionstate id="2" description="You gave angered your target and should look for an appropriate bribe at Black Bert in Thais, so you can continue your negotiation." />
+		</mission>
+		<mission name="Mission 5: Support of the Venorean Traders" storageid="42712" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Talk to Leeland Slim, the representative of the Venorean Traders." />
+			<missionstate id="2" description="You gave angered your target and should look for an appropriate bribe at Black Bert in Thais, so you can continue your negotiation." />
+		</mission>
+		<mission name="Mission 06: Days Of Doom" storageid="42717" startvalue="1" endvalue="5">
+			<missionstate id="1" description="Try to pacify the orcs of the steppe. It is probably necessary to find some leader of the orcish tribes." />
+			<missionstate id="2" description="You have talked to the minotaur leaders of the orcs. They agreed to spare Farmine if you prove your worth in their arena. You will have to survive against a Mooh'Tah master for 2 minutes, so prepare!" />
+			<missionstate id="3" description="You have survived the arena. Talk to Curos again about your mission." />
+			<missionstate id="4" description="Your negotiations had moderate success. You can report back to Ongulf." />
+			<missionstate id="5" description="You have ensured a brittle peace between Farmine and te orcs." />
+		</mission>
+		<mission name="Mission 07: Messengers Of Peace" storageid="42718" startvalue="1" endvalue="2">
+			<missionstate id="1" description="Find a lizardman somewhere in the north and try to start a negotiation of peace." />
+			<missionstate id="2" description="It seems that the lizardmen are not interested in peace and you will have to foucs on other problems at hand." />
 		</mission>
 		<mission name="Mission 08: An Offer You Can't Refuse" storageid="42720" startvalue="1" endvalue="2">
-			<missionstate id="1" description="Take the boat at the northern of Dragonblaze Peaks to tournament Isle. Ask Zurak for a passage. There you'll learn anything you need to know about the great tournament. Ask there Chrak for the battle." />
-			<missionstate id="2" description="You agreed the Offer." />
+			<missionstate id="1" description="Captured by a lizardmen trap you have to find a way out of the prison. Perhaps something in your cell might lead you to an opportunity for freedom." />
+			<missionstate id="2" description="You managed to find a way of the captivity of the lizardmen - but for a price." />
 		</mission>
 		<mission name="Mission 09: Mortal Combat" storageid="42721" startvalue="1" endvalue="3">
 			<missionstate id="1" description="You have to go into the Arena with another player, because 2 players are needed, at the same time, to enter. Choose your companion wisely!" />
 			<missionstate id="2" description="You have won! Report Chrak your mission about the battle." />
-			<missionstate id="3" description="Go back to Farmine and talk to Ongulf about your mission." />
+			<missionstate id="3" description="You have reported your latest doings to Chrak. It seems you bought the dwarfs some time of peace. Only the dragon kings may know how long thought." />
 		</mission>
-		<mission name="Mission 10: New Horizons" storageid="42724" startvalue="1" endvalue="1" description="You now have permission to use the Magic Carpet on the mountain above Farmine, Cael now accepts more Tomes of Knowledge from you and you got the Warmaster Outfit!" />
-		<mission name="Tome of Knowledge Counter" storageid="12141" startvalue="1" endvalue="12">
+		<mission name="Mission 10: New Horizons" storageid="42724" startvalue="1" endvalue="2">
+			<missionstate id="1" description="Ongulf will be anxious to learn about your latest adventures. Travel back to Farmine for a final report." />
+			<missionstate id="2" description="Ongulf got very satisfied with your journey, this land is yours to be taken. You can find now on top of the mountain a red carpet, it might offer you access to some cities." />
+		</mission>
+		<mission name="Tome of Knowledge Counter" storageid="42729" startvalue="1" endvalue="12">
 			<missionstate id="1" description="You brought the fist Tome of Knowledge to Cael. He learnt more about the lizard culture. Pompan will sell you dragon tapestries from now on." />
 			<missionstate id="2" description="You brought the second Tome of Knowledge to Cael. He learnt more about the minotaur culture. Pompan will sell you minotaur backpacks from now on." />
 			<missionstate id="3" description="You brought the third Tome of Knowledge to Cael. He learnt more about the last stand of the draken culture. Esrik will sell you lizard weapon rack from now on." />
@@ -1481,22 +1511,27 @@
 		</mission>
 	</quest>
 	
+	<quest name="An Uneasy Alliance" startstorageid="42551" startstoragevalue="1">
+		<mission name="The Wrath of the Kahn" storageid="42553" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Go to the central Orc camp in the center of Zao Steppes, and find the minotaur guard leader, Curos, in the north-east section of the camp. Curos will give you the mission to infiltrate the north-western Zao Orc Land and kill a rebel, the Renegade Orc." />
+			<missionstate id="2" description="Now report back to Curos, to report the mission." />
+			<missionstate id="3" description="You will receive no reward from Curos for this mission but you have proven yourself worthy to the orcs." />
+		</mission>
+		<mission name="The Maw of the Dragon" storageid="42554" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Now I need you to go destroy a magical observation device on top of the lizard underground base." />
+			<missionstate id="2" description="You have already destroyed the magic ball, go to Curos to tell him that it has been destroyed." />
+			<missionstate id="3" description="Now the lizards won't be able to watch us because of the magic ball." />		
+		</mission>
+	</quest>
 	
+	<quest name="Tibia Tales" startstorageid="51480" startstoragevalue="1">
+		<mission name="An Interest In Botany" storageid="51483" startvalue="1" endvalue="4">
+			<missionstate id="1" description="You agreed to help Rabaz salvaging samples of specifically rare deformations of corrupted flora around Zao. Consult 'Rabaz' Unabridged Almanach of Botany' to find out where these plants are located." />
+			<missionstate id="2" description="You successfully recovered a rare sample of a mutated plant in Zao. One sample is remaining to fulfill Rabaz' task. Consult 'Rabaz' Unabridged Almanach of Botany' to study the plants." />
+			<missionstate id="3" description="You gathered both plant samples for Rabaz in Farmine. Return to him to present him the results of your research." />
+			<missionstate id="4" description="You have completed the mission." />
+		</mission>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	</quest>
+
 </quests>

@@ -20523,6 +20523,8 @@
 	<item id="11699" article="an" name="botany almanach">
 		<attribute key="description" value="The title of this heavy book reads: 'Rabaz' Unabridged Almanach Of Botany'"/>
 		<attribute key="weight" value="1500"/>
+		<attribute key="writeable" value="1"/>
+		<attribute key="maxtextlen" value="1023"/>
 	</item>
 	<item id="11700" article="a" name="sedge hat">
 		<attribute key="description" value="This simple hat might be more worth than what it looks like"/>
