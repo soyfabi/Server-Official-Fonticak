@@ -48,6 +48,7 @@ local function creatureSayCallback(cid, type, msg)
 		elseif npcHandler.topic[cid] == 2 then
 			player:addItem(135, 1)
 			player:setStorageValue(Storage.TibiaTales.TheExterminator, 1)
+			player:setStorageValue(Storage.TibiaTales.DefaultStart, 1)
 			npcHandler:say({
 				'I knew I could count on you. Take this highly intensified vermin poison. In my vision, I saw some kind of \'pool\' where these slimes came from. ...',
 				'Pour the poison in the water to stop the demise of Carlin. Tell me about your mission after you fulfilled your task.'

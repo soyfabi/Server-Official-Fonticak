@@ -120,7 +120,7 @@ local function creatureSayCallback(cid, type, msg)
 			player:addItem(10199, 1)
 			player:addExperience(10000, true)
 			npcHandler.topic[cid] = 0
-		-- CHILDREN OF REVOLUTION QUEST
+		-- CHILDREN OF REVOLUTION QUEST END
 
 		-- WRATH OF THE EMPEROR QUEST
 		elseif player:getStorageValue(Storage.ChildrenoftheRevolution.Questline) == 21 and player:getStorageValue(Storage.WrathoftheEmperor.Questline) < 1 then

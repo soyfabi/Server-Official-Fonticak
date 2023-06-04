@@ -1,4 +1,4 @@
-local magicEffect = TalkAction("/effect")
+local magicEffect = TalkAction("/effect", "/z")
 
 function magicEffect.onSay(player, words, param)
 	if not player:getGroup():getAccess() or player:getAccountType() < ACCOUNT_TYPE_GOD then

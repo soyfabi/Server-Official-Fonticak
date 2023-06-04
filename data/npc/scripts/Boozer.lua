@@ -100,17 +100,15 @@ local function creatureSayCallback(cid, type, msg)
 	
 	if msgcontains(msg, "dwarven brown ale") then
 		if player:getStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard) == 1 then
-			npcHandler.topic[cid] = 1
+			npcHandler.topic[cid] = 3
 			npcHandler:say("You are soooo locky. Only recently I finished my first cask. As this would never have been possible without you, I make you a special offer. 3000 Gold! Alright?", cid)
 		end
-	elseif msgcontains(msg, "yes") then
-		if npcHandler.topic[cid] == 1 then
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 3 then
 			player:removeMoneyNpc(3000)
 			player:setStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard, 2)
 			player:setStorageValue(Storage.HiddenCityOfBeregar.DefaultStart, 1)
 			player:addItem(8774, 1)
 			npcHandler:say("Here it is. Have fun with this delicious brew.", cid)
-		end
 	end
 
 	return true

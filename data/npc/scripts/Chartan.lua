@@ -55,6 +55,7 @@ local function creatureSayCallback(cid, type, msg)
 				"And if you head to Zalamon, be zure to inform him about our zituation. Food rationz are running low and we are ztill not well equipped. We need to eztablish a working zupply line. "
 			}, cid)
 			player:setStorageValue(Storage.WrathoftheEmperor.Questline, 6)
+			player:setStorageValue(Storage.WrathoftheEmperor.TeleportAccess.Rebel, 1)
 			player:setStorageValue(Storage.WrathoftheEmperor.Mission02, 3) --Questlog, Wrath of the Emperor "Mission 02: First Contact"
 			npcHandler.topic[cid] = 0
 		end

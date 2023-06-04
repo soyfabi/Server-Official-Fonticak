@@ -56,3 +56,47 @@ function getBlessingsCost(level)
         return (level - 20) * 200
     end
 end
+
+function roomIsOccupied(centerPosition, rangeX, rangeY)
+	local spectators = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
+	if #spectators ~= 0 then
+		return true
+	end
+	return false
+end
+
+function clearBossRoom(playerId, bossId, centerPosition, rangeX, rangeY, exitPosition)
+	local spectators,
+	spectator = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
+	for i = 1, #spectators do
+		spectator = spectators[i]
+		if spectator:isPlayer() and spectator.uid == playerId then
+			spectator:teleportTo(exitPosition)
+			exitPosition:sendMagicEffect(CONST_ME_TELEPORT)
+		end
+
+		if spectator:isMonster() then
+			spectator:remove()
+		end
+	end
+end
+
+function clearRoom(centerPosition, rangeX, rangeY, resetGlobalStorage)
+	local spectators,
+	spectator = Game.getSpectators(centerPosition, false, false, rangeX, rangeX, rangeY, rangeY)
+	for i = 1, #spectators do
+		spectator = spectators[i]
+		if spectator:isMonster() then
+			spectator:remove()
+		end
+	end
+	if Game.getStorageValue(resetGlobalStorage) == 1 then
+		Game.setStorageValue(resetGlobalStorage, -1)
+	end
+end
+
+function isInRange(pos, fromPos, toPos)
+return pos.x >= fromPos.x and pos.y >= fromPos.y
+	and pos.z >= fromPos.z and pos.x <= toPos.x
+	and pos.y <= toPos.y and pos.z <= toPos.z
+end

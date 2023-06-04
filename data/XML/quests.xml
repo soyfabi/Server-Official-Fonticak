@@ -608,19 +608,19 @@
 			<missionstate id="3" description="You have completed Dwarven Armor Quest!" />
 		</mission>
 	</quest>
-	<quest name="Sea of Light" startstorageid="50250" startstoragevalue="1">
-		<mission name="Mission 1: The Plans" storageid="50251" startvalue="1" endvalue="4">
+	<quest name="Sea of Light" startstorageid="52110" startstoragevalue="1">
+		<mission name="Mission 1: The Plans" storageid="52111" startvalue="1" endvalue="4">
 			<missionstate id="1" description="Spectulus in Edron has sent you on a mission to find out the whereabouts of a certain inventor. A beggar in Edron seems to know more about this topic than he wants to tell." />
 			<missionstate id="2" description="The beggar turned out to be the inventor himself. You successfully convinced him to give you the only remaining plans of his creation. You should return to Spectulus in Edron to tell him the news." />
 			<missionstate id="3" description="You gave the plans to the astronomer. He began reconstructing the invention as soon as he got ahold of them. It will take a while for him to work out the problem which caused the initial failure." />
 			<missionstate id="4" description="You returned to Speculus who finally worked out the failure of the initial construction. He recapitulated the plans and needs only one item before he can start building the magic device." />
 		</mission>
-		<mission name="Mission 2: The Collector" storageid="50252" startvalue="1" endvalue="3">
+		<mission name="Mission 2: The Collector" storageid="52112" startvalue="1" endvalue="3">
 			<missionstate id="1" description="Spectulus asked you to enter the Lost Mines beneath Edron and recover a rare crystal. In exchange for it you will gain access to the lair of the Collector who guards a vital component of the device." />
 			<missionstate id="2" description="Luckily, you survived the horrors of the Lost Mines and recovered a rare crystal. You should visit Spectulus in Edron to seek counsel on what to do next." />
 			<missionstate id="3" description="You returned to astronomer Spectulus and gave him the rare crystal." />
 		</mission>
-		<mission name="Mission 3: The Mirror Crystal" storageid="50253" startvalue="1" endvalue="4">
+		<mission name="Mission 3: The Mirror Crystal" storageid="52113" startvalue="1" endvalue="4">
 			<missionstate id="1" description="In order to access the lair of the Collector, you will need to find the creature's well on an ice isle near Carlin. To donate the rare crystal overcome your greed and use it at the well's pedestal." />
 			<missionstate id="2" description="You offered the rare crystal to the creature and can now enter the Collector's lair. Its crystal chamber cannot be accessed by outsiders. You need to find a way to snatch the Mirror Crystal." />
 			<missionstate id="3" description="The Collector has been defeated. You packed the fragile Mirror Crystal into the device Spectulus gave you. All yo have to do now is to return to the astronomer and to present him your acquisition." />
@@ -1429,43 +1429,43 @@
 			<missionstate id="4" description="Now that you have a basic outfit, you should talk to Bozo about your missions to gain further rewards." />
 		</mission>
 	</quest>
-	<quest name="Wrath of the Emperor" startstorageid="12350" startstoragevalue="1">
-		<mission name="Mission 01: Catering the Lions Den" storageid="12351" startvalue="1" endvalue="3">
+	<quest name="Wrath of the Emperor" startstorageid="51300" startstoragevalue="1">
+		<mission name="Mission 01: Catering the Lions Den" storageid="51301" startvalue="1" endvalue="3">
 			<missionstate id="1" description="You must bring Zalamon 3 nails and a piece of wood so that he can make a Marked Crate for you." />
 			<missionstate id="2" description="Go to the tunnel in eastern Muggy Plains and reach the other side. Try to hide in the dark and avoid being seen at all by using the crate. After that you need to find the rebel hideout and talk to their leader Chartan." />
 			<missionstate id="3" description="You found the leader of the rebel Chartan and reported him about Zalamon. Ask him for new mission!" />
 		</mission>
-		<mission name="Mission 02: First Contact" storageid="12352" startvalue="1" endvalue="3">
-			<missionstate id="1" description="Chartan needs you to reactivate the teleport to the Muggy Plains. Head downstairs and into the temple and craft material to repair the teleport. To do this you will need some tools to improvise." />
+		<mission name="Mission 02: First Contact" storageid="51302" startvalue="1" endvalue="3">
+			<missionstate id="1" description="The resistance contact Chartan has sent you on a mission to repair the teleporter which is tied to the abandoned temple complex beneath the hideout. Look around and see what you can figure out." />
 			<missionstate id="2" description="As you give the coal into the pool the corrupted fluid begins to dissolve, leaving purified, refreshing water. The teleporter is reactivated. Report back to Chartan." />
 			<missionstate id="3" description="Report back to Zalamon for the next mission." />
 		</mission>
-		<mission name="Mission 03: The Keeper" storageid="12353" startvalue="1" endvalue="3">
-			<missionstate id="1" description="Zalamon gives you a Flask of Plant Poison to destroy plants in the garden of the Emperor to lure out and kill The Keeper to get his tail. The garden is southeast of the rebel hideout." />
+		<mission name="Mission 03: The Keeper" storageid="51303" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Zalamon gave you a poison to lure out the Keeper - a lizard once responsible for the gardens of the Emperor. With the corruption, his own nature was changed and he now dwells somewhere underground." />
 			<missionstate id="2" description="You killed the Keeper and got his tail. Bring it to Zalamon." />
 			<missionstate id="3" description="You brought the tail of the Keeper to Zalamon and completed the mission. Ask for the next mission." />
 		</mission>
-		<mission name="Mission 04: Sacrament of the Snake" storageid="12354" startvalue="1" endvalue="3">
+		<mission name="Mission 04: Sacrament of the Snake" storageid="51304" startvalue="1" endvalue="3">
 			<missionstate id="1" description="Zalamon now wants you to go to Deeper Banuta and get an Ancient Sceptre that will help in the fight against the emperor. On each floor under Deeper Banuta you collect a sceptre part from a Ghost of a Priest. On the 4th and final floor you need to assemble the sceptre.." />
 			<missionstate id="2" description="After you've assembled the Snake Sceptre and fought your way back out, head back to Zalamon and give it to him." />
-			<missionstate id="3" description="You brought the Snake Sceptre to Zalamon and completed the mission. Ask for the next mission." />
+			<missionstate id="3" description="You have delivered the recreated sceptre to the rebels." />
 		</mission>
-		<mission name="Mission 05: New in Town" storageid="12355" startvalue="1" endvalue="3">
-			<missionstate id="1" description="Zalamon tells you that you have to go inside the city. From the rebel hideout go out to the gray road and follow it to the southwest. Find the Gate Guardian and ask him for a mission to enter the city." />
+		<mission name="Mission 05: New in Town" storageid="51305" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Enter the imperial city Razachai to the west and talk to your contact in the ministry there for further missions." />
 			<missionstate id="2" description="Now you only have to walk west until you find Zlak inside the big green building." />
 			<missionstate id="3" description="You went deep inside the city to find Zlak and completed the mission. Ask for the next mission." />
 		</mission>
-		<mission name="Mission 06: The Office Job" storageid="12356" startvalue="0" endvalue="4" description="Explore the area where Zlak is to find Lizard Magistratus and kill 4 of them. You currently have |STATE| killed. Report back to Zlak if you finished it." />
-		<mission name="Mission 07: A Noble Cause" storageid="12357" startvalue="0" endvalue="6" description="Explore the area where Zlak is to find Lizard Noble and kill 6 of them. You currently have |STATE| killed. Report back to Zlak if you finished it." />
-		<mission name="Mission 08: Uninvited Guests" storageid="12358" startvalue="1" endvalue="2">
+		<mission name="Mission 06: The Office Job" storageid="51306" startvalue="0" endvalue="4" description="Explore the area where Zlak is to find Lizard Magistratus and kill 4 of them. You currently have |STATE| killed. Report back to Zlak if you finished it." />
+		<mission name="Mission 07: A Noble Cause" storageid="51307" startvalue="0" endvalue="6" description="Explore the area where Zlak is to find Lizard Noble and kill 6 of them. You currently have |STATE| killed. Report back to Zlak if you finished it." />
+		<mission name="Mission 08: Uninvited Guests" storageid="51308" startvalue="1" endvalue="2">
 			<missionstate id="1" description="Your mission is to reach your rebel contact Zizzle in the imperial palace. You need to take the old escape tunnel that leads from the abandoned basement in the north of the ministry to a lift that ends somewhere in the palace." />
 			<missionstate id="2" description="You have reached your rebel contact Zizzle in the imperial palace." />
 		</mission>
-		<mission name="Mission 09: The Sleeping Dragon" storageid="12359" startvalue="1" endvalue="2">
+		<mission name="Mission 09: The Sleeping Dragon" storageid="51309" startvalue="1" endvalue="2">
 			<missionstate id="1" description="To enter the inner realms of the Emperor you need to free the mind of a dragon. An interdimensional potion will help you to enter this dream and unleash his consciousness." />
 			<missionstate id="2" description="You travelled through the Sleeping Dragon dreams and freed his mind." />
 		</mission>
-		<mission name="Mission 10: A Message of Freedom" storageid="12360" startvalue="1" endvalue="6">
+		<mission name="Mission 10: A Message of Freedom" storageid="51310" startvalue="1" endvalue="6">
 			<missionstate id="1" description="After solving the riddle, and talking again to the Sleeping Dragon you got a Spiritual Charm. Report back to Zizzle." />
 			<missionstate id="2" description="You possess the key to enter the inner realms of the emperor. Start with the one in the north-west and work your way clockwise trough the room and kill those manifestation. Then use your sceptre on the remain to destroy the emperor's influence over the crystal." />
 			<missionstate id="3" description="You possess the key to enter the inner realms of the emperor. You destroyed 1 of 4 emperor's influences." />
@@ -1473,11 +1473,11 @@
 			<missionstate id="5" description="You possess the key to enter the inner realms of the emperor. You destroyed 3 of 4 emperor's influences." />
 			<missionstate id="6" description="You possess the key to enter the inner realms of the emperor. You destroyed all emperor's influences." />
 		</mission>
-		<mission name="Mission 11: Payback Time" storageid="12361" startvalue="1" endvalue="2">
+		<mission name="Mission 11: Payback Time" storageid="51311" startvalue="1" endvalue="2">
 			<missionstate id="1" description="Your Mission is to kill Zalamon. Step into the teleporter to confront him. Finally use your sceptre on the death body." />
 			<missionstate id="2" description="Go back to Awareness Of The Emperor and report him your success!" />
 		</mission>
-		<mission name="Mission 12: Just Rewards" storageid="12362" startvalue="0" endvalue="1">
+		<mission name="Mission 12: Just Rewards" storageid="51312" startvalue="0" endvalue="1">
 			<missionstate id="0" description="The Emperor has promised you wealth beyond measure. Go claim it in the ministry." />
 			<missionstate id="1" description="You completed this Quest!" />
 		</mission>
@@ -1531,7 +1531,29 @@
 			<missionstate id="3" description="You gathered both plant samples for Rabaz in Farmine. Return to him to present him the results of your research." />
 			<missionstate id="4" description="You have completed the mission." />
 		</mission>
+		<mission name="The Exterminator" storageid="51488" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Padreia in Carlin asked you to exterminate the slimes in the sewers of Carlin by poisoning their spawn pool." />
+			<missionstate id="2" description="You poisoned the spawn pool of the slimes in the sewers of Carlin. Report to Padreia about your mission." />
+			<missionstate id="3" description="You successfully helped Padreia in saving Carlin from a slimy disease." />
+		</mission>
+		<mission name="The Ultimate Booze" storageid="51481" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Boozer in Vernore asked you to bring him some special dwarven brown ale. You may find some in the brewery in Kazordoon." />
+			<missionstate id="2" description="You found the special dwarven brown ale. Bring it to Boozer in Venore." />
+			<missionstate id="3" description="You succesfully helped Boozer in obtaining a bottle of dwarfish brown ale. He is now up to some megalomaniac plans about brewing his own beer." />
+		</mission>
+		
+		<mission name="Jack to the Future" storageid="51520" startvalue="1" endvalue="3">
+			<missionstate id="1" description="Boozer in Vernore asked you to bring him some special dwarven brown ale. You may find some in the brewery in Kazordoon." />
+			<missionstate id="2" description="You found the special dwarven brown ale. Bring it to Boozer in Venore." />
+			<missionstate id="3" description="You succesfully helped Boozer in obtaining a bottle of dwarfish brown ale. He is now up to some megalomaniac plans about brewing his own beer." />
+		</mission>
+	</quest>
 	
+	<quest name="The First Dragon" startstorageid="50350" startstoragevalue="1">
+		<mission name="Power" storageid="50351" startvalue="0" endvalue="200" description="Fighting against Zorvorax, a powerful dragon and difficult to control.\n\nYou already hunted |STATE|/200 dragons." />
+		<mission name="Treasure" storageid="50352" startvalue="0" endvalue="20" description="Treasure is the favorite of the dragon lords. Find and take Kalyassa's treasures spread across the world. \n\nYou have already found |STATE|/20 chest." />
+		<mission name="Knowledge" storageid="50356" startvalue="0" endvalue="20" description="You learned that frost dragon's incitement is the thirst for knowledge, perhaps if you bring some to Gelidrazah's you'll meet him." />
+		<mission name="Life" storageid="50355" startvalue="0" endvalue="3" description="Undead dragons aspires for life. No better way to see life as it grows around the world, is there?\n\nYou have explored |STATE|/3." />
 	</quest>
 
 </quests>

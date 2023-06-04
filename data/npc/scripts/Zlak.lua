@@ -12,6 +12,8 @@ local function creatureSayCallback(cid, type, msg)
 		return false
 	end
 	local player = Player(cid)
+	
+	
 	if msgcontains(msg, "mission") then
 		if player:getStorageValue(Storage.WrathoftheEmperor.Questline) == 22 then
 			npcHandler:say({
@@ -19,6 +21,7 @@ local function creatureSayCallback(cid, type, msg)
 				"Zo we have to ztrike fazt and quickly. You will have to eliminate zome high ranking key officialz. I zink killing four of zem should be enough. ...",
 				"Ziz will dizrupt ze order in ze zity zignificantly zinze zo much dependz on bureaucracy and ze chain of command. Only chaoz and dizorganization will enable me to help you with ze next ztep in ze plan."
 			}, cid)
+			player:setStorageValue(Storage.WrathoftheEmperor.TeleportAccess.Zlak, 1)
 			player:setStorageValue(Storage.WrathoftheEmperor.Questline, 23)
 			player:setStorageValue(Storage.WrathoftheEmperor.Mission05, 3) --Questlog, Wrath of the Emperor "Mission 05: New in Town"
 			player:setStorageValue(Storage.WrathoftheEmperor.Mission06, 0) --Questlog, Wrath of the Emperor "Mission 06: The Office Job"
@@ -33,7 +36,7 @@ local function creatureSayCallback(cid, type, msg)
 			player:setStorageValue(Storage.WrathoftheEmperor.Mission07, 0) --Questlog, Wrath of the Emperor "Mission 07: A Noble Cause"
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.WrathoftheEmperor.Questline) == 24 and player:getStorageValue(Storage.WrathoftheEmperor.Mission07) == 6 then
-			if npcHandler.topic[cid] ~= 1 then
+			if npcHandler:getTopic(playerId) ~= 1 then
 				npcHandler:say({
 					"Word of your deedz iz already zpreading like a wildfire. Zalamon'z plan to unleash zome murderouz beaztz in ze zity workz almozt too well. You are already becoming zome kind of legend with which motherz frighten zeir unruly hatchlingz. ...",
 					"Your next {mizzion} will be a ztrike into ze heart of ze empire."

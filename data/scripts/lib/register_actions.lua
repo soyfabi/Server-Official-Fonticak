@@ -759,8 +759,8 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 	elseif target.itemid == 11340 then
 		-- Wrath of the emperor quest
 		player:addItem(11339, 1)
-		player:say("The cracked part of the table lets you cut out a large chunk of wood with your pick.",
-			TALKTYPE_MONSTER_SAY )
+		player:say("The cracked part of the table lets you cut out a large chunk of wood with your pick.", TALKTYPE_MONSTER_SAY )
+		toPosition:sendMagicEffect(CONST_ME_POFF)
 	elseif target.itemid == 372 then
 		target:transform(394)
 		target:decay()
