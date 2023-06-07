@@ -11,6 +11,46 @@ function onThink()		npcHandler:onThink()		end
 local voices = { {text = 'Passages to Thais, Carlin, Ab\'Dendriel, Krailos, Port Hope, Edron, Darashia, Liberty Bay, Svargrond, Gray Island, Yalahar and Ankrahmun.'} }
 npcHandler:addModule(VoiceModule:new(voices))
 
+local randomTeleports = {
+    Position(33324, 32173, 6),
+    Position(33330, 32171, 5),
+    Position(33328, 32181, 7),
+    Position(33322, 32171, 6)
+}
+
+-- Darashia City
+local function creatureSayCallback(cid, type, msg)
+	if not npcHandler:isFocused(cid) then
+		return false
+	end
+	
+	local player = Player(cid)
+	
+	if msgcontains(msg, "darashia") then
+		npcHandler.topic[cid] = 1
+		npcHandler:say("Would you like to go to {Darashia} for {60 gold coins}?", cid)
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 1 then
+		npcHandler:say("I warn you! This route is haunted by a {ghostship}. Do you really want to go there?", cid)
+		npcHandler.topic[cid] = 2
+	elseif npcHandler.topic[cid] == 2 then
+		local chance = math.random(10)
+		if chance >= 4 then
+		player:teleportTo(Position(33289, 32481, 6)) -- Darashia City
+		npcHandler:say("Have a nice trip!", cid)
+		player:removeMoneyNpc(60)
+		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+		else
+		local randomPosition = randomTeleports[math.random(#randomTeleports)]
+		npcHandler:say("We have lost our way and our ship has been invaded.", cid)
+		player:teleportTo(randomPosition, false)
+		player:getPosition():sendMagicEffect(CONST_ME_POFF)
+		player:setDirection(DIRECTION_SOUTH)
+		end
+		npcHandler:releaseFocus(cid)
+	end
+	return true
+end
+
 -- Travel
 local function addTravelKeyword(keyword, cost, destination, condition)
 	if condition then
@@ -48,13 +88,6 @@ addTravelKeyword('issavi', 130, Position(33901, 31462, 6))
 addTravelKeyword('roshamuul', 210, Position(33494, 32567, 7))
 addTravelKeyword('oramond', 150, Position(33479, 31985, 7))
 
--- Darashia
-local travelNode = keywordHandler:addKeyword({'darashia'}, StdModule.say, {npcHandler = npcHandler, text = 'Would you like to go to {Darashia} for {60 gold coins}?', cost = 60, discount = 'postman'})
-local childTravelNode = travelNode:addChildKeyword({'yes'}, StdModule.say, {npcHandler = npcHandler, text = 'I warn you! This route is haunted by a ghostship. Do you really want to go there?'})
---childTravelNode:addChildKeyword({'yes'}, StdModule.travel, {npcHandler = npcHandler, premium = false, cost = 60, discount = 'postman', destination = function(player) return math.random(10) == 1 and Position(33324, 32173, 6) or Position(33289, 32481, 6) end})
-childTravelNode:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, reset = true, text = 'We would like to serve you some time.'})
-travelNode:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, reset = true, text = 'We would like to serve you some time.'})
-
 -- Kick
 keywordHandler:addKeyword({'kick'}, StdModule.kick, {npcHandler = npcHandler, destination = {Position(32952, 32031, 6), Position(32955, 32031, 6), Position(32957, 32032, 6)}})
 
@@ -71,4 +104,5 @@ npcHandler:setMessage(MESSAGE_GREET, 'Welcome on board, |PLAYERNAME|. Where can 
 npcHandler:setMessage(MESSAGE_FAREWELL, 'Good bye. Recommend us if you were satisfied with our service.')
 npcHandler:setMessage(MESSAGE_WALKAWAY, 'Good bye then.')
 
+npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new())

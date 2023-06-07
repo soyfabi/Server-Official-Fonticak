@@ -7,6 +7,8 @@ local config = {
 }
 
 local coffinPosition = Position(33273, 32458, 8)
+local statue1Position = Position(33281, 32442, 8)
+local statue2Position = Position(33286, 32444, 8)
 
 local function revertCoffin()
 	local coffinItem = Tile(coffinPosition):getItemById(167)
@@ -33,7 +35,11 @@ function kosheiSwitch.onUse(player, item, fromPosition, target, toPosition, isHo
 	end
 
 	local coffinItem = Tile(coffinPosition):getItemById(162)
+	local statue1Item = Tile(statue1Position):getItemById(2063)
+	local statue2Item = Tile(statue2Position):getItemById(2063)
 	if coffinItem then
+		statue1Item:transform(2062)
+		statue2Item:transform(2062)
 		coffinItem:transform(167)
 		addEvent(revertCoffin, 2 * 60 * 1000)
 		player:say('CLICK', TALKTYPE_MONSTER_SAY, false, player, coffinPosition)

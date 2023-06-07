@@ -148,6 +148,30 @@ local config = {
 		},
 		storage = Storage.Quest.U8_54.TheNewFrontier.Reward.Potions
 	},
+------- NEW ------------------------
+	[4053] = {
+		items = {
+			{itemId = 25235}
+		},
+		storage = Storage.Quest.U11_40.ThreatenedDreams.Mission01.PoacherChest
+	},
+	[4054] = {
+		items = {
+			{itemId = 25729}
+		},
+		storage = Storage.Quest.U11_40.ThreatenedDreams.Mission02.DarkMoonMirror
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	[5556] = {
 		items = {
 			{itemId = 3357}

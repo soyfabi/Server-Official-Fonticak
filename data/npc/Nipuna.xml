@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<npc name="Nipuna" script="Nipuna.lua" walkinterval="2000" floorchange="0">
+  <health now="100" max="100" />
+  <look type="1539" head="10" body="57" legs="0" feet="46" addons="0" />
+</npc>

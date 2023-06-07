@@ -176,11 +176,6 @@ function getPlayerDatabaseInfo(name_or_guid)
 	return info
 end
 
--- Monster Type --
-function isInteger(n)
-	return (type(n) == "number") and (math.floor(n) == n)
-end
-
 -- Exercise Training --
 if onExerciseTraining == nil then
 	onExerciseTraining = {}

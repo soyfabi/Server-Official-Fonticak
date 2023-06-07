@@ -106,42 +106,63 @@ local storages = {
 	Storage.FathersBurden.Iron, Storage.FathersBurden.Scale
 }
 
+local ThreatenedDreams = Storage.Quest.U11_40.ThreatenedDreams
+
 function creatureSayCallback(cid, type, msg)
 	if not npcHandler:isFocused(cid) then
 		return false
 	end
 
 	local player = Player(cid)
-
+	
 	if npcHandler.topic[cid] == 0 then
-		if msgcontains(msg, 'mission') then
+		if msgcontains(msg, "cloak") then
+			if player:getStorageValue(ThreatenedDreams.Mission01[1]) == 12 then
+				npcHandler:say(
+					{
+						"I met this troll when he was hanging around near the town. He carried something I would consider rather uncharacteristic for a troll: a stunningly beautiful cloak entirely made of white feathers. I was curious and asked him if he would sell it. ...",
+						"He seemed to be more interested in some of my coins and a piece of meat than in this unusual garment. Therefore, we made a trade: He got some meat and coins and I got the cloak. ...",
+						"I had a clue that it was a magical item but nobody in Edron knew something about it. As I have a very lettered friend in Darashia I took a magical carpet flight to visit him and ask him about the cloak. ...",
+						"But then something very annoying happened: During the flight the wind blew so strongly that it tattered the cloak. Feather after feather was blown off the carpet but I didn't realise it. ...",
+						"When I reached Darashia there was no cloak just a handful of feathers. *sighs* I'm not sure whether it makes sense to search for these feathers. There was a small wind gust when we were still above Edron. ...",
+						"But the actual storm began when we were in the air above the Darama. The feathers are now scattered all over the desert I guess. Rather futile to look out for them but if you really want to try: ...",
+						"The magic carpet made a beeline from Edron to Darashia. You should search along this line on the ground. Good luck!"
+				}, cid)
+				player:setStorageValue(ThreatenedDreams.Mission01[1], 13)
+				player:setStorageValue(ThreatenedDreams.Mission01.FeathersCount, 0) -- Start Mission 'Tattered Swan Feathers'
+			else
+				npcHandler:say("You are not on that mission.", cid)
+				npcHandler.topic[cid] = 0
+			end
+		elseif msgcontains(msg, "mission") then
 			if player:getStorageValue(Storage.FathersBurden.Status) == 1 then
 				if player:getStorageValue(Storage.FathersBurden.Progress) ~= 8 then
-					npcHandler:say('Well, I need the parts of a sorcerer\'s robe, a paladin\'s bow, a knight\'s shield, and a druid\'s rod. If you cannot find one of them, ask me about it and I might provide you with some minor hints.', cid)
+					npcHandler:say("Well, I need the parts of a sorcerer's robe, a paladin's bow, a knight's shield, and a druid's rod. If you cannot find one of them, ask me about it and I might provide you with some minor hints.", cid)
 					return true
 				end
 
 				player:setStorageValue(Storage.FathersBurden.Status, 2)
-				player:addItem(11701, 1)
-				player:addItem(3035, 80)
+				player:addItem(oldCape, 1)
 				player:addExperience(8000, true)
-				npcHandler:say({
-					'I\'m so glad I finally have all the parts for the presents. Your {reward} is my eternal gratitude. Well, that and some gold of course. ...',
-					'Take this sachet over there, I wrapped the coins into this {old cape} I had still lying around here from a barter with a stranger, it is of no use for me anyway. Farewell and thank you once again.'
-				}, cid)
+				npcHandler:say(
+					{
+						"I'm so glad I finally have all the parts for the presents. Your reward is my eternal gratitude. Well, that and some gold of course. ...",
+						"Take this sachet over there, I wrapped the coins into this old cape I had still lying around here from a barter with a stranger, it is of no use for me anyway. Farewell and thank you once again."
+					}, cid)
 			elseif player:getStorageValue(Storage.FathersBurden.Status) == 2 then
-				npcHandler:say('Thank you for your help!', cid)
+				npcHandler:say("Thank you for your help!", cid)
 				return true
 			else
-				npcHandler:say({
-					'I have four sons which are very dear to me. Though they were born on the same day and even in the same hour, they took quite different paths in life. ...',
-					'Each of them chose a different vocation, one will become a knight, one a sorcerer, one a druid, and the other a paladin. In a few weeks they will reach adulthood and I am holding a birthday party for them. ...',
-					'It should become a day to remember and so I want to give them something special as a present. I searched the land for the finest craftsmen so they could create suitable presents for my sons. ...',
-					'But something of fine craftsmanship will just not cut it. So I asked them what they would need to create something special. They all came up with lists of rare and expensive items necessary for the task ahead. ...',
-					'I spent a small fortune to buy most of the materials but in the end the key components are that rare that they cannot be simply bought somewhere. ...',
-					'As far as I understood it, the places where you can get these items are quite dangerous and so it would take some adventurer to get them. ...',
-					'That would be your mission if you are interested. Uhm, so are you interested?'
-				}, cid)
+				npcHandler:say(
+					{
+						"I have four sons which are very dear to me. Though they were born on the same day and even in the same hour, they took quite different paths in life. ...",
+						"Each of them chose a different vocation, one will become a knight, one a sorcerer, one a druid, and the other a paladin. In a few weeks they will reach adulthood and I am holding a birthday party for them. ...",
+						"It should become a day to remember and so I want to give them something special as a present. I searched the land for the finest craftsmen so they could create suitable presents for my sons. ...",
+						"But something of fine craftsmanship will just not cut it. So I asked them what they would need to create something special. They all came up with lists of rare and expensive items necessary for the task ahead. ...",
+						"I spent a small fortune to buy most of the materials but in the end the key components are that rare that they cannot be simply bought somewhere. ...",
+						"As far as I understood it, the places where you can get these items are quite dangerous and so it would take some adventurer to get them. ...",
+						"That would be your mission if you are interested. Uhm, so are you interested?"
+					}, cid)
 				npcHandler.topic[cid] = 1
 			end
 		elseif config[msg:lower()] then
@@ -153,38 +174,43 @@ function creatureSayCallback(cid, type, msg)
 
 			npcHandler:say(targetMessage.messages.deliever, cid)
 			npcHandler.topic[cid] = 2
-			message[cid] = targetMessage
+			topic[playerId] = targetMessage
 		end
 	elseif npcHandler.topic[cid] == 1 then
-		if msgcontains(msg, 'yes') then
-			npcHandler:say('I am relieved someone as capable as you will handle the task. Well, I need the parts of a sorcerer\'s robe, a paladin\'s bow, a knight\'s shield, and a druid\'s wand.', cid)
+		if msgcontains(msg, "yes") then
+			npcHandler:say("I am relieved someone as capable as you will handle the task. Well, I need the parts of a sorcerer's robe, a paladin's bow, a knight's shield, and a druid's wand.", cid)
 			player:setStorageValue(Storage.FathersBurden.QuestLog, 1)
 			player:setStorageValue(Storage.FathersBurden.Progress, 0)
 			player:setStorageValue(Storage.FathersBurden.Status, 1)
 			for i = 1, #storages do
 				player:setStorageValue(storages[i], 1)
 			end
-		elseif msgcontains(msg, 'no') then
-			npcHandler:say('Oh my. I really hope you will change your mind.', cid)
+		elseif msgcontains(msg, "no") then
+			npcHandler:say("Oh my. I really hope you will change your mind.", cid)
 		end
 		npcHandler.topic[cid] = 0
 	elseif npcHandler.topic[cid] == 2 then
-		local targetMessage = message[cid]
-		if msgcontains(msg, 'yes') then
-			if not player:removeItem(targetMessage.itemId, 1) then
+		local targetMessage = topic[playerId]
+		if msgcontains(msg, "yes") then
+			if not player:removeItem(player:getItemIdByCid(targetMessage.itemId), 1) then
 				npcHandler:say(targetMessage.messages.failure, cid)
 				return true
 			end
 
 			player:setStorageValue(targetMessage.storage, 2)
-			player:setStorageValue(Storage.FathersBurden.Progress, player:getStorageValue(Storage.FathersBurden.Progress) + 1)
+			player:setStorageValue(
+				Storage.FathersBurden.Progress,
+				player:getStorageValue(Storage.FathersBurden.Progress) + 1
+			)
 			player:addExperience(2500, true)
 			npcHandler:say(targetMessage.messages.success, cid)
-		elseif msgcontains(msg, 'no') then
+		elseif msgcontains(msg, "no") then
 			npcHandler:say(targetMessage.messages.no, cid)
 		end
 		npcHandler.topic[cid] = 0
 	end
+--end
+	
 	return true
 end
 

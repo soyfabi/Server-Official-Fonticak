@@ -4,17 +4,17 @@ NpcSystem.parseParameters(npcHandler)
 
 local config = {
 	towns = {
-		["venore"] = 1,
-		["thais"] = 2,
-		["kazordoon"] = 3,
-		["carlin"] = 4,
-		["ab\'dendriel"] = 5,
-		["liberty bay"] = 7,
-		["port hope"] = 8,
-		["ankrahmun"] = 9,
-		["darashia"] = 10,
-		["edron"] = 11
-	},
+		["venore"] = TOWNS_LIST.VENORE,
+		["thais"] = TOWNS_LIST.THAIS,
+		["kazordoon"] = TOWNS_LIST.KAZORDOON,
+		["carlin"] = TOWNS_LIST.CARLAIN,
+		["ab'dendriel"] = TOWNS_LIST.AB_DENDRIEL,
+		["liberty bay"] = TOWNS_LIST.LIBERTY_BAY,
+		["port hope"] = TOWNS_LIST.PORT_HOPE,
+		["ankrahmun"] = TOWNS_LIST.ANKRAHMUN,
+		["darashia"] = TOWNS_LIST.DARASHIA,
+		["edron"] = TOWNS_LIST.EDRON
+	}
 }
 
 function onCreatureAppear(cid) npcHandler:onCreatureAppear(cid) end

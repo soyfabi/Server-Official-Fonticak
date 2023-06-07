@@ -980,6 +980,7 @@ function onUseScythe(player, item, fromPosition, target, toPosition, isHotkey)
 	-- The secret library
 	elseif toPosition == Position(32177, 31925, 7) then
 		player:teleportTo({x = 32515, y = 32535, z = 12})
+		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
 		return false
 	end

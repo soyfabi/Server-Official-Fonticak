@@ -60,6 +60,7 @@ local function creatureSayCallback(cid, type, msg)
 		player:teleportTo(Position(32190, 31957, 6))
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 		npcHandler:say("Have a nice trip!", cid)
+		player:removeMoneyNpc(10)
 	elseif msgcontains(msg, "no") then
 		npcHandler:say("Well, I\'ll be here if you change your mind", cid)
 		npcHandler:releaseFocus(cid)

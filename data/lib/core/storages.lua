@@ -699,7 +699,8 @@ Storage = {
 	},
 	KosheiTheDeathless = {
 		-- Reserved storage from 50740 - 50749
-		RewardDoor = 50740
+		RewardDoor = 50740,
+		KosheiMission = 50741
 	},
 	ElementalSphere = {
 		-- Reserved storage from 50750 - 50759
@@ -2700,7 +2701,10 @@ Storage = {
 					StarlightPos02 = 45788,
 					StarlightPos03 = 45789,
 					StarlightPos04 = 45790,
-					StarlightPos05 = 45791
+					StarlightPos05 = 45791,
+					FrazzlemawsMission = 45800,
+					EnfeebledMission = 45801,
+					KroazurMission = 45802,
 				},
 				Mission03 = {
 					45792, -- An Unlikely Couple

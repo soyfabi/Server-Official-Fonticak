@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<npc name="Dancing Fairy" script="Dancing Fairy.lua" walkinterval="2000" floorchange="0">
+  <health now="100" max="100" />
+ <look typeex="25747" />
+</npc>

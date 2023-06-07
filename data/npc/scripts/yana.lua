@@ -6,40 +6,40 @@ local tokenId = 25377
 
 local info = {
 	weapons = {
-		['sword'] = {id = 30684, value = 50},
-		['axe'] = {id = 30686, value = 50},
-		['club'] = {id = 30688, value = 50},
-		['slayer'] = {id = 30685, value = 50},
-		['chopper'] = {id = 30687, value = 50},
-		['hammer'] = {id = 30689, value = 50},
-		['bow'] = {id = 30690, value = 50},
-		['crossbow'] = {id = 30691, value = 50},
-		['wand'] = {id = 30692, value = 50},
-		['rod'] = {id = 30693, value = 50}
+		['sword'] = {id = 27449, value = 50},
+		['axe'] = {id = 27451, value = 50},
+		['club'] = {id = 27453, value = 50},
+		['slayer'] = {id = 27450, value = 50},
+		['chopper'] = {id = 27452, value = 50},
+		['hammer'] = {id = 27454, value = 50},
+		['bow'] = {id = 27455, value = 50},
+		['crossbow'] = {id = 27456, value = 50},
+		['wand'] = {id = 27457, value = 50},
+		['rod'] = {id = 27458, value = 50}
 	},
 	products = {
 		['strike'] = {
 			['basic'] =  {
 				text = "The basic bundle for the strike imbuement consists of 20 protective charms. Would you like to buy it for 2 gold tokens?",
 				itens = {
-					[1] = {id = 12400, amount = 20}
+					[1] = {id = 11444, amount = 20}
 				},
 				value = 2
 			},
 			['intricate'] =  {
 				text = "The intricate bundle for the strike imbuement consists of 20 protective charms and 25 sabreteeth. Would you like to buy it for 4 gold tokens?",
 				itens = {
-					[1] = {id = 12400, amount = 20},
-					[2] = {id = 11228, amount = 25}
+					[1] = {id = 11444, amount = 20},
+					[2] = {id = 10311, amount = 25}
 				},
 				value = 4
 			},
 			['powerful'] = {
 				text = "The powerful bundle for the strike imbuement consists of 20 protective charms, 25 sabreteeth and 5 vexclaw talons. Would you like to buy it for 6 gold tokens?",
 				itens = {
-					[1] = {id = 12400, amount = 20},
-					[2] = {id = 11228, amount = 25},
-					[3] = {id = 25384, amount = 5}
+					[1] = {id = 11444, amount = 20},
+					[2] = {id = 10311, amount = 25},
+					[3] = {id = 22728, amount = 5}
 				},
 				value = 6
 			}
@@ -48,24 +48,24 @@ local info = {
 			['basic'] =  {
 				text = "The basic bundle for the vampirism imbuement consists of 25 vampire teeth. Would you like to buy it for 2 gold tokens?",
 				itens = {
-					[1] = {id = 10602, amount = 25}
+					[1] = {id = 9685, amount = 25}
 				},
 				value = 2
 			},
 			['intricate'] =  {
 				text = "The intricate bundle for the strike imbuement consists of 20 protective charms and 25 sabreteeth. Would you like to buy it for 4 gold tokens?",
 				itens = {
-					[1] = {id = 10602, amount = 25},
-					[2] = {id = 10550, amount = 15}
+					[1] = {id = 9685, amount = 25},
+					[2] = {id = 9633, amount = 15}
 				},
 				value = 4
 			},
 			['powerful'] = {
 				text = "The powerful bundle for the vampirism imbuement consists of 25 vampire teeth, 15 bloody pincers and 5 pieces of dead brain. Would you like to it for 6 gold tokens?",
 				itens = {
-					[1] = {id = 10602, amount = 25},
-					[2] = {id = 10550, amount = 15},
-					[3] = {id = 10580, amount = 5}
+					[1] = {id = 9685, amount = 25},
+					[2] = {id = 9633, amount = 15},
+					[3] = {id = 9663, amount = 5}
 				},
 				value = 6
 			}
@@ -74,24 +74,24 @@ local info = {
 			['basic'] =  {
 				text = "The basic bundle for the void imbuement consists of 25 rope belts. Would you like to buy it for 2 gold tokens?",
 				itens = {
-					[1] = {id = 12448, amount = 25}
+					[1] = {id = 11492, amount = 25}
 				},
 				value = 2,
 			},
 			['intricate'] =  {
 				text = "The intricate bundle for the void imbuement consists of 25 rope belts and 25 silencer claws. Would you like to buy it for 4 gold tokens?.",
 				itens = {
-					[1] = {id = 12448, amount = 25},
-					[2] = {id = 22534, amount = 25}
+					[1] = {id = 11492, amount = 25},
+					[2] = {id = 20200, amount = 25}
 				},
 				value = 4,
 			},
 			['powerful'] = {
 				text = "The powerful bundle for the void imbuement consists of 25 rope belts, 25 silencer claws and 5 grimeleech wings. Would you like to buy it for 6 gold tokens?",				
 				itens = {
-					[1] = {id = 12448, amount = 25},
-					[2] = {id = 22534, amount = 25},
-					[3] = {id = 25386, amount = 5}
+					[1] = {id = 11492, amount = 25},
+					[2] = {id = 20200, amount = 25},
+					[3] = {id = 22730, amount = 5}
 				},
 				value = 6,
 			}

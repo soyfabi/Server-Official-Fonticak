@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<npc name="Isika" script="Isika.lua" walkinterval="2000" floorchange="0">
+  <health now="100" max="100" />
+  <look type="1537" head="114" body="6" legs="67" feet="49" addons="1" />
+</npc>

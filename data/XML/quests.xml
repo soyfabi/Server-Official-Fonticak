@@ -1547,6 +1547,11 @@
 			<missionstate id="2" description="You found the special dwarven brown ale. Bring it to Boozer in Venore." />
 			<missionstate id="3" description="You succesfully helped Boozer in obtaining a bottle of dwarfish brown ale. He is now up to some megalomaniac plans about brewing his own beer." />
 		</mission>
+		
+		<mission name="Koshei the Deathless" storageid="50741" startvalue="1" endvalue="2">
+			<missionstate id="1" description="You defeated Koshei the Deathless and gave him back his amulet. Don't forget to grab your reward." />
+			<missionstate id="2" description="You have completed Koshei the Deathless." />
+		</mission>
 	</quest>
 	
 	<quest name="The First Dragon" startstorageid="50350" startstoragevalue="1">
@@ -1555,5 +1560,46 @@
 		<mission name="Knowledge" storageid="50356" startvalue="0" endvalue="20" description="You learned that frost dragon's incitement is the thirst for knowledge, perhaps if you bring some to Gelidrazah's you'll meet him." />
 		<mission name="Life" storageid="50355" startvalue="0" endvalue="3" description="Undead dragons aspires for life. No better way to see life as it grows around the world, is there?\n\nYou have explored |STATE|/3." />
 	</quest>
-
+	
+	<quest name="Threatened Dreams" startstorageid="45751" startstoragevalue="1">
+		<mission name="Troubled Animals" storageid="45752" startvalue="1" endvalue="16">
+			<missionstate id="1" description="You met the talking white deer Alkestios. It turned out he is actually a fae - and needs help. Search out a poacher camp noth of the Green Claw Swamps and keep the poachers from hunting white deers." />
+			<missionstate id="2" description="You found a book with legends in the poacher camp. You asked Ahmed to add a story about how it brings ill luck to kill a white deer, hopefully the poachers will desist from hunting Alkestios." />
+			<missionstate id="3" description="You returned to the poacher camp and placed the faked book noticeably on a table. You're quite sure the poachers will discover it soon and desist from hunting Alkestios." />
+			<missionstate id="4" description="Alkestios asked you for help on another issue. There seemms to be a problem with a wolf mother and her whelps. Find the snake Ikassis in the north-west of Edron and talk to her, she knows more." />
+			<missionstate id="5" description="The snake Ikassis asked you to find a female wolf in the south of Cormaya. The animal is in need of help, yet Ikassis didn't know any details." />
+			<missionstate id="6" description="You found the ghostly wolf and promised to search for her lost whelps. The wolf told you to start your search at Ulderek's Rock." />
+			<missionstate id="7" description="At Ulderek's Rock you found a sleeping war wolf. It might actually be the now grown up whelp you were looking for. The skeleton nearby implies that the hunter didn't survive his misdeed." />
+			<missionstate id="8" description="You talked to Irmana in Venore and she gave you the fur of one of the wolf whelps you're searching for. You should talk to their mother's ghost." />
+			<missionstate id="9" description="As the ghostly wolf asked you, you placed the whelp fur in the mouth of a nearby stone, that is shaped like a big face." />
+			<missionstate id="10" description="You redeemed the ghostly wolf. You should return to Ikassis and tell her about it." />
+			<missionstate id="11" description="Ikassis was happy to hear that you redeemed the ghostly wolf. But she asked you to help someone else: one of her sisters. You can find her in the guise of swan at a river sourth-east of Ikassis." />
+			<missionstate id="12" description="You met a swan that in truth is a swan maiden, a kind of fae. These fae have magical cloaks that allow them to shape change between swan and girl. Find this maiden's cloak that was stolen by a troll." />
+			<missionstate id="13" description="The troll Grarkharok sold the cloak to Tereban and he lost it during a flight with magic carpet. The cloak's feathers are now scattered along the carpet's beeline between Edron and Darashia." />
+			<missionstate id="14" description="You found many swan feathers on Edron and in Darama desert. Now you should have enough for an entire cloak. You should talk to the swan maiden." />
+			<missionstate id="15" description="You found enough magical swan feathers. The swan maiden will now be able to restore her cloak. You should talk to Alkestios again." />
+			<missionstate id="16" description="Alkestios was very happy about your support. You earned the Fae's trust and may now enter their secret realm. Search for an elemental shrine of earth reach Feyrist. Talk with Maelyrra." />
+		</mission>
+		<mission name="[1] Frazzlemaws Killed" storageid="45800" startvalue="0" endvalue="5" description="The fae queen asked for your help: Feyrist is threatened by intruders from Roshamuul. Kill 200 nightmare monsters and Kroazur.\n\nYou killed |STATE|/200 frazzlemaws." />
+		<mission name="[2] Silencers Killed" storageid="45801" startvalue="0" endvalue="5" description="The fae queen asked for your help: Feyrist is threatened by intruders from Roshamuul. Kill 200 nightmare monsters and Kroazur.\n\nYou killed |STATE|/200 enfeebles silencers." />
+		<mission name="[3] Kroazur Killed" storageid="45802" startvalue="0" endvalue="1" description="The fae queen asked for your help: Feyrist is threatened by intruders from Roshamuul. Kill 200 nightmare monsters and Kroazur.\n\nYou killed |STATE|/1 Kroazur." />
+		<mission name="Nightmare Intruders" storageid="45761" startvalue="1" endvalue="8">
+			<missionstate id="1" description="The fae queen asked for your help: Feyrist is threatened by intruders from Roshamuul. Kill 200 nightmare monsters and Kroazur." />
+			<missionstate id="2" description="You killed 200 of the nightmare monsters that are invading Feyrist. Maelyrra was very happy but it seems she still has other problems. She may need your help once more." />
+			<missionstate id="3" description="Maelyrra asked you to retrieve an artefact for her: the moon mirror. It was stolen by the tainted fae who inhabit the caves underneath Feyrist. She also asked you to free some captured fairies." />
+			<missionstate id="4" description="You found the moon mirror and freed the captured fairies. Maelyrra was very happy but it seems she has another problem. Perhaps you should offer your assistance once more." />
+			<missionstate id="5" description="The barrier that protects Feyrist from the outside world is weakened. To strengthen it again you need to find the starlight vial and the sun catcher. Ask Aurita and Taegen for these items." />
+			<missionstate id="6" description="Gather sunlight, starlight and moon rays. You have to do this with the sun catcher on the beach, with the starlight vial high in the mountains and with the moon mirror on a glade in the forest." />
+			<missionstate id="7" description="You may now repair the barrier. Charge the five moon sculptures of Feyrist with moon rays, the five dreambird trees with starlight and the five sun mosics with sunlight." />
+			<missionstate id="8" description="You repaired the magical barrier that protects Feyrist from the outside world. The fae's secret realm is safe again." />
+		</mission>
+		
+		<mission name="An Unlikely Couple" storageid="45792" startvalue="1" endvalue="4">
+			<missionstate id="1" description="Help Aurita and Taegen and find a spell to transform Aurita's fishtail into legs temporarily. A fairy in a small fae village in the southwest of Feyrist might know more." />
+			<missionstate id="2" description="You have succesfully created the magical music notes for the mermaid Aurita. Talk to the faun Taegen, he also needs your help." />
+			<missionstate id="3" description="The faun Taegen wants to spend some time with his lover, the mermaid Aurita. He wants to visit her home and thus must be able to breath under water. Therefore he needs the rare raven herb." />
+			<missionstate id="4" description="You found the rare raven herb and gave it to Taegen. Now he will create a sun catcher for you. You may also ask Aurita for the starlight vial now." />
+		</mission>
+	</quest>
+	
 </quests>

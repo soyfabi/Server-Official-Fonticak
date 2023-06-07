@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<npc name="Asphota" script="Asphota.lua" walkinterval="2000" floorchange="0">
+  <health now="100" max="100" />
+  <look type="1538" head="19" body="54" legs="0" feet="0" addons="1" />
+</npc>
