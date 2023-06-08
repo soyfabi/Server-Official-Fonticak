@@ -35,7 +35,7 @@ function windows.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	if house then
-		if player:getPosition():Tile(toPosition):getHouse() ~= house and player:getAccountType() < ACCOUNT_TYPE_GAMEMASTER then
+		if player:getPosition():getTile():getHouse() ~= house and player:getAccountType() < ACCOUNT_TYPE_GAMEMASTER then
 			return false
 		end
 	end

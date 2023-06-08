@@ -2,7 +2,7 @@ local setting = {
 	-- At what level can do the quest?
 	requiredLevel = 100,
 	-- Can it be done daily? true = yes, false = no
-	daily = true,
+	daily = false,
 	-- Do not change from here down
 	centerDemonRoomPosition = {x = 33221, y = 31659, z = 13},
 	demonsPositions = {
@@ -17,7 +17,7 @@ local setting = {
 		{fromPos = {x = 33225, y = 31671, z = 13}, toPos = {x = 33222, y = 31659, z = 13}},
 		{fromPos = {x = 33224, y = 31671, z = 13}, toPos = {x = 33221, y = 31659, z = 13}},
 		{fromPos = {x = 33223, y = 31671, z = 13}, toPos = {x = 33220, y = 31659, z = 13}},
-		{fromPos = {x = 33222, y = 31671, z = 13}, toPos = {x = 33219, y = 31659, z = 13}},
+		{fromPos = {x = 33222, y = 31671, z = 13}, toPos = {x = 33219, y = 31659, z = 13}},	
 	}
 }
 
@@ -29,12 +29,27 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 		for i = 1, #setting.playersPositions do
 			local creature = Tile(setting.playersPositions[i].fromPos):getTopCreature()
 			if not creature then
+				local spectators = Game.getSpectators(Position(33224, 31671, 13), false, true, 4, 4, 4, 4)
+				for i = 1, #spectators do
+				local player = spectators[i]
+				if i == #spectators then
+					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Four players are required to start the quest.")
+					end
+				end
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Four players are required to start the quest.")
 				return true
 			end
 			if creature and creature:getLevel() < setting.requiredLevel then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "All the players need to be level ".. setting.requiredLevel .." or higher.")
 				return true
+			end
+		end
+		
+		local spectators = Game.getSpectators(Position(33224, 31671, 13), false, true, 4, 4, 4, 4)
+		for i = 1, #spectators do
+		local player = spectators[i]
+		if i == #spectators then
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A team is already inside the quest room.")
 			end
 		end
 
@@ -66,11 +81,21 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			player:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
 			return true
 		end
+		
+		local spectators = Game.getSpectators(Position(33224, 31671, 13), false, true, 4, 4, 4, 4)
+		for i = 1, #spectators do
+		local player = spectators[i]
+		if i == #spectators then
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A team is already inside the quest room.")
+			end
+		end
+		
 		-- Not be able to push the lever back if someone is still inside the monsters room
 		if Position.hasPlayer(setting.centerDemonRoomPosition, 4, 4) then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "A team is already inside the quest room.")
 			return true
 		end
+		
 		-- Removes all monsters so that the next team can enter
 		if Position.removeMonster(setting.centerDemonRoomPosition, 4, 4) then
 			return true

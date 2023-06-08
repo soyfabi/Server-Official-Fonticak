@@ -1,3 +1,8 @@
+-- Exercise Training --
+if onExerciseTraining == nil then
+	onExerciseTraining = {}
+end
+
 function isNumber(str)
 	return tonumber(str) ~= nil
 end
@@ -9,6 +14,38 @@ end
 
 function isValidMoney(money)
 	return isNumber(money) and money > 0 and money < 4294967296
+end
+
+function Tile.isPz(self)
+	return self:hasFlag(TILESTATE_PROTECTIONZONE)
+end
+
+function Tile.isHouse(self)
+	local house = self:getHouse()
+	return not not house
+end
+
+function Tile:isRopeSpot()
+	if not self then
+		return false
+	end
+
+	if not self:getGround() then
+		return false
+	end
+
+	if table.contains(ropeSpots, self:getGround():getId()) then
+		return true
+	end
+
+	for i = 1, self:getTopItemCount() do
+		local thing = self:getThing(i)
+		if thing and table.contains(specialRopeSpots, thing:getId()) then
+			return true
+		end
+	end
+
+	return false
 end
 
 function playerExists(name)
