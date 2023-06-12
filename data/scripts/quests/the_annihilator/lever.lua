@@ -16,8 +16,7 @@ local setting = {
 	playersPositions = {
 		{fromPos = {x = 33225, y = 31671, z = 13}, toPos = {x = 33222, y = 31659, z = 13}},
 		{fromPos = {x = 33224, y = 31671, z = 13}, toPos = {x = 33221, y = 31659, z = 13}},
-		{fromPos = {x = 33223, y = 31671, z = 13}, toPos = {x = 33220, y = 31659, z = 13}},
-		{fromPos = {x = 33222, y = 31671, z = 13}, toPos = {x = 33219, y = 31659, z = 13}},	
+	
 	}
 }
 
@@ -69,6 +68,7 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			local creature = Tile(setting.playersPositions[i].fromPos):getTopCreature()
 			if creature and creature:isPlayer() then
 				creature:teleportTo(setting.playersPositions[i].toPos)
+				creature:setStorageValue(Storage.Quest.U7_24.TheAnnihilator.MissionAnnihilator, 2)
 				creature:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 			else
 				return false

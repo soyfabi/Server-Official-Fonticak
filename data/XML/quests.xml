@@ -1552,6 +1552,12 @@
 			<missionstate id="1" description="You defeated Koshei the Deathless and gave him back his amulet. Don't forget to grab your reward." />
 			<missionstate id="2" description="You have completed Koshei the Deathless." />
 		</mission>
+		
+		<mission name="The Annihilator" storageid="10112" startvalue="1" endvalue="3">
+			<missionstate id="1" description="You have discovered annihilator, but you will need 4 players to proceed." />
+			<missionstate id="2" description="Fight against the Angry demon, try not to get killed." />
+			<missionstate id="3" description="Perfect, you have managed to pass annihilator without problems, collect your prize." />
+		</mission>
 	</quest>
 	
 	<quest name="The First Dragon" startstorageid="50350" startstoragevalue="1">

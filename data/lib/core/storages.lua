@@ -2063,7 +2063,8 @@ Storage = {
 				Bag2 = 10101
 			},
 			TheAnnihilator = {
-				Reward = 10102
+				Reward = 10102,
+				MissionAnnihilator = 10112,
 			},
 			TheParadoxTower = {
 				QuestLine = 10103,

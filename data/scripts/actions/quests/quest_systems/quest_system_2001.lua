@@ -1,4 +1,5 @@
 local specialQuests = {
+	[2215] = Storage.Quest.U7_24.TheAnnihilator.Reward,
 	-- {x = 32752, y = 32343, z = 14}
 	[52167] = Storage.DreamersChallenge.Reward,
 	-- {x = 32806, y = 32230, z = 11}
