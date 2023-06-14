@@ -21,3 +21,7 @@ end
 function Player.isKnight(self)
     return isInArray({4, 8}, self:getVocation():getId())
 end
+
+function Player.isMage(self)
+    return isInArray({1, 2, 5, 6}, self:getVocation():getId())
+end

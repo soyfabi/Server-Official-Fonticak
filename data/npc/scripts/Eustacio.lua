@@ -11,9 +11,7 @@ local function greetCallback(cid, msg)
 	local player = Player(cid)
 
 	if player:getStorageValue(Storage.Quest.U12_60.APiratesTail.RascacoonShortcut) == 1 then
-		npcHandler:setMessage(MESSAGE_GREET, {
-			"Hello my friend. What a delight to see you, even on a {busy} day. I see you already talked to my agent. I'm willing to lend you my boat if you want to take a {shortcut}. ..."
-		})
+		npcHandler:setMessage(MESSAGE_GREET, "Hello my friend. What a delight to see you, even on a {busy} day. I see you already talked to my agent. I'm willing to lend you my boat if you want to take a {shortcut}. ...")
 	else
 		npcHandler:setMessage(MESSAGE_GREET, "Hello my friend. What a delight to see you, even on a busy day. You can check your status or ask me about the location of ongoing raids.")
 	end
@@ -38,13 +36,13 @@ local function creatureSayCallback(cid, type, msg)
 				"You are trustworthy enough to take my boat. My agent made sure it takes me to their island. Do you want to take it?"
 			}, cid)
 			npcHandler.topic[cid] = 1
+		else
+			npcHandler:say("I can't let you pass friend.", cid)
 		end
-	elseif msgcontains(msg, "yes") then
-		if npcHandler.topic[cid] == 1 then
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 1 then
 			player:teleportTo(Position(33774, 31347, 7))
 			player:setDirection(DIRECTION_NORTH)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		end
 	end
 	return true
 end

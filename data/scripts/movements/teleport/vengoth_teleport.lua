@@ -33,7 +33,7 @@ function vengothTeleport.onStepIn(creature, item, position, fromPosition)
 	end
 	
 	local randomTexts = randomText[math.random(#randomText)]
-	player:say(randomTexts)
+	player:say(randomTexts, TALKTYPE_MONSTER_SAY, false, player, toPosition)
 	player:teleportTo(toPosition)
 	toPosition:sendMagicEffect(CONST_ME_PURPLEENERGY)
 	return true

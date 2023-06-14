@@ -112,13 +112,13 @@ local function creatureSayCallback(cid, type, msg)
 		local player = Player(cid)
 		local items = setNewTradeTable(getTable(player))
 		openShopWindow(cid, getTable(player), onBuy, onSell)
-		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
+		npcHandler:say("Of course, just browse through my wares. Or do you want to look only at {potions}, {wands} or {runes}?", cid)
 	end
 	if not npcHandler:isFocused(cid) then
 		return false
 	end
 	local player = Player(cid)
-	local items = {[1] = 2190, [2] = 2182}
+	local items = {[1] = 3074, [2] = 3066}
 	local itemId = items[player:getVocation():getBase():getId()]
 	if msgcontains(msg, 'first rod') or msgcontains(msg, 'first wand') then
 		if player:isMage() then
@@ -129,7 +129,7 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler:say('What? I have already gave you one {' .. ItemType(itemId):getName() .. '}!', cid)
 			end
 		else
-			npcHandler:say('Sorry, you aren\'t a druid either a sorcerer.', cid)
+			npcHandler:say('Sorry, you aren\'t a {druid} either a {sorcerer}.', cid)
 		end
 	elseif msgcontains(msg, 'yes') then
 		if npcHandler.topic[cid] == 1 then
@@ -149,5 +149,4 @@ npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:setMessage(MESSAGE_GREET, "Welcome |PLAYERNAME|! Whats your need?")
 npcHandler:setMessage(MESSAGE_FAREWELL, "Good bye, |PLAYERNAME|.")
 npcHandler:setMessage(MESSAGE_WALKAWAY, "Good bye, |PLAYERNAME|.")
-npcHandler:setMessage(MESSAGE_SENDTRADE, "Of course, just browse through my wares. Or do you want to look only at {potions}, {wands} or {runes}?")
 npcHandler:addModule(FocusModule:new())
