@@ -71,6 +71,10 @@ class ProtocolGame final : public Protocol
 		void spectate(const std::string& name, const std::string& password);
 		void logout(bool displayEffect, bool forced);
 
+		Player* getPlayer() const {
+			return player;
+		}
+
 		uint16_t getVersion() const {
 			return version;
 		}

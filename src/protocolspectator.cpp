@@ -25,6 +25,11 @@ void ProtocolSpectator::addSpectator(ProtocolGame_ptr spectator)
 {
     spectators.insert(spectator);
     setUpdateStatus(true); // update spectators count
+
+    TextMessage message;
+    message.type = MESSAGE_INFO_DESCR;
+    message.text = "You are now spectating " + owner->getPlayer()->getName() + ".\nPlayers watching: " + std::to_string(spectators.size()) + ".";
+    spectator->sendTextMessage(message);
 }
 
 void ProtocolSpectator::removeSpectator(ProtocolGame_ptr spectator)
