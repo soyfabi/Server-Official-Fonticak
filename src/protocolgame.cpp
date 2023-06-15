@@ -540,7 +540,7 @@ void ProtocolGame::parsePacket(NetworkMessage& msg)
 			case 0x72:
 				g_dispatcher.addTask(createTask(std::bind(&ProtocolGame::spectatorTurn, getThis(), recvbyte - 0x6F)));
 				break;
-			case 0xFE: parseSpectatorSay(msg); break;
+			case 0x96: parseSpectatorSay(msg); break;
 			case 0x97: g_dispatcher.addTask(createTask(std::bind(&ProtocolGame::sendCastChannel, getThis()))); break;
 			default:
 				g_dispatcher.addTask(createTask(std::bind(&ProtocolGame::sendCancelWalk, getThis())));
