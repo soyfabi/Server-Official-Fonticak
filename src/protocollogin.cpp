@@ -86,6 +86,36 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 	disconnect();
 }
 
+void ProtocolLogin::getCastList(const std::string& password)
+{
+	StringVector casts = IOLoginData::getCastList(password);
+	if (casts.empty()) {
+		disconnectClient("No public casts available.");
+		return;
+	}
+
+	auto output = OutputMessagePool::getOutputMessage();
+
+	//Add char list
+	output->addByte(0x64);
+
+	uint8_t size = std::min<size_t>(std::numeric_limits<uint8_t>::max(), casts.size());
+	output->addByte(size);
+	for (uint8_t i = 0; i < size; i++) {
+		output->addString(casts[i]);
+		output->addString(g_config.getString(ConfigManager::SERVER_NAME));
+		output->add<uint32_t>(g_config.getNumber(ConfigManager::IP));
+		output->add<uint16_t>(g_config.getNumber(ConfigManager::GAME_PORT));
+	}
+
+	//Add premium days
+	output->add<uint16_t>(0xFFFF);
+
+	send(output);
+
+	disconnect();
+}
+
 void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 {
 	if (g_game.getGameState() == GAME_STATE_SHUTDOWN) {
@@ -157,19 +187,14 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 		disconnectClient(fmt::format("Your IP has been banned until {:s} by {:s}.\n\nReason specified:\n{:s}", formatDateShort(banInfo.expiresAt), banInfo.bannedBy, banInfo.reason));
 		return;
 	}
-
+	
 	std::string accountName = msg.getString();
-	if (accountName.empty()) {
-		disconnectClient("Invalid account name.");
-		return;
-	}
-
 	std::string password = msg.getString();
-	if (password.empty()) {
-		disconnectClient("Invalid password.");
-		return;
-	}
 
 	auto thisPtr = std::static_pointer_cast<ProtocolLogin>(shared_from_this());
-	g_dispatcher.addTask(createTask(std::bind(&ProtocolLogin::getCharacterList, thisPtr, accountName, password)));
+	if (accountName.empty()) {
+		g_dispatcher.addTask(createTask(std::bind(&ProtocolLogin::getCastList, thisPtr, password)));
+	} else {
+		g_dispatcher.addTask(createTask(std::bind(&ProtocolLogin::getCharacterList, thisPtr, accountName, password)));
+	}
 }

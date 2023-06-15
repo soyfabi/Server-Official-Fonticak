@@ -44,6 +44,7 @@ class ProtocolLogin : public Protocol
 		void disconnectClient(const std::string& message);
 
 		void getCharacterList(const std::string& accountName, const std::string& password);
+		void getCastList(const std::string& password);
 };
 
 #endif

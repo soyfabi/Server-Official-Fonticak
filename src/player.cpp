@@ -51,9 +51,9 @@ uint32_t Player::playerAutoID = 0x10000000;
 
 Player::Player(ProtocolGame_ptr p) :
 	Creature(),
+	client(std::make_shared<ProtocolSpectator>(std::move(p))),
 	lastPing(OTSYS_TIME()),
 	lastPong(lastPing),
-	client(std::move(p)),
 	inbox(new Inbox(ITEM_INBOX)),
 	supplystash(new SupplyStash(ITEM_SUPPLY_STASH))
 {
@@ -1170,7 +1170,7 @@ void Player::onCreatureAppear(Creature* creature, bool isLogin)
 		}
 
 		g_game.checkPlayersRecord();
-		IOLoginData::updateOnlineStatus(guid, true);
+		IOLoginData::updateOnlineStatus(getGUID(), true, client->isBroadcasting(), client->password(), client->description(), client->spectatorList().size());
 	}
 }
 
@@ -1263,7 +1263,7 @@ void Player::onRemoveCreature(Creature* creature, bool isLogout)
 			guild->removeMember(this);
 		}
 
-		IOLoginData::updateOnlineStatus(guid, false);
+		IOLoginData::removeOnlineStatus(guid);
 
 		bool saved = false;
 		for (uint32_t tries = 0; tries < 3; ++tries) {
@@ -1516,6 +1516,11 @@ void Player::onThink(uint32_t interval)
 	Creature::onThink(interval);
 
 	sendPing();
+
+	if (client->isWaitingForUpdate()) {
+		IOLoginData::updateOnlineStatus(getGUID(), false, client->isBroadcasting(), client->password(), client->description(), client->spectatorList().size());
+		client->setUpdateStatus(false);
+	}
 
 	MessageBufferTicks += interval;
 	if (MessageBufferTicks >= 1500) {
@@ -2241,9 +2246,8 @@ void Player::kickPlayer(bool displayEffect)
 	g_creatureEvents->playerLogout(this);
 	if (client) {
 		client->logout(displayEffect, true);
-	} else {
-		g_game.removeCreature(this);
 	}
+	g_game.removeCreature(this);
 }
 
 void Player::notifyStatusChange(Player* loginPlayer, VipStatus_t status)

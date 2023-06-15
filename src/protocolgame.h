@@ -35,6 +35,7 @@ class Connection;
 class Quest;
 class ProtocolGame;
 using ProtocolGame_ptr = std::shared_ptr<ProtocolGame>;
+class ProtocolSpectator;
 
 extern Game g_game;
 
@@ -67,11 +68,17 @@ class ProtocolGame final : public Protocol
 		explicit ProtocolGame(Connection_ptr connection) : Protocol(connection) {}
 
 		void login(const std::string& name, uint32_t accountId, OperatingSystem_t operatingSystem);
+		void spectate(const std::string& name, const std::string& password);
 		void logout(bool displayEffect, bool forced);
 
 		uint16_t getVersion() const {
 			return version;
 		}
+
+		static uint32_t spectatorId;
+		static std::set<std::string> spectatorNames;
+		const std::string getSpectatorName() const { return spectator_name; }
+		void setSpectatorName(const std::string& new_name) { spectator_name = new_name; }
 
 	private:
 		ProtocolGame_ptr getThis() {
@@ -267,6 +274,7 @@ class ProtocolGame final : public Protocol
 		void parseExtendedOpcode(NetworkMessage& msg);
 
 		friend class Player;
+		friend class ProtocolSpectator;
 
 		// Helpers so we don't need to bind every time
 		template <typename Callable, typename... Args>
@@ -278,6 +286,16 @@ class ProtocolGame final : public Protocol
 		void addGameTaskTimed(uint32_t delay, Callable&& function, Args&&... args) {
 			g_dispatcher.addTask(createTask(delay, std::bind(std::forward<Callable>(function), &g_game, std::forward<Args>(args)...)));
 		}
+
+		//cast
+		void spectatorTurn(uint8_t direction);
+		void parseSpectatorSay(NetworkMessage& msg);
+		void spectatorSay(const std::string text, uint16_t channelId);
+		void sendCastChannel();
+		void syncOpenContainers();
+
+		bool isSpectator = false;
+		std::string spectator_name = "";
 
 		std::unordered_set<uint32_t> knownCreatureSet;
 		Player* player = nullptr;

@@ -646,6 +646,7 @@ enum ReloadTypes_t : uint8_t  {
 static constexpr int32_t CHANNEL_GUILD = 0x00;
 static constexpr int32_t CHANNEL_PARTY = 0x01;
 static constexpr int32_t CHANNEL_PRIVATE = 0xFFFF;
+static constexpr int32_t CHANNEL_CAST = 0xFF;
 
 //Reserved player storage key ranges;
 //[10000000 - 20000000];

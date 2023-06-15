@@ -935,6 +935,9 @@ class LuaScriptInterface
 		static int luaPlayerSetStorageValue(lua_State* L);
 		static int luaPlayerClearStorageValues(lua_State* L);
 
+		static int luaPlayerGetSpectators(lua_State* L);
+		static int luaPlayerSetSpectators(lua_State* L);
+
 		static int luaPlayerAddItem(lua_State* L);
 		static int luaPlayerAddItemEx(lua_State* L);
 		static int luaPlayerRemoveItem(lua_State* L);
@@ -946,6 +949,7 @@ class LuaScriptInterface
 		static int luaPlayerShowTextDialog(lua_State* L);
 
 		static int luaPlayerSendTextMessage(lua_State* L);
+		static int luaPlayerSendCastChannelMessage(lua_State* L);
 		static int luaPlayerSendChannelMessage(lua_State* L);
 		static int luaPlayerSendPrivateMessage(lua_State* L);
 

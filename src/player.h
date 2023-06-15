@@ -27,6 +27,7 @@
 #include "enums.h"
 #include "vocation.h"
 #include "protocolgame.h"
+#include "protocolspectator.h"
 #include "ioguild.h"
 #include "party.h"
 #include "depotchest.h"
@@ -47,6 +48,7 @@ class House;
 class NetworkMessage;
 class Weapon;
 class ProtocolGame;
+class ProtocolSpectator;
 class Npc;
 class Party;
 class SchedulerTask;
@@ -802,30 +804,30 @@ class Player final : public Creature, public Cylinder
 		}
 		
 		void sendQuiverUpdate(bool sendAll = false)
-	{
-		if (!sendAll) {
-			// update one slot
-			Thing* slotThing = getThing(CONST_SLOT_RIGHT);
-			if (slotThing) {
-				Item* slotItem = slotThing->getItem();
-				if (slotItem && slotItem->getWeaponType() == WEAPON_QUIVER) {
-					sendInventoryItem(CONST_SLOT_RIGHT, slotItem);
-				}
-			}
-		} else {
-			// update all slots
-			std::vector<slots_t> slots = {CONST_SLOT_RIGHT, CONST_SLOT_LEFT, CONST_SLOT_AMMO};
-			for (auto const& slot : slots) {
-				Thing* slotThing = getThing(slot);
+		{
+			if (!sendAll) {
+				// update one slot
+				Thing* slotThing = getThing(CONST_SLOT_RIGHT);
 				if (slotThing) {
 					Item* slotItem = slotThing->getItem();
 					if (slotItem && slotItem->getWeaponType() == WEAPON_QUIVER) {
-						sendInventoryItem(slot, slotItem);
+						sendInventoryItem(CONST_SLOT_RIGHT, slotItem);
+					}
+				}
+			} else {
+				// update all slots
+				std::vector<slots_t> slots = {CONST_SLOT_RIGHT, CONST_SLOT_LEFT, CONST_SLOT_AMMO};
+				for (auto const& slot : slots) {
+					Thing* slotThing = getThing(slot);
+					if (slotThing) {
+						Item* slotItem = slotThing->getItem();
+						if (slotItem && slotItem->getWeaponType() == WEAPON_QUIVER) {
+							sendInventoryItem(slot, slotItem);
+						}
 					}
 				}
 			}
 		}
-	}
 
 		//event methods
 		void onUpdateTileItem(const Tile* tile, const Position& pos, const Item* oldItem,
@@ -1057,6 +1059,12 @@ class Player final : public Creature, public Cylinder
 
 		void updateRegeneration();
 
+		const std::map<uint8_t, OpenContainer>& getOpenContainers() const {
+			return openContainers;
+		}
+
+		ProtocolSpectator_ptr client;
+
 	private:
 		std::forward_list<Condition*> getMuteConditions() const;
 
@@ -1159,7 +1167,6 @@ class Player final : public Creature, public Cylinder
 		Npc* shopOwner = nullptr;
 		Party* party = nullptr;
 		Player* tradePartner = nullptr;
-		ProtocolGame_ptr client;
 		SchedulerTask* walkTask = nullptr;
 		Town* town = nullptr;
 		Vocation* vocation = nullptr;
@@ -1259,6 +1266,7 @@ class Player final : public Creature, public Cylinder
 		friend class Actions;
 		friend class IOLoginData;
 		friend class ProtocolGame;
+		friend class ProtocolSpectator;
 };
 
 #endif
