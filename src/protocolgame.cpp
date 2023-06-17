@@ -296,11 +296,10 @@ void ProtocolGame::spectate(const std::string& name, const std::string& password
 	} while (spectatorNames.find(asLowerCaseString(spectator_name)) != spectatorNames.end());
 	spectatorNames.insert(asLowerCaseString(spectator_name));
 
+	player->client->addSpectator(getThis());
 	sendAddCreature(player, player->getPosition(), 0, false);
 	sendCastChannel();
 	syncOpenContainers();
-
-	player->client->addSpectator(getThis());
 	acceptPackets = true;
 
 	OutputMessagePool::getInstance().addProtocolToAutosend(shared_from_this());
