@@ -31,10 +31,15 @@ class ProtocolSpectator {
             setBroadcast(false);
         }
 
-        void clear() {
+        void clear(bool full = true) {
             for(auto& it : spectators)
                 it->disconnect();
             spectators.clear();
+
+            if (!full) {
+                return;
+            }
+
             mutes.clear();
             bans.clear();
 

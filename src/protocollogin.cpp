@@ -88,7 +88,7 @@ void ProtocolLogin::getCharacterList(const std::string& accountName, const std::
 
 void ProtocolLogin::getCastList(const std::string& password)
 {
-	StringVector casts = IOLoginData::getCastList(password);
+	const auto& casts = IOLoginData::getCastList(password);
 	if (casts.empty()) {
 		disconnectClient("No public casts available.");
 		return;
@@ -99,11 +99,16 @@ void ProtocolLogin::getCastList(const std::string& password)
 	//Add char list
 	output->addByte(0x64);
 
-	uint8_t size = std::min<size_t>(std::numeric_limits<uint8_t>::max(), casts.size());
-	output->addByte(size);
-	for (uint8_t i = 0; i < size; i++) {
-		output->addString(casts[i]);
-		output->addString(g_config.getString(ConfigManager::SERVER_NAME));
+	uint8_t limit = std::numeric_limits<uint8_t>::max();
+	output->addByte(std::min<uint8_t>(limit, casts.size()));
+
+	for (const auto& it : casts) {
+		if (limit == 0) {
+			break;
+		}
+
+		output->addString(it.first);
+		output->addString(it.second);
 		output->add<uint32_t>(g_config.getNumber(ConfigManager::IP));
 		output->add<uint16_t>(g_config.getNumber(ConfigManager::GAME_PORT));
 	}

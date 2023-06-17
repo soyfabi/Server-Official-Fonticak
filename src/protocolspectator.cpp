@@ -28,14 +28,23 @@ void ProtocolSpectator::addSpectator(ProtocolGame_ptr spectator)
 
     TextMessage message;
     message.type = MESSAGE_INFO_DESCR;
-    message.text = "You are now spectating " + owner->getPlayer()->getName() + ".\nPlayers watching: " + std::to_string(spectators.size()) + ".\nYou can move between cast with CTRL+ARROW <->.";
+    message.text = "You are now spectating " + owner->getPlayer()->getName() + ".\nPlayers watching: " + std::to_string(spectators.size()) + ".";
     spectator->sendTextMessage(message);
+
+    message.type = MESSAGE_EVENT_ORANGE;
+    message.text = spectator->getSpectatorName() + " has joined to your cast.";
+    sendTextMessage(message);
 }
 
 void ProtocolSpectator::removeSpectator(ProtocolGame_ptr spectator)
 {
     spectators.erase(spectator);
     setUpdateStatus(true); // update spectators count
+
+    TextMessage message;
+    message.type = MESSAGE_EVENT_ORANGE;
+    message.text = spectator->getSpectatorName() + " has left from your cast.";
+    sendTextMessage(message);
 }
 
 void ProtocolSpectator::kick(const DataList& _kicks)

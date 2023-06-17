@@ -31,7 +31,7 @@ class IOLoginData
 	public:
 		static Account loadAccount(uint32_t accno);
 
-		static StringVector getCastList(const std::string& password);
+		static std::vector<std::pair<std::string, std::string>> getCastList(const std::string& password);
 		static bool loginserverAuthentication(const std::string& name, const std::string& password, Account& account);
 		static uint32_t gameworldAuthentication(const std::string& accountName, const std::string& password, std::string& characterName, bool& cast);
 		static uint32_t getAccountIdByPlayerName(const std::string& playerName);

@@ -26,6 +26,8 @@
 #include "const.h"
 #include "enums.h"
 
+std::string getVocationShortName(uint8_t vocationId);
+
 void printXMLError(const std::string& where, const std::string& fileName, const pugi::xml_parse_result& result);
 
 std::string transformToSHA1(const std::string& input);
