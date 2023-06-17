@@ -61,7 +61,7 @@ std::vector<std::pair<std::string, std::string>> IOLoginData::getCastList(const 
 	}
 
 	if (!vec.empty()) {
-		vec.push_back(std::make_pair("------------", "------------"));
+		vec.push_back(std::make_pair("--", "CAST WITH PASSWORDS)---"));
 	}
 
 	result = db.storeQuery(fmt::format("SELECT `name`, `level`, `spectators`, `password`, `vocation` FROM `players` LEFT JOIN `players_online` ON `players`.`id` = `players_online`.`player_id` WHERE `broadcasting` = 1 AND `password` != '' ORDER BY `name` DESC"));		

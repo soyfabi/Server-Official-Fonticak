@@ -90,7 +90,7 @@ void ProtocolLogin::getCastList(const std::string& password)
 {
 	const auto& casts = IOLoginData::getCastList(password);
 	if (casts.empty()) {
-		disconnectClient("No public casts available.");
+		disconnectClient("There are no casts available at this time.");
 		return;
 	}
 
@@ -98,7 +98,7 @@ void ProtocolLogin::getCastList(const std::string& password)
 
 	//Add MOTD
 	output->addByte(0x14);
-	output->addString(fmt::format("{:d}\n{:s}", normal_random(1, 255), "your message here\nnew line here\nanother line here"));
+	output->addString(fmt::format("{:d}\n{:s}", normal_random(1, 255), "                    !-Welcome to Cast System-!\n\nIt will show all active casts even with password.\n\nTo enter a cast with password you just have to\nput the password in the empty space.\n\nRemember that when you open cast without\npassword you will get 10% of Exp.\n\nAlso remember that to open cast, just say !cast on."));
 
 	//Add char list
 	output->addByte(0x64);
