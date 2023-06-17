@@ -2705,7 +2705,9 @@
 		<attribute key="rotateto" value="2059"/>
 	</item>
 	<item id="2026" article="a" name="statue"/>
-	<item id="2027" article="a" name="hero statue"/>
+	<item id="2027" article="a" name="hero statue">
+	<attribute key="allowdistread" value="1"/>
+	</item>
 	<item id="2028" article="a" name="monument"/>
 	<item id="2029" article="a" name="minotaur statue">
 		<attribute key="rotateto" value="2045"/>
@@ -2716,9 +2718,13 @@
 	<item id="2031" article="an" name="angel statue"/>
 	<item id="2032" article="a" name="dwarven statue"/>
 	<item id="2033" article="a" name="watchdog statue"/>
-	<item id="2034" article="a" name="sandstone statue"/>
+	<item id="2034" article="a" name="sandstone statue">
+	<attribute key="allowdistread" value="1"/>
+	</item>
 	<item fromid="2035" toid="2038" article="a" name="gargoyle statue"/>
-	<item fromid="2039" toid="2042" article="a" name="pedestal"/>
+	<item fromid="2039" toid="2042" article="a" name="pedestal">
+	<attribute key="allowdistread" value="1"/>
+	</item>
 	<item id="2043" article="a" name="minotaur statue">
 		<attribute key="rotateto" value="2044"/>
 	</item>

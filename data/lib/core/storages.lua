@@ -1001,7 +1001,8 @@ Storage = {
 		Mission02 = 51142,
 		Mission03 = 51143,
 		MeadTotalSips = 51144,
-		MeadSuccessSips = 51145
+		MeadSuccessSips = 51145,
+		HonoraryBarbarian = 51146,
 	},
 	TheIceIslands = {
 		-- Reserved storage from 51160 - 51199

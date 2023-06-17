@@ -8,6 +8,7 @@ function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)
 function onThink()				npcHandler:onThink()					end
 
 local function greetCallback(cid, msg)
+	local player = Player(cid)
 	if player:getStorageValue(Storage.TheIceIslands.HuskyKillStatus) == 1 then
 		npcHandler:setMessage(MESSAGE_GREET, "Iskan told me that you killed huskies here in Svargrond. I will be lenient towards you and won't ban you from Svargrond. But you have to pay me a compensation of 1500 gold for each husky you have killed. Are you willing to pay "..player:getStorageValue(Storage.TheIceIslands.HuskyKill) * 1500 .."?")
 	else
@@ -22,12 +23,12 @@ local function creatureSayCallback(cid, type, msg)
 	end
 	local player = Player(cid)
 	
-	if msgcontains(msg, "barbarian") then
+	if msgcontains(msg, "barbarian") or msgcontains(msg, "barbarians") then
 		if player:getStorageValue(Storage.BarbarianTest.Questline) < 1 then
 			npcHandler:say("A true barbarian is something special among our people. Everyone who wants to become a barbarian will have to pass the barbarian {test}.", cid)
 			npcHandler.topic[cid] = 1
 		end
-	elseif msgcontains(msg, "test") then
+	elseif msgcontains(msg, "test") and npcHandler.topic[cid] == 1 then
 		npcHandler:say({
 			"All of our juveniles have to take the barbarian test to become a true member of our community. Foreigners who manage to master the test are granted the title of an honorary barbarian and the respect of our people ...",
 			"Are you willing to take the barbarian test?"
@@ -67,6 +68,7 @@ local function creatureSayCallback(cid, type, msg)
 				"We usually solve our problems on our own but some of the people might have a mission for you. Old Iskan, on the ice in the northern part of the town had some trouble with his dogs lately."
 			}, cid)
 			player:setStorageValue(Storage.BarbarianTest.Questline, 8)
+			player:setStorageValue(Storage.BarbarianTest.HonoraryBarbarian, 1)
 			player:addAchievement('Honorary Barbarian')
 			npcHandler.topic[cid] = 0
 		end
@@ -102,6 +104,7 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler:say("Good, for this honeycomb I allow you 20 sips from the mead bucket over there. Talk to me again about barbarian mead if you have passed the test.", cid)
 				npcHandler.topic[cid] = 0
 				player:setStorageValue(Storage.BarbarianTest.Questline, 2)
+				player:setStorageValue(Storage.TheIceIslands.Questline, 1)
 				player:setStorageValue(Storage.BarbarianTest.Mission01, 2) -- Questlog Barbarian Test Quest Barbarian Test 1: Barbarian Booze
 				player:setStorageValue(Storage.BarbarianTest.MeadTotalSips, 0)
 			end

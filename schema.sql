@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `players_online` (
   `description` varchar(255) NOT NULL DEFAULT '',
   `spectators` int(11) NOT NULL DEFAULT '0',
   `protocol_version` int(4) NOT NULL DEFAULT '0'
-) ENGINE=MEMORY DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS `player_deaths` (
   `player_id` int NOT NULL,

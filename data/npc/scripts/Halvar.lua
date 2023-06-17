@@ -8,6 +8,7 @@ function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)
 function onThink()				npcHandler:onThink()					end
 
 keywordHandler:addKeyword({'rules'}, StdModule.say, {npcHandler = npcHandler, text = 'What do you want to know? Something about the three different {difficulties}, the {general} rules or the {prices}? Maybe you also want to know what happens when you {die}?'})
+keywordHandler:addKeyword({'barbarian test'}, StdModule.say, {npcHandler = npcHandler, text = 'Talk to {Sven}, he will tell you all about the Task.'})
 keywordHandler:addKeyword({'difficulties'}, StdModule.say, {npcHandler = npcHandler, text = 'There are three difficulties: Greenhorn, Scrapper and Warlord. On each challenge you will be confronted with ten monsters increasing in strength.'})
 keywordHandler:addKeyword({'levels'}, StdModule.say, {npcHandler = npcHandler, text = 'There are three difficulties: Greenhorn, Scrapper and Warlord. On each challenge you will be confronted with ten monsters increasing in strength.'})
 keywordHandler:addKeyword({'difficulty'}, StdModule.say, {npcHandler = npcHandler, text = 'There are three difficulties: Greenhorn, Scrapper and Warlord. On each challenge you will be confronted with ten monsters increasing in strength.'})
@@ -26,9 +27,12 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	local player = Player(cid)
+	
 	local arenaId = player:getStorageValue(Storage.SvargrondArena.Arena)
 	if msgcontains(msg, 'fight') or msgcontains(msg, 'pit') or msgcontains(msg, 'challenge') or msgcontains(msg, 'arena') then
-		if player:getStorageValue(Storage.SvargrondArena.Pit) == 1 then
+		--if player:getStorageValue(Storage.BarbarianTest.HonoraryBarbarian) == 1 then
+		
+		if player:getStorageValue(Storage.SvargrondArena.PitDoor) == 1 then
 			npcHandler:say('You already paid the fee, go and fight!', cid)
 			return true
 		end
@@ -54,7 +58,7 @@ local function creatureSayCallback(cid, type, msg)
 			end
 
 			if player:removeMoneyNpc(ARENA[arenaId].price) then
-				player:setStorageValue(Storage.SvargrondArena.Pit, 1)
+				player:setStorageValue(Storage.SvargrondArena.PitDoor, 1)
 				npcHandler:say('As you wish! You can pass the door now and enter the teleporter to the pits.', cid)
 
 				local cStorage = ARENA[arenaId].questLog
@@ -67,6 +71,10 @@ local function creatureSayCallback(cid, type, msg)
 		else
 			npcHandler:say('Come back when you are ready then.', cid)
 		end
+		else
+		--npcHandler:say('You don\'t have permission, you need to complete the {Barbarian Test}.', cid)
+		--player:setStorageValue(Storage.BarbarianTest.HonoraryBarbarian, 1)
+	--end
 		npcHandler.topic[cid] = 0
 	end
 	return true

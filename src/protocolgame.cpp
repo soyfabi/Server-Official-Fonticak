@@ -291,7 +291,7 @@ void ProtocolGame::spectate(const std::string& name, const std::string& password
 	isSpectator = true;
 
 	do {
-		spectator_name = std::string("Spectator_") + std::to_string(spectatorId);
+		spectator_name = std::string("Viewer ") + std::to_string(spectatorId);
 		spectatorId += 1;
 	} while (spectatorNames.find(asLowerCaseString(spectator_name)) != spectatorNames.end());
 	spectatorNames.insert(asLowerCaseString(spectator_name));
