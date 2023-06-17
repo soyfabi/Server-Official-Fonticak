@@ -29,7 +29,7 @@ void ProtocolSpectator::addSpectator(ProtocolGame_ptr spectator)
 
     TextMessage message;
     message.type = MESSAGE_INFO_DESCR;
-    message.text = "You are now spectating " + owner->getPlayer()->getName() + ".\nPlayers watching: " + std::to_string(spectators.size()) + ".";
+    message.text = "You are now spectating " + owner->getPlayer()->getName() + ".\nPlayers watching: " + std::to_string(spectators.size()) + ".\nYou can move between cast with CTRL+ARROW < - >.";
     spectator->sendTextMessage(message);
 }
 

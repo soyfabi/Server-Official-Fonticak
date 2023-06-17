@@ -296,8 +296,8 @@ void ProtocolGame::spectate(const std::string& name, const std::string& password
 	} while (spectatorNames.find(asLowerCaseString(spectator_name)) != spectatorNames.end());
 	spectatorNames.insert(asLowerCaseString(spectator_name));
 
-	player->client->addSpectator(getThis());
 	sendAddCreature(player, player->getPosition(), 0, false);
+	player->client->addSpectator(getThis());
 	sendCastChannel();
 	syncOpenContainers();
 	acceptPackets = true;
@@ -2581,10 +2581,10 @@ void ProtocolGame::spectatorTurn(uint8_t direction)
 
 	player = _player;
 	player->incrementReferenceCounter();
-	player->client->addSpectator(getThis());
 
 	knownCreatureSet.clear();
 	sendAddCreature(player, player->getPosition(), 0, false);
+	player->client->addSpectator(getThis());
 	sendCastChannel();
 	syncOpenContainers();
 }
