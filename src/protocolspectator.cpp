@@ -25,7 +25,7 @@ void ProtocolSpectator::addSpectator(ProtocolGame_ptr spectator)
 {
     spectators.insert(spectator);
     setUpdateStatus(true); // update spectators count
-    sendCastMessage("", spectator->getSpectatorName() + " has joined to your cast.", TALKTYPE_CHANNEL_O, spectator);
+    sendCastMessage("", spectator->getSpectatorName() + " has joined to your cast.", TALKTYPE_CHANNEL_O);
 
     TextMessage message;
     message.type = MESSAGE_INFO_DESCR;
@@ -37,7 +37,7 @@ void ProtocolSpectator::removeSpectator(ProtocolGame_ptr spectator)
 {
     spectators.erase(spectator);
     setUpdateStatus(true); // update spectators count
-    sendCastMessage("", spectator->getSpectatorName() + " has left from your cast.", TALKTYPE_CHANNEL_O, spectator);
+    sendCastMessage("", spectator->getSpectatorName() + " has left from your cast.", TALKTYPE_CHANNEL_O);
 }
 
 void ProtocolSpectator::kick(const DataList& _kicks)
