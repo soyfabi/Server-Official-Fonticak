@@ -96,6 +96,10 @@ void ProtocolLogin::getCastList(const std::string& password)
 
 	auto output = OutputMessagePool::getOutputMessage();
 
+	//Add MOTD
+	output->addByte(0x14);
+	output->addString(fmt::format("{:d}\n{:s}", normal_random(1, 255), "your message here\nnew line here\nanother line here"));
+
 	//Add char list
 	output->addByte(0x64);
 
