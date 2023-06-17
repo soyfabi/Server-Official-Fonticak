@@ -2581,13 +2581,12 @@ void ProtocolGame::spectatorTurn(uint8_t direction)
 
 	player = _player;
 	player->incrementReferenceCounter();
+	player->client->addSpectator(getThis());
 
 	knownCreatureSet.clear();
 	sendAddCreature(player, player->getPosition(), 0, false);
 	sendCastChannel();
 	syncOpenContainers();
-
-	player->client->addSpectator(getThis());
 }
 
 void ProtocolGame::parseSpectatorSay(NetworkMessage& msg)
