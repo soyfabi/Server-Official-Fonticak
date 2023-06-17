@@ -33,14 +33,43 @@
 extern ConfigManager g_config;
 extern Game g_game;
 
-StringVector IOLoginData::getCastList(const std::string& password)
+std::vector<std::pair<std::string, std::string>> IOLoginData::getCastList(const std::string& password)
 {
 	Database& db = Database::getInstance();
-	StringVector vec;
-	DBResult_ptr result = db.storeQuery(fmt::format("SELECT `name`, `level`, `spectators` FROM `players` LEFT JOIN `players_online` ON `players`.`id` = `players_online`.`player_id` WHERE `broadcasting` = 1 AND `password` = {:s}", db.escapeString(password)));
+	std::vector<std::pair<std::string, std::string>> vec; vec.reserve(8);
+
+	DBResult_ptr result;
+	if (!password.empty()) {
+		result = db.storeQuery(fmt::format("SELECT `name`, `level`, `spectators`, `password`, `vocation` FROM `players` LEFT JOIN `players_online` ON `players`.`id` = `players_online`.`player_id` WHERE `broadcasting` = 1 AND `password` = {:s} ORDER BY `name` DESC", db.escapeString(password)));
+		if (result) {
+			do {
+				std::stringstream ss;
+				ss << "* " << result->getNumber<uint16_t>("level") << " " << getVocationShortName(result->getNumber<uint16_t>("vocation")) << " " << result->getNumber<uint32_t>("spectators") << "/50";
+				vec.push_back(std::make_pair(result->getString("name"), ss.str()));
+			} while (result->next());
+		}
+		return vec;
+	}
+
+	result = db.storeQuery(fmt::format("SELECT `name`, `level`, `spectators`, `password`, `vocation` FROM `players` LEFT JOIN `players_online` ON `players`.`id` = `players_online`.`player_id` WHERE `broadcasting` = 1 AND `password` = '' ORDER BY `name` DESC"));
 	if (result) {
 		do {
-			vec.push_back(result->getString("name"));
+			std::stringstream ss;
+			ss << result->getNumber<uint16_t>("level") << " " << getVocationShortName(result->getNumber<uint16_t>("vocation")) << " " << result->getNumber<uint32_t>("spectators") << "/50";
+			vec.push_back(std::make_pair(result->getString("name"), ss.str()));
+		} while (result->next());
+	}
+
+	if (!vec.empty()) {
+		vec.push_back(std::make_pair("------------", "------------"));
+	}
+
+	result = db.storeQuery(fmt::format("SELECT `name`, `level`, `spectators`, `password`, `vocation` FROM `players` LEFT JOIN `players_online` ON `players`.`id` = `players_online`.`player_id` WHERE `broadcasting` = 1 AND `password` != '' ORDER BY `name` DESC"));		
+	if (result) {
+		do {
+			std::stringstream ss;
+			ss << "* " << result->getNumber<uint16_t>("level") << " " << getVocationShortName(result->getNumber<uint16_t>("vocation")) << " " << result->getNumber<uint32_t>("spectators") << "/50";
+			vec.push_back(std::make_pair(result->getString("name"), ss.str()));
 		} while (result->next());
 	}
 	return vec;
