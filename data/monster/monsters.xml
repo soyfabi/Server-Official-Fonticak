@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monsters>
-	<monster name="Rat" file="monsters/rat.xml" />
+	<!--<monster name="Rat" file="monsters/rat.xml" />-->
 </monsters>

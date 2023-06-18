@@ -2,13 +2,9 @@ local falconShield = Action()
 
 local ThreatenedDreams = Storage.Quest.U11_40.ThreatenedDreams
 function falconShield.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	player:setStorageValue(Storage.SweetyCyclops.AmuletStatus, 2)
-	player:setStorageValue(Storage.KosheiTheDeathless.RewardDoor, -1)
-	player:setStorageValue(Storage.KosheiTheDeathless.KosheiMission, -1)
-	player:say("hola")
-	player:getPosition():sendMagicEffect(CONST_ME_POFF)
-	player:getPosition():sendMagicEffect(CONST_ME_BLOCKHIT)
-	--player:clearStorageValue(Storage.ThievesGuild.Quest)
+	local msg = "[Reward Level]\n\nThey were deposited in your bank 20.000 gold coins\nto reach the level 20!"
+	player:getPosition():sendMagicEffect(math.random(CONST_ME_FIREWORK_YELLOW, CONST_ME_FIREWORK_BLUE))
+	player:popupFYI(msg)
 	return true
 end
 

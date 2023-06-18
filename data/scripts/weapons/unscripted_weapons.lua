@@ -4273,7 +4273,7 @@ local weapons = {
 		type = WEAPON_DISTANCE,
 		level = 25,
 		unproperly = true,
-		breakchance = 3
+		--breakchance = 3
 	},
 	{
 		-- assassin star
@@ -4289,7 +4289,7 @@ local weapons = {
 		type = WEAPON_DISTANCE,
 		level = 42,
 		unproperly = true,
-		breakchance = 1
+		--breakchance = 1
 	},
 	{
 		-- onyx arrow
@@ -4372,7 +4372,7 @@ local weapons = {
 		type = WEAPON_DISTANCE,
 		level = 20,
 		unproperly = true,
-		breakchance = 6
+		--breakchance = 6
 	},
 	{
 		-- ripper lance
@@ -4883,7 +4883,7 @@ local weapons = {
 		-- spear
 		itemid = 3277,
 		type = WEAPON_DISTANCE,
-		breakchance = 3
+		--breakchance = 3
 	},
 	{
 		-- hatchet

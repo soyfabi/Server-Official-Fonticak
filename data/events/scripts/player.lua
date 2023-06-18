@@ -114,10 +114,19 @@ function Player:onLoseExperience(exp)
 end
 
 function Player:onGainSkillTries(skill, tries)
-	if hasEvent.onGainSkillTries then
-		Event.onGainSkillTries(self, skill, tries)
+	if not APPLY_SKILL_MULTIPLIER then
+		return hasEvent.onGainSkillTries and Event.onGainSkillTries(self, skill, tries) or tries
 	end
+
+	if skill == SKILL_MAGLEVEL then
+		tries = tries * configManager.getNumber(configKeys.RATE_MAGIC)
+		return hasEvent.onGainSkillTries and Event.onGainSkillTries(self, skill, tries) or tries
+	end
+	tries = tries * configManager.getNumber(configKeys.RATE_SKILL)
+	return hasEvent.onGainSkillTries and Event.onGainSkillTries(self, skill, tries) or tries
 end
+
+
 
 function Player:onInventoryUpdate(item, slot, equip)
 	if hasEvent.onInventoryUpdate then
