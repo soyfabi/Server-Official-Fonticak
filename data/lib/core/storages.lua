@@ -141,6 +141,9 @@ Storage = {
 	PremiumAccount = 30058,
 	BattleAxeQuest = 30059,
 	ShrineEntrance = 30060,
+	
+	isCasting = 30061,
+	isCastingPassword = 30062,
 
 	--[[
 	Old storages

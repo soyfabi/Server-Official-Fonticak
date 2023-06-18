@@ -23,7 +23,7 @@ local event = Event()
 event.onGainExperience = function(self, source, exp, rawExp)
 
 	if self:isPremium() then
-		exp = exp * 1.2 -- 15% Exp
+		exp = exp * 1.1 -- 10% Exp
 	end
 	
 	return exp

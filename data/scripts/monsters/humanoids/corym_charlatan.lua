@@ -13,25 +13,11 @@ monster.outfit = {
 	lookMount = 0
 }
 
-monster.raceId = 916
-monster.Bestiary = {
-	class = "Humanoid",
-	race = BESTY_RACE_HUMANOID,
-	toKill = 500,
-	FirstUnlock = 25,
-	SecondUnlock = 250,
-	CharmsPoints = 15,
-	Stars = 2,
-	Occurrence = 0,
-	Locations = "Venore Corym Cave, Tiquanda Corym Cave, Corym Black Market, \z
-		Carlin Corym Cave/Dwarf Mines Diggers Depths Mine, Upper Spike."
-	}
-
 monster.health = 250
 monster.maxHealth = 250
 monster.race = "blood"
 monster.corpse = 17445
-monster.speed = 95
+monster.speed = 190
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -60,7 +46,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 0,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = true,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false

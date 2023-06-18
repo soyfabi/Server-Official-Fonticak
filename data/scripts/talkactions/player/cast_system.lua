@@ -12,7 +12,7 @@ function dump(o)
 end
 
 function sendHelp(player) 
-    player:sendCastChannelMessage('', 'Commands:\n!cast on <password>\n!cast off\n!cast list\n!cast help\n!cast mute/unmute <spectator_name>\n!cast ban/unban <spectator_name>\n!cast kick <spectator_name>', 8)
+    player:popupFYI("Commands of Casting:\n!cast on - enable the gameplay \n!cast off - disable the gameplay\n!cast password <password> - sets a password on the stream\n!cast password off - disable the password\n!cast list - displays the amount and nicknames of current spectators\n!cast mute <name> - mutes selected spectator from chat\n!cast unmute <name> - removes muted\n!cast ban - shows banished spectators list\n!cast unban <name> - removes banishment lock\n!cast kick <name> - kick a spectator from your stream")
 end
 
 function findIP(spectators, name)
@@ -36,17 +36,8 @@ end
 
 local talkAction = TalkAction("!cast")
 
-local exhaust = {}
-
 function talkAction.onSay(player, words, param)
 
-	local playerId = player:getId()
-    local currentTime = os.time()
-    if exhaust[playerId] and exhaust[playerId] > currentTime then
-		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
-		return true
-	end
-	
     local data = player:getSpectators()
 	if param == "" or param == nil then
 		sendHelp(player)
@@ -57,21 +48,53 @@ function talkAction.onSay(player, words, param)
 	local action = split[1]:lower()
 	table.remove(split, 1)
 	local target = table.concat(split, " ")
+	
+	
+	if action == "on" and player:getStorageValue(Storage.isCasting) == 1 then
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You already have the cast activated.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You already have the cast activated.")
+		return false
+	end
+	
 
 	if action == "on" then
 		data['broadcast'] = true
+		--data['password'] = target
+		player:setSpectators(data)
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have started casting your gameplay, now you have %10 Exp Bonus.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have started casting your gameplay, now you have %10 Exp Bonus.")
+		player:setStorageValue(Storage.isCasting, 1)
+		return false
+	elseif action == "password" then
+		if player:getStorageValue(Storage.isCasting) == 1 then
 		data['password'] = target
 		player:setSpectators(data)
-		player:sendTextMessage(22, "You have started casting your gameplay.")
-		player:setStorageValue(80009, 1)
-		exhaust[playerId] = currentTime + 3
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have set new password for your stream.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have set new password for your stream.")
+		player:setStorageValue(Storage.isCastingPassword, 1)
+		else
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")
+		end
+		return false
+	elseif action == "passwordoff" and player:getStorageValue(Storage.isCastingPassword) == 1 then
+		data['password'] = target
+		player:setSpectators(data)
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have removed password for your stream.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have removed password for your stream.")
+		player:clearStorageValue(Storage.isCastingPassword)
 		return false
 	elseif action == "off" then
+		if player:getStorageValue(Storage.isCasting) == 1 then
 		data['broadcast'] = false
 		player:setSpectators(data)
-		player:sendTextMessage(22, "You have stopped casting your gameplay.")
-		player:setStorageValue(80009, -1)
-		exhaust[playerId] = currentTime + 3
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have stopped casting your gameplay.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have stopped casting your gameplay.")
+		player:clearStorageValue(Storage.isCasting)
+		else
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")
+		end
 		return false
 	elseif action == "list" or action == "show" then
 		local spectators_list = ""
@@ -137,10 +160,22 @@ end
 talkAction:separator(" ")
 talkAction:register()
 
-local cast_logout = CreatureEvent("cast_logout")
-function cast_logout.onLogout(player)
-	player:setStorageValue(80009, -1)
+local cast_login = CreatureEvent("cast_login")
+function cast_login.onLogin(player)
+	player:clearStorageValue(Storage.isCasting)
 	return true
 end
 
-cast_logout:register()
+cast_login:register()
+
+local event = Event()
+event.onGainExperience = function(self, source, exp, rawExp)
+
+	if self:getStorageValue(Storage.isCasting) == 1 then
+		exp = exp * 1.17 -- 10% Exp
+	end
+	
+	return exp
+end
+
+event:register()

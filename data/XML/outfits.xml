@@ -25,7 +25,7 @@
 	<outfit type="0" looktype="329" name="Newly Wed" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="0" looktype="336" name="Warmaster" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="0" looktype="366" name="Wayfarer" premium="no" unlocked="yes" enabled="yes"/>
-	<!--<outfit type="0" looktype="431" name="Afflicted" premium="no" unlocked="yes" enabled="yes"/>
+	<outfit type="0" looktype="431" name="Afflicted" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="0" looktype="433" name="Elementalist" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="0" looktype="464" name="Deepling" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="0" looktype="466" name="Insectoid" premium="no" unlocked="yes" enabled="yes"/>
@@ -112,7 +112,7 @@
 	<outfit type="0" looktype="1582" name="Shadowlotus Disciple" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="0" looktype="1598" name="Ancient Aucar" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="0" looktype="1613" name="Frost Tracer" premium="no" unlocked="yes" enabled="yes"/>
-	<outfit type="0" looktype="1619" name="Armoured Archer" premium="no" unlocked="yes" enabled="yes"/>-->
+	<outfit type="0" looktype="1619" name="Armoured Archer" premium="no" unlocked="yes" enabled="yes"/>
 	
 
 	<!-- Male outfits -->
@@ -140,7 +140,7 @@
 	<outfit type="1" looktype="328" name="Newly Wed" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="1" looktype="335" name="Warmaster" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="1" looktype="367" name="Wayfarer" premium="no" unlocked="yes" enabled="yes"/>
-	<!--<outfit type="1" looktype="430" name="Afflicted" premium="no" unlocked="yes" enabled="yes"/>
+	<outfit type="1" looktype="430" name="Afflicted" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="1" looktype="432" name="Elementalist" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="1" looktype="463" name="Deepling" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="1" looktype="465" name="Insectoid" premium="no" unlocked="yes" enabled="yes"/>
@@ -227,5 +227,5 @@
 	<outfit type="1" looktype="1581" name="Shadowlotus Disciple" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="1" looktype="1597" name="Ancient Aucar" premium="no" unlocked="yes" enabled="yes"/>
 	<outfit type="1" looktype="1612" name="Frost Tracer" premium="no" unlocked="yes" enabled="yes"/>
-	<outfit type="1" looktype="1618" name="Armoured Archer" premium="no" unlocked="yes" enabled="yes"/>-->
+	<outfit type="1" looktype="1618" name="Armoured Archer" premium="no" unlocked="yes" enabled="yes"/>
 </outfits>

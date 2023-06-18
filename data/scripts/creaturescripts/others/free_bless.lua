@@ -7,9 +7,9 @@ function free_bless.onLogin(player)
 	
 	if player:getLevel() <= freeBless.level then
 		for i = 1, #freeBless.blesses do
-			--if player:hasBlessing(i) then
-				--return true
-			--end
+			if player:hasBlessing(i) then
+				return true
+			end
 		end
 		
 		player:getPosition():sendMagicEffect(50)

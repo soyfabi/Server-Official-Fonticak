@@ -250,7 +250,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler:say("I knew that you were smart enough to make the right decision! Your next mission will be a special one! ", cid)
 			npcHandler.topic[cid] = 0
 		elseif npcHandler.topic[cid] == 6 then
-			if player:getItemCount(9956) > 0 and player:getStorageValue(Storage.InServiceofYalahar.Questline) == 54 then
+			if player:getItemCount(9041) > 0 and player:getStorageValue(Storage.InServiceofYalahar.Questline) == 54 then
 				player:setStorageValue(Storage.InServiceofYalahar.Questline, 55)
 				npcHandler:say("Great! Here, take this yalaharian addon in a return.", cid)
 				player:addOutfitAddon(325, player:getStorageValue(Storage.InServiceofYalahar.SideDecision) == 1 and 1 or 2)
