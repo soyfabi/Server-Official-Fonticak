@@ -73,6 +73,7 @@ function mana_potion.onUse(cid, item, fromPosition, target, toPosition, isHotkey
 	
 	if player:getStorageValue(80008) == 1 then
 		player:addItem(potion.flask)
+		item:remove(1)
 		return true
 	end
 	

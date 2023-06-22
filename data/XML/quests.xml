@@ -1264,14 +1264,14 @@
 			<missionstate id="1" description="Rashid has declare you as one of his recognized traders, and now you are able to trade with him anytime.." />
 		</mission>
 	</quest>
-	<quest name="The Queen of the Banshees" startstorageid="50013" startstoragevalue="1">
-		<mission name="The Hidden Seal" storageid="50013" startvalue="1" endvalue="1" description="You broke the first seal." />
-		<mission name="The Seal of Logic" storageid="50014" startvalue="1" endvalue="1" description="You broke the sixth seal." />
-		<mission name="The Seal of True Path" storageid="50015" startvalue="1" endvalue="1" description="You broke the fifth seal." />
-		<mission name="The Seal of Sacrifice" storageid="50016" startvalue="1" endvalue="1" description="You broke the fourth seal." />
-		<mission name="The Seal of Demonrage" storageid="50018" startvalue="1" endvalue="1" description="You broke the third seal." />
-		<mission name="The Plague Seal" storageid="50019" startvalue="1" endvalue="1" description="You broke the second seal." />
-		<mission name="All Seals" storageid="50021" startvalue="1" endvalue="1" description="You broke all the seals." />
+	<quest name="The Queen of the Banshees" startstorageid="10072" startstoragevalue="1">
+		<mission name="The Hidden Seal" storageid="10073" startvalue="1" endvalue="1" description="You broke the first seal." />
+		<mission name="The Seal of Logic" storageid="10085" startvalue="1" endvalue="1" description="You broke the sixth seal." />
+		<mission name="The Seal of True Path" storageid="10082" startvalue="1" endvalue="1" description="You broke the fifth seal." />
+		<mission name="The Seal of Sacrifice" storageid="10080" startvalue="1" endvalue="1" description="You broke the fourth seal." />
+		<mission name="The Seal of Demonrage" storageid="10077" startvalue="1" endvalue="1" description="You broke the third seal." />
+		<mission name="The Plague Seal" storageid="10075" startvalue="1" endvalue="1" description="You broke the second seal." />
+		<mission name="All Seals" storageid="10087" startvalue="1" endvalue="1" description="You broke all the seals." />
 	</quest>
 	<quest name="The Ultimate Challenges" startstorageid="51710" startstoragevalue="1">
 		<mission name="Barbarian Arena - Greenhorn Mode" storageid="51712" startvalue="1" endvalue="2">

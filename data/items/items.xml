@@ -2708,7 +2708,9 @@
 	<item id="2027" article="a" name="hero statue">
 	<attribute key="allowdistread" value="1"/>
 	</item>
-	<item id="2028" article="a" name="monument"/>
+	<item id="2028" article="a" name="monument">
+	<attribute key="allowdistread" value="1"/>
+	</item>
 	<item id="2029" article="a" name="minotaur statue">
 		<attribute key="rotateto" value="2045"/>
 	</item>
