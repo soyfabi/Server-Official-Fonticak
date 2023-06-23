@@ -1497,6 +1497,7 @@
 	<item id="775" article="a" name="mystic flame">
 		<attribute key="type" value="teleport"/>
 		<attribute key="description" value="You feel drawn to the mesmerizing light."/>
+		<attribute key="effect" value="teleport"/>
 	</item>
 	<item fromid="776" toid="778" article="an" name="archway"/>
 	<!-- DEPRECATED ||| START-->
@@ -14681,7 +14682,11 @@
 		<attribute key="weight" value="950"/>
 	</item>
 	<item id="7803" article="a" name="burning wall"/>
-	<item id="7804" article="a" name="water vortex"/>
+	<item id="7804" article="a" name="water vortex">
+	<attribute key="type" value="teleport"/>
+	<attribute key="description" value="You can see the other side trough it."/>
+	<attribute key="effect" value="teleport"/>
+	</item>
 	<item fromid="7805" toid="7808" article="a" name="large crystal"/>
 	<item fromid="7809" toid="7812" article="a" name="crystal"/>
 	<item fromid="7813" toid="7814" article="a" name="crucible"/>
@@ -34361,7 +34366,11 @@
 		<attribute key="weight" value="12000"/>
 	</item>
 	<!-- Forgotten Knowledge Quest -->
-	<item fromid="23742" toid="23809" name="RESERVED SPRITE"/>
+	<item fromid="23742" toid="23809" name="loot pouch">
+	<attribute key="description" value="A infinity bag where you can hold loot."/>
+	<attribute key="containersize" value="200"/>
+	<attribute key="slotType" value="backpack" />
+	</item>
 	<item id="23810" article="a" name="phial of fresh water">
 		<attribute key="description" value="The phial contains fresh, clean water. It also looks like it sparkles. The flask is so thin and finely crated that the water seems to pour out little by little"/>
 		<attribute key="weight" value="300"/>
