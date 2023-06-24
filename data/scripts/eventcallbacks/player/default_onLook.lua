@@ -23,13 +23,13 @@ event.onLook = function(self, thing, position, distance, description)
         exp = exp * Game.getExperienceStage(self:getLevel()) -- apply experience stage multiplier
         if configManager.getBoolean(configKeys.STAMINA_SYSTEM) then -- check if stamina system is active on the server
             local staminaMinutes = self:getStamina()
-            if staminaMinutes > 2340 and player:getStorageValue(Storage.isCasting) == 1 then -- 'happy hour' check
+            if staminaMinutes > 2340 and self:getStorageValue(Storage.isCasting) == 1 then -- 'happy hour' check
                 exp = exp * 1.75
-			elseif staminaMinutes > 2340 and player:getStorageValue(Storage.isCasting) == -1 then
+			elseif staminaMinutes > 2340 and self:getStorageValue(Storage.isCasting) == -1 then
 				exp = exp * 1.5
-            elseif staminaMinutes <= 840 and player:getStorageValue(Storage.isCasting) == 1 then -- low stamina check
+            elseif staminaMinutes <= 840 and self:getStorageValue(Storage.isCasting) == 1 then -- low stamina check
                 exp = exp * 0.8
-			elseif staminaMinutes <= 840 and player:getStorageValue(Storage.isCasting) == -1 then
+			elseif staminaMinutes <= 840 and self:getStorageValue(Storage.isCasting) == -1 then
 				exp = exp * 0.5
             end
         end

@@ -1,11 +1,11 @@
 local configAction = {
-	[29900] = { -- Water elemental cave (Trapwood)
+	[29903] = { -- Water elemental cave (Trapwood)
 		teleport_pos = Position(32624, 33001, 9),
 	},
-	[29901] = { -- Water elemental cave (Trapwood)
+	[29904] = { -- Water elemental cave (Trapwood)
 		teleport_pos = Position(32651, 32983, 9),
 	},
-	[29902] = { -- Water elemental cave (Trapwood)
+	[29905] = { -- Water elemental cave (Trapwood)
 		teleport_pos = Position(32608, 32978, 8),
 	},
 }
