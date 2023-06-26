@@ -1,13 +1,13 @@
 local bp_random = {
-   { item = 1988 }, -- backpack
-   { item = 1998 }, -- green backpack
-   { item = 1999 }, -- yellow backpack
-   { item = 2000 }, -- red backpack
-   { item = 2001 }, -- purple backpack
-   { item = 2002 }, -- blue backpack
-   { item = 2003 }, -- grey backpack
-   { item = 2004 }, -- golden backpack
-   { item = 10519 }, -- orange backpack
+   { item = 2854 }, -- backpack
+   { item = 2865 }, -- green backpack
+   { item = 2866 }, -- yellow backpack
+   { item = 2867 }, -- red backpack
+   { item = 2868 }, -- purple backpack
+   { item = 2869 }, -- blue backpack
+   { item = 2870 }, -- grey backpack
+   { item = 2871 }, -- golden backpack
+   { item = 9602 }, -- orange backpack
   
 }
 
@@ -32,7 +32,7 @@ function bp.onSay(player, words, param)
 		return false
 	end
 
-	local itemType = ItemType(1988)
+	local itemType = ItemType(2854)
 	local itemWeight = itemType:getWeight()
 	local playerCap = player:getFreeCapacity()
 	if playerCap < itemWeight then
