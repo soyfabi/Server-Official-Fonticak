@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Dorumo" script="Dorumo.lua" walkinterval="2000" floorchange="0">
+	<health now="100" max="100" />
+	<look type="140" head="60" body="22" legs="24" feet="32" addons="1" />
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|. I am in charge of delivering task to the players. Would you like to do a task {normal}, task {daily}, {receive} your price for a task or {abandon} a task? You can also see a {lists of task normal} and {lists of task daily}."/>
+		<parameter key="message_farewell" value="See you later." />
+		<parameter key="message_walkaway" value="See you later." />
+	</parameters>
+</npc>

@@ -36,17 +36,17 @@ end
 local event = Event()
 event.onGainExperience = function(self, source, exp, rawExp)
 
-	if not source:isMonster() then
+	--[[if not source:isMonster() then
 		return false
-	end
+	end]]
 	
 	-- Monster Level --
-	if source:isMonster() then
+	--[[if source:isMonster() then
         local bonusExperience = source:getMonsterLevel() * 0.03
         if source:getMonsterLevel() > 0 and bonusExperience > 1 then
             exp = exp * bonusExperience
         end
-    end
+    end]]
 
 	-- Soul regeneration
 	local vocation = self:getVocation()

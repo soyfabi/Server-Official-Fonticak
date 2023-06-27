@@ -17,6 +17,11 @@ event.onLook = function(self, thing, position, distance, description)
 	description = "".. description .."\nHealth: ["..math.floor((thing:getHealth() / thing:getMaxHealth()) * 100).."%]"
     end
 	
+	-- Rank Task --
+	if thing:isPlayer() then --and not thing:getGroup():getAccess() then
+		description = string.format("%s\nTask Rank: "..getRankTask(thing)..".", description)
+	end
+
 	-- Look Experience Monsters --
 	if thing:isCreature() and thing:isMonster() then
         local exp = thing:getType():getExperience() -- get monster experience
