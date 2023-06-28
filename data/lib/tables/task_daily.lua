@@ -1,32 +1,14 @@
 task_monsters = {
-   [1] = {name = "Troll", mons_list = {"Troll champion", "Island troll", "Swamp troll", "Frost troll"},  storage = 80000, amount = 3, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}},
-   [2] = {name = "rotworm", mons_list = {"carrion worm", "rotworm queen"}, storage = 80001, amount = 5, --[[400]] exp = 5000, pointsTask = {1, 1}, items = {{id = 10521, count = 1}, {id = 2160, count = 5}}},
-   [3] = {name = "goblin", mons_list = {"goblin assassin", "goblin leader"}, storage = 80002, amount = 10, exp = 18000, pointsTask = {1, 1}, items = {{id = 2195, count = 1}, {id = 2160, count = 8}}},
-}
-
-task_monsters_level100 = {
-   [1] = {name = "troll", mons_list = {"troll champion", "island troll", "swamp troll", "frost troll"},  storage = 81000, amount = 10, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}},
-   [2] = {name = "rotworm", mons_list = {"carrion worm", "rotworm queen"}, storage = 81001, amount = 5, --[[400]] exp = 5000, pointsTask = {1, 1}, items = {{id = 10521, count = 1}, {id = 2160, count = 5}}},
-   [3] = {name = "goblin", mons_list = {"goblin assassin", "goblin leader"}, storage = 81002, amount = 10, exp = 18000, pointsTask = {1, 1}, items = {{id = 2195, count = 1}, {id = 2160, count = 8}}},
-   [4] = {name = "monster4", mons_list = {"", ""}, storage = 81003, amount = 10, exp = 20000, pointsTask = {1, 1}, items = {{id = 2520, count = 1}, {id = 2160, count = 10}}}
-}
-
-task_monsters_level150 = {
-   [1] = {name = "troll", mons_list = {"troll champion", "island troll", "swamp troll", "frost troll"},  storage = 82000, amount = 10, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}},
-   [2] = {name = "rotworm", mons_list = {"carrion worm", "rotworm queen"}, storage = 82001, amount = 5, --[[400]] exp = 5000, pointsTask = {1, 1}, items = {{id = 10521, count = 1}, {id = 2160, count = 5}}},
-   [3] = {name = "goblin", mons_list = {"goblin assassin", "goblin leader"}, storage = 82002, amount = 10, exp = 18000, pointsTask = {1, 1}, items = {{id = 2195, count = 1}, {id = 2160, count = 8}}},
-   [4] = {name = "monster4", mons_list = {"", ""}, storage = 82003, amount = 10, exp = 20000, pointsTask = {1, 1}, items = {{id = 2520, count = 1}, {id = 2160, count = 10}}}
+   [1] = {name = "Troll", mons_list = {"troll champion", "troll guard", "island troll", "swamp troll", "frost troll", "troll legionnaire", "furious troll", "troll marauder"},  storage = 80000, amount = 10, taskp_required = 1, level_required = 1, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}},
 }
 
 task_daily = {
-   [1] = {name = "Demon", mons_list = {"", ""}, storage = 83000, amount = 3, exp = 5000, pointsTask = {1, 1}, items = {{id = 2157, count = 1}, {id = 2160, count = 3}}},
-   [2] = {name = "monsterDay2", mons_list = {"", ""}, storage = 83001, amount = 10, exp = 10000, pointsTask = {1, 1}, items = {{id = 10521, count = 1}, {id = 2160, count = 5}}},
-   [3] = {name = "monsterDay3", mons_list = {"", ""}, storage = 83002, amount = 10, exp = 18000, pointsTask = {1, 1}, items = {{id = 2195, count = 1}, {id = 2160, count = 8}}},
-   [4] = {name = "monsterDay4", mons_list = {"", ""}, storage = 83003, amount = 10, exp = 20000, pointsTask = {1, 1}, items = {{id = 2520, count = 1}, {id = 2160, count = 10}}}
+   [1] = {name = "Demon", mons_list = {"demon outcast", "angry demon"}, storage = 83000, amount = 3, exp = 5000, pointsTask = {1, 1}, items = {{id = 2157, count = 1}, {id = 2160, count = 3}}},
+  
 }
 
 task_special = {
-   [1] = {name = "dwarf", mons_list = {"dwarf guard", "dwarf geomancer", "dwarf soldier"},  storage = 50000, amount = 10, exp = 150000, pointsTask = {1, 1}, items = {{id = 3397, count = 1}}},
+   [1] = {name = "Dwarf", mons_list = {"dwarf guard", "dwarf geomancer", "dwarf soldier"},  storage = 84000, amount = 10, exp = 150000, pointsTask = {1, 1}, items = {{id = 3397, count = 1}}},
 }
 
 task_storage = 20020 -- storage que verifica se está fazendo alguma task e ver qual task é - task normal
@@ -37,7 +19,10 @@ task_rank = 20023 -- storage do rank task
 taskd_storage = 20024 -- storage que verifica se está fazendo alguma task e ver qual task é - task daily
 time_daySto = 20025 -- storage do tempo da task daily, no caso para verificar e add 24 horas para fazer novamente a task daily
 task_timer = 20026 -- start the stopwatch
-task_timerstop = 20027 -- stop the stopwatch
+task_timerdaily = 20027 -- stop the stopwatch
+tasks_storage = 20028 -- storage special for each monster.
+time_dayStoSpecial = 20029 -- storage special for each monster.
+task_timerspecial = 20030 -- storage special for each monster.
 
 local ranks_task = {
 	[{1, 50}] = "Beginner", 
@@ -69,6 +54,11 @@ end
 function getTaskDailyInfo(player)
 	local player = Player(player)
 	return task_daily[player:getStorageValue(taskd_storage)] or false
+end
+
+function getTaskSpecialInfo(player)
+	local player = Player(player)
+	return task_special[player:getStorageValue(tasks_storage)] or false
 end
 
 
