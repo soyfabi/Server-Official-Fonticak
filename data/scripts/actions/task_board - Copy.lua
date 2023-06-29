@@ -2,9 +2,11 @@
 
 local action = Action()
 
+local premium = true
+
 function action.onUse(player, target, param)
 
-	if taskRank_get(player) >= 1 then
+	if player:isPremium() == premium then
 	player:say("hola")
 	else
 	player:say("eso que es?")
