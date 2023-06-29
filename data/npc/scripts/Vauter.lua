@@ -74,7 +74,7 @@ elseif npcHandler.topic[cid] == 1 then
 	
 elseif npcHandler.topic[cid] == 0 and msg == 'daily' or msg == 'diária' then
 	if player:getStorageValue(time_daySto) < os.time() then
-		npcHandler:say("Remember, it is of great importance that the daily tasks are carried out. Now tell me, which monster task would you like to do?", cid)
+		npcHandler:say("Remember that the {daily tasks} change {every day}, when you choose a task you will only have {24 hours} to finish otherwise it will be {deleted} and you will have to wait {another 24 hours}. Now what task do {you want to do}? To find out what the {daily tasks} are, just say {lists of daily task} or go to the {task board} found in the {city depots}.", cid)
 		npcHandler.topic[cid] = 2
 	else
 		npcHandler:say('You completed a {daily task} today, expect to spend {24 hours} to do it again.', cid)
@@ -82,52 +82,62 @@ elseif npcHandler.topic[cid] == 0 and msg == 'daily' or msg == 'diária' then
 		npcHandler:releaseFocus(cid)
 	end
 elseif npcHandler.topic[cid] == 2 then
-    if player:getStorageValue(task_sto_time) < os.time() then
-        if player:getStorageValue(taskd_storage) == -1 then 
-            for mon, l in ipairs(task_daily) do 
-                if msg == l.name:lower() then
-                    if not l.premium_required or (l.premium_required and player:isPremium()) then
+      if player:getStorageValue(task_sto_time) < os.time() then
+         if player:getStorageValue(taskd_storage) == -1 then 
+            local currentDay = os.date("%A") -- Obtener el día actual en formato de texto
+            local dailyTasks = task_daily[currentDay] -- Obtener las tareas diarias correspondientes al día actual
+
+            if dailyTasks then
+               for mon, l in ipairs(dailyTasks) do 
+                  if msg == l.name:lower() then
+                     if not l.premium_required or (l.premium_required and player:isPremium()) then
                         if taskRank_get(player) >= l.taskp_required then
-                            if player:getLevel() >= l.level_required then 
-                                npcHandler:say("Alright, now you are doing a daily task {" .. l.name:gsub("^%a", string.upper) .. "}, you need to {kill "..l.amount.."} from them. To see the {status} you can see using {!task} or using the {task board}. Good luck!", cid)
-                                player:setStorageValue(taskd_storage, mon)
-                                player:setStorageValue(l.storage, 0)
-                                player:openChannel(10) -- Task Channel
-                                player:setStorageValue(task_timerdaily, os.time())
-                                npcHandler.topic[cid] = 0
-                                npcHandler:releaseFocus(cid)
-                            else
-                                npcHandler:say("You do not have the {necessary level} to request this task, you need to be level {" .. l.level_required .. "} to ask for it.", cid)
-                                npcHandler.topic[cid] = 0
-                                npcHandler:releaseFocus(cid)
-                            end
+                           if player:getLevel() >= l.level_required then 
+                              npcHandler:say("Alright, now you are doing a daily task {" .. l.name:gsub("^%a", string.upper) .. "}, you need to {kill "..l.amount.."} from them. To see the {status} you can see using {!task} or using the {task board}, remember that you have {24 hours} to {complete the task}. Good luck!", cid)
+                              player:setStorageValue(taskd_storage, mon)
+                              player:setStorageValue(l.storage, 0)
+                              player:setStorageValue(task_timerdaily_2, os.time() + 1 * 60 * 60 * 24)
+                              player:openChannel(10) -- Task Channel
+                              player:setStorageValue(task_timerdaily, os.time())
+                              npcHandler.topic[cid] = 0
+                              npcHandler:releaseFocus(cid)
+                           else
+                              npcHandler:say("You do not have the {necessary level} to request this task, you need to be level {" .. l.level_required .. "} to ask for it.", cid)
+                              npcHandler.topic[cid] = 0
+                              npcHandler:releaseFocus(cid)
+                           end
                         else
-                            npcHandler:say("You do not have enough {Task Points} to request this task, you need to have at least {" .. l.taskp_required .. " Task Points}.", cid)
-                            npcHandler.topic[cid] = 0
-                            npcHandler:releaseFocus(cid)
+                           npcHandler:say("You do not have enough {Task Points} to request this task, you need to have at least {" .. l.taskp_required .. " Task Points}.", cid)
+                           npcHandler.topic[cid] = 0
+                           npcHandler:releaseFocus(cid)
                         end
-                    else
+                     else
                         npcHandler:say("You need to be a {VIP} to request this task.", cid)
                         npcHandler.topic[cid] = 0
                         npcHandler:releaseFocus(cid)
-                    end
-                    break
-                elseif mon == #task_daily then
-                    npcHandler:say("You need to be {Premium} to choose this task.", cid)
-                    npcHandler.topic[cid] = 0
-                    npcHandler:releaseFocus(cid)
-                end
+                     end
+                     break
+                  elseif mon == #dailyTasks then
+                     npcHandler:say("You need to be {Premium} to choose this task.", cid)
+                     npcHandler.topic[cid] = 0
+                     npcHandler:releaseFocus(cid)
+                  end
+               end
+            else
+               npcHandler:say("No hay tareas diarias disponibles para hoy.", cid)
+               npcHandler.topic[cid] = 0
+               npcHandler:releaseFocus(cid)
             end
-        else
-            npcHandler:say("You are already doing a {daily} task. You can only do one a day. Say {!task} to view information about your current task.", cid)
+         else
+            npcHandler:say("You are already doing a {daily} task. You can only do one a day. Say {!task} to view information about your current task, remember that you have {24 hours} to {complete the task}.", cid)
             npcHandler.topic[cid] = 0
             npcHandler:releaseFocus(cid)
-        end
-    else
-        npcHandler:say("I am not allowed to give you any tasks because you {abandoned} the previous one. Wait for {"..task_time.." hours} of punishment.", cid)
-        npcHandler.topic[cid] = 0
-        npcHandler:releaseFocus(cid)
-    end
+         end
+      else
+         npcHandler:say("I am not allowed to give you any tasks because you {abandoned} the previous one. Wait for {"..task_time.." hours} of punishment.", cid)
+         npcHandler.topic[cid] = 0
+         npcHandler:releaseFocus(cid)
+      end
 	
 	
 	
@@ -438,7 +448,7 @@ elseif npcHandler.topic[cid] == 4 and msg == 'special' or msg == 'specials' then
 		npcHandler:releaseFocus(cid)
 	end
 elseif msg == "normal task list" or msg == "lista de normal task" or msg == "lists of normal task" or msg == "list of normal task" then
-	local text = "----**| -> Tasks Normal <- |**----\n\n"
+	local text = "----**| -> Normal Tasks <- |**----\n\n"
 	
 		for i = 1, 52 do
 		local d = task_monsters[i]
@@ -448,10 +458,6 @@ elseif msg == "normal task list" or msg == "lista de normal task" or msg == "lis
 		
 		if d.taskp_required >= 20 then
 			text = text .. "[+] Required Task Points [+] -> " .. d.taskp_required .. "\n"
-		end
-		
-		if d.level_required then
-			text = text .. "[+] Level Required [+] -> " .. d.level_required .. "\n"
 		end
 		
 		-- Check if premium_required is true
@@ -493,7 +499,7 @@ elseif msg == "normal task list" or msg == "lista de normal task" or msg == "lis
 		npcHandler:say("Here is the {list of normal} (level 1-100) tasks .", cid)
 		
 elseif msg == "normal intermediary list" or msg == "lista de normal intermediary task" or msg == "lists of normal intermediary task" then
-	local text = "-| -> Tasks Normal Intermediary <- |-\n\n"
+	local text = "-| -> Normal Intermediary Tasks <- |-\n\n"
 	
 		for i = 53, 83 do
 		local d = task_monsters[i]
@@ -548,7 +554,7 @@ elseif msg == "normal intermediary list" or msg == "lista de normal intermediary
 		npcHandler:say("Here is the {list of normal intermediary} (level 100) tasks .", cid)
 		
 elseif msg == "normal superior list" or msg == "lista de normal superior task" or msg == "lists of normal superior task" then
-	local text = "-| -> Tasks Normal Superior <- |-\n\n"
+	local text = "-| -> Normal Superior Tasks <- |-\n\n"
 	
 		for i = 84, #task_monsters do
 		local d = task_monsters[i]
@@ -603,67 +609,77 @@ elseif msg == "normal superior list" or msg == "lista de normal superior task" o
 		npcHandler:say("Here is the {lists of normal superior} (level 150) tasks .", cid)
 			
 elseif msg == "daily task list" or msg == "lista de task diária" or msg == "lists of daily task" then
-	local text = "----**| -> Tasks Daily <- |**----\n\n"
-		for i = 1, #task_daily do
-		local d = task_daily[i]
+	local text = "----**| -> Daily's Tasks <- |**----\n\n"
+	
+	local currentDay = os.date("%A") -- Obtener el día actual en formato de texto
+      
+      local dailyTasks = task_daily[currentDay] -- Obtener las tareas correspondientes al día actual
+      
+      if dailyTasks then
+         for i = 1, #dailyTasks do
+            local d = dailyTasks[i]
 
-		text = text .. "------ [*] " .. d.name .. " [*] ------\n"
-		text = text .. "[+] Count [+] -> [" .. (player:getStorageValue(d.storage) + 1) .. "/" .. d.amount .. "]\n"
-		
-		if d.taskp_required >= 25 then
-			text = text .. "[+] Required Task Points [+] -> " .. d.taskp_required .. "\n"
-		end
-		
-		if d.level_required then
-			text = text .. "[+] Level Required [+] -> " .. d.level_required .. "\n"
-		end
-		
-		-- Check if premium_required is true
-		if d.premium_required then
-			text = text .. "[+] Premium Required [+] -> Yes\n"
-		end
+            text = text .. "------ [*] " .. d.name .. " [*] ------\n"
+            text = text .. "[+] Count [+] -> [" .. (player:getStorageValue(d.storage) + 1) .. "/" .. d.amount .. "]\n"
+            
+            if d.taskp_required >= 5 then
+               text = text .. "[+] Required Task Points [+] -> " .. d.taskp_required .. "\n"
+            end
+            
+            if d.level_required then
+               text = text .. "[+] Level Required [+] -> " .. d.level_required .. "\n"
+            end
+            
+            -- Check if premium_required is true
+            if d.premium_required then
+               text = text .. "[+] Premium Required [+] -> Yes\n"
+            end
 
-		-- Check if items exist in the table
-		if d.items and #d.items > 0 then
-			text = text .. "[+] Rewards [+] -> "
-			for j = 1, #d.items do
-				local item = d.items[j]
-				local itemName = getItemName(item.id)
-				text = text .. item.count .. "x " .. itemName .. ", "
-			end
-			text = text:sub(1, -3) .. "\n"
-		end
+            -- Check if items exist in the table
+            if d.items and #d.items > 0 then
+               text = text .. "[+] Rewards [+] -> "
+               for j = 1, #d.items do
+                  local item = d.items[j]
+                  local itemName = getItemName(item.id)
+                  text = text .. item.count .. "x " .. itemName .. ", "
+               end
+               text = text:sub(1, -3) .. "\n"
+            end
 
-		-- Check if items_special exist in the table
-		if d.items_special and #d.items_special > 0 then
-			text = text .. "[+] Special Rewards [+] -> "
-			for k = 1, #d.items_special do
-				local itemSpecial = d.items_special[k]
-				local itemSpecialName = getItemName(itemSpecial.id)
-				text = text .. itemSpecial.count .. "x " .. itemSpecialName .. ", "
-			end
-			text = text:sub(1, -3) .. "\n"
-		end
+            -- Check if items_special exist in the table
+            if d.items_special and #d.items_special > 0 then
+               text = text .. "[+] Special Rewards [+] -> "
+               for k = 1, #d.items_special do
+                  local itemSpecial = d.items_special[k]
+                  local itemSpecialName = getItemName(itemSpecial.id)
+                  text = text .. itemSpecial.count .. "x " .. itemSpecialName .. ", "
+               end
+               text = text:sub(1, -3) .. "\n"
+            end
 
-		-- Check if boss_access exists in the table
-		if d.boss_access then
-			text = text .. "[+] Boss Access [+] -> " .. d.boss_access.name .. "\n"
-		end
+            -- Check if boss_access exists in the table
+            if d.boss_access then
+               text = text .. "[+] Boss Access [+] -> " .. d.boss_access.name .. "\n"
+            end
 
-			text = text .. "[+] Experience Reward [+] -> " .. d.exp .. "\n\n"
-		end
-		
-		player:showTextDialog(9388, "" .. text)
-		npcHandler:say("Here is the {lists of daily} tasks, this list is updated {every day}.", cid)
+            text = text .. "[+] Experience Reward [+] -> " .. d.exp .. "\n\n"
+         end
+      else
+         text = text .. "No {daily tasks} today, come back tomorrow.\n"
+      end
+
+      player:showTextDialog(9388, "" .. text)
+	  npcHandler:say("Here is the {lists of daily} tasks, these tasks are updated {every day}, be {pending} every day.", cid)
+	
 elseif msg == "special task list" or msg == "lista de especial task" or msg == "lists of special task" then
-	local text = "----**| -> Tasks Special <- |**----\n\n"
+	local text = "----**| -> Special's Tasks <- |**----\n\n"
 		for i = 1, #task_special do
 		local d = task_special[i]
 
 		text = text .. "------ [*] " .. d.name .. " [*] ------\n"
 		text = text .. "[+] Count [+] -> [" .. (player:getStorageValue(d.storage) + 1) .. "/" .. d.amount .. "]\n"
 		
-		if d.taskp_required >= 25 then
+		if d.taskp_required >= 10 then
 			text = text .. "[+] Required Task Points [+] -> " .. d.taskp_required .. "\n"
 		end
 		
