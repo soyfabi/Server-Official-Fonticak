@@ -142,7 +142,7 @@ elseif npcHandler.topic[cid] == 2 then
 	
 	
 elseif npcHandler.topic[cid] == 0 and (msg == 'special' or msg == 'specials') then
-    if player:getStorageValue(time_dayStoSpecial) < os.time() then
+	if player:getStorageValue(time_dayStoSpecial) < os.time() then
         npcHandler:say('These task {specials} are {very important}, you can {receive valuable prizes}, now tell me which one do you want to start with?, you can see the list saying {lists of task special}.', cid)
         npcHandler.topic[cid] = 5
     else
@@ -330,70 +330,64 @@ elseif npcHandler.topic[cid] == 3 then
 			npcHandler:releaseFocus(cid)
 		end
 		
-	elseif npcHandler.topic[cid] == 3 and msg == 'special' or msg == 'specials' then
-		if player:getStorageValue(time_dayStoSpecial)-os.time() <= 0 then
-		local ret_ts = getTaskSpecialInfo(player)
-			if ret_ts then
-				if player:getStorageValue(getTaskSpecialInfo(player).storage) == getTaskSpecialInfo(player).amount then
-				local boss_access = ret_ts.boss_access
-					if boss_access and player:getStorageValue(boss_access.storage) ~= 1 then
-						player:setStorageValue(boss_access.storage, 1)
-						player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have gained access to the boss "..boss_access.name ..".")
-					end
-					local pt1 = getTaskSpecialInfo(player).pointsTask[1]
-					local pt2 = getTaskSpecialInfo(player).pointsTask[2]
-					local txt = 'Congratulations on completing the task, their prizes are: {'..(pt1 > 1 and pt1..' task points' or pt1 <= 1 and pt1..' task point}')..' and {'..(pt2 > 1 and pt2..' rank points' or pt2 <= 1 and pt2..' rank point}')..', '
-					
-					if #getTaskSpecialInfo(player).items > 0 then
-						txt = txt..'besides winning: {'..getItemsFromTable(getTaskSpecialInfo(player).items)..'}, '
-						for g = 1, #getTaskSpecialInfo(player).items do
-							player:addItem(getTaskSpecialInfo(player).items[g].id, getTaskSpecialInfo(player).items[g].count)
-						end
-					end
-					
-					-- Items Special (Unique)
-					if #getItemsFromTable(ret_ts.items_special) > 0 then
-						local monsterName = ret_ts.name
-						local monsterStorage = ret_ts.storage .. "_" .. monsterName
-						if player:getStorageValue(monsterStorage) ~= 1 then
-							txt = txt..'and special items: {'..getItemsFromTable(ret_ts.items_special)..'}, '
-							for g = 1, #ret_ts.items_special do
-								player:addItem(ret_ts.items_special[g].id, ret_ts.items_special[g].count)
-							end
-							player:setStorageValue(monsterStorage, 1)
-						end
-					end
-					
-					local exp = getTaskSpecialInfo(player).exp
-					if exp > 0 then
-					txt = txt..'I will also give you {'..exp..' experience}, '
-					player:addExperience(exp)
-					end
-					npcHandler:say(txt..' see you soon.', cid)
-					taskPoints_add(player, pt1)
-					taskRank_add(player, pt2)
-					player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
-					player:clearStorageValue(getTaskSpecialInfo(player).storage)						
-					player:clearStorageValue(tasks_storage)
-					player:clearStorageValue(task_timerspecial)
-					player:setStorageValue(time_dayStoSpecial, 1 * 60 * 60 * 24+os.time())
-					npcHandler.topic[cid] = 0
-					npcHandler:releaseFocus(cid)
-				else
-					npcHandler:say('You haven\'t finished the task yet, {come back} when you finish it.', cid)
-					npcHandler.topic[cid] = 0
-					npcHandler:releaseFocus(cid)
-				end
-			else
-				npcHandler:say("You are not in any task.", cid)
-				npcHandler.topic[cid] = 0
-				npcHandler:releaseFocus(cid)
-			end
-		else
-			npcHandler:say("Once you have done a {daily task}, {wait 24 hours} to do another one.", cid)
-			npcHandler.topic[cid] = 0
-			npcHandler:releaseFocus(cid)
-		end
+	elseif npcHandler.topic[cid] == 3 and (msg == 'special' or msg == 'specials') then
+    if player:getStorageValue(time_dayStoSpecial) - os.time() <= 0 then
+        local ret_ts = getTaskSpecialInfo(player)
+        if ret_ts then
+            if player:getStorageValue(getTaskSpecialInfo(player).storage) == getTaskSpecialInfo(player).amount then
+                local boss_access = ret_ts.boss_access
+                if boss_access and player:getStorageValue(boss_access.storage) ~= 1 then
+                    player:setStorageValue(boss_access.storage, 1)
+                    player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have gained access to the boss " .. boss_access.name .. ".")
+                end
+                local pt1 = getTaskSpecialInfo(player).pointsTask[1]
+                local pt2 = getTaskSpecialInfo(player).pointsTask[2]
+                local txt = 'Congratulations on completing the task, their prizes are: {' .. (pt1 > 1 and pt1 .. ' task points' or pt1 <= 1 and pt1 .. ' task point') .. '} and {' .. (pt2 > 1 and pt2 .. ' rank points' or pt2 <= 1 and pt2 .. ' rank point') .. '}, '
+
+                -- Items Special (Unique)
+                if #getItemsFromTable(ret_ts.items_special) > 0 then
+                    local monsterName = ret_ts.name
+                    local monsterStorage = ret_ts.storage .. "_" .. monsterName
+                    if player:getStorageValue(monsterStorage) ~= 1 then
+                        txt = txt .. 'and special items: {' .. getItemsFromTable(ret_ts.items_special) .. '}, '
+                        for g = 1, #ret_ts.items_special do
+                            player:addItem(ret_ts.items_special[g].id, ret_ts.items_special[g].count)
+                        end
+                        player:setStorageValue(monsterStorage, 1)
+                    end
+                end
+
+                local exp = getTaskSpecialInfo(player).exp
+                if exp > 0 then
+                    txt = txt .. 'I will also give you {' .. exp .. ' experience}, '
+                    player:addExperience(exp)
+                end
+
+                npcHandler:say(txt .. ' see you soon.', cid)
+                taskPoints_add(player, pt1)
+                taskRank_add(player, pt2)
+                player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
+                player:clearStorageValue(getTaskSpecialInfo(player).storage)
+                player:clearStorageValue(tasks_storage)
+                player:clearStorageValue(task_timerspecial)
+                player:setStorageValue(time_dayStoSpecial, 1 * 60 * 60 * 24 + os.time())
+                npcHandler.topic[cid] = 0
+                npcHandler:releaseFocus(cid)
+            else
+                npcHandler:say('You haven\'t finished the task yet, {come back} when you finish it.', cid)
+                npcHandler.topic[cid] = 0
+                npcHandler:releaseFocus(cid)
+            end
+        else
+            npcHandler:say("You are not in any task.", cid)
+            npcHandler.topic[cid] = 0
+            npcHandler:releaseFocus(cid)
+        end
+    else
+        npcHandler:say("Once you have done a {daily task}, {wait 24 hours} to do another one.", cid)
+        npcHandler.topic[cid] = 0
+        npcHandler:releaseFocus(cid)
+    end
 		
 	end
 
@@ -501,7 +495,7 @@ elseif msg == "normal task list" or msg == "lista de normal task" or msg == "lis
 elseif msg == "normal intermediary list" or msg == "lista de normal intermediary task" or msg == "lists of normal intermediary task" then
 	local text = "-| -> Normal Intermediary Tasks <- |-\n\n"
 	
-		for i = 53, 83 do
+		for i = 53, 84 do
 		local d = task_monsters[i]
 
 		text = text .. "------ [*] " .. d.name .. " [*] ------\n"
@@ -556,7 +550,7 @@ elseif msg == "normal intermediary list" or msg == "lista de normal intermediary
 elseif msg == "normal superior list" or msg == "lista de normal superior task" or msg == "lists of normal superior task" then
 	local text = "-| -> Normal Superior Tasks <- |-\n\n"
 	
-		for i = 84, #task_monsters do
+		for i = 85, #task_monsters do
 		local d = task_monsters[i]
 
 		text = text .. "------ [*] " .. d.name .. " [*] ------\n"
