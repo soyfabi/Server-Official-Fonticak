@@ -1,17 +1,8 @@
 local taskboard = Action()
 
-local exhaust = {}
-local exhaustTime = 0
-
 function taskboard.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
-	local playerId = player:getId()
-    local currentTime = os.time()
-    if exhaust[playerId] and exhaust[playerId] > currentTime then
-		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
-		return true
-	end
-
+	-- Timer Task Normal
 	local epochTime = player:getStorageValue(task_timer)
  
     local currentTime = os.time()
@@ -99,338 +90,206 @@ function taskboard.onUse(player, item, fromPosition, target, toPosition, isHotke
 		return table.concat(formattedParts, ".")
 	end
 	
-	if Position(32364, 32205, 7) == item:getPosition() then
-	local ret_t = getTaskInfos(player)
-	local ret_td = getTaskDailyInfo(player)
-	local ret_ts = getTaskSpecialInfo(player)
-		if ret_t and ret_td and ret_ts then
-		local sto_value = player:getStorageValue(ret_t.storage)
-		local sto_value_td = player:getStorageValue(ret_td.storage)
-		local sto_value_ts = player:getStorageValue(ret_ts.storage)
-		local capitalizedMonsterList = {}
-		for _, monsterName in ipairs(ret_t.mons_list) do
-			local capitalizedMonsterName = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList, capitalizedMonsterName)
-		end
-		local combinedList = table.concat(capitalizedMonsterList, ", ")
-		combinedList = capitalizeSecondWord(combinedList)
-		--------DAILY------------
-		local capitalizedMonsterList2 = {}
-		for _, monsterName in ipairs(ret_td.mons_list) do
-			local capitalizedMonsterName2 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList2, capitalizedMonsterName2)
-		end
-		local combinedList_td = table.concat(capitalizedMonsterList2, ", ")
-		combinedList_td = capitalizeSecondWord(combinedList_td)
-		--------SPECIAL-----------
-		local capitalizedMonsterList3 = {}
-		for _, monsterName in ipairs(ret_ts.mons_list) do
-			local capitalizedMonsterName3 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList3, capitalizedMonsterName3)
-		end
-		local combinedList_ts = table.concat(capitalizedMonsterList3, ", ")
-		combinedList_ts = capitalizeSecondWord(combinedList_ts)
-		
-		local itemsSpecialText_t = ""
-		if ret_t.items_special then
-			itemsSpecialText_t = "\n- Special Rewards [+]: " .. getItemsFromTable(ret_t.items_special) .. "."
-		end
-		
-		local itemsSpecialText_td = ""
-		if ret_td.items_special then
-			itemsSpecialText_td = "\n- Special Rewards [+]: " .. getItemsFromTable(ret_td.items_special) .. "."
-		end
-		
-		local itemsSpecialText_ts = ""
-		if ret_ts.items_special then
-			itemsSpecialText_ts = "\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. "."
-		end
-		
-		local bossAccessText_t = ""
-		if ret_t.boss_access then
-			bossAccessText_t = "- Boss Access: " .. ret_t.boss_access.name .. ".\n"
-		end
-		
-		local bossAccessText_td = ""
-		if ret_td.boss_access then
-			bossAccessText_td = "- Boss Access: " .. ret_td.boss_access.name .. ".\n"
-		end
-		
-		local bossAccessText_ts = ""
-		if ret_ts.boss_access then
-			bossAccessText_ts = "- Boss Access: " .. ret_ts.boss_access.name .. ".\n"
-		end
-			
-		-- With Normal, Daily and Special
-		if sto_value < ret_t.amount and sto_value_td < ret_td.amount and sto_value_ts < ret_ts.amount then
-			player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Task Special of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		--- Esto es cuando la task special esta completada
-		elseif sto_value < ret_t.amount and sto_value_td < ret_td.amount then
-			player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		--- Esto es cuando la Daily Task esta completada
-		elseif sto_value < ret_t.amount and sto_value_ts < ret_ts.amount then
-			player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		--- Esto es cuando la task normal esta completada
-		elseif sto_value_ts < ret_ts.amount and sto_value_td < ret_td.amount then
-			player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. ".\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Task Special of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		--- Esto es cuando la Daily Task y special estan completadas
-		elseif sto_value < ret_t.amount then
-			player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. ".\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Task Special of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		--- Esto es cuando la task normal y special estan completadas	
-		elseif sto_value_td < ret_td.amount then
-			player:popupFYI("[Task System]\nCompleting Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. ".\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Task Special of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		--- Esto es cuando la task normal y daily estan completadas	
-		elseif sto_value_ts < ret_ts.amount then
-			player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. ".\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Task Special of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		else
-			player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText_t.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. ".\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Task Special of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-		end
-		
-		
-			---------
-			
-		-- Task Normal and Daily		
-		elseif ret_t and ret_td then
-		local capitalizedMonsterList = {}
-		for _, monsterName in ipairs(ret_t.mons_list) do
-			local capitalizedMonsterName = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList, capitalizedMonsterName)
-		end
-		local combinedList = table.concat(capitalizedMonsterList, ", ")
-		combinedList = capitalizeSecondWord(combinedList)
-		
-		local capitalizedMonsterList2 = {}
-		for _, monsterName in ipairs(ret_td.mons_list) do
-			local capitalizedMonsterName2 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList2, capitalizedMonsterName2)
-		end
-		local combinedList_td = table.concat(capitalizedMonsterList2, ", ")
-		combinedList_td = capitalizeSecondWord(combinedList_td)
-		local sto_value = player:getStorageValue(ret_t.storage)
-		local sto_value_td = player:getStorageValue(ret_td.storage)
-		
-		local itemsSpecialText = ""
-		if ret_t.items_special then
-			itemsSpecialText = "\n- Special Rewards [+]: " .. getItemsFromTable(ret_t.items_special) .. "."
-		end
-		
-		local bossAccessText_t = ""
-		if ret_t.boss_access then
-			bossAccessText_t = "- Boss Access: " .. ret_t.boss_access.name .. ".\n"
-		end
-		
-		local itemsSpecialText_td = ""
-		if ret_td.items_special then
-			itemsSpecialText_td = "\n- Special Rewards [+]: " .. getItemsFromTable(ret_td.items_special) .. "."
-		end
-		
-		local bossAccessText_td = ""
-		if ret_td.boss_access then
-			bossAccessText_td = "- Boss Access: " .. ret_td.boss_access.name .. ".\n"
-		end
-		
-		
-			if sto_value < ret_t.amount and sto_value_td < ret_td.amount then
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. ret_t.exp .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".")
-			elseif sto_value < ret_t.amount then
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. ret_t.exp .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".")
-			elseif sto_value_td < ret_td.amount then
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. ret_t.exp .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".")
-			else
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. ret_t.exp .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..ret_td.name..".\n- You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText_td.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".")
-			end
-		
-
-
-		
-		-- Task Normal and Special		
-		elseif ret_t and ret_ts then
-		local capitalizedMonsterList = {}
-		for _, monsterName in ipairs(ret_t.mons_list) do
-			local capitalizedMonsterName = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList, capitalizedMonsterName)
-		end
-		local combinedList = table.concat(capitalizedMonsterList, ", ")
-		combinedList = capitalizeSecondWord(combinedList)
-		
-		--------SPECIAL-----------
-		local capitalizedMonsterList3 = {}
-		for _, monsterName in ipairs(ret_ts.mons_list) do
-			local capitalizedMonsterName3 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList3, capitalizedMonsterName3)
-		end
-		local combinedList_ts = table.concat(capitalizedMonsterList3, ", ")
-		combinedList_ts = capitalizeSecondWord(combinedList_ts)
-		
-		
-		local itemsSpecialText = ""
-		if ret_t.items_special then
-			itemsSpecialText = "\n- Special Rewards [+]: " .. getItemsFromTable(ret_t.items_special) .. "."
-		end
-		
-		local bossAccessText_t = ""
-		if ret_t.boss_access then
-			bossAccessText_t = "- Boss Access: " .. ret_t.boss_access.name .. ".\n"
-		end
-		
-		local bossAccessText_ts = ""
-		if ret_ts.boss_access then
-			bossAccessText_ts = "- Boss Access: " .. ret_ts.boss_access.name .. ".\n"
-		end
-		
-		
-		local sto_value = player:getStorageValue(ret_t.storage)
-		local sto_value_ts = player:getStorageValue(ret_ts.storage)
-			if sto_value < ret_t.amount and sto_value_ts < ret_ts.amount then
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			elseif sto_value < ret_t.amount then
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			elseif sto_value_ts < ret_ts.amount then
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			else
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText_t.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			end
-			
-		-- Daily Task and Special			
-		elseif ret_td and ret_ts then
-		local capitalizedMonsterList2 = {}
-		for _, monsterName in ipairs(ret_td.mons_list) do
-			local capitalizedMonsterName2 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList2, capitalizedMonsterName2)
-		end
-		local combinedList_td = table.concat(capitalizedMonsterList2, ", ")
-		combinedList_td = capitalizeSecondWord(combinedList_td)
-		
-		--------SPECIAL-----------
-		local capitalizedMonsterList3 = {}
-		for _, monsterName in ipairs(ret_ts.mons_list) do
-			local capitalizedMonsterName3 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList3, capitalizedMonsterName3)
-		end
-		local combinedList_ts = table.concat(capitalizedMonsterList3, ", ")
-		combinedList_ts = capitalizeSecondWord(combinedList_ts)
-		local sto_value_td = player:getStorageValue(ret_td.storage)
-		local sto_value_ts = player:getStorageValue(ret_ts.storage)
-		
-		
-		local itemsSpecialText = ""
-		if ret_td.items_special then
-			itemsSpecialText = "\n- Special Rewards [+]: " .. getItemsFromTable(ret_td.items_special) .. "."
-		end
-		
-		local bossAccessText_td = ""
-		if ret_td.boss_access then
-			bossAccessText_td = "- Boss Access: " .. ret_td.boss_access.name .. ".\n"
-		end
-		
-		local bossAccessText_ts = ""
-		if ret_ts.boss_access then
-			bossAccessText_ts = "- Boss Access: " .. ret_ts.boss_access.name .. ".\n"
-		end
-		
-		
-		
-		
-		
-			if sto_value_td < ret_td.amount and sto_value_ts < ret_ts.amount then
-				player:popupFYI("[Task System]\nCompleting Daily Task of " .. ret_td.name .. ".\n - You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			elseif sto_value_td < ret_td.amount then
-				player:popupFYI("[Task System]\nCompleting Daily Task of " .. ret_td.name .. ".\n - You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			elseif sto_value_ts < ret_ts.amount then
-				player:popupFYI("[Task System]\nCompleting Daily Task of " .. ret_td.name .. ".\n - You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			else
-				player:popupFYI("[Task System]\nCompleting Daily Task of " .. ret_td.name .. ".\n - You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. "."..itemsSpecialText.."\n- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n"..bossAccessText_td.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..ret_ts.name..".\n- You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "] (Completed).\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText_ts.."\nTime with the task: " .. elapsedTime_special .. ".")
-			end
-			
-			
-			
-			
-			
-		-- Only Normal Task			
-		elseif ret_t then
-		local capitalizedMonsterList = {}
-		for _, monsterName in ipairs(ret_t.mons_list) do
-			local capitalizedMonsterName = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList, capitalizedMonsterName)
-		end
-		local combinedList = table.concat(capitalizedMonsterList, ", ")
-		combinedList = capitalizeSecondWord(combinedList)
-		
-		
-		local itemsSpecialText = ""
-		if ret_t.items_special then
-			itemsSpecialText = "- Special Rewards [+]: " .. getItemsFromTable(ret_t.items_special) .. ".\n"
-		end
-		
-		if ret_t.boss_access then
-			bossAccessText = "- Boss Access: " .. ret_t.boss_access.name .. ".\n"
-		end
 	
-		local sto_value = player:getStorageValue(ret_t.storage)
-			if sto_value < ret_t.amount then
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "].\nThey also count in the task: ".. combinedList ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. ".\n"..itemsSpecialText.."- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText.."\nTime with the task: " .. elapsedTime .. ".")
-			else
-				player:popupFYI("[Task System]\nCompleting Normal Task of " .. ret_t.name .. ".\n - You have killed [" .. sto_value .. "/" .. ret_t.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_t.items) .. ".\n"..itemsSpecialText.."- Experience [+]: " .. formatExp(ret_t.exp) .. " EXP.\n- Task Points [+]: " .. ret_t.pointsTask[1] .. " TP.\n"..bossAccessText.."\n\nTime with the task: " .. elapsedTime .. ".")
+	-------------------------------------------	
+	local task_normal = getTaskInfos(player)
+	local task_daily = getTaskDailyInfo(player)
+	local task_special = getTaskSpecialInfo(player)
+	
+	--------NORMAL------------
+	local combinedList = ""
+	if task_normal then
+		if task_normal.mons_list then
+			local capitalizedMonsterList = {}
+			for _, monsterName in ipairs(task_normal.mons_list) do
+				local capitalizedMonsterName = capitalizeSecondWord(monsterName)
+				table.insert(capitalizedMonsterList, capitalizedMonsterName)
 			end
-			--------
-		-- Only Daily Task
-		elseif ret_td then
-		local capitalizedMonsterList2 = {}
-		for _, monsterName in ipairs(ret_td.mons_list) do
-			local capitalizedMonsterName2 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList2, capitalizedMonsterName2)
+			combinedList = table.concat(capitalizedMonsterList, ", ")
+			combinedList = capitalizeSecondWord(combinedList)
 		end
-		local combinedList_td = table.concat(capitalizedMonsterList2, ", ")
-		combinedList_td = capitalizeSecondWord(combinedList_td)
+	end	
+	--------DAILY------------
+	local capitalizedMonsterList2 = {}
+	if task_daily then
+		if task_daily.mons_list then
+			for _, monsterName in ipairs(task_daily.mons_list) do
+				local capitalizedMonsterName2 = capitalizeSecondWord(monsterName)
+				table.insert(capitalizedMonsterList2, capitalizedMonsterName2)
+			end
+		end
+	end
+	local combinedList_td = table.concat(capitalizedMonsterList2, ", ")
+	combinedList_td = capitalizeSecondWord(combinedList_td)
+	--------SPECIAL----------
+	local capitalizedMonsterList3 = {}
+	if task_special then
+		if task_special.mons_list then
+			for _, monsterName in ipairs(task_special.mons_list) do
+				local capitalizedMonsterName3 = capitalizeSecondWord(monsterName)
+				table.insert(capitalizedMonsterList3, capitalizedMonsterName3)
+			end
+		end
+	end
+	local combinedList_ts = table.concat(capitalizedMonsterList3, ", ")
+	combinedList_ts = capitalizeSecondWord(combinedList_ts)
+	
+	---------------------------
+	
+	if task_normal then
+		sto_value_tasknormal = Player(player):getStorageValue(task_normal.storage)
+	end
+	
+	if task_daily then
+		sto_value_taskdaily = Player(player):getStorageValue(task_daily.storage)
+	end
+	
+	if task_special then
+		sto_value_taskspecial = Player(player):getStorageValue(task_special.storage)
+	end
+	
+	----------------------------------
+	local itemsSpecialText_tasknormal = ""
+	if task_normal then
+		if task_normal.items_special then
+			itemsSpecialText_tasknormal = "- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n"
+		end
+	end
 		
-		local itemsSpecialText = ""
-		if ret_td.items_special then
-			itemsSpecialText = "- Special Rewards [+]: " .. getItemsFromTable(ret_td.items_special) .. ".\n"
+	local itemsSpecialText_taskdaily = ""
+	if task_daily then
+		if task_daily.items_special then
+			itemsSpecialText_taskdaily = "- Special Rewards [+]: " .. getItemsFromTable(task_daily.items_special) .. ".\n"
 		end
+	end
 		
-		if ret_td.boss_access then
-			bossAccessText = "- Boss Access: " .. ret_td.boss_access.name .. ".\n"
+	local itemsSpecialText_taskspecial = ""
+	if task_special then
+		if task_special.items_special then
+			itemsSpecialText_taskspecial = "- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n"
 		end
+	end
 		
-		if sto_value_td < ret_td.amount then
-			player:popupFYI("[Task System]\nCompleting Daily Task of " .. ret_td.name .. ".\n - You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "].\nThey also count in the task: ".. combinedList_td ..".\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. ".\n" .. itemsSpecialText .. "- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n".. bossAccessText .."\n\nTime with the task: " .. elapsedTime_daily .. ".")
-		else
-			player:popupFYI("[Task System]\nCompleting Daily Task of " .. ret_td.name .. ".\n - You have killed [" .. sto_value_td .. "/" .. ret_td.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(ret_td.items) .. ".\n" .. itemsSpecialText .. "- Experience [+]: " .. formatExp(ret_td.exp) .. " EXP.\n- Task Points [+]: " .. ret_td.pointsTask[1] .. " TP.\n".. bossAccessText .."\n\nTime with the task: " .. elapsedTime_daily .. ".")
+	local bossAccessText_tasknormal = ""
+	if task_normal then
+		if task_normal.boss_access then
+			bossAccessText_tasknormal = "- Boss Access: " .. task_normal.boss_access.name .. ".\n"
 		end
+	end
 		
-			--------
-		-- Only Special Task
-		elseif ret_ts then
-		local sto_value_ts = player:getStorageValue(ret_ts.storage)
-		local capitalizedMonsterList3 = {}
-		for _, monsterName in ipairs(ret_ts.mons_list) do
-			local capitalizedMonsterName3 = capitalizeSecondWord(monsterName)
-			table.insert(capitalizedMonsterList3, capitalizedMonsterName3)
+	local bossAccessText_taskdaily = ""
+	if task_daily then
+		if task_daily.boss_access then
+			bossAccessText_taskdaily = "- Boss Access: " .. task_daily.boss_access.name .. ".\n"
 		end
-		local combinedList_ts = table.concat(capitalizedMonsterList3, ", ")
-		combinedList_ts = capitalizeSecondWord(combinedList_ts)
+	end
 		
-		if ret_ts.boss_access then
-			bossAccessText = "- Boss Access: " .. ret_ts.boss_access.name .. ".\n"
+	local bossAccessText_taskspecial = ""
+	if task_special then
+		if task_special.boss_access then
+			bossAccessText_taskspecial = "- Boss Access: " .. task_special.boss_access.name .. ".\n"
 		end
+	end
+	----------------------------------
+	
+	-- With Normal, Daily and Special
+	if Position(32364, 32205, 7) == item:getPosition() then
+		if task_normal and task_daily and task_special then
+			if sto_value_tasknormal < task_normal.amount and sto_value_taskdaily < task_daily.amount and sto_value_taskspecial < task_special.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			--- Esto es cuando la Special Task esta completada
+			elseif sto_value_tasknormal < task_normal.amount and sto_value_taskdaily < task_daily.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			--- Esto es cuando la Daily Task esta completada
+			elseif sto_value_tasknormal < task_normal.amount and sto_value_taskspecial < task_special.amount then	
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			--- Esto es cuando la Normal Task esta completada
+			elseif sto_value_taskspecial < task_special.amount and sto_value_taskdaily < task_daily.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			--- Esto es cuando la Daily Task y special estan completadas
+			elseif sto_value_tasknormal < task_normal.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			--- Esto es cuando la Normal Task y Special estan completadas	
+			elseif sto_value_taskdaily < task_daily.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			--- Esto es cuando la task normal y daily estan completadas	
+			elseif sto_value_taskspecial < task_special.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			else
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_normal.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			end
+
+		-- Task Normal and Daily
+		elseif task_normal and task_daily then
+			if sto_value_tasknormal < task_normal.amount and sto_value_taskdaily < task_daily.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".")
+			elseif sto_value_tasknormal < task_normal.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".")
+			elseif sto_value_taskdaily < task_daily.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".")
+			else
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Daily Task of "..task_daily.name..".\n- You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".")
+			end
+		-- Task Normal and Special	
+		elseif task_normal and task_special then
+			if sto_value_tasknormal < task_normal.amount and sto_value_taskspecial < task_special.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			elseif sto_value_tasknormal < task_normal.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			elseif sto_value_taskspecial < task_special.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			else
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			end
+			
+		-- Task Daily and Special	
+		elseif task_daily and task_special then
+			if sto_value_taskdaily < task_daily.amount and sto_value_taskspecial < task_special.amount then
+				player:popupFYI("[Task System]\nCompleting Daily Task of " .. task_daily.name .. ".\n - You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			elseif sto_value_taskdaily < task_daily.amount then
+				player:popupFYI("[Task System]\nCompleting Daily Task of " .. task_daily.name .. ".\n - You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			elseif sto_value_taskspecial < task_special.amount then
+				player:popupFYI("[Task System]\nCompleting Daily Task of " .. task_daily.name .. ".\n - You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			else
+				player:popupFYI("[Task System]\nCompleting Daily Task of " .. task_daily.name .. ".\n - You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".\n\nCompleting Special Task of "..task_special.name..".\n- You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			end	
 		
-		if sto_value_ts < ret_ts.amount then
-			player:popupFYI("[Task System]\nCompleting Special Task of " .. ret_ts.name .. ".\n - You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "].\nThey also count in the task: ".. combinedList_ts ..".\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText.."\nTime with the task: " .. elapsedTime_special .. ".")
-		else
-			player:popupFYI("[Task System]\nCompleting Special Task of " .. ret_ts.name .. ".\n - You have killed [" .. sto_value_ts .. "/" .. ret_ts.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(ret_ts.items_special) .. ".\n- Experience [+]: " .. formatExp(ret_ts.exp) .. " EXP.\n- Task Points [+]: " .. ret_ts.pointsTask[1] .. " TP.\n"..bossAccessText.."\nTime with the task: " .. elapsedTime_special .. ".")
-		end
-			---------
-			---- SI NO TIENE NINGUNA TASK ENCIMA
+		-- Only Task Normal	
+		elseif task_normal then
+			if sto_value_tasknormal < task_normal.amount then
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "].\n" .. (combinedList ~= "" and "They also count in the task: " .. combinedList .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\nTime with the task: " .. elapsedTime .. ".")
+			else
+				player:popupFYI("[Task System]\nCompleting Normal Task of " .. task_normal.name .. ".\n - You have killed [" .. sto_value_tasknormal .. "/" .. task_normal.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_normal.items) .. ".\n"..itemsSpecialText_tasknormal.."- Experience [+]: " .. formatExp(task_normal.exp) .. " EXP.\n- Task Points [+]: " .. task_normal.pointsTask[1] .. " TP.\n"..bossAccessText_tasknormal.."\n\nTime with the task: " .. elapsedTime .. ".")
+			end
+			
+			
+		-- Only Task Daily	
+		elseif task_daily then
+			if sto_value_taskdaily < task_daily.amount then
+				player:popupFYI("[Task System]\nCompleting Daily Task of " .. task_daily.name .. ".\n - You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "].\n" .. (combinedList_td ~= "" and "They also count in the task: " .. combinedList_td .. ".\n" or "") .. "\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".")
+			else
+				player:popupFYI("[Task System]\nCompleting Daily Task of " .. task_daily.name .. ".\n - You have killed [" .. sto_value_taskdaily .. "/" .. task_daily.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Rewards [+]: " .. getItemsFromTable(task_daily.items) .. ".\n"..itemsSpecialText_taskdaily.."- Experience [+]: " .. formatExp(task_daily.exp) .. " EXP.\n- Task Points [+]: " .. task_daily.pointsTask[1] .. " TP.\n"..bossAccessText_taskdaily.."\nTime with the task: " .. elapsedTime_daily .. ".")
+			end
+			
+		-- Only Task Special	
+		elseif task_special then
+			if sto_value_taskspecial < task_special.amount then
+				player:popupFYI("[Task System]\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "].\n" .. (combinedList_ts ~= "" and "They also count in the task: " .. combinedList_ts .. ".\n" or "") .. "\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			else
+				player:popupFYI("[Task System]\nCompleting Special Task of " .. task_special.name .. ".\n - You have killed [" .. sto_value_taskspecial .. "/" .. task_special.amount .. "]. (Completed)\nGo back to Vauter to Report the task.\n\nBy completing the task you receive:\n- Special Rewards [+]: " .. getItemsFromTable(task_special.items_special) .. ".\n- Experience [+]: " .. formatExp(task_special.exp) .. " EXP.\n- Task Points [+]: " .. task_special.pointsTask[1] .. " TP.\n"..bossAccessText_taskspecial.."\nTime with the task: " .. elapsedTime_special .. ".")
+			end
 		else
 			player:popupFYI("[Task System]\n- You have not yet chosen a task with Vauter. \n\n- Task Rank: ".. getRankTask(player) ..".\n- Task Points: ".. taskRank_get(player) ..".")
 		end
-		exhaust[playerId] = currentTime + exhaustTime
 	end
 	
 	
+	
 	if Position(32348, 32222, 7) == item:getPosition() then
+	
 	local currentDay = os.date("%A") -- Obtener el nombre del día actual
     local taskList = task_daily[currentDay] -- Obtener la lista de tareas del día actual
+	local taskList = getTaskDailyInfo(player) 
 	
     local message = "[Daily Task]\n- Here the tasks of the day will be shown.\nThen to choose go to Vauter.\n\nToday is ["..os.date("%A").."], Time: " .. os.date("%X") .. ".\n\n"
 
@@ -468,33 +327,23 @@ function taskboard.onUse(player, item, fromPosition, target, toPosition, isHotke
 		message = message .. "   [+] Special Items: \n"
 			for _, item in ipairs(task.items_special) do
 			local itemName = getItemNameById(item.id) -- Obtener el nombre del objeto por su ID
-			message = message .. "      -> " .. item.count .. "x " .. itemName .. ".\n\n"
+			message = message .. "      -> " .. item.count .. "x " .. itemName .. ".\n"
 			end
 		end
+		message = message .. "   [+] Task Points: " .. task.pointsTask[1] .. ".\n\n"
 	end	
 		player:popupFYI(message)
 	end
 	
-
+	
+	
+	
+	
+	
+	
+	
 	return true
 end
 
 taskboard:id(36828)
 taskboard:register()
-
-
-local task_command = TalkAction("/task", "!task", "!status")
-function task_command.onSay(player, words, param, type)
-
-
-
-	
-
-
-
-
-
-	return false
-end
-
-task_command:register()
