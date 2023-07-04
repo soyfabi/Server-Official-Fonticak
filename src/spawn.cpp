@@ -373,10 +373,10 @@ void Spawn::checkSpawn()
 		if (spawnedMap.find(spawnId) != spawnedMap.end()) {
 			continue;
 		}
-
+		
 		spawnBlock_t& sb = it.second;
 		
-		if (OTSYS_TIME() >= sb.lastSpawn + sb.interval) {
+		if (OTSYS_TIME() >= sb.lastSpawn + std::max<uint32_t>(MINSPAWN_INTERVAL, sb.interval / g_game.getSpawnRate())) {
 			
 			//Try when ignoreSpawnBlock is false, no teleport effect.
 			
@@ -456,6 +456,10 @@ void Spawn::removeMonster(Monster* monster)
 			break;
 		}
 	}
+}
+
+uint32_t Spawn::getInterval() const {
+	return std::max<uint32_t>(MINSPAWN_INTERVAL, interval / g_game.getSpawnRate());
 }
 
 void Spawn::stopEvent()

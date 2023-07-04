@@ -147,6 +147,7 @@ rateExp = 0
 rateSkill = 10
 rateLoot = 3.5
 rateMagic = 4.5
+spawnMultiplier = 1
 rateSpellCooldown = 1
 
 -- Monster Level System --

@@ -297,6 +297,7 @@ bool ConfigManager::load()
 	integer[RATE_SKILL] = getGlobalNumber(L, "rateSkill", 3);
 	integer[RATE_LOOT] = getGlobalNumber(L, "rateLoot", 2);
 	integer[RATE_MAGIC] = getGlobalNumber(L, "rateMagic", 3);
+	integer[SPAWN_MULTIPLIER] = getGlobalNumber(L, "spawnMultiplier", 1);
 	integer[HOUSE_PRICE] = getGlobalNumber(L, "housePriceEachSQM", 1000);
 	integer[RED_DAILY_LIMIT] = getGlobalNumber(L, "redDailyLimit", 3);
 	integer[RED_WEEKLY_LIMIT] = getGlobalNumber(L, "redWeeklyLimit", 5);

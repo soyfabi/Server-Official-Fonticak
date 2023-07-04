@@ -236,7 +236,9 @@ class Game
 		uint32_t getPlayersRecord() const {
 			return playersRecord;
 		}
-
+		
+		uint8_t getSpawnRate() const;
+		
 		LightInfo getWorldLightInfo() const {
 			return {lightLevel, lightColor};
 		}
