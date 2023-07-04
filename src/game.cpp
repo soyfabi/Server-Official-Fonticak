@@ -173,7 +173,7 @@ void Game::saveGameState()
 		it.second->loginPosition = it.second->getPosition();
 		IOLoginData::savePlayer(it.second);
 	}
-
+	
 	Map::save();
 
 	g_databaseTasks.flush();

@@ -56,7 +56,7 @@ class Guild
 		void setMemberCount(uint32_t count) {
 			memberCount = count;
 		}
-
+		
 		const std::vector<GuildRank_ptr>& getRanks() const {
 			return ranks;
 		}
@@ -71,7 +71,7 @@ class Guild
 		void setMotd(const std::string& motd) {
 			this->motd = motd;
 		}
-
+	
 	private:
 		std::list<Player*> membersOnline;
 		std::vector<GuildRank_ptr> ranks;
