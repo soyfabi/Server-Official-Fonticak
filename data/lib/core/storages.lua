@@ -84,6 +84,15 @@ GlobalStorageKeys = {
 }
 
 Storage = {
+	-- Storage Channel Loot
+	STORAGEVALUE_LOOT = 78000,
+	-- Storage Exp Potion
+	STORAGEVALUE_POTIONXP_ID = 78001,
+	STORAGEVALUE_POTIONXP_TEMPO = 78002,
+	-- Storage Loot Potion
+	STORAGEVALUE_LOOT_ID = 78003,
+	STORAGEVALUE_LOOT_TEMPO = 78004,
+	
 	achievementsBase = 300000,
 	achievementsCounter = 200000,
 	-- General storages

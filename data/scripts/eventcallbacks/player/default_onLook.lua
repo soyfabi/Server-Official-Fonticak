@@ -36,6 +36,9 @@ event.onLook = function(self, thing, position, distance, description)
                 exp = exp * 0.8
 			elseif staminaMinutes <= 840 and self:getStorageValue(Storage.isCasting) == -1 then
 				exp = exp * 0.5
+			-- Doble Exp	
+			elseif staminaMinutes > 2340 and self:getStorageValue(Storage.STORAGEVALUE_POTIONXP_TEMPO) > 1 then
+				exp = exp * 1.5
             end
         end
         description = string.format("%s\nEstimated of Exp: [%d]", description, exp)

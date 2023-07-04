@@ -8,4 +8,5 @@
 	<channel id="7" name="Help" public="1" script="help.lua" />
 	<channel id="8" name="Gamemaster" script="gamemaster.lua" />
 	<channel id="10" name="Task Channel" script="task_channel.lua" />
+	<channel id="11" name="Loot Channel" script="loot_channel.lua" />
 </channels>

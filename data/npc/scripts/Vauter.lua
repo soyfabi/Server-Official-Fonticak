@@ -370,7 +370,7 @@ elseif npcHandler.topic[cid] == 3 then
                 player:clearStorageValue(getTaskSpecialInfo(player).storage)
                 player:clearStorageValue(tasks_storage)
                 player:clearStorageValue(task_timerspecial)
-                player:setStorageValue(time_dayStoSpecial, 1 * 60 * 60 * 24 + os.time())
+				player:setStorageValue(time_dayStoSpecial, 2 * 60 * 60 * 24 + os.time())
                 npcHandler.topic[cid] = 0
                 npcHandler:releaseFocus(cid)
             else

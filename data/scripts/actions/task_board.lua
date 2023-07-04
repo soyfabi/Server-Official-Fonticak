@@ -2,6 +2,72 @@ local taskboard = Action()
 
 function taskboard.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
+	-- Daily Board
+	if Position(32348, 32222, 7) == item:getPosition() then
+	local currentDay = os.date("%A")
+    local taskList = task_daily[currentDay]
+	
+    local message = "[Daily Task]\n- Here the tasks of the day will be shown.\nThen to choose go to Vauter.\n\nToday is ["..os.date("%A").."], Time: " .. os.date("%X") .. ".\n\n"
+	
+	local function formatExp(exp)
+    local formattedExp = tostring(exp)
+    local formattedParts = {}
+
+    while #formattedExp > 3 do
+        table.insert(formattedParts, 1, formattedExp:sub(-3))
+        formattedExp = formattedExp:sub(1, -4)
+    end
+
+    table.insert(formattedParts, 1, formattedExp)
+
+		return table.concat(formattedParts, ".")
+	end
+	
+    for _, task in ipairs(taskList) do
+		message = message .. "-> " .. task.name .. "\n"
+		message = message .. "   [-] Count: " .. task.amount .. ".\n"
+	
+		if task.items and #task.items > 0 then
+		message = message .. "   [+] Rewards: \n"
+			for _, item in ipairs(task.items) do
+				local itemName = getItemNameById(item.id)
+				message = message .. "      -> " .. item.count .. "x " .. itemName .. ".\n"
+			end
+		end
+    
+		if task.items_special and #task.items_special > 0 then
+		message = message .. "   [+] Special Items: \n"
+			for _, item in ipairs(task.items_special) do
+			local itemName = getItemNameById(item.id)
+			message = message .. "      -> " .. item.count .. "x " .. itemName .. ".\n"
+			end
+		end
+		
+		message = message .. "   [-] Experience: " .. formatExp(task.exp) .. ".\n"
+		message = message .. "   [-] Task Points: " .. task.pointsTask[1] .. ".\n"
+		
+		if task.boss_access then
+            message = message .. "   [-] Boss Access: " .. task.boss_access.name .. ".\n"
+        end
+		
+		message = message .. "   [+] Requirements:\n"
+		if task.level_required then
+            message = message .. "   -> Level Required: " .. task.level_required .. ".\n"
+        end
+		
+		if task.taskp_required then
+            message = message .. "   -> Task Points Required: " .. task.taskp_required .. ".\n"
+        end
+		
+		if task.premium_required then
+            message = message .. "   -> Premium Required: Yes.\n"
+        end
+		  
+		message = message .. "\n"
+	end	
+		player:popupFYI(message)
+	end
+
 	-- Timer Task Normal
 	local epochTime = player:getStorageValue(task_timer)
  
@@ -283,67 +349,22 @@ function taskboard.onUse(player, item, fromPosition, target, toPosition, isHotke
 		end
 	end
 	
-	
-	
-	if Position(32348, 32222, 7) == item:getPosition() then
-	
-	local currentDay = os.date("%A") -- Obtener el nombre del día actual
-    local taskList = task_daily[currentDay] -- Obtener la lista de tareas del día actual
-	local taskList = getTaskDailyInfo(player) 
-	
-    local message = "[Daily Task]\n- Here the tasks of the day will be shown.\nThen to choose go to Vauter.\n\nToday is ["..os.date("%A").."], Time: " .. os.date("%X") .. ".\n\n"
-
-
-	local function formatExp(exp)
-    local formattedExp = tostring(exp)
-    local formattedParts = {}
-
-    while #formattedExp > 3 do
-        table.insert(formattedParts, 1, formattedExp:sub(-3))
-        formattedExp = formattedExp:sub(1, -4)
-    end
-
-    table.insert(formattedParts, 1, formattedExp)
-
-		return table.concat(formattedParts, ".")
-	end
-	
-    -- Recorrer la lista de tareas del día actual y agregarlas al mensaje
-    for _, task in ipairs(taskList) do
-		message = message .. "-> " .. task.name .. "\n"
-		message = message .. "   [+] Count: " .. task.amount .. ".\n"
-		message = message .. "   [+] Experience: " .. formatExp(task.exp) .. ".\n"
-	
-		if task.items and #task.items > 0 then
-		message = message .. "   [+] Rewards: \n"
-			for _, item in ipairs(task.items) do
-				local itemName = getItemNameById(item.id) -- Obtener el nombre del objeto por su ID
-				message = message .. "      -> " .. item.count .. "x " .. itemName .. ".\n"
-			end
-		end
-    
-    -- Mostrar los elementos especiales si existen
-		if task.items_special and #task.items_special > 0 then
-		message = message .. "   [+] Special Items: \n"
-			for _, item in ipairs(task.items_special) do
-			local itemName = getItemNameById(item.id) -- Obtener el nombre del objeto por su ID
-			message = message .. "      -> " .. item.count .. "x " .. itemName .. ".\n"
-			end
-		end
-		message = message .. "   [+] Task Points: " .. task.pointsTask[1] .. ".\n\n"
-	end	
-		player:popupFYI(message)
-	end
-	
-	
-	
-	
-	
-	
-	
-	
 	return true
 end
 
 taskboard:id(36828)
 taskboard:register()
+
+
+
+
+local taskboard2 = Action()
+
+function taskboard2.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+
+	
+
+	return true
+end
+taskboard2:id(36829)
+taskboard2:register()
