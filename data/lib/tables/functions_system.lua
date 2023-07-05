@@ -3,7 +3,6 @@ expPotion = {
     [7253] = {exp = 25, tempo = 1},
     [8205] = {exp = 50, tempo = 1},
     [9734] = {exp = 100, tempo = 1}
-
 }
 
 lootPotion = {

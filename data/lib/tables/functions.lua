@@ -543,7 +543,14 @@ function Player.addPremiumPoints(self, amount)
 end
 
 function Player.removePremiumPoints(self, amount)
-    return db.query(string.format("UPDATE `accounts` SET `premium_points` = `premium_points` - %d WHERE `id` = %d", amount, self:getAccountId()))
+    if self:getPremiumPoints() >= amount then
+        db.query(string.format("UPDATE `accounts` SET `premium_points` = `premium_points` - %d WHERE `id` = %d", amount, self:getAccountId()))
+        return true
+    else
+        self:sendCancelMessage("You don't own ".. amount .. " points to be removed.")
+        self:getPosition():sendMagicEffect(CONST_ME_POFF)
+        return false
+    end
 end
 
 function Player.setPremiumPoints(self, amount)

@@ -4,18 +4,13 @@ event.onLook = function(self, thing, position, distance, description)
 	
 	-- Look KILL AND DEATH -- 
 	if thing:isPlayer() then
-		local killStorage = 3000
-		local deathStorage = 3001
+		local killStorage = 884734
+		local deathStorage = 884735
 		local killAmount, deathAmount = thing:getStorageValue(killStorage), thing:getStorageValue(deathStorage)
 		if killAmount == -1 then killAmount = 0 end
 		if deathAmount == -1 then deathAmount = 0 end
-		description = description .. '\nKilled: [' ..killAmount..'] and ' .. 'Dieds: ['..deathAmount..']'
+		description = description .. '\nKilleds: [' ..killAmount..'] and ' .. 'Deaths: ['..deathAmount..']'
 	end
-	
-	-- Look Premium Points --
-	if thing:isItem() and thing:getCustomAttribute("premiumPoints") then
-    	description = description .. "\nEsse item vale " .. thing:getCustomAttribute("premiumPoints") .." pontos."
-    end
 	
 	-- Look Show Health Monster in Percentage --
 	if thing:isCreature() and thing:isMonster() then
