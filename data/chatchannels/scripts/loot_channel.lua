@@ -1,7 +1,7 @@
 
 
 function onSpeak(player, type, message)
-	player:sendChannelMessage("[BOT]", "It is not allowed to talk on this channel.", TALKTYPE_CHANNEL_R1, 11)
+	player:sendChannelMessage("[BOT]", "It is not allowed to talk on this channel.", TALKTYPE_CHANNEL_R1, 3)
 	return false
 end
 

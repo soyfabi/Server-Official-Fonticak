@@ -12,6 +12,11 @@ event.onLook = function(self, thing, position, distance, description)
 		description = description .. '\nKilled: [' ..killAmount..'] and ' .. 'Dieds: ['..deathAmount..']'
 	end
 	
+	-- Look Premium Points --
+	if thing:isItem() and thing:getCustomAttribute("premiumPoints") then
+    	description = description .. "\nEsse item vale " .. thing:getCustomAttribute("premiumPoints") .." pontos."
+    end
+	
 	-- Look Show Health Monster in Percentage --
 	if thing:isCreature() and thing:isMonster() then
 	description = "".. description .."\nHealth: ["..math.floor((thing:getHealth() / thing:getMaxHealth()) * 100).."%]"

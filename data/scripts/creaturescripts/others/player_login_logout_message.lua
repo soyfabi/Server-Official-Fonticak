@@ -8,27 +8,28 @@ function loginMessage.onLogin(player)
     print(player:getName() .. " has logged in.")
 	
 	player:openChannel(2) -- Global Chat
-	player:openChannel(12) -- Death Channel
-	player:openChannel(6) -- Quests
-	player:openChannel(7) -- Trade Market
-	player:openChannel(4) -- Help
+	--player:openChannel(3) -- Loot Channel
+	--player:openChannel(4) -- Task Channel
+	player:openChannel(5) -- Death Channel
+	player:openChannel(6) -- Trade Market
+	player:openChannel(7) -- Advertising
 	player:openChannel(8) -- Changelog
-	player:openChannel(3) -- Advertising
+	player:openChannel(9) -- Help Channel
 
 	if player:getGuild() then
-	player:openChannel(10) -- Guild Leaders Channel
+		player:openChannel(10) -- Guild Leaders Channel
 	end
 	
 	-- Bank Balance Text --
-	--[[if player:getBankBalance() > 0 then
-		player:sendTextMessage(MESSAGE_STATUS_BLUE_LIGHT, "Your Bank Balance is: {"..player:getBankBalance().."}.")
+	if player:getBankBalance() > 0 then
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Your Bank Balance is: "..player:getBankBalance()..".")
 	end
 	
 	-- Inbox Notice --
 	local inboxItems = player:getInbox():getItemHoldingCount()
 	if inboxItems > 0 then
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Check the inbox, you have "..inboxItems.." item" .. (inboxItems > 1 and "s." or "."))
-	end]]
+	end
 	
     return true
 end
