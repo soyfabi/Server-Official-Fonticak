@@ -1,5 +1,5 @@
 task_monsters = {
-	[1] = {name = "Troll", mons_list = {"troll champion", "troll guard", "island troll", "swamp troll", "frost troll", "troll legionnaire", "furious troll", "troll marauder"}, storage = 80000, amount = 200, taskp_required = 1, level_required = 1, premium_required = false, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}},
+	[1] = {name = "Troll", mons_list = {"troll champion", "troll guard", "island troll", "swamp troll", "frost troll", "troll legionnaire", "furious troll", "troll marauder"}, storage = 80000, amount = 2, taskp_required = 1, level_required = 1, premium_required = false, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}},
 	[2] = {name = "Rotworm", mons_list = {"carrion worm", "rotworm queen"}, storage = 80001, amount = 400, taskp_required = 1, level_required = 1, premium_required = false, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}, items_special = {{id = 3374, count = 1}}, boss_access = {storage = 90000, name = "Rotworm King"}},
 	[3] = {name = "Goblin", mons_list = {"goblin assassin", "goblin leader"}, storage = 80002, amount = 300, taskp_required = 1, level_required = 1, premium_required = false, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}},
 	[4] = {name = "Crocodile", storage = 80003, amount = 500, taskp_required = 1, level_required = 1, premium_required = false, exp = 50000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}, boss_access = {storage = 90001, name = "Crocodylus"}},
@@ -137,7 +137,7 @@ task_daily = {
 		[3] = {name = "Bog Raider", storage = 80222, amount = 10, taskp_required = 10, premium_required = false, exp = 150000, pointsTask = {1, 1}, items_special = {{id = 3387, count = 1}}},
 	},
 	["Sunday"] = {
-		[1] = {name = "Dubai", mons_list = {"werehyaena shaman"}, storage = 80230, amount = 10, taskp_required = 1, level_required = 100, premium_required = false, exp = 150000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}, items_special = {{id = 3387, count = 1}}, boss_access = {storage = 90051, name = "Flitcher"}},
+		[1] = {name = "Dubai", mons_list = {"werehyaena shaman"}, storage = 80230, amount = 10, taskp_required = 10, level_required = 100, premium_required = false, exp = 150000, pointsTask = {1, 1}, items = {{id = 3043, count = 10}}, items_special = {{id = 3387, count = 1}}, boss_access = {storage = 90051, name = "Flitcher"}},
 		[2] = {name = "Amazon", mons_list = {"valkyrie"}, storage = 80231, amount = 10, taskp_required = 10, premium_required = false, exp = 150000, pointsTask = {1, 1}, items_special = {{id = 3387, count = 1}}},
 		[3] = {name = "Bog Raider", storage = 80232, amount = 10, taskp_required = 10, premium_required = false, exp = 150000, pointsTask = {1, 1}, items_special = {{id = 3387, count = 1}}},
 	},

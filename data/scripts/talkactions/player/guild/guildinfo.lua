@@ -28,7 +28,8 @@ function guildinfo.onSay(player, words, param)
     local highestAxeLevelMember = {name = "", axeLevel = 0} -- Initialize with an empty member and axe level 0
     local highestClubLevelMember = {name = "", clubLevel = 0} -- Initialize with an empty member and club level 0
     local highestDistanceLevelMember = {name = "", distanceLevel = 0} -- Initialize with an empty member and distance level 0
-
+	local highestShieldingLevelMember = {name = "", shieldingLevel = 0}
+	
     for _, member in pairs(membersOnline) do
         if membersOnlineCount >= maxMembersToShow then
             break
@@ -41,6 +42,7 @@ function guildinfo.onSay(player, words, param)
         local playerAxeLevel = Player(member):getSkillLevel(SKILL_AXE)
         local playerClubLevel = Player(member):getSkillLevel(SKILL_CLUB)
         local playerDistanceLevel = Player(member):getSkillLevel(SKILL_DISTANCE)
+		local playerShieldingLevel = Player(member):getSkillLevel(SKILL_SHIELD)
 
         local memberData = playerName .. " (Level " .. playerLevel .. ")."
         table.insert(memberInfo, memberData)
@@ -81,24 +83,34 @@ function guildinfo.onSay(player, words, param)
             highestDistanceLevelMember.name = playerName
             highestDistanceLevelMember.distanceLevel = playerDistanceLevel
         end
+		
+		if playerShieldingLevel > highestShieldingLevelMember.shieldingLevel then
+            highestShieldingLevelMember.name = playerName
+            highestShieldingLevelMember.shieldingLevel = playerShieldingLevel
+        end
     end
 
     local memberInfoStr = table.concat(memberInfo, "\n")
 
   
 	local warStatus = getGlobalStorageValue(80000)
-
+	
     local text = "[Guild Info]\nAll your guild information.\n\n"
     text = text .. "Your guild is: [".. guild:getName() .."].\n\n"
+	text = text .. "Guild level is: 2.\n"
+	text = text .. "[+] Exp Bonus: 2.\n"
+	text = text .. "[+] Loot Bonus: 2.\n\n"
 	text = text .. "<-Max 10 Members Online->\n"
     text = text .. "Members online: " .. membersOnlineCount .. ":\n" .. memberInfoStr .. "\n\n"
     text = text .. "<-Top Lists of Members->\n"
-    text = text .. "Top Level Member: " .. highestLevelMember.name .. " (Level " .. highestLevelMember.level .. ").\n"
-    text = text .. "Top Magic Level Member: " .. highestMagicLevelMember.name .. " (" .. highestMagicLevelMember.magicLevel .. ").\n"
-    text = text .. "Top Sword Level Member: " .. highestSwordLevelMember.name .. " (" .. highestSwordLevelMember.swordLevel .. ").\n"
-    text = text .. "Top Axe Level Member: " .. highestAxeLevelMember.name .. " (" .. highestAxeLevelMember.axeLevel .. ").\n"
-    text = text .. "Top Club Level Member: " .. highestClubLevelMember.name .. " (" .. highestClubLevelMember.clubLevel .. ").\n"
-    text = text .. "Top Distance Level Member: " .. highestDistanceLevelMember.name .. " (" .. highestDistanceLevelMember.distanceLevel .. ").\n\n"
+    text = text .. "Top Level: " .. highestLevelMember.name .. " (Level " .. highestLevelMember.level .. ").\n"
+    text = text .. "Top Magic Level: " .. highestMagicLevelMember.name .. " (" .. highestMagicLevelMember.magicLevel .. ").\n"
+    text = text .. "Top Sword Fighting: " .. highestSwordLevelMember.name .. " (" .. highestSwordLevelMember.swordLevel .. ").\n"
+    text = text .. "Top Axe Fighting: " .. highestAxeLevelMember.name .. " (" .. highestAxeLevelMember.axeLevel .. ").\n"
+    text = text .. "Top Club Fighting: " .. highestClubLevelMember.name .. " (" .. highestClubLevelMember.clubLevel .. ").\n"
+    text = text .. "Top Distance Fighting: " .. highestDistanceLevelMember.name .. " (" .. highestDistanceLevelMember.distanceLevel .. ").\n"
+    text = text .. "Top Shielding: " .. highestShieldingLevelMember.name .. " (" .. highestShieldingLevelMember.shieldingLevel .. ").\n\n"
+
 	text = text .. "<-War Status->\n"
 	
 	if warStatus > 1 then

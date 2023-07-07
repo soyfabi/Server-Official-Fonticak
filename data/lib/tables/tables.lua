@@ -1,6 +1,6 @@
 dofile('data/lib/tables/functions.lua')
 dofile('data/lib/tables/functions_system.lua')
-dofile('data/lib/tables/task_daily.lua')
+dofile('data/lib/tables/task_tables.lua')
 dofile('data/lib/tables/events/monster_hunt_tables.lua')
 dofile('data/lib/tables/quest/svargrond_arena.lua')
 dofile('data/lib/tables/quest/the_queen_of_the_banshees.lua')
