@@ -3,7 +3,7 @@ event.onLook = function(self, thing, position, distance, description)
 	local description = "You see " .. thing:getDescription(distance)
 	
 	-- Look KILL AND DEATH -- 
-	if thing:isPlayer() then
+	if thing:isPlayer() and not thing:getGroup():getAccess() then
 		local killStorage = 884734
 		local deathStorage = 884735
 		local killAmount, deathAmount = thing:getStorageValue(killStorage), thing:getStorageValue(deathStorage)
@@ -18,8 +18,16 @@ event.onLook = function(self, thing, position, distance, description)
     end
 	
 	-- Rank Task --
-	if thing:isPlayer() then --and not thing:getGroup():getAccess() then
+	if thing:isPlayer() and not thing:getGroup():getAccess() then
 		description = string.format("%s\nTask Rank: "..getRankTask(thing)..".", description)
+	end
+	
+	-- Guild Level --
+	if thing:isPlayer() and not thing:getGroup():getAccess() then
+		if thing:getGuild() then
+		local guild = thing:getGuild()
+			description = description .. '\nGuild Level: '..guild:getLevel()..'.'
+		end
 	end
 
 	-- Look Experience Monsters --

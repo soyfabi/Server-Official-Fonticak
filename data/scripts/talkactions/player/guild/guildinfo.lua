@@ -97,9 +97,10 @@ function guildinfo.onSay(player, words, param)
 	
     local text = "[Guild Info]\nAll your guild information.\n\n"
     text = text .. "Your guild is: [".. guild:getName() .."].\n\n"
-	text = text .. "Guild level is: 2.\n"
-	text = text .. "[+] Exp Bonus: 2.\n"
-	text = text .. "[+] Loot Bonus: 2.\n\n"
+	text = text .. "Guild Level is: ["..guild:getLevel().."]: ->\n"
+	text = text .. "[+] Exp Bonus: " .. GuildLevel.level_experience[guild:getLevel()].exp .. "%.\n"
+	text = text .. "[+] Loot Bonus: " .. GuildLevel.level_experience[guild:getLevel()].loot .. "%.\n"
+	text = text .. "Guild Exp Accumulated: [".. guild:getExperience().."].\n\n"
 	text = text .. "<-Max 10 Members Online->\n"
     text = text .. "Members online: " .. membersOnlineCount .. ":\n" .. memberInfoStr .. "\n\n"
     text = text .. "<-Top Lists of Members->\n"

@@ -556,3 +556,33 @@ end
 function Player.setPremiumPoints(self, amount)
 	return db.query(string.format("UPDATE `accounts` SET `premium_points` = %d WHERE `id` = %d", amount, self:getAccountId()))
 end
+
+function Guild.getLevel(guild)
+    local resultId = db.storeQuery(string.format('SELECT `level` FROM `guilds` WHERE `id` = %d', guild:getId()))
+    if not resultId then
+        return 0
+    end
+
+    local value = result.getNumber(resultId, "level")
+    result.free(resultId)
+	return value
+end
+
+function Guild.addLevel(guild, amount)
+	return db.query(string.format("UPDATE `guilds` SET `level` = `level` + %d WHERE `id` = %d", amount, guild:getId()))
+end
+
+function Guild.getExperience(guild)
+    local resultId = db.storeQuery(string.format('SELECT `experience` FROM `guilds` WHERE `id` = %d', guild:getId()))
+    if not resultId then
+        return 0
+    end
+
+    local value = result.getNumber(resultId, "experience")
+    result.free(resultId)
+	return value
+end
+
+function Guild.addExperience(guild, amount)
+	return db.query(string.format("UPDATE `guilds` SET `experience` = `experience` + %d WHERE `id` = %d", amount, guild:getId()))
+end

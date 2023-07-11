@@ -26,10 +26,18 @@ event.onDropLoot = function(self, corpse)
 			end
 		end
 		
-		
+		local lootBonus = 0
+		local guild = player:getGuild()
+		local level = guild:getLevel()
+		if GuildLevel.level_experience[level] then
+			local lootBonusPercent = GuildLevel.level_experience[level].exp
+			local lootBonus = (lootBonusPercent / 34)
+			lootBonus = (lootBonus)
+		end
+
 		local percent = 0 -- Agrega esta línea para declarar y asignar un valor a 'percent'
 		for i = 1, #monsterLoot do
-			monsterLoot[i].chance = monsterLoot[i].chance + (monsterLoot[i].chance * percent) + (monsterLoot[i].chance * percentLoot)
+			monsterLoot[i].chance = monsterLoot[i].chance + (monsterLoot[i].chance * percent) + (monsterLoot[i].chance * percentLoot) + (monsterLoot[i].chance * lootBonus)
 			local item = corpse:createLootItem(monsterLoot[i])
 			if not item then
 				print('[Warning] DropLoot:', 'Could not add loot item to corpse.')

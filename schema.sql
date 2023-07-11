@@ -137,6 +137,8 @@ CREATE TABLE IF NOT EXISTS `guilds` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `ownerid` int NOT NULL,
+  `level` int NOT NULL DEFAULT '1',
+  `experience` int NOT NULL DEFAULT '0',
   `creationdata` int NOT NULL,
   `motd` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
