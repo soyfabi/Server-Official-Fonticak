@@ -101,6 +101,7 @@ function guildinfo.onSay(player, words, param)
 	text = text .. "[+] Exp Bonus: " .. GuildLevel.level_experience[guild:getLevel()].exp .. "%.\n"
 	text = text .. "[+] Loot Bonus: " .. GuildLevel.level_experience[guild:getLevel()].loot .. "%.\n"
 	text = text .. "Guild Exp Accumulated: [".. guild:getExperience().."].\n\n"
+	text = text .. "Guild Bank Balance: [".. guild:getBankBalance().."].\n[+] Last to deposit:\n[+] Money deposited:\n[-] Last to withdraw:\n[-] Money withdrawn:\n\n"
 	text = text .. "<-Max 10 Members Online->\n"
     text = text .. "Members online: " .. membersOnlineCount .. ":\n" .. memberInfoStr .. "\n\n"
     text = text .. "<-Top Lists of Members->\n"

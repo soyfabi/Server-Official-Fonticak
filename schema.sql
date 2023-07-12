@@ -139,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `guilds` (
   `ownerid` int NOT NULL,
   `level` int NOT NULL DEFAULT '1',
   `experience` int NOT NULL DEFAULT '0',
+  `balance` int NOT NULL DEFAULT '0',
   `creationdata` int NOT NULL,
   `motd` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),

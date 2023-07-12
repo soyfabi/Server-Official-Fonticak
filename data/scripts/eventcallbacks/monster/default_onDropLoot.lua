@@ -51,7 +51,7 @@ event.onDropLoot = function(self, corpse)
 				party:broadcastPartyLoot(text)
 			else
 				if player:getStorageValue(Storage.STORAGEVALUE_LOOT) == 1 then
-					sendChannelMessage(11, TALKTYPE_CHANNEL_O, text)
+					sendChannelMessage(4, TALKTYPE_CHANNEL_O, text)
 				else
 					player:sendTextMessage(MESSAGE_INFO_DESCR, text)
 				end
@@ -64,7 +64,7 @@ event.onDropLoot = function(self, corpse)
 			party:broadcastPartyLoot(text)
 		else
 			if player:getStorageValue(Storage.STORAGEVALUE_LOOT) == 1 then
-				sendChannelMessage(11, TALKTYPE_CHANNEL_O, text)
+				sendChannelMessage(4, TALKTYPE_CHANNEL_O, text)
 			else
 				player:sendTextMessage(MESSAGE_INFO_DESCR, text)
 			end

@@ -586,3 +586,18 @@ end
 function Guild.addExperience(guild, amount)
 	return db.query(string.format("UPDATE `guilds` SET `experience` = `experience` + %d WHERE `id` = %d", amount, guild:getId()))
 end
+
+function Guild.setBankBalance(guild, amount)
+	return db.query(string.format("UPDATE `guilds` SET `balance` = `balance` + %d WHERE `id` = %d", amount, guild:getId()))
+end
+
+function Guild.getBankBalance(guild)
+    local resultId = db.storeQuery(string.format('SELECT `balance` FROM `guilds` WHERE `id` = %d', guild:getId()))
+    if not resultId then
+        return 0
+    end
+
+    local value = result.getNumber(resultId, "balance")
+    result.free(resultId)
+	return value
+end
