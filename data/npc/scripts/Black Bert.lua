@@ -68,6 +68,8 @@ local function creatureSayCallback(cid, type, msg)
 		openShopWindow(cid, getTable(player), onBuy, onSell)
 		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
 		end
+	else
+		npcHandler:say("In order to trade with me, first complete {The Thieves Guild Quest}.", cid)
 	end
 	return true
 end

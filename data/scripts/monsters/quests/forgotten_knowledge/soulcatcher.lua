@@ -44,6 +44,10 @@ monster.light = {
 	color = 0
 }
 
+monster.events = {
+	"SoulcatcherSummon"
+}
+
 monster.voices = {
 	interval = 5000,
 	chance = 10,

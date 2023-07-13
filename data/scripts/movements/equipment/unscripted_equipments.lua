@@ -143,6 +143,18 @@ local items = {
 		slot = "head",
 		level = 250
 	},
+		{
+		-- broken iks cuirass
+		itemid = 40533,
+		type = "equip",
+		slot = "armor"
+	},
+	{
+		-- broken iks cuirass
+		itemid = 40533,
+		type = "deequip",
+		slot = "armor"
+	},
 	{
 		-- 25 years backpack
 		itemid = 39693,
@@ -778,6 +790,18 @@ local items = {
 		itemid = 37609,
 		type = "deequip",
 		slot = "head"
+	},
+	{
+		-- green demon armor
+		itemid = 37608,
+		type = "equip",
+		slot = "armor"
+	},
+	{
+		-- green demon armor
+		itemid = 37608,
+		type = "deequip",
+		slot = "armor"
 	},
 	{
 		-- changing backpack
@@ -1753,13 +1777,13 @@ local items = {
 		}
 	},
 	{
-		-- soulmantel armor
+		-- soulmantel
 		itemid = 34095,
 		type = "deequip",
 		slot = "armor"
 	},
 	{
-		-- soulmantel armor
+		-- soulmantel
 		itemid = 34095,
 		type = "equip",
 		slot = "armor",
@@ -2213,6 +2237,42 @@ local items = {
 		itemid = 32100,
 		type = "deequip",
 		slot = "head"
+	},
+	{
+		-- traditional shirt
+		itemid = 32099,
+		type = "equip",
+		slot = "armor"
+	},
+	{
+		-- traditional shirt
+		itemid = 32099,
+		type = "deequip",
+		slot = "armor"
+	},
+	{
+		-- lederhosen
+		itemid = 32097,
+		type = "equip",
+		slot = "legs"
+	},
+	{
+		-- lederhosen
+		itemid = 32097,
+		type = "deequip",
+		slot = "legs"
+	},
+	{
+		-- traditional leather shoes
+		itemid = 32098,
+		type = "equip",
+		slot = "feet"
+	},
+	{
+		-- traditional leather shoes
+		itemid = 32098,
+		type = "deequip",
+		slot = "feet"
 	},
 	{
 		-- meat hammer
@@ -6543,14 +6603,14 @@ local items = {
 		level = 65
 	},
 	{
-		-- Ferumbras' staff
+		-- Ferumbras' staff (club)
 		itemid = 22764,
 		type = "equip",
 		slot = "hand",
 		level = 100
 	},
 	{
-		-- Ferumbras' staff
+		-- Ferumbras' staff (club)
 		itemid = 22764,
 		type = "deequip",
 		slot = "hand"
@@ -6684,10 +6744,6 @@ local items = {
 		type = "equip",
 		slot = "hand",
         level = 70,
-		vocation = {
-			{"Knight", true},
-			{"Elite Knight"}
-		}
 	},
 	{
 		-- rift lance
@@ -7722,7 +7778,7 @@ local items = {
 		itemid = 21174,
 		type = "equip",
 		slot = "hand",
-        level = 40
+        level = 45
 	},
 	{
 		-- mino lance
@@ -8231,7 +8287,12 @@ local items = {
 		-- umbral master chopper
 		itemid = 20075,
 		type = "equip",
-		slot = "hand"
+		slot = "hand",
+        level = 250,
+		vocation = {
+			{"Knight", true},
+			{"Elite Knight"}
+        }
 	},
 	{
 		-- umbral master chopper
@@ -13937,7 +13998,11 @@ local items = {
 		itemid = 7452,
 		type = "equip",
 		slot = "hand",
-		level = 30
+		level = 30,
+		vocation = {
+			{"Knight", true},
+			{"Elite Knight"}
+  		}
 	},
 	{
 		-- spiked squelcher
@@ -16899,7 +16964,11 @@ local items = {
 		itemid = 3342,
 		type = "equip",
 		slot = "hand",
-        level = 65
+        level = 65,
+		vocation = {
+			{"Knight", true},
+			{"Elite Knight"}
+		}
 	},
 	{
 		-- war axe
@@ -16925,11 +16994,7 @@ local items = {
 		itemid = 3340,
 		type = "equip",
 		slot = "hand",
-		level = 70,
-		vocation = {
-			{"Knight", true},
-			{"Elite Knight"}
-		}
+		level = 70
 	},
 	{
 		-- heavy mace
@@ -17024,7 +17089,8 @@ local items = {
 		-- crystal mace
 		itemid = 3333,
 		type = "equip",
-		slot = "hand"
+		slot = "hand",
+		level = 35
 	},
 	{
 		-- crystal mace
@@ -17315,7 +17381,8 @@ local items = {
 		-- clerical mace
 		itemid = 3311,
 		type = "equip",
-		slot = "hand"
+		slot = "hand",
+		level = 20
 	},
 	{
 		-- clerical mace
@@ -18020,13 +18087,13 @@ local items = {
 	},
 	{
 		-- giant smithhammer
-		itemid = 12510,
+		itemid = 3208,
 		type = "equip",
 		slot = "hand"
 	},
 	{
 		-- giant smithhammer
-		itemid = 12510,
+		itemid = 3208,
 		type = "deequip",
 		slot = "hand"
 	},

@@ -28,11 +28,13 @@ event.onDropLoot = function(self, corpse)
 		
 		local lootBonus = 0
 		local guild = player:getGuild()
+		if guild then
 		local level = guild:getLevel()
-		if GuildLevel.level_experience[level] then
-			local lootBonusPercent = GuildLevel.level_experience[level].exp
-			local lootBonus = (lootBonusPercent / 34)
-			lootBonus = (lootBonus)
+			if GuildLevel.level_experience[level] then
+				local lootBonusPercent = GuildLevel.level_experience[level].exp
+				local lootBonus = (lootBonusPercent / 34)
+				lootBonus = (lootBonus)
+			end
 		end
 
 		local percent = 0 -- Agrega esta línea para declarar y asignar un valor a 'percent'

@@ -6791,7 +6791,7 @@
 		<attribute key="weight" value="1500"/>
 	</item>
 	<item id="3453" article="a" name="scythe">
-		<attribute key="weaponType" value="axe"/>
+		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="attack" value="8"/>
 		<attribute key="defense" value="3"/>
@@ -17674,7 +17674,7 @@
 	</item>
 	<item id="9384" article="a" name="scythe of the reaper">
 		<attribute key="description" value="This scythe has harvested countless souls and still hungers for more"/>
-		<attribute key="weaponType" value="club"/>
+		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="attack" value="16"/>
 		<attribute key="defense" value="6"/>
@@ -17689,7 +17689,7 @@
 	</item>
 	<item id="9386" article="a" name="farmer's avenger">
 		<attribute key="description" value="A weapon forged to fight oppression of the poor underdogs"/>
-		<attribute key="weaponType" value="sword"/>
+		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="attack" value="17"/>
 		<attribute key="defense" value="7"/>
@@ -21775,7 +21775,7 @@
 		<attribute key="weight" value="4000"/>
 	</item>
 	<item id="12683" article="a" name="heavy trident">
-		<attribute key="weaponType" value="sword"/>
+		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="attack" value="35"/>
 		<attribute key="defense" value="17"/>
@@ -28749,7 +28749,7 @@
 		<attribute key="absorbpercentpoison" value="2"/>
 		<attribute key="absorbpercentfire" value="-2"/>
 		<attribute key="armor" value="12"/>
-		<attribute key="weight" value="4800"/>
+		<attribute key="weight" value="5800"/>
 		<attribute key="slotType" value="body" />
 	</item>
 	<item id="19373" article="a" name="haunted mirror piece">
@@ -37575,20 +37575,20 @@
 		<attribute key="weaponType" value="axe"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="attack" value="52"/>
-		<attribute key="defense" value="32"/>
+		<attribute key="defense" value="30"/>
 		<attribute key="weight" value="7000"/>
 	</item>
 	<item id="27453" article="a" name="mace of destruction">
 		<attribute key="weaponType" value="club"/>
 		<attribute key="attack" value="50"/>
-		<attribute key="defense" value="30"/>
+		<attribute key="defense" value="32"/>
 		<attribute key="weight" value="5000"/>
 	</item>
 	<item id="27454" article="a" name="hammer of destruction">
 		<attribute key="weaponType" value="club"/>
 		<attribute key="slotType" value="two-handed"/>
 		<attribute key="attack" value="53"/>
-		<attribute key="defense" value="30"/>
+		<attribute key="defense" value="29"/>
 		<attribute key="weight" value="7000"/>
 	</item>
 	<item id="27455" article="a" name="bow of destruction">
@@ -40420,6 +40420,7 @@
 	</item>
 	<item id="29419" article="a" name="resizer">
 		<attribute key="weaponType" value="club"/>
+		<attribute key="slotType" value="two-handed"/>
 		<attribute key="elementice" value="46"/>
 		<attribute key="skillclub" value="2"/>
 		<attribute key="attack" value="11"/>
@@ -43972,22 +43973,27 @@
 	<item id="32097" article="a" name="lederhosen">
 		<attribute key="description" value="Made from dried and tanned orc skin, these traditional Orcsoberfest leather trousers are sturdy and fit a wide range of orgers"/>
 		<attribute key="weight" value="800"/>
+		<attribute key="slotType" value="legs"/>
 	</item>
 	<item id="32098" article="a" name="traditional leather shoes">
 		<attribute key="description" value="Soled with sturdy orc hides, these tranditional Orcsoberfest leather shoes are robust and useful"/>
 		<attribute key="weight" value="500"/>
+		<attribute key="slotType" value="feet"/>
 	</item>
 	<item id="32099" article="a" name="traditional shirt">
 		<attribute key="description" value="A traditional white Orcsoberfest shirt. Not worn by many orgres during the actual festivities anymore, however"/>
 		<attribute key="weight" value="400"/>
+		<attribute key="slotType" value="body"/>
 	</item>
 	<item id="32100" article="a" name="traditional gamsbart hat">
 		<attribute key="description" value="This traditional Orcsoberfest gamsbart shows a bit of use but is still in good shape and will clothe any sophisticated ogre just fine"/>
 		<attribute key="weight" value="250"/>
+		<attribute key="slotType" value="head"/>
 	</item>
 	<item id="32101" article="a" name="traditional neckerchief">
 		<attribute key="description" value="A traditional neckerchief which complements every traditional Orcsoberfest look"/>
 		<attribute key="weight" value="150"/>
+		<attribute key="slotType" value="necklace"/>
 	</item>
 	<item id="32102" article="a" name="traditional stein">
 		<attribute key="description" value="A practical, classic mug which is typically used to serve beer during the Orcsoberfest"/>
@@ -44609,7 +44615,7 @@
 	</item>
 	<item id="32705" article="a" name="pair of old bracers">
 		<attribute key="armor" value="1"/>
-		<attribute key="weight" value="20"/>
+		<attribute key="weight" value="200"/>
 		<attribute key="slotType" value="head" />
 	</item>
 	<item id="32706" article="a" name="unknow">
@@ -46270,7 +46276,7 @@
 		<attribute key="criticalhitchance" value="10"/>
 		<attribute key="skillaxe" value="5"/>
 		<attribute key="attack" value="10"/>
-		<attribute key="defense" value="35"/>
+		<attribute key="defense" value="34"/>
 		<attribute key="weight" value="7200"/>
 	</item>
 	<item id="34086" article="a" name="soulcrusher">
@@ -52341,5 +52347,615 @@
 		<attribute key="magicpoints" value="2"/>
 		<attribute key="armor" value="8"/>
 		<attribute key="weight" value="3500"/>
+	</item>
+	<item id="42050" article="a" name="dead iks">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42051" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42050" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42052" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42051" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42053" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42052" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42054" article="a" name="dead iks">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42055" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42054" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42056" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42055" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42057" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42056" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42058" article="a" name="dead iks">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42059" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42058" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42060" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42059" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42061" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42060" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42062" article="a" name="dead iks">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42063" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42062" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42064" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42063" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42065" article="a" name="dead iks">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42064" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42066" name="Ahau's remains">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42067" name="Ahau's remains">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42070" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42068" name="Ahau's remains">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42071" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42069" name="Ahau's remains">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42072" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42070" article="a" name="dead cursed ape">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42071" article="a" name="dead cursed ape">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42070" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42072" article="a" name="dead cursed ape">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42071" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42073" article="a" name="dead cursed ape">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42072" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42207" article="a" name="dead crape man">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42208" article="a" name="dead crape man">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42207" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42209" article="a" name="dead crape man">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42208" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42210" article="a" name="dead crape man">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42209" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42211" article="a" name="dead liodile">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42212" article="a" name="dead liodile">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42211" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42213" article="a" name="dead liodile">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42212" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42214" article="a" name="dead liodile">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42213" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42215" article="a" name="dead boar man">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42216" article="a" name="dead boar man">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42215" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42217" article="a" name="dead boar man">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42216" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42218" article="a" name="dead boar man">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42217" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42219" article="a" name="dead harpy">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42220" article="a" name="dead harpy">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42219" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42221" article="a" name="dead harpy">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42220" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42222" article="a" name="dead harpy">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42221" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42223" article="a" name="dead carnivostrich">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42224" article="a" name="dead carnivostrich">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42223" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42225" article="a" name="dead carnivostrich">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42224" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42226" article="a" name="dead carnivostrich">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42225" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42227" article="a" name="dead rhindeer">
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="60" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42228" article="a" name="dead rhindeer">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42227" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42229" article="a" name="dead rhindeer">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42228" />
+		<attribute key="duration" value="300" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42230" article="a" name="dead rhindeer">
+		<attribute key="containerSize" value="30" />
+		<attribute key="decayTo" value="42229" />
+		<attribute key="duration" value="10" />
+		<attribute key="fluidSource" value="blood" />
+	</item>
+	<item id="42267" name="seafarer chair">
+		<attribute key="rotateTo" value="42268"/>
+	</item>
+	<item id="42268" name="seafarer chair">
+		<attribute key="rotateTo" value="42269"/>
+	</item>
+	<item id="42269" name="seafarer chair">
+		<attribute key="rotateTo" value="42270"/>
+	</item>
+	<item id="42270" name="seafarer chair">
+		<attribute key="rotateTo" value="42267"/>
+	</item>
+	<item id="42271" name="seafarer table">
+		<attribute key="rotateTo" value="42272"/>
+	</item>
+	<item id="42272" name="seafarer table">
+		<attribute key="rotateTo" value="42271"/>
+	</item>
+	<item id="42273" name="seafarer cabinet">	
+		<attribute key="rotateTo" value="42274"/>
+	</item>
+	<item id="42274" name="seafarer cabinet">
+		<attribute key="rotateTo" value="42273"/>
+	</item>
+	<item id="42275" name="seafarer chest">
+		<attribute key="rotateTo" value="42276"/>
+	</item>
+	<item id="42276" name="seafarer chest">
+		<attribute key="rotateTo" value="42277"/>
+	</item>
+	<item id="42277" name="seafarer chest">	
+		<attribute key="rotateTo" value="42278"/>
+	</item>
+	<item id="42278" name="seafarer chest">
+		<attribute key="rotateTo" value="42275"/>
+	</item>
+	<item id="42279" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="south"/>
+		<attribute key="maletransformto" value="42287"/>
+		<attribute key="rotateTo" value="42281"/>
+	</item>
+	<item id="42280" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="north"/>
+		<attribute key="maletransformto" value="42288"/>
+		<attribute key="rotateTo" value="42282"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42281" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="east"/>
+		<attribute key="maletransformto" value="42289"/>
+		<attribute key="rotateTo" value="42283"/>
+	</item>
+	<item id="42282" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="west"/>
+		<attribute key="maletransformto" value="42290"/>
+		<attribute key="rotateTo" value="42280"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42283" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="south"/>
+		<attribute key="femaletransformto" value="42287"/>
+		<attribute key="rotateTo" value="42285"/>
+	</item>
+	<item id="42284" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="north"/>
+		<attribute key="femaletransformto" value="42288"/>
+		<attribute key="rotateTo" value="42286"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42285" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="east"/>
+		<attribute key="femaletransformto" value="42289"/>
+		<attribute key="rotateTo" value="42283"/>
+	</item>
+	<item id="42286" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="west"/>
+		<attribute key="femaletransformto" value="42290"/>
+		<attribute key="rotateTo" value="42284"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42287" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="south"/>
+		<attribute key="femaletransformto" value="42283"/>
+		<attribute key="maletransformto" value="42279"/>
+		<attribute key="rotateTo" value="42289"/>	
+	</item>
+	<item id="42288" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="north"/>
+		<attribute key="femaletransformto" value="42284"/>
+		<attribute key="maletransformto" value="42280"/>
+		<attribute key="rotateTo" value="42290"/>
+	</item>
+	<item id="42289" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="east"/>
+		<attribute key="femaletransformto" value="42285"/>
+		<attribute key="maletransformto" value="42281"/>
+		<attribute key="rotateTo" value="42287"/>
+	</item>
+	<item id="42290" name="seafarer bed">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="west"/>
+		<attribute key="femaletransformto" value="42286"/>
+		<attribute key="maletransformto" value="42282"/>
+		<attribute key="rotateTo" value="42288"/>
+	</item>
+	<item id="42291" name="seashell lamp">
+	</item>
+	<item id="42292" name="seashell lamp">	
+	</item>
+	<item id="42293" name="seashell lamp">	
+	</item>
+	<item id="42294" name="seashell lamp">	
+	</item>
+	<item id="42295" name="tentacle lamp">	
+	</item>
+	<item id="42296" name="tentacle lamp">	
+	</item>
+	<item id="42297" name="tentacle lamp">	
+	</item>
+	<item id="42298" name="tentacle lamp">	
+	</item>
+	<item fromid="42299" toid="42300" article="a" name="sea-devil wall lamp">	
+	</item>
+	<item fromid="42301" toid="42302" article="a" name="seafood bucket">	
+	</item>
+	<item id="42303" name="ship bell">	
+	</item>
+	<item id="42304" name="fish hook board">	
+	</item>
+	<item id="42305" name="life buoy">	
+	</item>
+	<item fromid="42306" toid="42308" article="a" name="captain crab">		
+	</item>
+	<item id="42320" name="opulent chair">	
+		<attribute key="rotateTo" value="42321"/>
+	</item>
+	<item id="42321" name="opulent chair">
+		<attribute key="rotateTo" value="42322"/>
+	</item>
+	<item id="42322" name="opulent chair">
+		<attribute key="rotateTo" value="42323"/>
+	</item>
+	<item id="42323" name="opulent chair">
+		<attribute key="rotateTo" value="42320"/>
+	</item>
+	<item id="42324" name="opulent table">
+		<attribute key="rotateTo" value="42325"/>
+	</item>
+	<item id="42325" name="opulent table">
+		<attribute key="rotateTo" value="42324"/>
+	</item>
+	<item id="42326" name="opulent table">
+		<attribute key="rotateTo" value="42327"/>
+	</item>
+	<item id="42327" name="opulent table">
+		<attribute key="rotateTo" value="42326"/>
+	</item>
+	<item id="42328" name="opulent chest">
+		<attribute key="rotateTo" value="42329"/>
+	</item>
+	<item id="42329" name="opulent chest">
+		<attribute key="rotateTo" value="42330"/>
+	</item>
+	<item id="42330" name="opulent chest">
+		<attribute key="rotateTo" value="42331"/>
+	</item>
+	<item id="42331" name="opulent chest">
+		<attribute key="rotateTo" value="42328"/>
+	</item>
+	<item id="42332" name="opulent book case">
+		<attribute key="rotateTo" value="42333"/>
+	</item>
+	<item id="42333" name="opulent book case">
+		<attribute key="rotateTo" value="42332"/>
+	</item>
+	<item id="42334" name="opulent spice rack">
+		<attribute key="rotateTo" value="42335"/>
+	</item>
+	<item id="42335" name="opulent spice rack">
+		<attribute key="rotateTo" value="42334"/>
+	</item>
+	<item id="42336" name="opulent wood floor planks">
+	</item>
+	<item id="42337" name="opulent wood floor">
+	</item>
+	<item id="42338" name="loose opulent floor intarsia">
+	</item>
+	<item id="42339" name="opulent floor intarsia">
+	</item>
+	<item id="42340" name="rolled-up opulent carpet">
+	</item>
+	<item id="42341" name="opulent carpet">
+	</item>
+	<item id="42342" name="pile of riches">
+	</item>
+	<item id="42343" name="merchant portrait">
+	</item>
+	<item id="42344" name="scales wall lamp">
+	</item>
+	<item id="42345" name="scales wall lamp">
+	</item>
+	<item id="42346" name="opulent floor lamp">
+		<attribute key="rotateTo" value="42348"/>
+	</item>
+	<item id="42347" name="opulent floor lamp">
+		<attribute key="rotateTo" value="42349"/>
+	</item>
+	<item id="42348" name="opulent floor lamp">
+		<attribute key="rotateTo" value="42346"/>
+	</item>
+	<item id="42349" name="opulent floor lamp">	
+		<attribute key="rotateTo" value="42347"/>
+	</item>
+	<item id="42350" name="opulent item stand">	
+	</item>
+	<item id="42351" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="south"/>
+		<attribute key="maletransformto" value="42359"/>
+		<attribute key="rotateTo" value="42353"/>
+	</item>
+	<item id="42352" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="north"/>
+		<attribute key="maletransformto" value="42360"/>
+		<attribute key="rotateTo" value="42354"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42353" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="east"/>
+		<attribute key="maletransformto" value="42361"/>
+		<attribute key="rotateTo" value="42351"/>
+	</item>
+	<item id="42354" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="west"/>
+		<attribute key="maletransformto" value="42362"/>
+		<attribute key="rotateTo" value="42352"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42355" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="south"/>
+		<attribute key="femaletransformto" value="42359"/>
+		<attribute key="rotateTo" value="42357"/>
+	</item>
+	<item id="42356" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="north"/>
+		<attribute key="femaletransformto" value="42360"/>
+		<attribute key="rotateTo" value="42358"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42357" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="east"/>
+		<attribute key="femaletransformto" value="42361"/>
+		<attribute key="rotateTo" value="42355"/>
+	</item>
+	<item id="42358" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="west"/>
+		<attribute key="femaletransformto" value="42362"/>
+		<attribute key="rotateTo" value="42356"/>
+		<attribute key="description" value="Somebody is sleeping there"/>
+	</item>
+	<item id="42359" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="south"/>
+		<attribute key="femaletransformto" value="42355"/>
+		<attribute key="maletransformto" value="42351"/>
+		<attribute key="rotateTo" value="42361"/>	
+	</item>
+	<item id="42360" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="north"/>
+		<attribute key="femaletransformto" value="42356"/>
+		<attribute key="maletransformto" value="42352"/>
+		<attribute key="rotateTo" value="42362"/>
+	</item>
+	<item id="42361" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="east"/>
+		<attribute key="femaletransformto" value="42357"/>
+		<attribute key="maletransformto" value="42353"/>
+		<attribute key="rotateTo" value="42359"/>
+	</item>
+	<item id="42362" name="opulent kline">
+		<attribute key="type" value="bed"/>
+		<attribute key="partnerdirection" value="west"/>
+		<attribute key="femaletransformto" value="42358"/>
+		<attribute key="maletransformto" value="42354"/>
+		<attribute key="rotateTo" value="42360"/>
+	</item>
+	<item id="42363" name="djinn lamp">
+	</item>
+	<item id="42364" name="djinn lamp">
+		<attribute key="decayTo" value="42365" />
+		<attribute key="duration" value="1" />
+	</item>
+	<item id="42365" name="djinn lamp">
+	</item>
+	<item id="42366" name="djinn lamp">
+		<attribute key="decayTo" value="42363" />
+		<attribute key="duration" value="2" />
+	</item>
+	<item id="42367" name="podium of tenacity">
+	</item>
+	<item id="42368" name="podium of tenacity">
+	</item>
+	<item id="43510" name="tibiora's box replica">
+		<attribute key="description" value="Souvenir from Thais Museum."/>
+		<attribute key="weight" value="4200"/>
+	</item>
+	<item id="43511" article="a" name="citizen doll replica">
+		<attribute key="description" value="Souvenir from Thais Museum."/>
+		<attribute key="weight" value="2200"/>
+	</item>
+	<item id="43517" article="a" name="shield of destiny replica">
+		<attribute key="description" value="Souvenir from Thais Museum."/>
+		<attribute key="weight" value="6800"/>
 	</item>
 </items>

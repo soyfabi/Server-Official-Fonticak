@@ -393,7 +393,6 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 			player:sendCancelMessage(RETURNVALUE_PLAYERISPZLOCKED)
 			return true
 		end
-		player:teleportTo(toPosition, false)
 	elseif target.itemid == 1822 and target:getPosition() == Position(33222, 31100, 7) then
 		player:teleportTo(Position(33223, 31100, 8))
 	elseif table.contains({231, 231}, target.itemid) then
