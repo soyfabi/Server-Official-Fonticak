@@ -397,7 +397,7 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 	key[3] = msg.get<uint32_t>();
 	enableXTEAEncryption();
 	setXTEAKey(std::move(key));
-
+	
 	if (operatingSystem >= CLIENTOS_OTCLIENT_LINUX) {
 		NetworkMessage opcodeMessage;
 		opcodeMessage.addByte(0x32);
@@ -405,6 +405,7 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 		opcodeMessage.add<uint16_t>(0x00);
 		writeToOutputBuffer(opcodeMessage);
 	}
+
 
 	msg.skipBytes(1); // gamemaster flag
 
@@ -418,7 +419,7 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 		disconnect();
 		return;
 	}
-
+	
 	if (version < CLIENT_VERSION_MIN || version > CLIENT_VERSION_MAX) {
 		disconnectClient(fmt::format("Only clients with protocol {:s} allowed!", CLIENT_VERSION_STR));
 		return;

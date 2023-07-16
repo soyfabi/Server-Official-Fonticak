@@ -276,7 +276,7 @@ class ProtocolGame final : public Protocol
 
 		//otclient
 		void parseExtendedOpcode(NetworkMessage& msg);
-
+		
 		friend class Player;
 		friend class ProtocolSpectator;
 

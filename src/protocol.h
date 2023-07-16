@@ -84,7 +84,7 @@ class Protocol : public std::enable_shared_from_this<Protocol>
 		void setRawMessages(bool value) {
 			rawMessages = value;
 		}
-
+		
 		virtual void release() {}
 
 	private:

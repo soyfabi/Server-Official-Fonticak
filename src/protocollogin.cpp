@@ -147,7 +147,7 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 		disconnectClient(fmt::format("Only clients with protocol {:s} allowed!", CLIENT_VERSION_STR));
 		return;
 	}
-
+	
 	if (!Protocol::RSA_decrypt(msg)) {
 		disconnect();
 		return;
