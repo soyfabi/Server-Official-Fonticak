@@ -171,11 +171,13 @@ cast_login:register()
 local event = Event()
 event.onGainExperience = function(self, source, exp, rawExp)
 
+
+	local cast = 0
 	if self:getStorageValue(Storage.isCasting) == 1 then
-		exp = exp * 1.17 -- 10% Exp
+		cast = exp * 1.17 -- 10% Exp
 	end
 	
-	return exp
+	return exp + cast
 end
 
 event:register()

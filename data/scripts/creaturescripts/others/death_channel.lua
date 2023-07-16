@@ -97,9 +97,10 @@ function creatureEvent.onDeath(player)
     local channelMessage = string.format('%s [%d] %s%s%s.', player:getName(), player:getLevel(), subType, attackerInfo, totalAttackersMessage)
 
     local guild = player:getGuild()
-
     sendChannelMessage(config.channelId, channelType, channelMessage)
+	if guild then
     sendGuildChannelMessage(guild:getId(), channelType, channelMessage)
+	end
 end
 
 creatureEvent:register()

@@ -7,6 +7,10 @@ function isNumber(str)
 	return tonumber(str) ~= nil
 end
 
+function firstToUpper(str)
+    return (str:gsub("^%l", string.upper))
+end
+
 -- Monster Type --
 function isInteger(n)
 	return (type(n) == "number") and (math.floor(n) == n)

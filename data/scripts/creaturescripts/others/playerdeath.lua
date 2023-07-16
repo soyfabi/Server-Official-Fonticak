@@ -90,8 +90,6 @@ function playerDeath.onDeath(player, corpse, killer, mostDamageKiller, lastHitUn
 end
 playerDeath:register()
 
-
-
 local event = CreatureEvent("PlayerDeath")
 function event.onLogin(player)
 player:registerEvent("PlayerDeath")
@@ -99,8 +97,6 @@ player:registerEvent("PlayerDeath")
 end
 
 event:register()
-
-
 
 local config = {
     channelId = 12,

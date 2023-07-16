@@ -30,8 +30,9 @@ addTravelKeyword('farmine', {'Do you seek a ride to {Farmine} for {110 gold coin
 	end
 )
 addTravelKeyword('kazordoon', {'Do you want to go to {Kazordoon} to try the beer there? {160 gold coins}?', 'Set the sails!', 'Then not.'}, 160, 'postman', Position(32660, 31957, 15))
+addTravelKeyword('gnomprona', {'Would you like to travel to {Gnomprona} for {200 gold coins}?', 'Full steam ahead!', 'Then not.'}, 200, 'postman', Position(33516, 32856, 14))
 
-keywordHandler:addKeyword({'passage'}, StdModule.say, {npcHandler = npcHandler, text = 'Do you want me take you to {Kazordoon} or {Farmine}?'})
+keywordHandler:addKeyword({'passage'}, StdModule.say, {npcHandler = npcHandler, text = 'Do you want me take you to {Kazordoon}, {Farmine} or {Gnomprona}?'})
 
 npcHandler:setMessage(MESSAGE_GREET, 'Welcome, |PLAYERNAME|! May Earth protect you, even whilst sailing!')
 npcHandler:setMessage(MESSAGE_FAREWELL, 'Until next time.')

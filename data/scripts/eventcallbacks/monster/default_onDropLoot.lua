@@ -36,10 +36,24 @@ event.onDropLoot = function(self, corpse)
 				lootBonus = (lootBonus)
 			end
 		end
+		
+		-- Boost Creature
+		local percent = 0
+		if (mType:getName():lower() == capitalizeFirstLetter(boostCreature[2].name_loot):lower()) then
+			player:sendTextMessage(MESSAGE_STATUS_DEFAULT, "[Boosted Creature] You have killed a "..mType:getName().." with Bonus Loot.")
+			percent = (boostCreature[1].loot / 100)
+		end
+		
+		local percent_boss = 0
+		if (mType:getName():lower() == capitalizeFirstLetter(boostCreature[3].name_boss):lower()) then
+			player:sendTextMessage(MESSAGE_STATUS_DEFAULT, "[Boosted Creature] You have killed a "..mType:getName().." with Bonus Loot.")
+			percent_boss = (boostCreature[1].loot / 100)
+		end
+		
+		
 
-		local percent = 0 -- Agrega esta línea para declarar y asignar un valor a 'percent'
 		for i = 1, #monsterLoot do
-			monsterLoot[i].chance = monsterLoot[i].chance + (monsterLoot[i].chance * percent) + (monsterLoot[i].chance * percentLoot) + (monsterLoot[i].chance * lootBonus)
+			monsterLoot[i].chance = monsterLoot[i].chance + (monsterLoot[i].chance * percent) + (monsterLoot[i].chance * percent_boss) + (monsterLoot[i].chance * percentLoot) + (monsterLoot[i].chance * lootBonus)
 			local item = corpse:createLootItem(monsterLoot[i])
 			if not item then
 				print('[Warning] DropLoot:', 'Could not add loot item to corpse.')

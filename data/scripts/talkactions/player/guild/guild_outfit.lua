@@ -13,9 +13,9 @@ function guildoutfit.onSay(player, words, param)
     local playerId = player:getId()
     local currentTime = os.time()
     if exhaust[playerId] and exhaust[playerId] > currentTime then
-		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
-		return true
-	end
+        player:sendCancelMessage("This command is still on cooldown. (0." .. exhaust[playerId] - currentTime .. "s).")
+        return false
+    end
 
     if player:getGuildLevel() == 1 then
         player:sendCancelMessage("You need to be a Vice-Leader or Leader to exchange the outfit of the guild.")

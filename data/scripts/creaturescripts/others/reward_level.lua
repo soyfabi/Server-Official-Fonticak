@@ -46,8 +46,6 @@ end
 
 rewardLevelEvent:register()
 
-
-
 local rewardLevelEvent_2 = CreatureEvent("rewardLevelEvent_2")
 
 function rewardLevelEvent_2.onAdvance(player, skill, oldLevel, newLevel)

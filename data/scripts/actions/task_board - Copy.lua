@@ -3,9 +3,6 @@ local guild = Action()
 function guild.onUse(player, item)
 
 	
-	
-	
-	
 	return true
 end
 
