@@ -61,8 +61,8 @@ function talkAction.onSay(player, words, param)
 		data['broadcast'] = true
 		--data['password'] = target
 		player:setSpectators(data)
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have started casting your gameplay, now you have %10 Exp Bonus.")
-		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have started casting your gameplay, now you have %10 Exp Bonus.")
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have started casting your gameplay, now you have 10% Exp Bonus.")
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have started casting your gameplay, now you have 10% Exp Bonus.")
 		player:setStorageValue(Storage.isCasting, 1)
 		return false
 	elseif action == "password" then

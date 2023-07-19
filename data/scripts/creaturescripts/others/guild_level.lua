@@ -100,7 +100,7 @@ event.onGainExperience = function(self, source, exp, rawExp)
 	local guild = self:getGuild()
 	if guild then
 		local level = guild:getLevel()
-		if GuildLevel.level_experience[level] then
+		if GuildLevel.level_experience[level] and GuildLevel.level_experience[level].exp > 0 then
 			local expBonusPercent = GuildLevel.level_experience[level].exp
 			local expBonus = exp * (expBonusPercent / 34)
 			guildbonus = exp + expBonus

@@ -1,7 +1,7 @@
 GuildLevel = {
 	level_experience = {
-		[1] = {exp = -34, loot = -34, expMin = 0, expMax = 50}, -- Level 1
-		[2] = {exp = 2, loot = 1, expMin = 51, expMax = 230}, -- Level 2
+		[1] = {exp = 0, loot = 0, expMin = 0, expMax = 50}, -- Level 1
+		[2] = {exp = 1, loot = 1, expMin = 51, expMax = 230}, -- Level 2
 		[3] = {exp = 2, loot = 2, expMin = 231, expMax = 350}, -- Level 3
 		[4] = {exp = 3, loot = 3, expMin = 351, expMax = 480}, -- Level 4
 		[5] = {exp = 5, loot = 5, expMin = 481, expMax = 650}, -- Level 5

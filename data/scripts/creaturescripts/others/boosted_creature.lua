@@ -41,7 +41,6 @@ BoostedCreature:start()
 
 local boostedlogin = CreatureEvent("Boosted_Login")
 function boostedlogin.onLogin(player)
-    addEvent(function()
         local message = "Every day the list of bonus monsters is always updated, these are today's.\nToday daily creatures are:\n[" .. boostCreature[1].name .. "]\nBonus Exp Rate: " .. boostCreature[1].exp .. "%.\n[".. boostCreature[2].name_loot.."]\nExtra Loot Rate: " .. boostCreature[2].loot .. "%."
         if boostCreature[3] and boostCreature[3].name_boss then
             message = message .. "\n[".. boostCreature[3].name_boss .. "]\nSpecial Loot Rate: ".. boostCreature[3].loot_boss .. "%."
@@ -49,7 +48,6 @@ function boostedlogin.onLogin(player)
             message = message .. "\nNo boss today."
         end
         player:sendTextMessage(MESSAGE_INFO_DESCR, message)
-    end, 2000)
     return true
 end
 
@@ -85,7 +83,7 @@ end
 ec:register()
 
 ------- TALKACTION -------
-local boostedmtalk = TalkAction("!boosted","!boostedcreature")
+local boostedmtalk = TalkAction("!boostedcreature")
 
 local exhaust = {}
 local exhaustTime = 2
