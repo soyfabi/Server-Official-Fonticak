@@ -956,9 +956,8 @@ void Player::sendPing()
 
 		if (client) {
 			client->logout(true, true);
-		} else {
-			g_game.removeCreature(this, true);
 		}
+		g_game.removeCreature(this, true);
 	}
 }
 
