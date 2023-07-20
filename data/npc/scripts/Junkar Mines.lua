@@ -16,7 +16,7 @@ npcHandler:addModule(VoiceModule:new(voices))
 
 -- Travel
 local function addTravelKeyword(keyword, cost, destination)
-	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = text or 'So you wish for a trip to ' .. keyword:titleCase() .. '? |TRAVELCOST|?', cost = cost, discount = 'postman'})
+	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = text or 'So you wish for a trip to {' .. keyword:titleCase() .. '}? for {'..cost..' gold coins}?', cost = cost, discount = 'postman'})
 		travelKeyword:addChildKeyword({'yes'}, StdModule.travel, {npcHandler = npcHandler, premium = false, text = 'Full steam ahead!', cost = cost, discount = 'postman', destination = destination})
 		travelKeyword:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, text = 'Well, then you stay here, simple as that.', reset = true})
 end
@@ -27,7 +27,7 @@ addTravelKeyword('robsons isle', 70, Position(32527, 32036, 14))
 
 keywordHandler:addKeyword({'passage'}, StdModule.say, {npcHandler = npcHandler, text = 'Where do you want me to take you? To {Kazordoon}, {Thais} or to {Robsons Isle}?'})
 
-npcHandler:setMessage(MESSAGE_GREET, "Welcome, |PLAYERNAME|! You are lucky that the service is running right now. Save your coal for the days to come though!")
+npcHandler:setMessage(MESSAGE_GREET, "Welcome, {|PLAYERNAME|}! You are lucky that the service is running right now. Save your coal for the days to come though!")
 npcHandler:setMessage(MESSAGE_FAREWELL, "See you next time!")
 npcHandler:setMessage(MESSAGE_WALKAWAY, "<Sigh> No patience!")
 

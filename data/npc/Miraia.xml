@@ -5,12 +5,15 @@
 	<parameters>
 		<parameter key="module_shop" value="1" />
 		<parameter key="shop_buyable" value="
-			meat,2666,5;
-			ham,2671,8;
-			bread,2689,4;
-			cheese,2696,6;
-			mug of water,2012,2,1;
-			mug of milk,2012,5,6;
-			mug of lemonade,2012,3,5;" />
+			meat,3577,5;
+			ham,3582,8;
+			bread,3600,4;
+			cheese,3607,6;
+			scarab cheese,169,100;
+			mug of water,2880,2,1;
+			mug of milk,2880,5,6;
+			mug of lemonade,2880,3,5;" />
+		<parameter key="shop_sellable" value="
+		ice cube,7441,250" />
 	</parameters>
 </npc>

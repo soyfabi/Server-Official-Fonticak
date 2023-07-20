@@ -13,14 +13,14 @@ local function creatureSayCallback(cid, type, msg)
 	end
 	local player = Player(cid)
 	if msgcontains(msg, "marlin") then
-		if player:getItemCount(7963) > 0 then
+		if player:getItemCount(901) > 0 then
 			npcHandler:say("WOW! You have a marlin!! I could make a nice decoration for your wall from it. May I have it?", cid)
 			npcHandler.topic[cid] = 1
 		end
 	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 1 then
-		if player:removeItem(7963, 1) then
+		if player:removeItem(901, 1) then
 			npcHandler:say("Yeah! Now let's see... <fumble fumble> There you go, I hope you like it!", cid)
-			player:addItem(7964, 1)
+			player:addItem(902, 1)
 		else
 			npcHandler:say("You don't have the fish.", cid)
 		end
@@ -35,7 +35,7 @@ end
 
 -- Travel
 local function addTravelKeyword(keyword, text, cost, destination)
-	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Do you seek a passage to ' .. keyword:titleCase() .. ' for |TRAVELCOST|?', cost = cost, discount = 'postman'})
+	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Do you seek a passage to {' .. keyword:titleCase() .. '} for {'..cost..' gold coins}?', cost = cost, discount = 'postman'})
 		travelKeyword:addChildKeyword({'yes'}, StdModule.travel, {npcHandler = npcHandler, premium = false, cost = cost, discount = 'postman', destination = destination})
 		travelKeyword:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, text = 'Maybe later.', reset = true})
 end

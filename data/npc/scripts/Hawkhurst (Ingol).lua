@@ -17,7 +17,7 @@ local function addTravelKeyword(keyword, text, cost, discount, destination)
 		travelKeyword:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, text = text[3], reset = true})
 end
 
-addTravelKeyword('cormaya', {'Do you want to go to {Cormaya} to try the beer there? {160 gold coins}?', 'Set the sails!', 'Then not.'}, 160, 'postman', Position(33356, 31983, 7))
+addTravelKeyword('cormaya', {'Do you want to go to {Cormaya} to try the beer there? {130 gold coins}?', 'Set the sails!', 'Then not.'}, 130, 'postman', Position(33356, 31983, 7))
 
 keywordHandler:addKeyword({'passage'}, StdModule.say, {npcHandler = npcHandler, text = 'Do you want me take you to {Ingol}?'})
 
