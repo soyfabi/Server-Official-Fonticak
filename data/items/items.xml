@@ -35005,14 +35005,17 @@
 	</item>
 	<item fromid="25053" toid="25054" article="a" name="fire portal">
 		<attribute key="type" value="teleport"/>
+		<attribute key="effect" value="teleport"/>
 		<attribute key="description" value="You can see the other side through it."/>
 	</item>
 	<item fromid="25055" toid="25056" article="a" name="holy portal">
 		<attribute key="type" value="teleport"/>
+		<attribute key="effect" value="teleport"/>
 		<attribute key="description" value="You can see the other side through it."/>
 	</item>
 	<item fromid="25057" toid="25058" article="a" name="ice portal">
 		<attribute key="type" value="teleport"/>
+		<attribute key="effect" value="teleport"/>
 		<attribute key="description" value="You can see the other side through it."/>
 	</item>
 	<item id="25059" article="an" name="inert astral shaper rune">

@@ -16,7 +16,7 @@ local function addTravelKeyword(keyword, cost, destination, action, condition)
 		keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'I\'m sorry but I don\'t sail there.'}, condition)
 	end
 
-	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Do you seek a passage to ' .. keyword:titleCase() .. ' for |TRAVELCOST|?', cost = cost, discount = 'postman'})
+	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Do you seek a passage to {' .. keyword:titleCase() .. '} for {'..cost..' gold coins}?', cost = cost, discount = 'postman'})
 		travelKeyword:addChildKeyword({'yes'}, StdModule.travel, {npcHandler = npcHandler, premium = false, cost = cost, discount = 'postman', destination = destination}, nil, action)
 		travelKeyword:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, text = 'We would like to serve you some time.', reset = true})
 end
@@ -27,6 +27,7 @@ addTravelKeyword('kazordoon', 80, Position(32588, 31941, 0))
 addTravelKeyword('zao', 60, Position(32983, 31539, 1))
 addTravelKeyword('femor hills', 60, Position(32536, 31837, 4))
 addTravelKeyword('edron', 60, Position(33193, 31784, 3))
+addTravelKeyword('marapur', 70, Position(33805, 32767, 2))
 
 -- Kick
 keywordHandler:addKeyword({'kick'}, StdModule.kick, {npcHandler = npcHandler, destination = {Position(33958, 31512, 1), Position(33959, 31512, 1)}})

@@ -115,6 +115,11 @@ event.onLook = function(self, thing, position, distance, description)
 				description = string.format("%s\nIP: %s.", description, thing:getIp())
 			end
 		end
+		
+		if thing:isCreature() then
+			local speed = thing:getSpeed()
+			description = string.format("%s\nSpeed: %d", description, speed)
+		end
 	end
 		-- Look Position -- 
 		local position = thing:getPosition()
