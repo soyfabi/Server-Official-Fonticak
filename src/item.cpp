@@ -2010,7 +2010,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		s << "\nClassification: " << classification << " Tier: " << tier;
 	}
 
-	if (lookDistance <= 1) {
+	if (lookDistance <= 7) {
 		if (item) {
 			const uint32_t weight = item->getWeight();
 			if (weight != 0 && it.pickupable) {
@@ -2025,10 +2025,10 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		const std::string& specialDescription = item->getSpecialDescription();
 		if (!specialDescription.empty()) {
 			s << '\n' << specialDescription;
-		} else if (lookDistance <= 1 && !it.description.empty()) {
+		} else if (lookDistance <= 7 && !it.description.empty()) {
 			s << '\n' << it.description;
 		}
-	} else if (lookDistance <= 1 && !it.description.empty()) {
+	} else if (lookDistance <= 7 && !it.description.empty()) {
 		s << '\n' << it.description;
 	}
 
