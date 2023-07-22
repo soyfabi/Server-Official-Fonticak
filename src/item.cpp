@@ -540,6 +540,26 @@ Attr_ReadValue Item::readAttr(AttrTypes_t attr, PropStream& propStream)
 			setIntAttr(ITEM_ATTRIBUTE_ATTACK_SPEED, attackSpeed);
 			break;
 		}
+		
+		case ATTR_CLASSIFICATION: {
+			uint32_t classification;
+			if (!propStream.read<uint32_t>(classification)) {
+				return ATTR_READ_ERROR;
+			}
+
+			setIntAttr(ITEM_ATTRIBUTE_CLASSIFICATION, classification);
+			break;
+		}
+		
+		case ATTR_TIER: {
+			uint32_t tier;
+			if (!propStream.read<uint32_t>(tier)) {
+				return ATTR_READ_ERROR;
+			}
+
+			setIntAttr(ITEM_ATTRIBUTE_TIER, tier);
+			break;
+		}
 
 		case ATTR_DEFENSE: {
 			int32_t defense;
@@ -822,6 +842,11 @@ void Item::serializeAttr(PropWriteStream& propWriteStream) const
 	if (hasAttribute(ITEM_ATTRIBUTE_ATTACK_SPEED)) {
 		propWriteStream.write<uint8_t>(ATTR_ATTACK_SPEED);
 		propWriteStream.write<uint32_t>(getIntAttr(ITEM_ATTRIBUTE_ATTACK_SPEED));
+	}
+	
+	if (hasAttribute(ITEM_ATTRIBUTE_CLASSIFICATION)) {
+		propWriteStream.write<uint8_t>(ATTR_CLASSIFICATION);
+		propWriteStream.write<uint32_t>(getIntAttr(ITEM_ATTRIBUTE_CLASSIFICATION));
 	}
 
 	if (hasAttribute(ITEM_ATTRIBUTE_DEFENSE)) {
@@ -1437,6 +1462,15 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		if (!begin) {
 			s << ')';
 		}
+		
+		// Show Classification and Tier on item 
+        uint32_t classification = item ? item->getClassification() : it.classification;
+		uint32_t tier = item ? item->getTier() : it.tier;
+			
+    	if (classification) {
+			s << "\nClassification: " << classification << " Tier: " << tier;
+		}
+					
 	} else if (it.armor != 0 || (item && item->getArmor() != 0) || it.showAttributes) {
 		bool begin = true;
 
@@ -1802,6 +1836,15 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		if (!begin) {
 			s << ')';
 		}
+		
+		// Show Classification and Tier on item 
+        uint32_t classification = item ? item->getClassification() : it.classification;
+		uint32_t tier = item ? item->getTier() : it.tier;
+			
+    	if (classification) {
+			s << "\nClassification: " << classification << " Tier: " << tier;
+		}
+		
 	} else if (it.isContainer() || (item && item->getContainer())) {
 		uint32_t volume = 0;
 		if (!item || !item->hasAttribute(ITEM_ATTRIBUTE_UNIQUEID)) {
