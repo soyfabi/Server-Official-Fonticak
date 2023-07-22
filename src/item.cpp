@@ -1461,16 +1461,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 
 		if (!begin) {
 			s << ')';
-		}
-		
-		// Show Classification and Tier on item 
-        uint32_t classification = item ? item->getClassification() : it.classification;
-		uint32_t tier = item ? item->getTier() : it.tier;
-			
-    	if (classification) {
-			s << "\nClassification: " << classification << " Tier: " << tier;
-		}
-					
+		}				
 	} else if (it.armor != 0 || (item && item->getArmor() != 0) || it.showAttributes) {
 		bool begin = true;
 
@@ -1836,15 +1827,6 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		if (!begin) {
 			s << ')';
 		}
-		
-		// Show Classification and Tier on item 
-        uint32_t classification = item ? item->getClassification() : it.classification;
-		uint32_t tier = item ? item->getTier() : it.tier;
-			
-    	if (classification) {
-			s << "\nClassification: " << classification << " Tier: " << tier;
-		}
-		
 	} else if (it.isContainer() || (item && item->getContainer())) {
 		uint32_t volume = 0;
 		if (!item || !item->hasAttribute(ITEM_ATTRIBUTE_UNIQUEID)) {
@@ -2018,6 +2000,14 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		}
 
 		s << '.';
+	}
+	
+	// Show Classification and Tier on item 
+    uint32_t classification = item ? item->getClassification() : it.classification;
+	uint32_t tier = item ? item->getTier() : it.tier;
+	
+    if (classification) {
+		s << "\nClassification: " << classification << " Tier: " << tier;
 	}
 
 	if (lookDistance <= 1) {
