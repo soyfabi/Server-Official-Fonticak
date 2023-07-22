@@ -560,6 +560,16 @@ Attr_ReadValue Item::readAttr(AttrTypes_t attr, PropStream& propStream)
 			setIntAttr(ITEM_ATTRIBUTE_TIER, tier);
 			break;
 		}
+		
+		case ATTR_IMBUEMENTSLOTS: {
+			uint32_t imbuementslots;
+			if (!propStream.read<uint32_t>(imbuementslots)) {
+				return ATTR_READ_ERROR;
+			}
+
+			setIntAttr(ITEM_ATTRIBUTE_IMBUEMENTSLOTS, imbuementslots);
+			break;
+		}
 
 		case ATTR_DEFENSE: {
 			int32_t defense;
@@ -847,6 +857,16 @@ void Item::serializeAttr(PropWriteStream& propWriteStream) const
 	if (hasAttribute(ITEM_ATTRIBUTE_CLASSIFICATION)) {
 		propWriteStream.write<uint8_t>(ATTR_CLASSIFICATION);
 		propWriteStream.write<uint32_t>(getIntAttr(ITEM_ATTRIBUTE_CLASSIFICATION));
+	}
+	
+	if (hasAttribute(ITEM_ATTRIBUTE_TIER)) {
+		propWriteStream.write<uint8_t>(ATTR_TIER);
+		propWriteStream.write<uint32_t>(getIntAttr(ITEM_ATTRIBUTE_TIER));
+	}
+	
+	if (hasAttribute(ITEM_ATTRIBUTE_IMBUEMENTSLOTS)) {
+		propWriteStream.write<uint8_t>(ATTR_IMBUEMENTSLOTS);
+		propWriteStream.write<uint32_t>(getIntAttr(ITEM_ATTRIBUTE_IMBUEMENTSLOTS));
 	}
 
 	if (hasAttribute(ITEM_ATTRIBUTE_DEFENSE)) {
@@ -2002,14 +2022,28 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 		s << '.';
 	}
 	
+	// Show Imbuements Slots
+	uint32_t imbuementslots = item ? item->getImbuementSlots() : it.imbuementslots;
+	
+	if (imbuementslots) {
+		s << "\nImbuements: (Empty Slot";
+
+		// Add multiple slots if more than one
+		for (uint32_t i = 1; i < imbuementslots; ++i) {
+			s << ", Empty Slot";
+		}
+
+		s << ").";
+	}
+	
 	// Show Classification and Tier on item 
     uint32_t classification = item ? item->getClassification() : it.classification;
 	uint32_t tier = item ? item->getTier() : it.tier;
 	
     if (classification) {
-		s << "\nClassification: " << classification << " Tier: " << tier;
+		s << "\nClassification: " << classification << " Tier: " << tier << ".";
 	}
-
+	
 	if (lookDistance <= 7) {
 		if (item) {
 			const uint32_t weight = item->getWeight();

@@ -1136,6 +1136,8 @@ itemAttrTypes stringToItemAttribute(const std::string& str)
 		return ITEM_ATTRIBUTE_CLASSIFICATION;
 	} else if (str == "tier") {
 		return ITEM_ATTRIBUTE_TIER;
+	} else if (str == "imbuementslots") {
+		return ITEM_ATTRIBUTE_IMBUEMENTSLOTS;
 	}
 	return ITEM_ATTRIBUTE_NONE;
 }
