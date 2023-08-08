@@ -44,14 +44,12 @@ function boostedlogin.onLogin(player)
         local message = "Every day the list of bonus monsters is always updated, these are today's.\nToday daily creatures are:\n[" .. boostCreature[1].name .. "]\nBonus Exp Rate: " .. boostCreature[1].exp .. "%.\n[".. boostCreature[2].name_loot.."]\nExtra Loot Rate: " .. boostCreature[2].loot .. "%."
         if boostCreature[3] and boostCreature[3].name_boss then
             message = message .. "\n[".. boostCreature[3].name_boss .. "]\nSpecial Loot Rate: ".. boostCreature[3].loot_boss .. "%."
-        else
-            message = message .. "\nNo boss today."
-        end
+		end
         player:sendTextMessage(MESSAGE_INFO_DESCR, message)
     return true
 end
 
-boostedlogin:register()
+--boostedlogin:register()
 
 -- EventCallBack / onGainExperience --
 
