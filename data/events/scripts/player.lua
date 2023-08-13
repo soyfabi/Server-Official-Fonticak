@@ -102,9 +102,9 @@ function Player:onTradeCompleted(target, item, targetItem, isSuccess)
 	end
 end
 
-function Player:onGainExperience(source, exp, rawExp)
+function Player:onGainExperience(source, exp, rawExp, sendText)
 	if hasEvent.onGainExperience then
-		Event.onGainExperience(self, source, exp, rawExp)
+		Event.onGainExperience(self, source, exp, rawExp, sendText)
 	end
 	return hasEvent.onGainExperience and Event.onGainExperience(self, source, exp, rawExp) or exp
 end
