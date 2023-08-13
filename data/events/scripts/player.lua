@@ -138,3 +138,13 @@ function Player:onStepTile(fromPosition, toPosition)
     end
     return true
 end
+
+function Player:onNetworkMessage(recvByte, msg)
+	local handler = PacketHandlers[recvByte]
+	if not handler then
+		--io.write(string.format("Player: %s sent an unknown packet header: 0x%02X with %d bytes!\n", self:getName(), recvByte, msg:len()))
+		return
+	end
+
+	handler(self, msg)
+end

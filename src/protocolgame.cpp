@@ -621,7 +621,10 @@ void ProtocolGame::parsePacket(NetworkMessage& msg)
 		case 0xF3: /* get object info */ break;
 
 		default:
-			// std::cout << "Player: " << player->getName() << " sent an unknown packet header: 0x" << std::hex << static_cast<uint16_t>(recvbyte) << std::dec << "!" << std::endl;
+			auto task = new Task([=]() {
+				g_game.parsePlayerNetworkMessage(player->getID(), recvbyte, new NetworkMessage(msg));
+			});
+			g_dispatcher.addTask(task);
 			break;
 	}
 
