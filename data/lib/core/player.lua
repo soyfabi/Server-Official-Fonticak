@@ -313,14 +313,6 @@ function Player.getWeaponType(self)
 	return WEAPON_NONE
 end
 
-function Player.hasStorageKey(self, key)
-	return self:getStorageValue(self, key, nil) ~= nil
-end
-
-function Player.clearStorageValue(self, key)
-	return self:setStorageValue(key, nil)
-end
-
 function Player.getMaxTrackedQuests(self)
 	return configManager.getNumber(self:isPremium() and configKeys.QUEST_TRACKER_PREMIUM_LIMIT or configKeys.QUEST_TRACKER_FREE_LIMIT)
 end
