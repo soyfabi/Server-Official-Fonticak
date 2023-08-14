@@ -30,7 +30,6 @@
 #include "player.h"
 #include "npc.h"
 #include "wildcardtree.h"
-#include "quests.h"
 
 class ServiceManager;
 class Creature;
@@ -394,8 +393,6 @@ class Game
 		void playerRequestRemoveVip(uint32_t playerId, uint32_t guid);
 		void playerTurn(uint32_t playerId, Direction dir);
 		void playerRequestOutfit(uint32_t playerId);
-		void playerShowQuestLog(uint32_t playerId);
-		void playerShowQuestLine(uint32_t playerId, uint16_t questId);
 		void playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type, const std::string& receiver, const std::string& text);
 		void playerChangeOutfit(uint32_t playerId, Outfit_t outfit);
 		void playerInviteToParty(uint32_t playerId, uint32_t invitedId);
@@ -499,7 +496,6 @@ class Game
 
 		Groups groups;
 		Map map;
-		Quests quests;
 
 		std::forward_list<Item*> toDecayItems;
 

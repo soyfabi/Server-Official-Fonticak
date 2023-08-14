@@ -148,3 +148,9 @@ function Player:onNetworkMessage(recvByte, msg)
 
 	handler(self, msg)
 end
+
+function Player:onUpdateStorage(key, value, oldValue, isLogin)
+	if hasEvent.onUpdateStorage then
+		Event.onUpdateStorage(self, key, value, oldValue, isLogin)
+	end
+end

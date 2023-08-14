@@ -689,22 +689,15 @@ void Player::addStorageValue(const uint32_t key, const std::optional<int32_t> da
 		}
 	}
 
-	if (data) {
-		int32_t oldValue;
-		getStorageValue(key, oldValue);
-
+	int32_t oldValue;
+	getStorageValue(key, oldValue);
+	if (data != -1) {
 		storageMap[key] = value;
-
-		if (!isLogin) {
-			auto currentFrameTime = g_dispatcher.getDispatcherCycle();
-			if (lastQuestlogUpdate != currentFrameTime && g_game.quests.isQuestStorage(key, value, oldValue)) {
-				lastQuestlogUpdate = currentFrameTime;
-				sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your questlog has been updated.");
-			}
-		}
 	} else {
 		storageMap.erase(key);
 	}
+	
+	g_events->eventPlayerOnUpdateStorage(this, key, oldValue, value, isLogin);
 }
 
 bool Player::getStorageValue(const uint32_t key, int32_t& value) const

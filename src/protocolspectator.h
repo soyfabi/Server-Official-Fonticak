@@ -17,7 +17,6 @@ class House;
 class Container;
 class Tile;
 class Connection;
-class Quest;
 class ProtocolSpectator;
 using ProtocolSpectator_ptr = std::shared_ptr<ProtocolSpectator>;
 extern Game g_game;
@@ -263,18 +262,6 @@ class ProtocolSpectator {
 
             for (auto &it : spectators)
                 it->sendOpenPrivateChannel(receiver);
-        }
-
-        void sendQuestLog() {
-            if (owner) {
-                owner->sendQuestLog();
-            }
-        }
-
-        void sendQuestLine(const Quest* quest) {
-            if (owner) {
-                owner->sendQuestLine(quest);
-            }
         }
 
         void sendToChannel(const Creature *creature, SpeakClasses type, const std::string &text, uint16_t channelId) {

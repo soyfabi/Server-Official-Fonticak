@@ -65,6 +65,7 @@ class Events
 		int32_t playerOnInventoryUpdate = -1;
 		int32_t playerOnStepTile = -1;
 		int32_t playerOnNetworkMessage = -1;
+		int32_t playerOnUpdateStorage = -1;
 
 		// Monster
 		int32_t monsterOnDropLoot = -1;
@@ -109,6 +110,7 @@ class Events
 		void eventPlayerOnInventoryUpdate(Player* player, Item* item, slots_t slot, bool equip);
 		bool eventPlayerOnStepTile(Player* player, const Position& fromPosition, const Position& toPosition);
 		void eventPlayerOnNetworkMessage(Player* player, uint8_t recvByte, NetworkMessage* msg);
+		void eventPlayerOnUpdateStorage(Player* player, const uint32_t key, const int32_t value, const int32_t oldValue, bool isLogin);
 
 		// Monster
 		void eventMonsterOnDropLoot(Monster* monster, Container* corpse);

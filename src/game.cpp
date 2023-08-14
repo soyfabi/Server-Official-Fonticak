@@ -104,8 +104,6 @@ void Game::setGameState(GameState_t newState)
 
 			map.spawns.startup();
 
-			quests.loadFromXml();
-
 			loadMotdNum();
 			loadPlayersRecord();
 			loadAccountStorageValues();
@@ -3222,31 +3220,6 @@ void Game::playerChangeOutfit(uint32_t playerId, Outfit_t outfit)
 	}
 }
 
-void Game::playerShowQuestLog(uint32_t playerId)
-{
-	Player* player = getPlayerByID(playerId);
-	if (!player) {
-		return;
-	}
-
-	player->sendQuestLog();
-}
-
-void Game::playerShowQuestLine(uint32_t playerId, uint16_t questId)
-{
-	Player* player = getPlayerByID(playerId);
-	if (!player) {
-		return;
-	}
-
-	Quest* quest = quests.getQuestByID(questId);
-	if (!quest) {
-		return;
-	}
-
-	player->sendQuestLine(quest);
-}
-
 void Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type, const std::string& receiver, const std::string& text)
 {
 	Player* player = getPlayerByID(playerId);
@@ -5056,8 +5029,6 @@ bool Game::reload(ReloadTypes_t reloadType)
 			return true;
 		}
 
-		case RELOAD_TYPE_QUESTS: return quests.reload();
-
 		case RELOAD_TYPE_SPELLS: {
 			if (!g_spells->reload()) {
 				std::cout << "[Error - Game::reload] Failed to reload spells." << std::endl;
@@ -5092,7 +5063,6 @@ bool Game::reload(ReloadTypes_t reloadType)
 			/*
 			Npcs::reload();
 			Item::items.reload();
-			quests.reload();
 			g_config.reload();
 			g_events->load();
 			g_chat->load();
@@ -5120,7 +5090,6 @@ bool Game::reload(ReloadTypes_t reloadType)
 			g_weapons->reload();
 			g_weapons->clear(true);
 			g_weapons->loadDefaults();
-			quests.reload();
 			g_globalEvents->reload();
 			g_events->load();
 			g_chat->load();
