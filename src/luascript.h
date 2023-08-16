@@ -934,7 +934,6 @@ class LuaScriptInterface
 
 		static int luaPlayerGetStorageValue(lua_State* L);
 		static int luaPlayerSetStorageValue(lua_State* L);
-		static int luaPlayerClearStorageValues(lua_State* L);
 
 		static int luaPlayerGetSpectators(lua_State* L);
 		static int luaPlayerSetSpectators(lua_State* L);

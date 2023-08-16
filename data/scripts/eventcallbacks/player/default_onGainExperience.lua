@@ -34,7 +34,7 @@ local function useStamina(self)
 end
 
 local event = Event()
-event.onGainExperience = function(self, source, exp, rawExp)
+event.onGainExperience = function(self, source, exp, rawExp, sendText)
 
 	if not source or source:isPlayer() then
 		return exp
@@ -61,7 +61,7 @@ event.onGainExperience = function(self, source, exp, rawExp)
 	
 	-- Apply experience stage multiplier
 	exp = exp * Game.getExperienceStage(self:getLevel())
-
+	
 	-- Stamina modifier
 	if configManager.getBoolean(configKeys.STAMINA_SYSTEM) then
 		useStamina(self)
@@ -78,3 +78,25 @@ event.onGainExperience = function(self, source, exp, rawExp)
 end
 
 event:register()
+
+local message = Event()
+
+function message.onGainExperience(self, source, exp, rawExp, sendText)
+	if sendText and exp ~= 0 then
+		local pos = self:getPosition()
+		local expValue = math.floor(exp) -- O math.ceil(exp) si deseas redondear hacia arriba
+		local expString = expValue .. (expValue ~= 1 and " experience points" or " experience point")
+		self:sendTextMessage(MESSAGE_STATUS_DEFAULT, "You gained " .. expString .. " for killing a ".. source:getName() ..".", pos, expValue)
+		Game.sendAnimatedText(tostring(expValue), pos, 215)
+		
+		local spectators = Game.getSpectators(pos, false, true)
+		for _, spectator in ipairs(spectators) do
+			if spectator ~= self then
+				spectator:sendTextMessage(MESSAGE_STATUS_DEFAULT, self:getName() .. " gained " .. expString .. " for killing a ".. source:getName() ..".")
+			end
+		end
+	end
+	return exp
+end
+
+message:register(math.huge)

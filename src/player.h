@@ -312,9 +312,8 @@ class Player final : public Creature, public Cylinder
 
 		bool canOpenCorpse(uint32_t ownerId) const;
 
-		void addStorageValue(const uint32_t key, const std::optional<int32_t> data, const bool isLogin = false);
+		void addStorageValue(const uint32_t key, const int32_t value, const bool isLogin = false);
 		bool getStorageValue(const uint32_t key, int32_t& value) const;
-		void clearStorageValues() { storageMap.clear(); }
 		void genReservedStorageRange();
 
 		void setGroup(Group* newGroup) {
@@ -1007,16 +1006,6 @@ class Player final : public Creature, public Cylinder
 				client->sendAddMarker(pos, markType, desc);
 			}
 		}
-		void sendQuestLog() {
-			if (client) {
-				client->sendQuestLog();
-			}
-		}
-		void sendQuestLine(const Quest* quest) {
-			if (client) {
-				client->sendQuestLine(quest);
-			}
-		}
 		void sendFightModes() {
 			if (client) {
 				client->sendFightModes();
@@ -1116,7 +1105,7 @@ class Player final : public Creature, public Cylinder
 		std::unordered_set<uint32_t> VIPList;
 
 		std::map<uint8_t, OpenContainer> openContainers;
-		std::map<uint32_t, DepotChest*> depotChests;
+		std::map<uint32_t, std::shared_ptr<DepotChest>> depotChests;
 		std::map<uint32_t, int32_t> storageMap;
 		
 		std::map<uint32_t, Reward*> rewardMap;

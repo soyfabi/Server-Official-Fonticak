@@ -673,9 +673,8 @@ uint16_t Player::getLookCorpse() const
 	return ITEM_MALE_CORPSE;
 }
 
-void Player::addStorageValue(const uint32_t key, const std::optional<int32_t> data, const bool isLogin /* = false*/)
+void Player::addStorageValue(const uint32_t key, const int32_t value, const bool isLogin /* = false*/)
 {
-	int32_t value = data ? data.value() : -1;
 	if (IS_IN_KEYRANGE(key, RESERVED_RANGE)) {
 		if (IS_IN_KEYRANGE(key, OUTFITS_RANGE)) {
 			outfits.emplace_back(
@@ -689,22 +688,16 @@ void Player::addStorageValue(const uint32_t key, const std::optional<int32_t> da
 		}
 	}
 
-	if (data) {
-		int32_t oldValue;
-		getStorageValue(key, oldValue);
-
+	int32_t oldValue;
+	getStorageValue(key, oldValue);
+	
+	if (value != -1) {
 		storageMap[key] = value;
-
-		if (!isLogin) {
-			auto currentFrameTime = g_dispatcher.getDispatcherCycle();
-			if (lastQuestlogUpdate != currentFrameTime && g_game.quests.isQuestStorage(key, value, oldValue)) {
-				lastQuestlogUpdate = currentFrameTime;
-				sendTextMessage(MESSAGE_EVENT_ADVANCE, "Your questlog has been updated.");
-			}
-		}
 	} else {
 		storageMap.erase(key);
 	}
+	
+	g_events->eventPlayerOnUpdateStorage(this, key, oldValue, value, isLogin);
 }
 
 bool Player::getStorageValue(const uint32_t key, int32_t& value) const
@@ -828,7 +821,7 @@ DepotChest* Player::getDepotChest(uint32_t depotId, bool autoCreate)
 {
 	auto it = depotChests.find(depotId);
 	if (it != depotChests.end()) {
-		return it->second;
+		return it->second.get();
 	}
 
 	if (!autoCreate) {
@@ -840,9 +833,9 @@ DepotChest* Player::getDepotChest(uint32_t depotId, bool autoCreate)
 		return nullptr;
 	}
 
-	it = depotChests.emplace(depotId, new DepotChest(depotItemId)).first;
+	it = depotChests.emplace(depotId, std::make_shared<DepotChest>(depotItemId)).first;
 	it->second->setMaxDepotItems(getMaxDepotItems());
-	return it->second;
+	return it->second.get();
 }
 
 DepotLocker& Player::getDepotLocker()
@@ -1719,32 +1712,12 @@ void Player::addExperience(Creature* source, uint64_t exp, bool sendText/* = fal
 		return;
 	}
 
-	g_events->eventPlayerOnGainExperience(this, source, exp, rawExp);
+	g_events->eventPlayerOnGainExperience(this, source, exp, rawExp, sendText);
 	if (exp == 0) {
 		return;
 	}
 
 	experience += exp;
-
-	if (sendText) {
-		std::string expString = std::to_string(exp) + (exp != 1 ? " experience points." : " experience point.");
-
-		TextMessage message(MESSAGE_STATUS_DEFAULT, "You gained " + expString);
-		sendTextMessage(message);
-
-		g_game.addAnimatedText(std::to_string(exp), position, TEXTCOLOR_WHITE);
-
-		SpectatorVec spectators;
-		g_game.map.getSpectators(spectators, position, false, true);
-		spectators.erase(this);
-		if (!spectators.empty()) {
-			message.type = MESSAGE_STATUS_DEFAULT;
-			message.text = getName() + " gained " + expString;
-			for (Creature* spectator : spectators) {
-				spectator->getPlayer()->sendTextMessage(message);
-			}
-		}
-	}
 
 	uint32_t prevLevel = level;
 	while (experience >= nextLevelExp) {
@@ -3139,7 +3112,7 @@ void Player::postRemoveNotification(Thing* thing, const Cylinder* newParent, int
 					bool isOwner = false;
 
 					for (const auto& it : depotChests) {
-						if (it.second == depotChest) {
+						if (it.second.get() == depotChest) {
 							isOwner = true;
 							onSendContainer(container);
 						}

@@ -50578,6 +50578,7 @@
 		<attribute key="decayto" value="37111"/>
 	</item>
 	<item fromid="37115" toid="37159" article="an" name="exaltation forge"/>
+	<item id="37160" article="a" name="dust" plural="dusts"/>
 	<item id="37161" article="a" name="bronze cup" plural="bronze cups"/>
 	<item id="37162" article="a" name="silver cup" plural="silver cups"/>
 	<item id="37163" article="a" name="gold cup" plural="gold cups"/>

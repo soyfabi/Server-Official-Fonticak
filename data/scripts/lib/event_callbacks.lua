@@ -52,6 +52,7 @@ ec.onLoseExperience = {[2] = 1}
 ec.onGainSkillTries = {[3] = 1}
 ec.onInventoryUpdate = {}
 ec.onStepTile = {}
+ec.onUpdateStorage = {}
 -- Monster
 ec.onDropLoot = {}
 ec.onSpawn = {}

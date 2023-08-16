@@ -102,9 +102,9 @@ function Player:onTradeCompleted(target, item, targetItem, isSuccess)
 	end
 end
 
-function Player:onGainExperience(source, exp, rawExp)
+function Player:onGainExperience(source, exp, rawExp, sendText)
 	if hasEvent.onGainExperience then
-		Event.onGainExperience(self, source, exp, rawExp)
+		Event.onGainExperience(self, source, exp, rawExp, sendText)
 	end
 	return hasEvent.onGainExperience and Event.onGainExperience(self, source, exp, rawExp) or exp
 end
@@ -137,4 +137,20 @@ function Player:onStepTile(fromPosition, toPosition)
         return Event.onStepTile(self, fromPosition, toPosition)
     end
     return true
+end
+
+function Player:onNetworkMessage(recvByte, msg)
+	local handler = PacketHandlers[recvByte]
+	if not handler then
+		--io.write(string.format("Player: %s sent an unknown packet header: 0x%02X with %d bytes!\n", self:getName(), recvByte, msg:len()))
+		return
+	end
+
+	handler(self, msg)
+end
+
+function Player:onUpdateStorage(key, value, oldValue, isLogin)
+	if hasEvent.onUpdateStorage then
+		Event.onUpdateStorage(self, key, value, oldValue, isLogin)
+	end
 end

@@ -192,6 +192,7 @@ function skinning.onUse(player, item, fromPosition, target, toPosition, isHotkey
 			target:transform(skin.newItem, 1)
 			effect = CONST_ME_HITAREA
 		else
+			player:say('Skinning!', TALKTYPE_MONSTER_SAY, false, player, toPosition)
 			player:addItem(skin.newItem, skin.amount or 1)
 		end
 	else

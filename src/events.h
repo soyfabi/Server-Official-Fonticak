@@ -26,6 +26,7 @@
 
 class Party;
 class ItemType;
+class NetworkMessage;
 class Tile;
 
 class Events
@@ -63,6 +64,8 @@ class Events
 		int32_t playerOnGainSkillTries = -1;
 		int32_t playerOnInventoryUpdate = -1;
 		int32_t playerOnStepTile = -1;
+		int32_t playerOnNetworkMessage = -1;
+		int32_t playerOnUpdateStorage = -1;
 
 		// Monster
 		int32_t monsterOnDropLoot = -1;
@@ -101,11 +104,13 @@ class Events
 		bool eventPlayerOnTradeRequest(Player* player, Player* target, Item* item);
 		bool eventPlayerOnTradeAccept(Player* player, Player* target, Item* item, Item* targetItem);
 		void eventPlayerOnTradeCompleted(Player* player, Player* target, Item* item, Item* targetItem, bool isSuccess);
-		void eventPlayerOnGainExperience(Player* player, Creature* source, uint64_t& exp, uint64_t rawExp);
+		void eventPlayerOnGainExperience(Player* player, Creature* source, uint64_t& exp, uint64_t rawExp, bool sendText);
 		void eventPlayerOnLoseExperience(Player* player, uint64_t& exp);
 		void eventPlayerOnGainSkillTries(Player* player, skills_t skill, uint64_t& tries);
 		void eventPlayerOnInventoryUpdate(Player* player, Item* item, slots_t slot, bool equip);
 		bool eventPlayerOnStepTile(Player* player, const Position& fromPosition, const Position& toPosition);
+		void eventPlayerOnNetworkMessage(Player* player, uint8_t recvByte, NetworkMessage* msg);
+		void eventPlayerOnUpdateStorage(Player* player, const uint32_t key, const int32_t value, const int32_t oldValue, bool isLogin);
 
 		// Monster
 		void eventMonsterOnDropLoot(Monster* monster, Container* corpse);

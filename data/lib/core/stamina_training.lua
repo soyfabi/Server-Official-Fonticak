@@ -12,6 +12,11 @@ function addStamina(playerId, ...)
 	if playerId then
 		local player = Player(playerId)
 		if configManager.getBoolean(configKeys.STAMINA_TRAINER) then
+		
+			if player:getStamina() == 2520 then
+				return true
+			end
+			
 			if not player then
 				staminaBonus.eventsTrainer[playerId] = nil
 			else

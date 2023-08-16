@@ -162,7 +162,7 @@ talkAction:register()
 
 local cast_login = CreatureEvent("cast_login")
 function cast_login.onLogin(player)
-	player:clearStorageValue(Storage.isCasting)
+	player:setStorageValue(Storage.isCasting, -1)
 	return true
 end
 

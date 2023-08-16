@@ -1613,35 +1613,37 @@ void LuaScriptInterface::registerFunctions()
 	registerEnum(ITEM_GROUP_DOOR)
 	registerEnum(ITEM_GROUP_DEPRECATED)
 
-	registerEnum(ITEM_BAG)
-	registerEnum(ITEM_BACKPACK)
-	registerEnum(ITEM_GOLD_COIN)
-	registerEnum(ITEM_PLATINUM_COIN)
-	registerEnum(ITEM_CRYSTAL_COIN)
-	registerEnum(ITEM_AMULETOFLOSS)
-	registerEnum(ITEM_PARCEL)
+	registerEnum(ITEM_BAG);
+	registerEnum(ITEM_BACKPACK);
+	registerEnum(ITEM_GOLD_COIN);
+	registerEnum(ITEM_PLATINUM_COIN);
+	registerEnum(ITEM_CRYSTAL_COIN);
+	registerEnum(ITEM_AMULETOFLOSS);
+	registerEnum(ITEM_PARCEL);
+	registerEnum(ITEM_LETTER);
+	registerEnum(ITEM_LETTER_STAMPED);
 	registerEnum(ITEM_LABEL)
 	registerEnum(ITEM_INBOX);
 	registerEnum(ITEM_SUPPLY_STASH);
-	registerEnum(ITEM_FIREFIELD_PVP_FULL)
-	registerEnum(ITEM_FIREFIELD_PVP_MEDIUM)
-	registerEnum(ITEM_FIREFIELD_PVP_SMALL)
-	registerEnum(ITEM_FIREFIELD_PERSISTENT_FULL)
-	registerEnum(ITEM_FIREFIELD_PERSISTENT_MEDIUM)
-	registerEnum(ITEM_FIREFIELD_PERSISTENT_SMALL)
-	registerEnum(ITEM_FIREFIELD_NOPVP)
-	registerEnum(ITEM_POISONFIELD_PVP)
-	registerEnum(ITEM_POISONFIELD_PERSISTENT)
-	registerEnum(ITEM_POISONFIELD_NOPVP)
-	registerEnum(ITEM_ENERGYFIELD_PVP)
-	registerEnum(ITEM_ENERGYFIELD_PERSISTENT)
-	registerEnum(ITEM_ENERGYFIELD_NOPVP)
-	registerEnum(ITEM_MAGICWALL)
-	registerEnum(ITEM_MAGICWALL_PERSISTENT)
-	registerEnum(ITEM_MAGICWALL_SAFE)
-	registerEnum(ITEM_WILDGROWTH)
-	registerEnum(ITEM_WILDGROWTH_PERSISTENT)
-	registerEnum(ITEM_WILDGROWTH_SAFE)
+	registerEnum(ITEM_FIREFIELD_PVP_FULL);
+	registerEnum(ITEM_FIREFIELD_PVP_MEDIUM);
+	registerEnum(ITEM_FIREFIELD_PVP_SMALL);
+	registerEnum(ITEM_FIREFIELD_PERSISTENT_FULL);
+	registerEnum(ITEM_FIREFIELD_PERSISTENT_MEDIUM);
+	registerEnum(ITEM_FIREFIELD_PERSISTENT_SMALL);
+	registerEnum(ITEM_FIREFIELD_NOPVP);
+	registerEnum(ITEM_POISONFIELD_PVP);
+	registerEnum(ITEM_POISONFIELD_PERSISTENT);
+	registerEnum(ITEM_POISONFIELD_NOPVP);
+	registerEnum(ITEM_ENERGYFIELD_PVP);
+	registerEnum(ITEM_ENERGYFIELD_PERSISTENT);
+	registerEnum(ITEM_ENERGYFIELD_NOPVP);
+	registerEnum(ITEM_MAGICWALL);
+	registerEnum(ITEM_MAGICWALL_PERSISTENT);
+	registerEnum(ITEM_MAGICWALL_SAFE);
+	registerEnum(ITEM_WILDGROWTH);
+	registerEnum(ITEM_WILDGROWTH_PERSISTENT);
+	registerEnum(ITEM_WILDGROWTH_SAFE);
 
 	registerEnum(WIELDINFO_NONE)
 	registerEnum(WIELDINFO_LEVEL)
@@ -2543,7 +2545,6 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Player", "getStorageValue", LuaScriptInterface::luaPlayerGetStorageValue);
 	registerMethod("Player", "setStorageValue", LuaScriptInterface::luaPlayerSetStorageValue);
-	registerMethod("Player", "clearStorageValues", LuaScriptInterface::luaPlayerClearStorageValues);
 
 	registerMethod("Player", "getSpectators", LuaScriptInterface::luaPlayerGetSpectators);
 	registerMethod("Player", "setSpectators", LuaScriptInterface::luaPlayerSetSpectators);
@@ -9073,7 +9074,7 @@ int LuaScriptInterface::luaPlayerSetBankBalance(lua_State* L)
 
 int LuaScriptInterface::luaPlayerGetStorageValue(lua_State* L)
 {
-	// player:getStorageValue(key[, defaultValue = -1])
+	// player:getStorageValue(key)
 	Player* player = getUserdata<Player>(L, 1);
 	if (!player) {
 		lua_pushnil(L);
@@ -9084,10 +9085,8 @@ int LuaScriptInterface::luaPlayerGetStorageValue(lua_State* L)
 	int32_t value;
 	if (player->getStorageValue(key, value)) {
 		lua_pushnumber(L, value);
-	} else if (lua_gettop(L) >= 3 && lua_isnil(L, 3)) {
-		lua_pushnil(L);
 	} else {
-		lua_pushnumber(L, getNumber<int32_t>(L, 3, value));
+		lua_pushnumber(L, -1);
 	}
 	return 1;
 }
@@ -9095,6 +9094,7 @@ int LuaScriptInterface::luaPlayerGetStorageValue(lua_State* L)
 int LuaScriptInterface::luaPlayerSetStorageValue(lua_State* L)
 {
 	// player:setStorageValue(key, value)
+	int32_t value = getNumber<int32_t>(L, 3);
 	uint32_t key = getNumber<uint32_t>(L, 2);
 	Player* player = getUserdata<Player>(L, 1);
 	if (IS_IN_KEYRANGE(key, RESERVED_RANGE)) {
@@ -9104,21 +9104,7 @@ int LuaScriptInterface::luaPlayerSetStorageValue(lua_State* L)
 	}
 
 	if (player) {
-		auto value = lua_isnil(L, 3) ? std::nullopt : std::make_optional(getNumber<int32_t>(L, 3));
 		player->addStorageValue(key, value);
-		pushBoolean(L, true);
-	} else {
-		lua_pushnil(L);
-	}
-	return 1;
-}
-
-int LuaScriptInterface::luaPlayerClearStorageValues(lua_State* L)
-{
-	// player:clearStorageValues()
-	Player* player = getUserdata<Player>(L, 1);
-	if (player) {
-		player->clearStorageValues();
 		pushBoolean(L, true);
 	} else {
 		lua_pushnil(L);
@@ -17065,7 +17051,7 @@ int LuaScriptInterface::luaWeaponCharges(lua_State* L)
 		uint16_t id = weapon->getID();
 		ItemType& it = Item::items.getItemType(id);
 
-		it.charges = getNumber<uint8_t>(L, 2);
+		it.charges = getNumber<uint32_t>(L, 2);
 		it.showCharges = showCharges;
 		pushBoolean(L, true);
 	} else {
