@@ -2,6 +2,7 @@ local action = Action()
 
 function action.onUse(player, item, fromPosition, target, toPosition, monster, isHotkey)
 
+<<<<<<< HEAD
 	local inbox = player:getInbox()
 	local parcel = Game.createItem(3504, 1)
 	local letter = Game.createItem(3506, 1)
@@ -31,6 +32,11 @@ Visit us on the website to see more products.
 	
 	player:say("hola")
 	
+=======
+	player:say("hola")
+	
+	
+>>>>>>> a3a218a164dba496a0192e2afd4650761fdf7e28
 	return true
 end
 
