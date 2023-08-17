@@ -605,3 +605,18 @@ function Guild.getBankBalance(guild)
     result.free(resultId)
 	return value
 end
+
+function Player.addDevotion(self, amount)
+	return db.query(string.format("UPDATE `players` SET `devotion` = `devotion` + %d WHERE `id` = %d", amount, self:getGuid()))
+end
+
+function Player.getDevotion(self)
+    local resultId = db.storeQuery(string.format('SELECT `devotion` FROM `players` WHERE `id` = %d', self:getGuid()))
+    if not resultId then
+        return 0
+    end
+
+    local value = result.getNumber(resultId, "devotion")
+    result.free(resultId)
+	return value
+end

@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `players` (
   `account_id` int NOT NULL DEFAULT '0',
   `level` int NOT NULL DEFAULT '1',
   `vocation` int NOT NULL DEFAULT '0',
+  `devotion` int NOT NULL DEFAULT '0',
   `health` int NOT NULL DEFAULT '150',
   `healthmax` int NOT NULL DEFAULT '150',
   `experience` bigint unsigned NOT NULL DEFAULT '0',
