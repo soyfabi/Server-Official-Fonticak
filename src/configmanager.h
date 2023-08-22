@@ -154,6 +154,9 @@ class ConfigManager
 			RATE_BETWEEN_EFFECT,
 			MAX_ALLOWED_ON_A_DUMMY,
 			RATE_EXERCISE_TRAINING_SPEED,
+			MAGIC_WALL_ID,
+			OLD_MAGIC_WALL_ID,
+			MAGIC_WALL_STORAGE,
 
 			LAST_INTEGER_CONFIG /* this must be the last one */
 		};

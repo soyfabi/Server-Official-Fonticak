@@ -645,7 +645,7 @@ void ProtocolGame::GetTileDescription(const Tile* tile, NetworkMessage& msg)
 	const TileItemVector* items = tile->getItemList();
 	if (items) {
 		for (auto it = items->getBeginTopItem(), end = items->getEndTopItem(); it != end; ++it) {
-			msg.addItem(*it);
+			msg.addItem(*it, player);
 
 			if (++count == 10) {
 				break;
@@ -671,7 +671,7 @@ void ProtocolGame::GetTileDescription(const Tile* tile, NetworkMessage& msg)
 
 	if (items && count < 10) {
 		for (auto it = items->getBeginDownItem(), end = items->getEndDownItem(); it != end; ++it) {
-			msg.addItem(*it);
+			msg.addItem(*it, player);
 
 			if (++count == 10) {
 				return;
@@ -1777,7 +1777,7 @@ void ProtocolGame::sendAddTileItem(const Position& pos, uint32_t stackpos, const
 	msg.addByte(0x6A);
 	msg.addPosition(pos);
 	msg.addByte(stackpos);
-	msg.addItem(item);
+	msg.addItem(item, player);
 	writeToOutputBuffer(msg);
 }
 
@@ -1791,7 +1791,7 @@ void ProtocolGame::sendUpdateTileItem(const Position& pos, uint32_t stackpos, co
 	msg.addByte(0x6B);
 	msg.addPosition(pos);
 	msg.addByte(stackpos);
-	msg.addItem(item);
+	msg.addItem(item, player);
 	writeToOutputBuffer(msg);
 }
 

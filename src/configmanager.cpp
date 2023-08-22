@@ -334,6 +334,9 @@ bool ConfigManager::load()
 	integer[RATE_BETWEEN_EFFECT] = getGlobalNumber(L, "timeBetweenTeleportEffects", 1400);
 	integer[MAX_ALLOWED_ON_A_DUMMY] = getGlobalNumber(L, "maxAllowedOnADummy", 5);
 	integer[RATE_EXERCISE_TRAINING_SPEED] = getGlobalNumber(L, "rateExerciseTrainingSpeed", 1.0);
+	integer[MAGIC_WALL_ID] = getGlobalNumber(L, "magicWallId", 2129);
+	integer[OLD_MAGIC_WALL_ID] = getGlobalNumber(L, "oldMagicWallId", 2130);
+	integer[MAGIC_WALL_STORAGE] = getGlobalNumber(L, "magicWallStorage", 90000);
 	
 	//Floating Config
 	floating[MLVL_BONUSDMG] = getGlobalFloat(L, "monsterBonusDamage", 0);

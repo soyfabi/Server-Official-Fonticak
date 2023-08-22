@@ -21,8 +21,12 @@
 
 #include "networkmessage.h"
 
+#include "configmanager.h"
 #include "container.h"
+#include "player.h"
 #include "creature.h"
+
+extern ConfigManager g_config;
 
 std::string NetworkMessage::getString(uint16_t stringLen/* = 0*/)
 {
@@ -108,11 +112,19 @@ void NetworkMessage::addItem(uint16_t id, uint8_t count)
 	}
 }
 
-void NetworkMessage::addItem(const Item* item)
+void NetworkMessage::addItem(const Item* item, const Player* player /* = nullptr */)
 {
 	const ItemType& it = Item::items[item->getID()];
 
-	add<uint16_t>(it.clientId);
+	uint16_t clientId = it.clientId;
+	if (clientId == g_config.getNumber(ConfigManager::MAGIC_WALL_ID) && player) {
+		int32_t value;
+		if (player->getStorageValue(g_config.getNumber(ConfigManager::MAGIC_WALL_STORAGE), value) && value == 1) {
+			clientId = g_config.getNumber(ConfigManager::OLD_MAGIC_WALL_ID);
+		}
+	}
+
+	add<uint16_t>(clientId);
 
 	if (it.stackable) {
 		addByte(std::min<uint16_t>(0xFF, item->getItemCount()));

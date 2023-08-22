@@ -2890,6 +2890,8 @@
 	</item>
 	<item id="2129" article="a" name="magic wall">
 		<attribute key="type" value="magicfield"/>
+		<attribute key="decayTo" value="0" />
+		<attribute key="duration" value="20" />
 	</item>
 	<item id="2130" article="a" name="rush wood">
 		<attribute key="type" value="magicfield"/>

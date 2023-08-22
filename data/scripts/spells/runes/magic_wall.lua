@@ -6,7 +6,6 @@ function onCreateMagicWall(creature, tile)
 		magicWall = ITEM_MAGICWALL
 	end
 	local item = Game.createItem(magicWall, 1, tile)
-	item:setDuration(16, 24)
 end
 
 local combat = Combat()
