@@ -620,3 +620,9 @@ function Player.getDevotion(self)
     result.free(resultId)
 	return value
 end
+
+function Player.addMagicLevel(self, amt)
+    local new = self:getBaseMagicLevel() + amt
+    local manaSpent = self:getManaSpent()
+    self:addManaSpent(self:getVocation():getRequiredManaSpent(new + 1) - manaSpent)
+end
