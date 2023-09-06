@@ -12,6 +12,7 @@ function rune.onCastSpell(creature, variant, isHotkey)
 			for i, item in ipairs(items) do
 				if item:getType():isMovable() and item:getUniqueId() > 65535 and item:getActionId() == 0 and not table.contains(corpseIds, item:getId()) then
 					item:remove()
+					position:sendMagicEffect(CONST_ME_BLOCKHIT)
 				end
 
 				if i == removalLimit then
@@ -21,8 +22,6 @@ function rune.onCastSpell(creature, variant, isHotkey)
 		end
 	end
 
-	creature:sendCancelMessage(RETURNVALUE_NOTPOSSIBLE)
-	position:sendMagicEffect(CONST_ME_POFF)
 	return true
 end
 

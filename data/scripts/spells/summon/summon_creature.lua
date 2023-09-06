@@ -43,6 +43,7 @@ function spell.onCastSpell(player, variant)
 	player:addManaSpent(manaCost)
 	position:sendMagicEffect(CONST_ME_MAGIC_BLUE)
 	summon:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+	player:addSummon(summon)
 	return true
 end
 
