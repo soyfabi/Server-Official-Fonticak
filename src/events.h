@@ -43,6 +43,9 @@ class Events
 		int32_t partyOnJoin = -1;
 		int32_t partyOnLeave = -1;
 		int32_t partyOnDisband = -1;
+		int32_t partyOnInvite = -1;
+		int32_t partyOnRevokeInvitation = -1;
+		int32_t partyOnPassLeadership = -1;
 		int32_t partyOnShareExperience = -1;
 
 		// Player
@@ -88,6 +91,9 @@ class Events
 		bool eventPartyOnJoin(Party* party, Player* player);
 		bool eventPartyOnLeave(Party* party, Player* player);
 		bool eventPartyOnDisband(Party* party);
+		bool eventPartyOnInvite(Party* party, Player* player);
+		bool eventPartyOnRevokeInvitation(Party* party, Player* player);
+		bool eventPartyOnPassLeadership(Party* party, Player* player);
 		void eventPartyOnShareExperience(Party* party, uint64_t& exp);
 
 		// Player

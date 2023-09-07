@@ -32,6 +32,9 @@ ec.onChangeZone = {}
 ec.onJoin = {}
 ec.onLeave = {}
 ec.onDisband = {}
+ec.onInvite = {}
+ec.onRevokeInvitation = {}
+ec.onPassLeadership = {}
 ec.onShareExperience = {}
 -- Player
 ec.onLook = {[5] = 1}

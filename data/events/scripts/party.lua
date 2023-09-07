@@ -19,6 +19,27 @@ function Party:onDisband()
 	return true
 end
 
+function Party:onInvite(player)
+	if hasEvent.onInvite then
+		return Event.onInvite(self, player)
+	end
+	return true
+end
+
+function Party:onRevokeInvitation(player)
+	if hasEvent.onRevokeInvitation then
+		return Event.onRevokeInvitation(self, player)
+	end
+	return true
+end
+
+function Party:onPassLeadership(player)
+	if hasEvent.onPassLeadership then
+		return Event.onPassLeadership(self, player)
+	end
+	return true
+end
+
 function Party:onShareExperience(exp)
 	local sharedExperienceMultiplier = 1.20 --20%
 	local vocationsIds = {}
