@@ -110,6 +110,8 @@ class Npc final : public Creature
 		// non-copyable
 		Npc(const Npc&) = delete;
 		Npc& operator=(const Npc&) = delete;
+		
+		using Creature::onWalk;
 
 		Npc* getNpc() override {
 			return this;

@@ -312,6 +312,8 @@ class DynamicTile : public Tile
 				item->decrementReferenceCounter();
 			}
 		}
+		
+		using Tile::internalAddThing;
 
 		// non-copyable
 		DynamicTile(const DynamicTile&) = delete;
@@ -354,6 +356,8 @@ class StaticTile final : public Tile
 				}
 			}
 		}
+		
+		using Tile::internalAddThing;
 
 		// non-copyable
 		StaticTile(const StaticTile&) = delete;
