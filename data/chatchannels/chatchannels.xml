@@ -9,4 +9,6 @@
 	<channel id="8" name="Changelog" public="1" script="Changelog.lua" />
 	<channel id="9" name="Help" public="1" script="help.lua" />
 	<channel id="10" name="Guild Leaders" script="guild_leaders.lua" />
+	<channel id="11" name="Search Guild" script="search_guild.lua" />
+	<channel id="12" name="Quest Channel" script="quest_channel.lua" />
 </channels>

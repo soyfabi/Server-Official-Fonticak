@@ -117,8 +117,3 @@ function onSpeak(player, type, message)
     end
     return type
 end
-
-function onLeave(player)
-    sendChannelMessage(CHANNEL_GLOBAL, TALKTYPE_CHANNEL_R1, string.format("[BOT]: The player %s (%d) has been disconnected from the channel.", player:getName(), player:getLevel()))
-    return false
-end

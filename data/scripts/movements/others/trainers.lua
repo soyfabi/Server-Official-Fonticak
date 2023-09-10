@@ -88,6 +88,7 @@ function trainer_enter.onStepIn(creature, item, position, fromPosition)
 	end
 	
 	exhaust[playerId] = currentTime + exhaustTime
+	creature:setDirection(DIRECTION_NORTH)
 	calculatingRoom(creature.uid, trainersConfig.first_room_pos, 0, 0)
 	return true
 end

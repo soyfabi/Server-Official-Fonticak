@@ -34545,6 +34545,7 @@
 	</item>
 	<item fromid="23482" toid="23484" name="vortex">
 		<attribute key="type" value="teleport"/>
+		<attribute key="effect" value="teleport"/>
 	</item>
 	<item id="23485" article="an" name="explosive barrel">
 		<attribute key="description" value="This barrel is highly explosive."/>

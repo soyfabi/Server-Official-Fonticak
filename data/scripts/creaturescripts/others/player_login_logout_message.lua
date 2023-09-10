@@ -12,6 +12,7 @@ function loginMessage.onLogin(player)
 	--player:openChannel(4) -- Task Channel
 	player:openChannel(5) -- Death Channel
 	player:openChannel(6) -- Trade Market
+	player:openChannel(12) -- Quest Channel
 	player:openChannel(7) -- Advertising
 	player:openChannel(8) -- Changelog
 	player:openChannel(9) -- Help Channel

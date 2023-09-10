@@ -1,4 +1,4 @@
-local CHANNEL_MARKET = 6
+local CHANNEL_GLOBAL = 12
 
 function calculateMuteTicks(minutes)
     return minutes * 60 * 1000
@@ -31,19 +31,15 @@ function formatTime(duration)
     return timeString
 end
 
-local muted_talk = Condition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT)
-muted_talk:setParameter(CONDITION_PARAM_SUBID, CHANNEL_MARKET)
-muted_talk:setParameter(CONDITION_PARAM_TICKS, 120000)
-
 function onSpeak(player, type, message)
     local playerAccountType = player:getAccountType()
-    if player:getLevel() < 8 then
-        player:sendCancelMessage("You may not speak into channels as long as you are on level 8.")
+    if player:getLevel() < 20 then
+        player:sendCancelMessage("You may not speak into channels as long as you are on level 20.")
         return false
     end
-	
-    if player:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_MARKET) then
-        local muteCondition = player:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_MARKET)
+    
+    if player:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_GLOBAL) then
+        local muteCondition = player:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_GLOBAL)
         local remainingTicks = muteCondition:getTicks()
         local remainingTime = ""
 
@@ -56,14 +52,10 @@ function onSpeak(player, type, message)
             remainingTime = " Mute will last for " .. formatTime(remainingSeconds) .. "."
         end
 
-        player:sendCancelMessage("You are muted from the Trade Market Channel for using it inappropriately. You can only make an offer. " .. remainingTime)
+        player:sendCancelMessage("You are muted from the Quest Channel for using it inappropriately." .. remainingTime)
         return false
 	end
 	
-	if playerAccountType <= ACCOUNT_TYPE_TUTOR then
-		player:addCondition(muted_talk)
-	end
-
     if playerAccountType >= ACCOUNT_TYPE_TUTOR then
         local muteCommand, muteDuration = string.match(message, "^!mute ([^,%s]+)%s*,%s*(%d+)$")
 
@@ -73,12 +65,12 @@ function onSpeak(player, type, message)
             if target then
                 if playerAccountType > target:getAccountType() then
                     local muted = Condition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT)
-                    muted:setParameter(CONDITION_PARAM_SUBID, CHANNEL_MARKET)
+                    muted:setParameter(CONDITION_PARAM_SUBID, CHANNEL_GLOBAL)
                     muted:setParameter(CONDITION_PARAM_TICKS, calculateMuteTicks(muteDuration))
 
-                    if not target:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_MARKET) then
+                    if not target:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_GLOBAL) then
                         target:addCondition(muted)
-                        sendChannelMessage(CHANNEL_MARKET, TALKTYPE_CHANNEL_R1, target:getName() .. " has been muted by " .. player:getName() .. " for using Trade Market Channel inappropriately. Mute will last " .. muteDuration .. " minutes.")
+                        sendChannelMessage(CHANNEL_GLOBAL, TALKTYPE_CHANNEL_R1, target:getName() .. " has been muted by " .. player:getName() .. " for using Quest Channel inappropriately. Mute will last " .. muteDuration .. " minutes.")
                     else
                         player:sendCancelMessage("That player is already muted.")
                     end
@@ -94,9 +86,9 @@ function onSpeak(player, type, message)
             local target = Player(targetName)
             if target then
                 if playerAccountType > target:getAccountType() then
-                    if target:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_MARKET) then
-                        target:removeCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_MARKET)
-                        sendChannelMessage(CHANNEL_MARKET, TALKTYPE_CHANNEL_R1, target:getName() .. " has been unmuted by " .. player:getName() .. ".")
+                    if target:getCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_GLOBAL) then
+                        target:removeCondition(CONDITION_CHANNELMUTEDTICKS, CONDITIONID_DEFAULT, CHANNEL_GLOBAL)
+                        sendChannelMessage(CHANNEL_GLOBAL, TALKTYPE_CHANNEL_R1, target:getName() .. " has been unmuted by " .. player:getName() .. ".")
                     else
                         player:sendCancelMessage("That player is not muted.")
                     end
