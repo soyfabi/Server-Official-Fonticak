@@ -88,9 +88,14 @@ function treasureChest.onUse(player, item, fromPosition, target, toPosition, isH
 	if not setting then
 		return false
 	end
+	
+	if player:getStorageValue(Storage.FirstDragon.Questline) < 0 then
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need first the mission of The First Dragon.")
+		return true
+	end
 
 	if player:getStorageValue(item.uid) >= 1 then
-		player:sendTextMessage(string.format(MESSAGE_EVENT_ADVANCE, 'The %s is empty.', item:getName()))
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The dragon chest is empty.")
 		return true
 	end
 

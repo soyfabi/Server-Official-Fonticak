@@ -1,3 +1,26 @@
+Game.createQuest("Tibia Tales", {
+    storageId = Storage.TibiaTales.DefaultStart,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "The Annihilator",
+            storageId = 10112,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have discovered annihilator, but you will need 4 players to proceed.",
+					[2] = "Fight against the Angry demon, try not to get killed.",
+					[3] = "Perfect, you have managed to pass annihilator without problems, collect your prize."
+                }
+                return descriptions[player:getStorageValue(10112)]
+            end
+        },
+    }
+}):register()
+
 Game.createQuest("The First Dragon", {
     storageId = Storage.FirstDragon.Questline,
     storageValue = 1,

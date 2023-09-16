@@ -148,6 +148,8 @@ local function creatureSayCallback(cid, type, msg)
 	return true
 end
 
+keywordHandler:addKeyword({'the thieves guild'}, StdModule.say, {npcHandler = npcHandler, text = "You will have to talk to {Dorian} who is two floors below so he can tell you about the mission."})
+
 npcHandler:setMessage(MESSAGE_GREET, "Hi there, |PLAYERNAME|! You look like you are eager to {trade}!")
 npcHandler:setMessage(MESSAGE_FAREWELL, "Bye, |PLAYERNAME|")
 

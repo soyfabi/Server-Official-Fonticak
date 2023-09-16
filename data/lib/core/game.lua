@@ -119,14 +119,20 @@ do
 
 	function Game.isQuestStorage(key, value, oldValue)
 		for _, quest in pairs(quests) do
-			if quest.storageId == key and quest.storageValue == value then
+			if quest.storageId == key then
+				if quest.storageValue == value then
+					return true
+				end
 				return true
 			end
 		end
 
 		for _, mission in pairs(missions) do
-			if mission.storageId == key and value >= mission.startValue and value <= mission.endValue then
-				return not mission.description or oldValue < mission.startValue or oldValue > mission.endValue
+			if mission.storageId == key then
+				if value >= mission.startValue and value <= mission.endValue then
+					return true
+				end
+				return true
 			end
 		end
 		return false
