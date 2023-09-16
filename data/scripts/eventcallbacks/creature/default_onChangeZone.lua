@@ -1,9 +1,33 @@
 local event = Event()
 
+local exhaust = {}
+local exhaustTime = 20
+
 function event.onChangeZone(self, fromZone, toZone)
     if not self then
         return false
     end
+	
+	local playerId = self:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+        return false
+    end
+	
+	-- Blessing Protect --
+	if not self:hasBlessing(5) then
+		if toZone == ZONE_NORMAL then
+			if self:getSlotItem(CONST_SLOT_NECKLACE) and self:getSlotItem(CONST_SLOT_NECKLACE):getId() == 3057 then
+				return false
+			end
+			if self:getBankBalance() > 10000 then
+				self:popupFYI("[PROTECT BLESS]\n\nBe careful you have NO Bless.\nTo buy bless use the command: !bless\nor you could lose everything, or use an Amulet of loss.\nIn the bank you have:\n["..self:getBankBalance().." gold coins].")
+			else
+				self:popupFYI("[PROTECT BLESS]\n\nBe careful you have NO Bless.\nTo buy bless use the command: !bless\nor you could lose everything, or use an Amulet of loss.")
+			end
+			exhaust[playerId] = currentTime + exhaustTime
+		end
+	end
 	
     local playerId = self:getId()
     local event = staminaBonus.eventsPz[playerId]

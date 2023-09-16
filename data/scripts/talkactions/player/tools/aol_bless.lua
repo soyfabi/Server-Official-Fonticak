@@ -1,11 +1,5 @@
-local Bless = TalkAction("!bless","!bles")
+local Bless = TalkAction("!bless", "!bles", "!blessing")
 function Bless.onSay(player, words, param)
-	local tile = Tile(player:getPosition())
-	if not tile then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, 'Invalid tile position.')
-		return false
-	end
-
 	local bless = 5
 	local allBless = 0
 	for i = 1, bless do
@@ -37,47 +31,24 @@ end
 
 Bless:register()
 
-
-local Aol = TalkAction("!aol", "!ao", "!aool")
+local Aol = TalkAction("!aol", "!ao", "!aool", "!amulet of loss")
 local exhaust = {}
 local exhaustTime = 2
 function Aol.onSay(player, words, param)
 	local playerId = player:getId()
     local currentTime = os.time()
     if exhaust[playerId] and exhaust[playerId] > currentTime then
-        player:sendCancelMessage("This Aol is still on cooldown. (0." .. exhaust[playerId] - currentTime .. "s).")
+        player:sendCancelMessage("This Command is still on cooldown. (0." .. exhaust[playerId] - currentTime .. "s).")
         return false
     end
-	
-	local tile = Tile(player:getPosition())
-	if not tile then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, 'Invalid tile position.')
-		return false
-	end
-	
-	local itemType = ItemType(2173)
-	local itemWeight = itemType:getWeight()
-	local playerCap = player:getFreeCapacity()
-	if playerCap < itemWeight then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, "You have found a " .. itemType:getName() .. " weighing " .. (itemWeight / 100) .. " oz it's too heavy.")
-		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-		return false
-	end
 
-	local backpack = player:getSlotItem(CONST_SLOT_BACKPACK)			
-	if not backpack or backpack:getEmptySlots(false) < 1 then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, "Your main backpack is full. You need to free up 1 available slots to get " .. itemType:getName() .. ".")
-		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-		return false
-	end
-	
-	if player:removeMoney(Settings.AolValue) then
-		player:addItem(2173, 1)
-		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
+	if player:removeMoney(10000) then
+		player:addItem(3057, 1)
+		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 		player:say("You bought an Aol.")
 		exhaust[playerId] = currentTime + exhaustTime
 	else
-		player:sendCancelMessage("You dont have enought "..Settings.AolValue.." gold coins for buy an Aol. Cost: [100K = 1 CC].")
+		player:sendCancelMessage("You dont have enought 10K gold coins for buy an Aol. Cost: [10K = 1 CC].")
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 	end
 	
