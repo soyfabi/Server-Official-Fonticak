@@ -1,3 +1,82 @@
+Game.createQuest("Threatened Dreams", {
+    storageId = Storage.Quest.U11_40.ThreatenedDreams.QuestLine,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Troubled Animals",
+            storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission01[1],
+            startValue = 1,
+            endValue = 16,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You met the talking white deer Alkestios. It turned out he is actually a fae - and needs help. Search \z
+						out a poacher camp noth of the Green Claw Swamps and keep the poachers from hunting white deers.",
+					[2] = "You found a book with legends in the poacher camp. You asked Ahmed to add a story about how it brings \z
+						ill luck to kill a white deer, hopefully the poachers will desist from hunting Alkestios.",
+					[3] = "You returned to the poacher camp and placed the faked book noticeably on a table. You're quite sure the \z
+						poachers will discover it soon and desist from hunting Alkestios.",
+					[4] = "Alkestios asked you for help on another issue. There seemms to be a problem with a wolf mother and her \z
+						whelps. Find the snake Ikassis in the north-west of Edron and talk to her, she knows more.",
+					[5] = "The snake Ikassis asked you to find a female wolf in the south of Cormaya. The animal is in need of \z
+						help, yet Ikassis didn't know any details.",
+					[6] = "You found the ghostly wolf and promised to search for her lost whelps. The wolf told you to start \z
+						your search at Ulderek's Rock",
+						[7] = "At Ulderek's Rock you found a sleeping war wolf. It might actually be the now grown up whelp you were \z
+					looking for. The skeleton nearby implies that the hunter didn't survive his misdeed.",
+					[8] = "You talked to Irmana in Venore and she gave you the fur of one of the wolf whelps you're searching for. \z
+						You should talk to their mother's ghost.",
+					[9] = "As the ghostly wolf asked you, you placed the whelp fur in the mouth of a nearby stone, that is shaped \z
+						like a big face.",
+					[10] = "You redeemed the ghostly wolf. You should return to Ikassis and tell her about it.",
+					[11] = "Ikassis was happy to hear that you redeemed the ghostly wolf. But she asked you to help someone else: \z
+						one of her sisters. You can find her in the guise of swan at a river sourth-east of Ikassis.",
+					[12] = "You met a swan that in truth is a swan maiden, a kind of fae. These fae have magical cloaks that allow \z
+						them to shape change between swan and girl. Find this maiden's cloak that was stolen by a troll.",
+					[13] = "The troll Grarkharok sold the cloak to Tereban and he lost it during a flight with magic carpet. The \z
+						cloak's feathers are now scattered along the carpet's beeline between Edron and Darashia.",
+					[14] = "You found many swan feathers on Edron and in Darama desert. Now you should have enough for an entire \z
+						cloak. You should talk to the swan maiden.",
+					[15] = "You found enough magical swan feathers. The swan maiden will now be able to restore her cloak. You \z
+						should talk to Alkestios again.",
+					[16] = "Alkestios was very happy about your support. You earned the Fae's trust and may now enter their secret \z
+						realm. Search for an elemental shrine of ice, fire, earth or energy to reach Feyrist."
+                }
+                return descriptions[player:getStorageValue(Storage.Quest.U11_40.ThreatenedDreams.Mission01[1])]
+            end
+        },
+		{
+            name = "Nightmare Intruders",
+            storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission02[1],
+            startValue = 1,
+            endValue = 8,
+            ignoreEndValue = false,
+            description = function(player) 
+				local descriptions = {
+					[1] = "The fae queen asked for your help: Feyrist is threatened by intruders from Roshamuul. Kill 200 nightmare \z
+						monsters and Kroazur.\n\nYou killed %d weakened frazzlemaws and %d efeebled silencers.",
+                    [2] = "You killed 200 of the nightmare monsters that are invading Feyrist. Maelyrra was very happy but it seems \z
+						she still has other problems. She may need your help once more.",
+					[3] = "Maelyrra asked you to retrieve an artefact for her: the moon mirror. It was stolen by the tainted fae \z
+						who inhabit the caves underneath Feyrist. She also asked you to free some captured fairies.",
+					[4] = "You found the moon mirror and freed the captured fairies. Maelyrra was very happy but it seems she \z
+						has another problem. Perhaps you should offer your assistance once more.",
+					[5] = "The barrier that protects Feyrist from the outside world is weakened. To strengthen it again you \z
+						need to find the starlight vial and the sun catcher. Ask Aurita and Taegen for these items.",
+					[6] = "Gather sunlight, starlight and moon rays. You have to do this with the sun catcher on the beach, with \z
+						the starlight vial high in the mountains and with the moon mirror on a glade in the forest.",
+					[7] = "You may now repair the barrier. Charge the five moon sculptures of Feyrist with moon rays, the five \z
+						dreambird trees with starlight and the five sun mosics with sunlight.",
+					[8] = "You repaired tha magical barrier that protects Feyrist from the outside world. The fae's secret realm \z
+						is safe again."
+                }
+                return descriptions[player:getStorageValue(Storage.Quest.U11_40.ThreatenedDreams.Mission02[1])]
+            end
+        },
+    }
+}):register()
+
 Game.createQuest("Tibia Tales", {
     storageId = Storage.TibiaTales.DefaultStart,
     storageValue = 1,
@@ -16,6 +95,66 @@ Game.createQuest("Tibia Tales", {
 					[3] = "Perfect, you have managed to pass annihilator without problems, collect your prize."
                 }
                 return descriptions[player:getStorageValue(10112)]
+            end
+        },
+		{
+            name = "The Exterminator",
+            storageId = Storage.TibiaTales.TheExterminator,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Padreia in Carlin asked you to exterminate the slimes in the sewers of Carlin by poisoning their spawn pool.",
+					[2] = "You poisoned the spawn pool of the slimes in the sewers of Carlin. Report to Padreia about your mission.",
+					[3] = "You successfully helped Padreia in saving Carlin from a slimy disease."
+                }
+                return descriptions[player:getStorageValue(Storage.TibiaTales.TheExterminator)]
+            end
+        },
+		{
+            name = "An Interest In Botany",
+            storageId = Storage.TibiaTales.AnInterestInBotany,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Rabaz in Farmine asked you to collect samples from rare plant specimen in Zao. Go to the storage room to the west and receive the Botany Almanach. Find then the Giant Dreadcoil and use your Obsidian Knife on it to obtain a sample.",
+					[2] = "Now you must find the second plant, a Giant Verminous and use your Obsidian Knife on it to obtain a sample.",
+					[3] = "You found the two samples, report back to Rabaz in Farmine!",
+					[4] = "You have completed the Quest!"
+                }
+                return descriptions[player:getStorageValue(Storage.TibiaTales.AnInterestInBotany)]
+            end
+        },
+		{
+            name = "The Ultimate Booze",
+            storageId = Storage.TibiaTales.ultimateBoozeQuest,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Boozer in Vernore asked you to bring him some special dwarven brown ale. You may find some in the brewery in Kazordoon.",
+					[2] = "You found the special dwarven brown ale. Bring it to Boozer in Vernore.",
+					[3] = "You have completed The Ultimate Booze Quest!."
+                }
+                return descriptions[player:getStorageValue(Storage.TibiaTales.ultimateBoozeQuest)]
+            end
+        },
+		{
+            name = "The Koshei The Deathless",
+            storageId = Storage.TibiaTales.KosheiTheDeathlessQ,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "The Koshei has been burned, now you will have no curses, go through the door to receive your prize.",
+					[2] = "You finished the Koshei The Deathless mission!",
+                }
+                return descriptions[player:getStorageValue(Storage.TibiaTales.KosheiTheDeathlessQ)]
             end
         },
     }

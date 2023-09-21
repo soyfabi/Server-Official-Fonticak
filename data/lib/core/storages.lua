@@ -1268,6 +1268,7 @@ Storage = {
 		IntoTheBonePit = 51487,
 		TheExterminator = 51488,
 		AritosTaskDoor = 51489,
+		KosheiTheDeathlessQ = 51490,
 		RestInHallowedGround = {
 			Questline = 51495,
 			HolyWater = 51496,

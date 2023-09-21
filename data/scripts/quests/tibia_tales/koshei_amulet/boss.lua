@@ -8,6 +8,7 @@ function kosheiBoss.onUse(player, item, fromPosition, target, toPosition, isHotk
 		player:removeItem(7532, 1)
 		player:setStorageValue(Storage.KosheiTheDeathless.RewardDoor, 1)
 		player:setStorageValue(Storage.KosheiTheDeathless.KosheiMission, 1)
+		player:setStorageValue(Storage.TibiaTales.KosheiTheDeathlessQ, 1)
 		player:setStorageValue(Storage.TibiaTales.DefaultStart, 1)
 		toPosition:sendMagicEffect(CONST_ME_MAGIC_RED)
 		player:say("At last.. I have it back, my precious amulet. I am glad you didn't use it! I allow you to ...ahh... enter door ...ahh", TALKTYPE_MONSTER_SAY, false, player, toPosition)

@@ -14812,16 +14812,17 @@
 		<attribute key="containersize" value="7"/>
 	</item>
 	<item id="7538" article="the" name="remains of Koshei">
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="20"/>
 		<attribute key="decayTo" value="7539"/>
 		<attribute key="containersize" value="7"/>
 	</item>
 	<item id="7539" article="the" name="remains of Koshei">
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="20"/>
 		<attribute key="decayTo" value="7540"/>
 		<attribute key="containersize" value="7"/>
 	</item>
 	<item id="7540" article="the" name="remains of Koshei">
+		<attribute key="duration" value="20"/>
 		<attribute key="decayTo" value="0"/>
 	</item>
 	<item id="7541" name="earth"/>
