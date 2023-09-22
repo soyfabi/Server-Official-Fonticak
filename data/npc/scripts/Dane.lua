@@ -11,9 +11,9 @@ local function getTable(player)
 local itemsList = {}
 	
 local buyList = {
-	{ name = "bottle of lemonade", id = 2875, buy = 12, count = 12 },
+	--{ name = "bottle of lemonade", id = 2875, buy = 12, count = 12 },
 	{ name = "bottle of milk", id = 2875, buy = 4, count = 9 },
-	{ name = "bottle of water", id = 2875, buy = 2, count = 1 }
+	--{ name = "bottle of water", id = 2875, buy = 2, count = 1 }
 }
 
 	for i = 1, #buyList do

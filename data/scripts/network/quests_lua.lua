@@ -77,6 +77,112 @@ Game.createQuest("Threatened Dreams", {
     }
 }):register()
 
+Game.createQuest("The Hidden City of Beregar", {
+    storageId = Storage.HiddenCityOfBeregar.DefaultStart,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Going Down",
+            storageId = Storage.HiddenCityOfBeregar.GoingDown,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Deliver 3 Gear Wheels to Xorlosh.",
+					[2] = "You sucessfully helped Xorlosh in repairing the elevator. \z
+						You can now enter the teleporter to the eastern part of the mine."
+                }
+                return descriptions[player:getStorageValue(Storage.HiddenCityOfBeregar.GoingDown)]
+            end
+        },
+		{
+            name = "Justice for All",
+            storageId = Storage.HiddenCityOfBeregar.JusticeForAll,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Nokmir told you that he is falsely accused of being a thief. \z
+						You could help him by talking to Grombur about the case. \z
+						Furthermore you should try to find that ring which belongs to Rerun.",
+					[2] = "You should talking to Grombur about Nokmir.",
+					[3] = "You should try to find that ring which belongs to Rerun everywhere in the mine.",
+					[4] = "You have found Rerun\'s ring. Bring the ring to the emperor Rehal and talk to him about Nokmir.",
+					[5] = "You informed emperor Rehal about your recent discoveries and he acquitted Nokmir of being a thief.",
+					[6] = "You told Nokmir about his acquittal and he granted you access to the northern mine."
+                }
+                return descriptions[player:getStorageValue(Storage.HiddenCityOfBeregar.JusticeForAll)]
+            end
+        },
+		{
+            name = "Pythius the Rotten",
+            storageId = Storage.QuestChests.FirewalkerBoots,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "You won the battle against the malicious undead dragon Pythius the Rotten. \z
+						He granted you firewalker boots as a reward."
+                }
+                return descriptions[player:getStorageValue(Storage.QuestChests.FirewalkerBoots)]
+            end
+        },
+		{
+            name = "Sweet as Chocolate Cake",
+            storageId = Storage.HiddenCityOfBeregar.SweetAsChocolateCake,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Bake a Chocolate Cake and bring it to Bolfona at the bar.",
+					[2] = "Report back to Frafnar by telling him about the mission.",
+					[3] = "You told Frafnar that you did everything he asked you to do. \z
+						You may now enter the western part of the mine."
+                }
+                return descriptions[player:getStorageValue(Storage.HiddenCityOfBeregar.SweetAsChocolateCake)]
+            end
+        },
+		{
+            name = "The Good Guard",
+            storageId = Storage.HiddenCityOfBeregar.TheGoodGuard,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Grombur asked you to get him a cask of dwarven brown ale. \z
+						You heard that Boozer in Venore tried to brew some. Maybe you should pay him a visit.",
+					[2] = "Now go to Grombur to give him the dwarven brown ale.",
+					[3] = "Grombur liked the ale and you are now allowed to enter his part of the mine."
+                }
+                return descriptions[player:getStorageValue(Storage.HiddenCityOfBeregar.TheGoodGuard)]
+            end
+        },
+		{
+            name = "Royal Rescue",
+            storageId = Storage.HiddenCityOfBeregar.RoyalRescue,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Emperor Rehal told you about the missing explorers and his own son Rehon among them. Use the ore wagon to the deeper mines to find and rescue them. Ask Xorlosh if you encounter any problems.",
+					[2] = "You have been able to cross the bridge with the wagon in perfect condition, it will continue a long way until you find Tehlim.",
+					[3] = "You have to find the prison key, then go to Rehon and free him.",
+					[4] = "You have given the prison key to Rehon, now go back to Emperor Rehal.",
+					[5] = "You have to find the prison key, then go to Rehon and free him."
+                }
+                return descriptions[player:getStorageValue(Storage.HiddenCityOfBeregar.RoyalRescue)]
+            end
+        },
+    }
+}):register()
+
 Game.createQuest("Tibia Tales", {
     storageId = Storage.TibiaTales.DefaultStart,
     storageValue = 1,

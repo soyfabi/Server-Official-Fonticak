@@ -321,6 +321,12 @@ local config = {
 		},
 		storage = 857450
 	},
+	[65213] = {
+		items = {
+			{itemId = 9019, count = 1}
+		},
+		storage = Storage.QuestChests.FirewalkerBoots
+	},
 	[14037] = {
 		items = {
 			{itemId = 2820, text = [[

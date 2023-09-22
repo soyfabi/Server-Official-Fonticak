@@ -63,7 +63,7 @@ function Pick.onSay(player, words, param)
 		return false
 	end
 	
-	local itemType = ItemType(2553)
+	local itemType = ItemType(3456)
 	local itemWeight = itemType:getWeight()
 	local playerCap = player:getFreeCapacity()
 	if playerCap < itemWeight then
@@ -80,14 +80,14 @@ function Pick.onSay(player, words, param)
 	end
 	
 	
-	if player:removeMoney(Settings.PickAxeValue) then
+	if player:removeMoney(1000) then
 		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
 		player:say("You bought an Pick Axe.")
-		player:addItem(2553, 1)	
+		player:addItem(3456, 1)	
 		exhaust[playerId] = currentTime + exhaustTime
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-		player:sendCancelMessage("You dont have "..Settings.PickAxeValue.." Golds.")
+		player:sendCancelMessage("You dont have 1000 gold coins.")
 	end
 	return false
 end

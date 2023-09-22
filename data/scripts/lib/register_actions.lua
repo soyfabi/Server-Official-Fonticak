@@ -730,8 +730,10 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 		if player:getStorageValue(Storage.QuestChests.FirewalkerBoots) == 1 then
 			return false
 		end
+		
+		if player:getStorageValue(Storage.HiddenCityOfBeregar.JusticeForAll) > 4 then
 		target:remove(1)
-
+		
 		local stoneItem = Tile(toPosition):getItemById(1791)
 		if stoneItem then
 			stoneItem:remove(1)
@@ -749,8 +751,11 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 		end, Position(32551, 31374, 15), Position(32551, 31379, 15) )
 
 		local portal = Game.createItem(1949, 1, Position(32551, 31376, 15))
-		if portal then
-			portal:setActionId(50126)
+			if portal then
+				portal:setActionId(50126)
+			end
+		else
+			player:say("You need to complete the Justice For All mission from The Hidden of Berregar.")
 		end
 	elseif target.actionid == 50091 then
 		-- The Asure

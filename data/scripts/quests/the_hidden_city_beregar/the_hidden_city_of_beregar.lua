@@ -33,33 +33,37 @@ deeperMineWagon:register()
 local oreWagon = Action()
 
 local config = {
-	[50098] = Position(32687, 31470, 13),
-	[50099] = Position(32600, 31504, 13),
-	[50100] = Position(32604, 31338, 11),
-	[50101] = Position(32611, 31513, 9),
-	[50102] = Position(32652, 31507, 10),
-	[50103] = Position(32692, 31501, 11),
-	[50104] = Position(32687, 31470, 13),
-	[50105] = Position(32687, 31470, 13),
-	[50106] = Position(32687, 31470, 13),
-	[50107] = Position(32580, 31487, 9),
-	[50108] = Position(32687, 31470, 13)
+    [50098] = {position = Position(32687, 31470, 13)},
+    [50099] = {position = Position(32600, 31503, 13), direction = DIRECTION_EAST},
+    [50100] = {position = Position(32604, 31337, 11), direction = DIRECTION_EAST},
+    [50101] = {position = Position(32611, 31513, 9)},
+    [50102] = {position = Position(32652, 31507, 10)},
+    [50103] = {position = Position(32692, 31501, 11)},
+    [50104] = {position = Position(32687, 31470, 13)},
+    [50105] = {position = Position(32687, 31470, 13)},
+    [50106] = {position = Position(32687, 31470, 13)},
+    [50107] = {position = Position(32580, 31487, 9)},
+    [50108] = {position = Position(32687, 31470, 13)}
 }
 
 function oreWagon.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local targetPosition = config[item.actionid]
-	if not targetPosition then
-		return true
-	end
+    local configEntry = config[item.actionid]
+    if not configEntry then
+        return true
+    end
 
-	if player:getStorageValue(Storage.HiddenCityOfBeregar.OreWagon) == 1 then
-		player:teleportTo(targetPosition)
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		return true
-	end
+    if configEntry.direction then
+        player:setDirection(configEntry.direction)
+    end
 
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You don't know how to use this yet.")
-	return true
+    if player:getStorageValue(Storage.HiddenCityOfBeregar.OreWagon) == 1 then
+        player:teleportTo(configEntry.position)
+        player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+        return true
+    end
+
+    player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You don't know how to use this yet.")
+    return true
 end
 
 oreWagon:aid(50098, 50099, 50100, 50101, 50102, 50103, 50104, 50105, 50106, 50107, 50108)
@@ -438,6 +442,8 @@ function elevator.onStepIn(creature, item, position, fromPosition)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, 'You don\'t know how to use this yet.')
+		player:teleportTo(Position(32612, 31499, 14))
+		player:setDirection(DIRECTION_SOUTH)
 	end
 	return true
 end

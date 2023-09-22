@@ -14,6 +14,10 @@ function creatureSayCallback(cid, type, msg)
 	end
 
 	local player = Player(cid)	
+	if msgcontains(msg, "hi") and not npcHandler:isFocused(cid) then
+		return false
+	end
+	
 	if (msgcontains(msg, "nokmir")) then
 		if player:getStorageValue(Storage.HiddenCityOfBeregar.JusticeForAll) == 1 then
 			npcHandler:say("I always liked him and I still can't believe that he really stole that ring.", cid)
