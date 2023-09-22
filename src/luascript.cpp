@@ -2631,6 +2631,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Monster", "getMonsterLevel", LuaScriptInterface::luaMonsterGetLevel);
 
 	registerMethod("Monster", "rename", LuaScriptInterface::luaMonsterRename);
+	registerMethod("Monster", "setId", LuaScriptInterface::luaMonsterSetId);
 
 	registerMethod("Monster", "getSpawnPosition", LuaScriptInterface::luaMonsterGetSpawnPosition);
 	registerMethod("Monster", "isInSpawnRange", LuaScriptInterface::luaMonsterIsInSpawnRange);
@@ -10334,6 +10335,20 @@ int LuaScriptInterface::luaMonsterRename(lua_State* L)
 	}
 
 	pushBoolean(L, true);
+	return 1;
+}
+
+int LuaScriptInterface::luaMonsterSetId(lua_State* L)
+{
+	// monster:setId()
+	Monster* monster = getUserdata<Monster>(L, 1);
+	if (!monster) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	pushBoolean(L, monster->getID() == 0);
+	monster->setID();
 	return 1;
 }
 
