@@ -482,7 +482,63 @@ bool Combat::setParam(CombatParam_t param, uint32_t value)
 			params.useCharges = (value != 0);
 			return true;
 		}
+		
+		case COMBAT_PARAM_DISABLECREATUREEVENT: {
+			return false;
+		}
 	}
+	return false;
+}
+
+bool Combat::setParam(CombatParam_t param, std::string value)
+{
+	switch (param) {
+		case COMBAT_PARAM_TYPE: {
+			return false;
+		}
+
+		case COMBAT_PARAM_EFFECT: {
+			return false;
+		}
+
+		case COMBAT_PARAM_DISTANCEEFFECT: {
+			return false;
+		}
+
+		case COMBAT_PARAM_BLOCKARMOR: {
+			return false;
+		}
+
+		case COMBAT_PARAM_BLOCKSHIELD: {
+			return false;
+		}
+
+		case COMBAT_PARAM_TARGETCASTERORTOPMOST: {
+			return false;
+		}
+
+		case COMBAT_PARAM_CREATEITEM: {
+			return false;
+		}
+
+		case COMBAT_PARAM_AGGRESSIVE: {
+			return false;
+		}
+
+		case COMBAT_PARAM_DISPEL: {
+			return false;
+		}
+
+		case COMBAT_PARAM_USECHARGES: {
+			return false;
+		}
+
+		case COMBAT_PARAM_DISABLECREATUREEVENT: {
+			params.disabledEvents.insert(value);
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -865,9 +921,9 @@ void Combat::doTargetCombat(Creature* caster, Creature* target, CombatDamage& da
 			}
 		}
 
-		success = g_game.combatChangeHealth(caster, target, damage);
+		success = g_game.combatChangeHealth(caster, target, damage, &params.disabledEvents);
 	} else {
-		success = g_game.combatChangeMana(caster, target, damage);
+		success = g_game.combatChangeMana(caster, target, damage, &params.disabledEvents);
 	}
 
 	if (success) {

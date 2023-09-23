@@ -3799,7 +3799,7 @@ void Game::combatGetTypeInfo(CombatType_t combatType, Creature* target, TextColo
 	}
 }
 
-bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage& damage)
+bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage& damage, const DisabledCreatureEventsSet* disabledEvents)
 {
 	const Position& targetPos = target->getPosition();
 	if (damage.primary.value > 0) {
@@ -3823,10 +3823,16 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 			const auto& events = target->getCreatureEvents(CREATURE_EVENT_HEALTHCHANGE);
 			if (!events.empty()) {
 				for (CreatureEvent* creatureEvent : events) {
-					creatureEvent->executeHealthChange(target, attacker, damage);
+					if (disabledEvents) {
+						if (disabledEvents->find(creatureEvent->getName()) == disabledEvents->end()) {
+							creatureEvent->executeHealthChange(target, attacker, damage);
+						}
+					} else {
+						creatureEvent->executeHealthChange(target, attacker, damage);
+					}
 				}
 				damage.origin = ORIGIN_NONE;
-				return combatChangeHealth(attacker, target, damage);
+				return combatChangeHealth(attacker, target, damage, disabledEvents);
 			}
 		}
 
@@ -3924,7 +3930,13 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 					const auto& events = target->getCreatureEvents(CREATURE_EVENT_MANACHANGE);
 					if (!events.empty()) {
 						for (CreatureEvent* creatureEvent : events) {
-							creatureEvent->executeManaChange(target, attacker, damage);
+							if (disabledEvents) {
+								if (disabledEvents->find(creatureEvent->getName()) == disabledEvents->end()) {
+									creatureEvent->executeHealthChange(target, attacker, damage);
+								}
+							} else {
+								creatureEvent->executeHealthChange(target, attacker, damage);
+							}
 						}
 						healthChange = damage.primary.value + damage.secondary.value;
 						if (healthChange == 0) {
@@ -3996,10 +4008,16 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 			const auto& events = target->getCreatureEvents(CREATURE_EVENT_HEALTHCHANGE);
 			if (!events.empty()) {
 				for (CreatureEvent* creatureEvent : events) {
-					creatureEvent->executeHealthChange(target, attacker, damage);
+					if (disabledEvents) {
+						if (disabledEvents->find(creatureEvent->getName()) == disabledEvents->end()) {
+							creatureEvent->executeHealthChange(target, attacker, damage);
+						}
+					} else {
+						creatureEvent->executeHealthChange(target, attacker, damage);
+					}
 				}
 				damage.origin = ORIGIN_NONE;
-				return combatChangeHealth(attacker, target, damage);
+				return combatChangeHealth(attacker, target, damage, disabledEvents);
 			}
 		}
 
@@ -4107,7 +4125,7 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 	return true;
 }
 
-bool Game::combatChangeMana(Creature* attacker, Creature* target, CombatDamage& damage)
+bool Game::combatChangeMana(Creature* attacker, Creature* target, CombatDamage& damage, const DisabledCreatureEventsSet* disabledEvents)
 {
 	Player* targetPlayer = target->getPlayer();
 	if (!targetPlayer) {
@@ -4140,7 +4158,13 @@ bool Game::combatChangeMana(Creature* attacker, Creature* target, CombatDamage& 
 			const auto& events = target->getCreatureEvents(CREATURE_EVENT_MANACHANGE);
 			if (!events.empty()) {
 				for (CreatureEvent* creatureEvent : events) {
-					creatureEvent->executeManaChange(target, attacker, damage);
+					if (disabledEvents) {
+						if (disabledEvents->find(creatureEvent->getName()) == disabledEvents->end()) {
+							creatureEvent->executeManaChange(target, attacker, damage);
+						}
+					} else {
+						creatureEvent->executeManaChange(target, attacker, damage);
+					}
 				}
 				damage.origin = ORIGIN_NONE;
 				return combatChangeMana(attacker, target, damage);
@@ -4188,10 +4212,16 @@ bool Game::combatChangeMana(Creature* attacker, Creature* target, CombatDamage& 
 			const auto& events = target->getCreatureEvents(CREATURE_EVENT_MANACHANGE);
 			if (!events.empty()) {
 				for (CreatureEvent* creatureEvent : events) {
-					creatureEvent->executeManaChange(target, attacker, damage);
+					if (disabledEvents) {
+						if (disabledEvents->find(creatureEvent->getName()) == disabledEvents->end()) {
+							creatureEvent->executeManaChange(target, attacker, damage);
+						}
+					} else {
+						creatureEvent->executeManaChange(target, attacker, damage);
+					}
 				}
 				damage.origin = ORIGIN_NONE;
-				return combatChangeMana(attacker, target, damage);
+				return combatChangeMana(attacker, target, damage, disabledEvents);
 			}
 		}
 
