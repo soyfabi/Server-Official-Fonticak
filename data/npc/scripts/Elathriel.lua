@@ -53,7 +53,7 @@ local function creatureSayCallback(cid, type, msg)
 			local player = Player(cid)
 			if player:removeMoneyNpc(5000) then
 				npcHandler:say('Here it is.', cid)
-				local key = player:addItem(2089, 1)
+				local key = player:addItem(2970, 1)
 				if key then
 					key:setActionId(3012)
 				end

@@ -48,14 +48,14 @@ function creatureEvent.onKill(creature, target)
 						player:setStorageValue(movie.storage, sto_value)
 						if sto_value < movie.amount then
 							if player:getStorageValue(809013) == 1 then
-								player:sendChannelMessage("[".. movie.name .." Normal Task]", "You killed ["..(sto_value).."/"..movie.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 10)
+								player:sendChannelMessage("[".. movie.name .." Normal Task]", "You killed ["..(sto_value).."/"..movie.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 3)
 								Game.sendAnimatedText("Task +1", player:getPosition(), 155)
 							else
 								player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. movie.name ..' Normal Task] You killed ['..(sto_value)..'/'..movie.amount..'] '..target:getName()..'.')
 								Game.sendAnimatedText("Task +1", player:getPosition(), 155)
 							end
 						else
-							player:sendChannelMessage("[".. movie.name .." Normal Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 10)
+							player:sendChannelMessage("[".. movie.name .." Normal Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 3)
 							player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, '['.. movie.name ..' Normal Task] You already finished your task, go with Vauter for report the task.')	
 						end
 					end
@@ -71,14 +71,14 @@ function creatureEvent.onKill(creature, target)
 						player:setStorageValue(tvr.storage, sto_value)
 						if sto_value < tvr.amount then
 							if player:getStorageValue(809013) == 1 then
-								player:sendChannelMessage("[".. tvr.name .." Task Daily]", "You killed ["..(sto_value).."/"..tvr.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 10)
+								player:sendChannelMessage("[".. tvr.name .." Task Daily]", "You killed ["..(sto_value).."/"..tvr.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 3)
 								Game.sendAnimatedText("Task +1", player:getPosition(), 155)
 							else
 								player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. tvr.name ..' Daily Task] You killed ['..(sto_value)..'/'..tvr.amount..'] '..target:getName()..'.')
 								Game.sendAnimatedText("Task +1", player:getPosition(), 155)
 							end
 						else
-							player:sendChannelMessage("[".. tvr.name .." Daily Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 10)
+							player:sendChannelMessage("[".. tvr.name .." Daily Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 3)
 							player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, '['.. tvr.name ..' Daily Task] You already finished your task, go with Vauter for report the task.')
 						end
 					end
@@ -94,14 +94,14 @@ function creatureEvent.onKill(creature, target)
 						player:setStorageValue(tvr_s.storage, sto_value)
 						if sto_value < tvr_s.amount then
 							if player:getStorageValue(809013) == 1 then
-								player:sendChannelMessage("[".. tvr_s.name .." Special Task]", "You killed ["..(sto_value).."/"..tvr.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 10)
+								player:sendChannelMessage("[".. tvr_s.name .." Special Task]", "You killed ["..(sto_value).."/"..tvr.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 3)
 								Game.sendAnimatedText("Task +1", player:getPosition(), 155)
 							else
 								player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. tvr_s.name ..' Special Task] You killed ['..(sto_value)..'/'..tvr_s.amount..'] '..target:getName()..'.')
 								Game.sendAnimatedText("Task +1", player:getPosition(), 155)
 							end
 						else
-							player:sendChannelMessage("[".. tvr_s.name .." Special Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 10)
+							player:sendChannelMessage("[".. tvr_s.name .." Special Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 3)
 							player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, '['.. tvr_s.name ..' Special Task] You already finished your task, go with Vauter for report the task.')
 						end
 					end
@@ -120,14 +120,14 @@ function creatureEvent.onKill(creature, target)
 					player:setStorageValue(ret_t.storage, sto_value)
 					if sto_value < ret_t.amount then
 						if player:getStorageValue(809013) == 1 then
-						player:sendChannelMessage("[".. ret_t.name .." Normal Task]", "You killed ["..(sto_value).."/"..ret_t.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 10)
-						Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
+							player:sendChannelMessage("[".. ret_t.name .." Normal Task]", "You killed ["..(sto_value).."/"..ret_t.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 3)
+							Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
 						else
-						player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. ret_t.name ..' Normal Task] You killed ['..(sto_value)..'/'..ret_t.amount..'] '..target:getName()..'.')
-						Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
+							player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. ret_t.name ..' Normal Task] You killed ['..(sto_value)..'/'..ret_t.amount..'] '..target:getName()..'.')
+							Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
 						end
 					else
-						player:sendChannelMessage("[".. ret_t.name .." Normal Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 10)
+						player:sendChannelMessage("[".. ret_t.name .." Normal Task]", "You already finished your task, go with Vauter for report the task.", TALKTYPE_CHANNEL_R1, 3)
 						player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, '['.. ret_t.name ..' Normal Task] You already finished your task, go with Vauter for report the task.')
 					end
 				end
@@ -144,14 +144,14 @@ function creatureEvent.onKill(creature, target)
 					player:setStorageValue(ret_td.storage, sto_value)
 					if sto_value < ret_td.amount then
 						if player:getStorageValue(809013) == 1 then
-						player:sendChannelMessage("[".. ret_td.name .." Daily Task]", "You killed ["..(sto_value).."/"..ret_td.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 10)
-						Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
+							player:sendChannelMessage("[".. ret_td.name .." Daily Task]", "You killed ["..(sto_value).."/"..ret_td.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 3)
+							Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
 						else
-						player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. ret_td.name ..' Daily Task] You killed ['..(sto_value)..'/'..ret_td.amount..'] '..target:getName()..'.')
-						Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
+							player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. ret_td.name ..' Daily Task] You killed ['..(sto_value)..'/'..ret_td.amount..'] '..target:getName()..'.')
+							Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
 						end
 					else
-						player:sendChannelMessage("[".. ret_td.name .." Daily Task]", "You already finished your task, go with Vauter for report the task daily.", TALKTYPE_CHANNEL_R1, 10)
+						player:sendChannelMessage("[".. ret_td.name .." Daily Task]", "You already finished your task, go with Vauter for report the task daily.", TALKTYPE_CHANNEL_R1, 3)
 						player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, '['.. ret_td.name ..' Daily Task] You already finished your task, go with Vauter for report the task daily.')
 					end
 				end
@@ -168,14 +168,14 @@ function creatureEvent.onKill(creature, target)
 					player:setStorageValue(ret_ts.storage, sto_value)
 					if sto_value < ret_ts.amount then
 						if player:getStorageValue(809013) == 1 then
-						player:sendChannelMessage("[".. ret_ts.name .." Special Task]", "You killed ["..(sto_value).."/"..ret_ts.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 10)
-						Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
+							player:sendChannelMessage("[".. ret_ts.name .." Special Task]", "You killed ["..(sto_value).."/"..ret_ts.amount.."] "..target:getName()..".", TALKTYPE_CHANNEL_Y, 3)
+							Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
 						else
-						player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. ret_ts.name ..' Special Task] You killed ['..(sto_value)..'/'..ret_ts.amount..'] '..target:getName()..'.')
-						Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
+							player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, '['.. ret_ts.name ..' Special Task] You killed ['..(sto_value)..'/'..ret_ts.amount..'] '..target:getName()..'.')
+							Game.sendAnimatedText("Task +1", player:getPosition(), TEXTCOLOR_LIGHTGREEN)
 						end
 					else
-						player:sendChannelMessage("[".. ret_ts.name .." Special Task]", "You already finished your task, go with Vauter for report the task daily.", TALKTYPE_CHANNEL_R1, 10)
+						player:sendChannelMessage("[".. ret_ts.name .." Special Task]", "You already finished your task, go with Vauter for report the task daily.", TALKTYPE_CHANNEL_R1, 3)
 						player:sendTextMessage(MESSAGE_STATUS_CONSOLE_ORANGE, '['.. ret_ts.name ..' Special Task] You already finished your task, go with Vauter for report the task daily.')
 					end
 				end

@@ -35,7 +35,7 @@ elseif npcHandler.topic[cid] == 1 then
                                 player:setStorageValue(task_storage, mon)
                                 player:setStorageValue(task_timer, os.time())
                                 player:setStorageValue(l.storage, 0)
-                                player:openChannel(10) -- Task Channel
+                                player:openChannel(3) -- Task Channel
                                 npcHandler.topic[cid] = 0
                                 npcHandler:releaseFocus(cid)
                             else
@@ -97,7 +97,7 @@ elseif npcHandler.topic[cid] == 2 then
                               player:setStorageValue(taskd_storage, mon)
                               player:setStorageValue(l.storage, 0)
                               player:setStorageValue(task_timerdaily_2, os.time() + 1 * 60 * 60 * 24)
-                              player:openChannel(10) -- Task Channel
+                              player:openChannel(3) -- Task Channel
                               player:setStorageValue(task_timerdaily, os.time())
                               npcHandler.topic[cid] = 0
                               npcHandler:releaseFocus(cid)
@@ -161,7 +161,7 @@ elseif npcHandler.topic[cid] == 5 then
                                 npcHandler:say("Perfect, you have chosen the special task of {" .. l.name:gsub("^%a", string.upper) .. "}, you need to {kill "..l.amount.."} from them. To see the {status} you can see using {!task} or using the {task board}. Good luck!", cid)
                                 player:setStorageValue(tasks_storage, mon)
                                 player:setStorageValue(l.storage, 0)
-                                player:openChannel(10) -- Task Channel
+                                player:openChannel(3) -- Task Channel
                                 player:setStorageValue(task_timerspecial, os.time())
                                 npcHandler.topic[cid] = 0
                                 npcHandler:releaseFocus(cid)
@@ -247,9 +247,9 @@ elseif npcHandler.topic[cid] == 3 then
 
 				taskPoints_add(player, pt1)
 				taskRank_add(player, pt2)
-				player:clearStorageValue(ret_t.storage)
-				player:clearStorageValue(task_storage)
-				player:clearStorageValue(task_timer)
+				player:setStorageValue(ret_t.storage, -1)
+				player:setStorageValue(task_storage, -1)
+				player:setStorageValue(task_timer, -1)
 				player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
 				npcHandler:say(txt..' see you soon.', cid)
 				npcHandler.topic[cid] = 0
@@ -308,9 +308,9 @@ elseif npcHandler.topic[cid] == 3 then
 						taskPoints_add(player, pt1)
 						taskRank_add(player, pt2)
 						player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
-						player:clearStorageValue(getTaskDailyInfo(player).storage)
-						player:clearStorageValue(task_timerdaily)
-						player:clearStorageValue(taskd_storage)
+						player:setStorageValue(getTaskDailyInfo(player).storage, -1)
+						player:setStorageValue(task_timerdaily, -1)
+						player:setStorageValue(taskd_storage, -1)
 						player:setStorageValue(time_daySto, 1 * 60 * 60 * 24+os.time())
 						npcHandler.topic[cid] = 0
 						npcHandler:releaseFocus(cid)
@@ -367,9 +367,9 @@ elseif npcHandler.topic[cid] == 3 then
                 taskPoints_add(player, pt1)
                 taskRank_add(player, pt2)
                 player:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
-                player:clearStorageValue(getTaskSpecialInfo(player).storage)
-                player:clearStorageValue(tasks_storage)
-                player:clearStorageValue(task_timerspecial)
+                player:setStorageValue(getTaskSpecialInfo(player).storage, -1)
+                player:setStorageValue(tasks_storage, -1)
+                player:setStorageValue(task_timerspecial, -1)
 				player:setStorageValue(time_dayStoSpecial, 2 * 60 * 60 * 24 + os.time())
                 npcHandler.topic[cid] = 0
                 npcHandler:releaseFocus(cid)
@@ -401,9 +401,9 @@ elseif npcHandler.topic[cid] == 4 and msgcontains(msg, 'normal') then
 	if ret_t then
 		npcHandler:say('Unfortunately this situation, I had faith that you would bring me this task, but I was wrong. How punishment will be {'..task_time..' hours} unable to perform any tasks.', cid)
 		player:setStorageValue(task_sto_time, os.time()+task_time*60*60)
-		player:clearStorageValue(ret_t.storage)
-		player:clearStorageValue(task_storage)
-		player:clearStorageValue(task_timer)
+		player:setStorageValue(ret_t.storage, -1)
+		player:setStorageValue(task_storage, -1)
+		player:setStorageValue(task_timer, -1)
 		npcHandler.topic[cid] = 0
 		npcHandler:releaseFocus(cid)
 	else
@@ -416,9 +416,9 @@ elseif npcHandler.topic[cid] == 4 and msg == 'daily' or msg == 'diária' then
 	if ret_td then
 		npcHandler:say('Unfortunately this situation, I had faith that you would bring me this task, but I was wrong. How punishment will be {'..task_time..' hours} unable to perform any tasks.', cid)
 		player:setStorageValue(task_sto_time, os.time()+task_time*60*60)
-		player:clearStorageValue(ret_td.storage)
-		player:clearStorageValue(taskd_storage)
-		player:clearStorageValue(task_timerdaily)
+		player:setStorageValue(ret_td.storage, -1)
+		player:setStorageValue(taskd_storage, -1)
+		player:setStorageValue(task_timerdaily, -1)
 		npcHandler.topic[cid] = 0
 		npcHandler:releaseFocus(cid)
 	else
@@ -431,9 +431,9 @@ elseif npcHandler.topic[cid] == 4 and msg == 'special' or msg == 'specials' then
 	if ret_ts then
 		npcHandler:say('Unfortunately this situation, I had faith that you would bring me this task, but I was wrong. How punishment will be {'..task_time..' hours} unable to perform any tasks.', cid)
 		player:setStorageValue(task_sto_time, os.time()+task_time*60*60)
-		player:clearStorageValue(ret_ts.storage)
-		player:clearStorageValue(taskd_storage)
-		player:clearStorageValue(task_timerspecial)
+		player:setStorageValue(ret_ts.storage, -1)
+		player:setStorageValue(taskd_storage, -1)
+		player:setStorageValue(task_timerspecial, -1)
 		npcHandler.topic[cid] = 0
 		npcHandler:releaseFocus(cid)
 	else

@@ -79,7 +79,13 @@ function fireBug.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 			return true
 		elseif target.actionid == 12550 or target.actionid == 12551 then -- Secret Service Quest
 			if player:getStorageValue(Storage.SecretService.TBIMission01) == 1 then
-				Game.createItem(2118, 1, Position(32893, 32012, 6))
+				local newItem = Game.createItem(2118, 1, Position(32893, 32012, 6))
+				
+				addEvent(function()
+					if newItem and newItem:isItem() then
+						newItem:remove()
+					end
+				end, 10 * 1000)				
 				player:setStorageValue(Storage.SecretService.TBIMission01, 2)
 			end
 		end

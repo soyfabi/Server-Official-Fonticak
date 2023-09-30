@@ -15,9 +15,20 @@ local setting = {
 
 local yalaharDemon = MoveEvent()
 
+local exhaust = {}
+local exhaustTime = 10
+
 function yalaharDemon.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
+		return true
+	end
+	
+	local playerId = creature:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		creature:sendCancelMessage("You are on cooldown, now wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		creature:teleportTo(fromPosition, true)
 		return true
 	end
 
@@ -35,6 +46,7 @@ function yalaharDemon.onStepIn(creature, item, position, fromPosition)
 		player:teleportTo(flame.pushPosition)
 		position:sendMagicEffect(CONST_ME_ENERGYHIT)
 		flame.pushPosition:sendMagicEffect(CONST_ME_ENERGYHIT)
+		exhaust[playerId] = currentTime + exhaustTime
 		return true
 	end
 

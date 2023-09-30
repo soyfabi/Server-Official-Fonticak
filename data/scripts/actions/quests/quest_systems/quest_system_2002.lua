@@ -235,6 +235,18 @@ local config = {
 		},
 		storage = Storage.SecretService.RottenTree
 	},
+	[3027] = {
+		items = {
+			{itemId = 3381}
+		},
+		storage = Storage.Quest.U7_1.BlackKnight.Rewards.CrownArmor
+	},
+	[9055] = {
+		items = {
+			{itemId = 3419}
+		},
+		storage = Storage.Quest.U7_1.BlackKnight.Rewards.CrownShield
+	},
 	[50032] = {
 		items = {
 			{itemId = 3734}
