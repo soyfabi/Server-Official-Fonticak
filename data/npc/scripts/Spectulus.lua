@@ -86,7 +86,7 @@ local function creatureSayCallback(cid, type, msg)
 		elseif player:getStorageValue(Storage.SeaOfLight.Questline) == 2 then
 			if not player:removeItem(9696, 1) then
 				npcHandler:say(
-					"o have you talked to the beggar? What did he tell you? Where are the plans...? Wh...? He did? He is? \z
+					"So have you talked to the beggar? What did he tell you? Where are the plans...? Wh...? He did? He is? \z
 					You've already got the plans? Beautiful!! Amazing! Alright it will take some time to recapitulate these plans.",
 					cid)
 				return true
@@ -132,6 +132,7 @@ local function creatureSayCallback(cid, type, msg)
 				return true
 			end
 			player:addExperience(500, true)
+			player:removeItem(9697, 1)
 			player:setStorageValue(Storage.SeaOfLight.Questline, 6)
 			player:setStorageValue(Storage.SeaOfLight.Mission2, 3)
 			npcHandler:say(
@@ -228,7 +229,7 @@ local function creatureSayCallback(cid, type, msg)
 			player:setStorageValue(Storage.TibiaTales.JackFutureQuest.QuestLine, 10)
 			npcHandler.topic[cid] = 0
 		end
-	elseif msgcontains(msg, "yes") and player:getStorageValue(Storage.SeaOfLight.Questline) < 1 then
+	elseif msgcontains(msg, "yes") or player:getStorageValue(Storage.SeaOfLight.Questline) < 1 then
 		if npcHandler.topic[cid] == 1 then
 			player:addExperience(100, true)
 			player:setStorageValue(Storage.SeaOfLight.Questline, 1)
@@ -282,6 +283,7 @@ local function creatureSayCallback(cid, type, msg)
 		elseif npcHandler.topic[cid] == 6 then
 			player:setStorageValue(Storage.SeaOfLight.Questline, 7)
 			player:setStorageValue(Storage.SeaOfLight.Mission3, 1)
+			player:addItem(9697, 1)
 			player:addItem(9698, 1)
 			npcHandler:say(
 				"To collect the unbelievably rare, practically unique mirror crystal, you will need to use this \z
@@ -295,8 +297,8 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler.topic[cid] = 0
 				return true
 			end
-			player:addItem(3028, 10)
 			player:addItem(3037, 1)
+			player:addItem(3028, 10)
 			player:addExperience(1000, true)
 			player:setStorageValue(Storage.SeaOfLight.Mission3, 4)
 			player:setStorageValue(Storage.SeaOfLight.Questline, 10)

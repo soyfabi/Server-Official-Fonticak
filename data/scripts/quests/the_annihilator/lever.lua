@@ -35,7 +35,6 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Four players are required to start the quest.")
 					end
 				end
-				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Four players are required to start the quest.")
 				return true
 			end
 			if creature and creature:getLevel() < setting.requiredLevel then

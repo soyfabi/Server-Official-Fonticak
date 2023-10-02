@@ -13,15 +13,16 @@ monster.outfit = {
 	lookMount = 0
 }
 
-monster.health = 2000
-monster.maxHealth = 2000
+monster.health = 48500
+monster.maxHealth = 48500
 monster.race = "blood"
 monster.corpse = 31307
-monster.speed = 95
+monster.speed = 190
 monster.manaCost = 0
 
 monster.events = {
-	"UglyMonster"
+	"UglyMonsterSpawn",
+	"UglyMonsterCleanup"
 }
 
 monster.changeTarget = {
@@ -87,10 +88,10 @@ monster.loot = {
 	{name = "terra hood", chance = 1600},
 	{name = "amulet of loss", chance = 3400},
 	{name = "wand of everblazing", chance = 2900},
-	{name = "cobra wand", chance = 400},
-	{name = "cobra axe", chance = 400},
-	{name = "cobra rod", chance = 400},
-	{name = "cobra crest", chance = 400}
+	{name = "cobra wand", chance = 100},
+	{name = "cobra axe", chance = 100},
+	{name = "cobra rod", chance = 100},
+	{name = "cobra crest", chance = 100}
 }
 
 monster.attacks = {

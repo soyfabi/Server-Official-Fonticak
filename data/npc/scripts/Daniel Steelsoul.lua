@@ -16,12 +16,11 @@ local function creatureSayCallback(cid, type, msg)
 		return false
 	end
 	local player = Player(cid)
-	if isInArray({"fuck", "idiot", "asshole", "ass", "fag", "stupid", "tyrant", "shit", "lunatic"}, msg) then
+	if table.contains({"fuck", "idiot", "asshole", "ass", "fag", "stupid", "tyrant", "shit", "lunatic"}, msg) then
 		npcHandler:say("Take this!", cid)
 		player:getPosition():sendMagicEffect(CONST_ME_EXPLOSIONAREA)
 		player:addCondition(condition)
 		npcHandler:releaseFocus(cid)
-		npcHandler:resetNpc(cid)
 	elseif msgcontains(msg, "mission") then
 		if player:getStorageValue(Storage.TibiaTales.AgainstTheSpiderCult) < 1 then
 			npcHandler.topic[cid] = 1
@@ -29,17 +28,168 @@ local function creatureSayCallback(cid, type, msg)
 		elseif player:getStorageValue(Storage.TibiaTales.AgainstTheSpiderCult) == 5 then
 			player:setStorageValue(Storage.TibiaTales.AgainstTheSpiderCult, 6)
 			npcHandler.topic[cid] = 0
-			player:addItem(7887, 1)
+			player:addItem(814, 1)
 			npcHandler:say("What? YOU DID IT?!?! That's...that's...er....<drops a piece of paper. You see the headline 'death certificate'> like I expected!! Here is your reward.", cid)
 		end
+	elseif msgcontains(msg, "task") then
+		if player:getStorageValue(Storage.KillingInTheNameOf.TrollTask) == 0 then
+			if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.TrollCount) >= 100 then
+				npcHandler:say("Very nice, |PLAYERNAME|. That will push the trolls' forces back a little. Here is your reward!", cid)
+				player:addExperience(200, true)
+				player:addMoney(200)
+				player:setStorageValue(Storage.KillingInTheNameOf.TrollTask, 1)
+				return true
+			else
+				npcHandler:say("Your current task is to kill 100 trolls. You have already killed "..player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.TrollCount).." of them. Keep going!", cid)
+				return true
+			end
+		elseif player:getStorageValue(Storage.KillingInTheNameOf.GoblinTask) == 0 then
+			if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.GoblinCount) >= 150 then
+				npcHandler:say("Congratulations, you've fought well against the goblin plague. Thank you! Here is your reward!", cid)
+				player:addExperience(300, true)
+				player:addMoney(250)
+				player:setStorageValue(Storage.KillingInTheNameOf.GoblinTask, 1)
+				return true
+			else
+				npcHandler:say("Your current task is to kill 150 goblins. You have already killed "..player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.GoblinCount).." of them. Keep going!", cid)
+				return true
+			end
+		elseif player:getStorageValue(Storage.KillingInTheNameOf.RotwormTask) == 0 then
+			if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.RotwormCount) >= 300 then
+				npcHandler:say("Well done! Thanks to you the city is a bit safer. Here's your reward!", cid)
+				player:addExperience(1000, true)
+				player:addMoney(400)
+				player:setStorageValue(Storage.KillingInTheNameOf.RotwormTask, 1)
+				return true
+			else
+				npcHandler:say("Your current task is to kill 300 rotworms. You have already killed "..player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.RotwormCount).." of them. Keep going!", cid)
+				return true
+			end
+		elseif player:getStorageValue(Storage.KillingInTheNameOf.CyclopsTask) == 0 then
+			if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.CyclopsCount) >= 500 then
+				npcHandler:say("Very good job, |PLAYERNAME|. You've been a great help. Here's your reward!", cid)
+				player:addExperience(3000, true)
+				player:addMoney(800)
+				player:setStorageValue(Storage.KillingInTheNameOf.CyclopsTask, 1)
+				return true
+			else
+				npcHandler:say("Your current task is to kill 500 cyclops. You have already killed "..player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.CyclopsCount).." of them. Keep going!", cid)
+				return true
+			end
+		end
+		if player:getLevel() < 20 then
+			if player:getStorageValue(Storage.KillingInTheNameOf.TrollTask) < 0 then
+				npcHandler:say({
+					"The trolls living west of our city have become quite a nuisance lately. Not that they are really dangerous to us, but still, we must show them that there's a line they shouldn't cross. ...",
+					"I want you to kill 100 of them. If you succeed, I'll provide you some pretty coins and experience. Are you willing to take on this task?"}, cid)
+				npcHandler.topic[cid] = 2
+			elseif player:getStorageValue(Storage.KillingInTheNameOf.TrollTask) == 1 and player:getStorageValue(Storage.KillingInTheNameOf.GoblinTask) == 1 then
+				npcHandler:say("Currently there is no new task I could entrust you with. However, you can repeat killing {goblins} or {trolls}. Which would you prefer?", cid)
+				npcHandler.topic[cid] = 4
+			elseif player:getStorageValue(Storage.KillingInTheNameOf.TrollTask) == 1 then
+				npcHandler:say({
+						"It's not only the trolls invading from the west coast. <sighs> Goblins also have a lair there where they constantly prepare for their next attack. ...",
+						"If you could kill 150 goblins for us, that'd be a good start. Would you be willing to help us in this matter?"}, cid)
+				npcHandler.topic[cid] = 3
+			end
+		end
+		if player:getLevel() >= 30 and player:getLevel() < 60 then
+			if player:getStorageValue(Storage.KillingInTheNameOf.CyclopsTask) < 0 or player:getStorageValue(Storage.KillingInTheNameOf.CyclopsTask) == 1 then
+				npcHandler:say({
+				"We've successfully driven the minotaurs off this island, but the underground city of the cyclopes - Cyclopolis - is still standing. ...",
+				"We're always looking for adventurers who'd help us decimate the number of cyclopes. Will you assist the city of Edron by killing 500 of them?"}, cid)
+				npcHandler.topic[cid] = 6
+				return true
+			end
+		end
+		if player:getLevel() >= 20 and player:getLevel() < 40 then
+			if player:getStorageValue(Storage.KillingInTheNameOf.RotwormTask) < 0 or player:getStorageValue(Storage.KillingInTheNameOf.RotwormTask) == 1 then
+				npcHandler:say("Maybe you have noticed the numerous rotworms that burrowed under Edron. They're quite a pest. You look strong enough to be able to vanquish a few for us. Do you think you can kill 300 rotworms?", cid)
+				npcHandler.topic[cid] = 5
+				return true
+			end
+		end
+	elseif msgcontains(msg, "trolls") and npcHandler.topic[cid] == 4 then
+		npcHandler:say("I'm pleased with your eagerness. To reach your goal, you have to kill the brown trolls and troll champions. Good luck!", cid)
+		player:setStorageValue(JOIN_STOR, 1)
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.TrollCount, 0)
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.TrollCount, 0)
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.TrollChampionCount, 0)
+		player:setStorageValue(Storage.KillingInTheNameOf.TrollTask, 0)
+		npcHandler.topic[cid] = 0
+	elseif msgcontains(msg, "goblins") and npcHandler.topic[cid] == 4 then
+		npcHandler:say("Fine then! You can kill normal goblins as well as scavengers and assassins on the lower levels, but beware, they are a bit harder. Have a good hunt!", cid)
+		player:setStorageValue(JOIN_STOR, 1)
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.GoblinCount, 0)
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.GoblinCount, 0)
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.GoblinScavengerCount, 0)
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.GoblinAssassinCount, 0)
+		player:setStorageValue(Storage.KillingInTheNameOf.GoblinTask, 0)
+		npcHandler.topic[cid] = 0
 	elseif msgcontains(msg, "yes") then
 		if npcHandler.topic[cid] == 1 then
 			player:setStorageValue(Storage.TibiaTales.DefaultStart, 1)
 			player:setStorageValue(Storage.TibiaTales.AgainstTheSpiderCult, 1)
 			npcHandler:say({
 				"Very well, maybe you know that the orcs here in Edron learnt to raise giant spiders. It is going to become a serious threat. ...",
-				"The mission is simple: go to the orcs and destroy all spider eggs that are hatched by the giant spider they have managed to catch. The orcs are located in the south of the western part of the island."
-			}, cid)
+				"The mission is simple: go to the orcs and destroy all spider eggs that are hatched by the giant spider they have managed to catch. The orcs are located in the south of the western part of the island."}, cid)
+		elseif npcHandler.topic[cid] == 2 then
+			npcHandler:say("I'm pleased with your eagerness. To help you find the trolls' den, I mark both the entrance to the passage and their lair on your map. To reach your goal, you have to kill the normal brown trolls, but troll champions count too. Good luck!", cid)
+			player:setStorageValue(JOIN_STOR, 1)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.TrollCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.TrollCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.TrollChampionCount, 0)
+			player:setStorageValue(Storage.KillingInTheNameOf.TrollTask, 0)
+			npcHandler.topic[cid] = 0
+		elseif npcHandler.topic[cid] == 3 then
+			npcHandler:say("Fine then! I'll show you the Goblin den on your map, here. Use the same passage you did when hunting for trolls. You can kill normal goblins as well as scavengers and assassins on the lower levels, but beware, they are a bit harder.", cid)
+			player:setStorageValue(JOIN_STOR, 1)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.GoblinCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.GoblinCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.GoblinScavengerCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.GoblinAssassinCount, 0)
+			player:setStorageValue(Storage.KillingInTheNameOf.GoblinTask, 0)
+			npcHandler.topic[cid] = 0
+		elseif npcHandler.topic[cid] == 5 then
+			npcHandler:say({
+				"Great! You can find rotworms south of the city, for example. Take a rope and shovel and look for loose stone piles to dig open. ...",
+				"You can kill normal rotworms as well as their larger brothers, the carrion worms, to fulfil your task. Be careful and good luck!"}, cid)
+			player:setStorageValue(JOIN_STOR, 1)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.RotwormCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.RotwormCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.CarrionWormnCount, 0)
+			player:setStorageValue(Storage.KillingInTheNameOf.RotwormTask, 0)
+			npcHandler.topic[cid] = 0
+		elseif npcHandler.topic[cid] == 6 then
+			npcHandler:say({
+				"I'm impressed with your dedication and courage. I can't show you the exact location of cyclopolis on the map though. It is somewhere north of Edron city. ...",
+				"Exit the city and go through a mountain passage leading to the west, then keep on heading north. The entrance is marked by large, obelisk-like stones arranged in a circle. ...",
+				"You can kill normal cyclopes as well as drones and smiths to reach your goal. Good hunting!"}, cid)
+			player:setStorageValue(JOIN_STOR, 1)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MonsterKillCount.CyclopsCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.CyclopsCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.CyclopsDroneCount, 0)
+			player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.AltKillCount.CyclopsSmithCount, 0)
+			player:setStorageValue(Storage.KillingInTheNameOf.CyclopsTask, 0)
+			npcHandler.topic[cid] = 0
+		end
+	elseif msgcontains(msg, "no") then
+		if npcHandler.topic[cid] == 2 then
+			npcHandler:say("Another option if you want to do a task for Edron would be to killing 150 goblins. Would that suit your taste better?", cid)
+			npcHandler.topic[cid] = 3
+		elseif npcHandler.topic[cid] == 3 then
+			npcHandler:say("Another option if you want to do a task for Edron would be to repeat killing 100 trolls. Would that suit your taste better?", cid)
+			npcHandler.topic[cid] = 2
+		elseif npcHandler.topic[cid] == 5 and player:getLevel() >= 30 then
+			if player:getStorageValue(Storage.KillingInTheNameOf.CyclopsTask) < 0 then
+				npcHandler:say("Another option if you want to do a task for Edron would be to killing 500 cyclops. Would that suit your taste better?", cid)
+				npcHandler.topic[cid] = 6
+			end
+		elseif npcHandler.topic[cid] == 6 and player:getLevel() < 40 then
+			if player:getStorageValue(Storage.KillingInTheNameOf.RotwormTask) < 0 or player:getStorageValue(Storage.KillingInTheNameOf.RotwormTask) == 1 then
+				npcHandler:say("Another option if you want to do a task for Edron would be to killing 300 rotworms. Would that suit your taste better?", cid)
+				npcHandler.topic[cid] = 5
+			end
 		end
 	end
 	return true

@@ -21,4 +21,10 @@ addTravelKeyword('folda', 'Folda for {20 gold coins}?', 20, Position(32046, 3157
 -- Basic
 keywordHandler:addKeyword({'passage'}, StdModule.say, {npcHandler = npcHandler, text = 'Where do you want to go? To {Folda}, {Senja} or {Tibia}?'})
 
+local function greetCallback(cid)
+	npcHandler:setMessage(MESSAGE_GREET, "Ahoi, young man |PLAYERNAME| and welcome to the Nordic Tibia Ferries. If you need a {passage}, let me know.")
+	return true
+end
+
+npcHandler:setCallback(CALLBACK_GREET, greetCallback)
 npcHandler:addModule(FocusModule:new())

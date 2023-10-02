@@ -2884,6 +2884,7 @@
 	</item>
 	<item id="2128" article="a" name="magic wall">
 		<attribute key="type" value="magicfield"/>
+		<attribute key="blocking" value="1"/>
 	</item>
 	<item id="2129" article="a" name="magic wall">
 		<attribute key="type" value="magicfield"/>
@@ -44093,17 +44094,17 @@
 		<attribute key="containersize" value="32"/>
 	</item>
 	<item id="31548" article="a" name="dead ugly monster">
-		<attribute key="duration" value="60"/>
+		<attribute key="duration" value="20"/>
 		<attribute key="decayTo" value="0"/>
 	</item>
 	<item id="31549" article="a" name="dead ugly monster">
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="40"/>
 		<attribute key="decayTo" value="31548"/>
 		<attribute key="containersize" value="16"/>
 	</item>
 	<item id="31550" article="a" name="dead ugly monster">
 		<attribute key="fluidsource" value="blood"/>
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="40"/>
 		<attribute key="decayTo" value="31549"/>
 		<attribute key="containersize" value="32"/>
 	</item>
@@ -44495,17 +44496,17 @@
 		<attribute key="containersize" value="10"/>
 	</item>
 	<item id="31647" article="a" name="dead crypt warden">
-		<attribute key="duration" value="60"/>
+		<attribute key="duration" value="30"/>
 		<attribute key="decayTo" value="0"/>
 	</item>
 	<item id="31648" article="a" name="dead crypt warden">
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="60"/>
 		<attribute key="decayTo" value="31647"/>
 		<attribute key="containersize" value="5"/>
 	</item>
 	<item id="31649" article="a" name="dead crypt warden">
 		<attribute key="fluidsource" value="blood"/>
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="60"/>
 		<attribute key="decayTo" value="31648"/>
 		<attribute key="containersize" value="10"/>
 	</item>
@@ -44516,17 +44517,17 @@
 		<attribute key="containersize" value="10"/>
 	</item>
 	<item id="31651" name="dead Guard Captain Quaid">
-		<attribute key="duration" value="60"/>
+		<attribute key="duration" value="30"/>
 		<attribute key="decayTo" value="0"/>
 	</item>
 	<item id="31652" name="dead Guard Captain Quaid">
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="60"/>
 		<attribute key="decayTo" value="31651"/>
 		<attribute key="containersize" value="5"/>
 	</item>
 	<item id="31653" name="dead Guard Captain Quaid">
 		<attribute key="fluidsource" value="blood"/>
-		<attribute key="duration" value="300"/>
+		<attribute key="duration" value="60"/>
 		<attribute key="decayTo" value="31652"/>
 		<attribute key="containersize" value="10"/>
 	</item>

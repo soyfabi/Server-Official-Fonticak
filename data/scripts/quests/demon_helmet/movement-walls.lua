@@ -20,7 +20,8 @@ function walls.onStepIn(creature, item, position, fromPosition)
 	local tileCreature1 = Tile(tilesPositions[1]):getTopCreature()
 	local tileCreature2 = Tile(tilesPositions[2]):getTopCreature()
 	-- Check 2 tiles positions have a creature and it is a player
-	if tileCreature1 and tileCreature1:getPlayer() and tileCreature2 and tileCreature2:getPlayer() then
+	if tileCreature1 and tileCreature1:getPlayer() or tileCreature2 and tileCreature2:getPlayer() then
+		player:say("The walls have been removed.")
 		for i = 1, #wallsPositions do
 			wall = Tile(wallsPositions[i]):getItemById(1295)
 			-- Check there walls before delete them

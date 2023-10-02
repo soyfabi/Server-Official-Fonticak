@@ -599,6 +599,7 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 					player:addItem(9697, 1)
 					player:setStorageValue(Storage.SeaOfLight.Questline, player:getStorageValue(Storage.SeaOfLight.Questline) + 1)
 					player:say("*crush*", TALKTYPE_MONSTER_SAY)
+					toPosition:sendMagicEffect(CONST_ME_ICEATTACK)
 				end
 			else
 				player:getPosition():sendMagicEffect(CONST_ME_POFF)

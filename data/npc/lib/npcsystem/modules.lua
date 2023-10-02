@@ -1426,6 +1426,7 @@ function StdModule.travelDiscount(player, discounts)
 end
 
 function StdModule.kick(cid, message, keywords, parameters, node)
+	local player = Player(cid)
 	local npcHandler = parameters.npcHandler
 	if npcHandler == nil then
 		error("StdModule.travel called without any npcHandler instance.")
@@ -1437,13 +1438,14 @@ function StdModule.kick(cid, message, keywords, parameters, node)
 
 	npcHandler:releaseFocus(cid)
 	npcHandler:say(parameters.text or "Off with you!", cid)
-
+	
 	local destination = parameters.destination
 	if type(destination) == 'table' then
 		destination = destination[math.random(#destination)]
 	end
 
 	Player(cid):teleportTo(destination, true)
+	player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 
 	npcHandler:resetNpc(cid)
 	return true

@@ -594,6 +594,204 @@ Game.createQuest("The White Raven Monastery", {
     }
 }):register()
 
+Game.createQuest("Sea of Light", {
+    storageId = Storage.SeaOfLight.Questline,
+    storageValue = 1,
+
+    missions = {
+		{
+            name = "Mission 1: The Plans",
+            storageId = Storage.SeaOfLight.Mission1,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Spectulus in Edron has sent you on a mission to find out the whereabouts of a certain inventor. \z
+						A beggar in Edron seems to know more about this topic than he wants to tell.",
+					[2] = "The beggar turned out to be the inventor himself. \z
+						You successfully convinced him to give you the only remaining plans of his creation. \z
+						You should return to Spectulus in Edron to tell him the news.",
+					[3] = "You gave the plans to the astronomer. \z
+						He began reconstructing the invention as soon as he got ahold of them. \z
+						It will take a while for him to work out the problem which caused the initial failure.",
+					[4] = "You returned to Speculus who finally worked out the failure of the initial construction. \z
+						He recapitulated the plans and needs only one item before he can start building the magic device."
+                }
+                return descriptions[player:getStorageValue(Storage.SeaOfLight.Mission1)]
+            end
+        },
+		{
+            name = "Mission 2: The Collector",
+            storageId = Storage.SeaOfLight.Mission2,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Spectulus asked you to enter the Lost Mines beneath Edron and recover a rare crystal. In exchange for \z
+						it you will gain access to the lair of the Collector who guards a vital component of the device.",
+					[2] = "Luckily, you survived the horrors of the Lost Mines and recovered a rare crystal. \z
+						You should visit Spectulus in Edron to seek counsel on what to do next.",
+					[3] = "You returned to astronomer Spectulus and gave him the rare crystal."
+                }
+                return descriptions[player:getStorageValue(Storage.SeaOfLight.Mission2)]
+            end
+        },
+		{
+            name = "Mission 3: The Mirror Crystal",
+            storageId = Storage.SeaOfLight.Mission3,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "In order to access the lair of the Collector, you will need to find the creature\'s well on \z
+						an ice isle near Carlin. To donate the rare crystal overcome your greed and use it at the well\'s pedestal.",
+					[2] = "You offered the rare crystal to the creature and can now enter the Collector\'s lair. \z
+						Its crystal chamber cannot be accessed by outsiders. You need to find a way to snatch the Mirror Crystal.",
+					[3] = "The Collector has been defeated. \z
+						You packed the fragile Mirror Crystal into the device Spectulus gave you. \z
+						All yo have to do now is to return to the astronomer and to present him your acquisition.",
+					[4] = "It may have been the excitement or simple nervousness but as soon as Spectulus removed the crystal, \z
+						it somehow slipped. Unfinishable for all eternity, the device left yet another scholar in despair."
+                }
+                return descriptions[player:getStorageValue(Storage.SeaOfLight.Mission3)]
+            end
+        },
+	}
+}):register()
+
+Game.createQuest("The Ape City", {
+    storageId = Storage.TheApeCity.Started,
+    storageValue = 1,
+
+    missions = {
+		{
+            name = "Hairycles' Missions",
+            storageId = Storage.TheApeCity.Questline,
+            startValue = 1,
+            endValue = 18,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Find whisper moss in the dworc settlement south of Port Hope and bring it back to Hairycles.",
+					[2] = "You have completed the first mission. Hairycles was happy about the whisper moss you gave to him. \z
+						He might have another mission for you.",
+					[3] = "Hairycles asked you to bring him cough syrup from a human settlement. \z
+						A healer might know more about this medicine.",
+					[4] = "You have completed the second mission. Hairycles was happy about the cough syrup you gave to him. \z
+						He might have another mission for you.",
+					[5] = "Hairycles asked you to bring him a magical scroll from the lizard settlement Chor.",
+					[6] = "You have completed the third mission. Hairycles appreciated that you brought \z
+						the scroll to him and will try to read it. Maybe he has another mission for you later.",
+					[7] = "Since Hairycles was not able to read the scroll you brought him, he asked you dig for a tomb in the \z
+						desert to the east. Proceed in this tomb until you find an obelisk between red stones and read it.",
+					[8] = "You have completed the fourth mission. \z
+						Hairycles read your mind and can now translate the lizard scroll. \z
+						He might have another mission for you.",
+					[9] = "Hairycles wants to create a life charm for the ape people. \z
+						He needs a hydra egg since it has strong regenerating powers.",
+					[10] = "You have completed the fifth mission. \z
+						Hairycles attempts to create a might charm for the protection of the ape people. \z
+						He might have another mission for you later.",
+					[11] = "Hairycles need a witches' cap mushroom which is supposed to be hidden in a dungeon deep under Fibula.",
+					[12] = "You have completed the sixth mission. You brought the witches' cap mushroom back to Hairycles. \z
+						He might have another mission for you.",
+					[13] = "Hairycles is worried about an ape cult which drinks some strange fluid that the lizards left behind. \z
+						Go to the old lizard temple under Banuta and destroy three of the casks there with a crowbar.",
+					[14] = "You have completed the seventh mission. \z
+						You found the old lizard ruins under Banuta and destroyed three of the casks with snake blood. \z
+						Hairycles might have another mission for you.",
+					[15] = "The apes now need a symbol of their faith. \z
+						Speak with the blind prophet in a cave to the northeast and go to the Forbidden Land. \z
+						Find a hair of the giant, holy ape Bong and bring it back.",
+					[16] = "You completed the eighth mission. Hairycles gladly accepted the hair of the ape \z
+						god which you brought him. He told you to have one final mission for you.",
+					[17] = "Go into the deepest catacombs under Banuta and destroy the monument of \z
+						the snake god with the hammer that Hairycles gave to you.",
+					[18] = "You successfully destroyed the monument of the snake god. \z
+						As reward, you can buy sacred statues from Hairycles. \z
+						If you haven't done so yet, you should also ask him for a shaman outfit."
+                }
+                return descriptions[player:getStorageValue(Storage.TheApeCity.Questline)]
+            end
+        },
+	}
+}):register()
+
+Game.createQuest("The Queen of the Banshees", {
+    storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.FirstSeal,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "The Hidden Seal",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.FirstSeal,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You broke the first seal."
+        },
+		{
+            name = "The Plague Seal",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.SecondSeal,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You broke the second seal."
+        },
+		{
+            name = "The Seal of Demonrage",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.ThirdSeal,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You broke the third seal."
+        },
+		{
+            name = "The Seal of Sacrifice",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.FourthSeal,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You broke the fourth seal."
+        },
+		{
+            name = "The Seal of True Path",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.FifthSeal,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You broke the fifth seal."
+        },
+		{
+            name = "The Seal of Logic",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.SixthSeal,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You broke the sixth seal."
+        },
+		{
+            name = "The Kiss of the Banshee Queen",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.LastSeal,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "The Banshee Queen kissed you. This meant your death, and part of your soul always belongs to her now. You broke the last seal."
+        },
+		{
+            name = "The Final Battle",
+            storageId = Storage.Quest.U7_2.TheQueenOfTheBanshees.FinalBattle,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You have braved all dangers of the Banshee Quest and escaped the dungeon alive. The end room is sealed for you from now on."
+        },
+    }
+}):register()
+
 Game.createQuest("The First Dragon", {
     storageId = Storage.FirstDragon.Questline,
     storageValue = 1,
@@ -608,7 +806,7 @@ Game.createQuest("The First Dragon", {
             description = function(player)
                 return string.format("Tamoril told you about the First Dragon and his 4 descendants. To enter the lairs you have to undergo trials.\z
 				\n\n\z
-				Power %d/200.\nTreasure %d/5.\nKnowledge %d/3.\nLife %d/1\z
+				Power %d/200.\nTreasure %d/5.\nKnowledge %d/1.\nLife %d/3\z
 				", player.storage[Storage.FirstDragon.DragonCounter], player.storage[Storage.FirstDragon.ChestCounter], player.storage[Storage.FirstDragon.GelidrazahAccess], player.storage[Storage.FirstDragon.SecretsCounter])
             end
         },

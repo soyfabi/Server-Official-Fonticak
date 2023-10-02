@@ -247,6 +247,12 @@ local config = {
 		},
 		storage = Storage.Quest.U7_1.BlackKnight.Rewards.CrownShield
 	},
+	[15151] = {
+		items = {
+			{itemId = 2972, actionId = 3980}
+		},
+		storage = 1515656
+	},
 	[50032] = {
 		items = {
 			{itemId = 3734}

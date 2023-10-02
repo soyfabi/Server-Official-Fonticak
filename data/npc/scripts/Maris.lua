@@ -17,13 +17,16 @@ end
 addTravelKeyword('fenrock', 100, Position(32563, 31313, 7))
 addTravelKeyword('mistrock', 100, Position(32640, 31439, 7))
 
+keywordHandler:addKeyword({'kick'}, StdModule.kick, {npcHandler = npcHandler, destination = {Position(32653, 31292, 6), Position(32653, 31293, 6)}})
+
 -- Basic
 keywordHandler:addKeyword({'offer'}, StdModule.say, {npcHandler = npcHandler, text = 'I can take you to {Fenrock} and {Mistrock}!'})
 keywordHandler:addKeyword({'passage'}, StdModule.say, {npcHandler = npcHandler, text = 'I can take you to {Fenrock} and {Mistrock}!'})
+keywordHandler:addKeyword({'sail'}, StdModule.say, {npcHandler = npcHandler, text = 'I can take you to {Fenrock} and {Mistrock}!'})
 keywordHandler:addKeyword({'job'}, StdModule.say, {npcHandler = npcHandler, text = 'I am Maris, Captain of this ship.'})
 keywordHandler:addKeyword({'captain'}, StdModule.say, {npcHandler = npcHandler, text = 'I am Maris, Captain of this ship.'})
 
-npcHandler:setMessage(MESSAGE_GREET, "I hope you have a good reason to step near my ship, |PLAYERNAME|.")
+npcHandler:setMessage(MESSAGE_GREET, "I hope you have a good reason to step near my ship, |PLAYERNAME|. If you need a {passage}, let me know.")
 npcHandler:setMessage(MESSAGE_FAREWELL, "Yeah, bye or whatever.")
 npcHandler:setMessage(MESSAGE_WALKAWAY, "Bye.")
 

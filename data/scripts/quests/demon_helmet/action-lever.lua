@@ -13,6 +13,19 @@ function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 		Tile(stonePosition):getItemById(1842):remove()
 		item:transform(2773)
+		player:say('*click*', TALKTYPE_MONSTER_SAY, false, player, toPosition)
+		
+	addEvent(function()
+            if not Tile(stonePosition):getItemById(1842) then
+				Position(stonePosition):hasCreature({x = 33315, y = 31575, z = 15})
+                Game.createItem(1842, 1, stonePosition)
+                item:transform(2772)
+                Position(teleportPosition):sendMagicEffect(CONST_ME_POFF)
+				player:say('*Poff*', TALKTYPE_MONSTER_SAY, false, player, teleportPosition)
+                Tile(teleportPosition):getItemById(1949):remove()
+            end
+        end, 30000)
+		
 	elseif item.itemid == 2773 then
 		Position(stonePosition):hasCreature({x = 33315, y = 31575, z = 15})
 		Tile(teleportPosition):getItemById(1949):remove()

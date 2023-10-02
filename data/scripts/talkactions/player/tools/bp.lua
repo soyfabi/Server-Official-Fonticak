@@ -26,22 +26,6 @@ function bp.onSay(player, words, param)
         return false
     end
 
-	local tile = Tile(player:getPosition())
-	if not tile then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, 'Invalid tile position.')
-		return false
-	end
-
-	local itemType = ItemType(2854)
-	local itemWeight = itemType:getWeight()
-	local playerCap = player:getFreeCapacity()
-	if playerCap < itemWeight then
-		itemWeight = itemWeight / 100
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, "You have found a " .. itemType:getName() .. " weighing " .. itemWeight .. " oz it's too heavy.")
-		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-		return false
-	end
-
 	local backpack = player:getSlotItem(CONST_SLOT_BACKPACK)			
 	if not backpack or backpack:getEmptySlots(false) < 1 then
 		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, "Your main backpack is full. You need to free up 1 available slots to get " .. itemType:getName() .. ".")

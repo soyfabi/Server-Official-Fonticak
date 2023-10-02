@@ -13,7 +13,7 @@ local function creatureSayCallback(cid, type, msg)
 	end
 	local player = Player(cid)
 	if msgcontains(msg, "present") then
-		if player:getStorageValue(Storage.postman.Mission05) == 2 then
+		if player:getStorageValue(Storage.Postman.Mission05) == 2 then
 			npcHandler:say("You have a present for me?? Realy?", cid)
 			npcHandler.topic[cid] = 1
 		end
@@ -22,15 +22,15 @@ local function creatureSayCallback(cid, type, msg)
 		npcHandler.topic[cid] = 2
 	elseif msgcontains(msg, "yes") then
 		if npcHandler.topic[cid] == 1 then
-			if player:removeItem(2331, 1) then
+			if player:removeItem(3218, 1) then
 				npcHandler:say("Thank you very much!", cid)
-				player:setStorageValue(Storage.postman.Mission05, 3)
+				player:setStorageValue(Storage.Postman.Mission05, 3)
 				npcHandler.topic[cid] = 0
 			end
 		elseif npcHandler.topic[cid] == 2 then
 			if player:removeMoneyNpc(2000) then
 				npcHandler:say("Here it is.", cid)
-				local key = player:addItem(2087, 1)
+				local key = player:addItem(2968, 1)
 				if key then
 					key:setActionId(3940)
 				end
