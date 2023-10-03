@@ -17,7 +17,7 @@ monster.health = 4500
 monster.maxHealth = 4500
 monster.race = "blood"
 monster.corpse = 9607
-monster.speed = 140
+monster.speed = 280
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -74,7 +74,7 @@ monster.attacks = {
 	{name ="combat", interval = 2000, chance = 20, type = COMBAT_LIFEDRAIN, minDamage = -21, maxDamage = -350, range = 7, shootEffect = CONST_ANI_EARTH, effect = CONST_ME_CARNIPHILA, target = true},
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -250, maxDamage = -500, length = 8, spread = 3, effect = CONST_ME_CARNIPHILA, target = false},
 	{name ="speed", interval = 2000, chance = 25, speedChange = -600, radius = 7, effect = CONST_ME_POFF, target = true},
-	{name ="outfit", interval = 2000, chance = 1, range = 7, target = true, duration = 3000, outfitMonster = "clay guardian"}
+	{name ="outfit", interval = 2000, chance = 1, range = 7, target = true, duration = 3000, monster = "clay guardian"}
 }
 
 monster.defenses = {

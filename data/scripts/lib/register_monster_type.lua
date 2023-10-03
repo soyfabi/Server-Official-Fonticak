@@ -419,6 +419,10 @@ local function AbilityTableToSpell(ability)
 			if ability.effect then
 				spell:setCombatEffect(ability.effect)
 			end
+			local outfit = ability.outfit or ability.monster or ability.item
+			if outfit then
+				spell:setOutfit(outfit)
+			end
 			if ability.shootEffect then
 				spell:setCombatShootEffect(ability.shootEffect)
 			end

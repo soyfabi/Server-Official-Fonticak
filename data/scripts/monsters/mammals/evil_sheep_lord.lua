@@ -17,7 +17,7 @@ monster.health = 400
 monster.maxHealth = 400
 monster.race = "blood"
 monster.corpse = 5994
-monster.speed = 89
+monster.speed = 178
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -53,7 +53,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 3,
 	summons = {
-		{name = "Evil Sheep", chance = 30, interval = 2000, count = X}
+		{name = "Evil Sheep", chance = 30, interval = 2000}
 	}
 }
 
@@ -71,14 +71,14 @@ monster.loot = {
 
 monster.attacks = {
 	{name ="melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -118},
-	{name ="outfit", interval = 3000, chance = 20, range = 7, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 4000, outfitMonster = "Sheep"}
+	{name ="outfit", interval = 3000, chance = 20, range = 7, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 4000, monster = "Sheep"}
 }
 
 monster.defenses = {
 	defense = 35,
 	armor = 30,
 	{name ="combat", interval = 2000, chance = 20, type = COMBAT_HEALING, minDamage = 50, maxDamage = 100, effect = CONST_ME_MAGIC_BLUE, target = false},
-	{name ="outfit", interval = 1500, chance = 50, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, outfitMonster = "Werewolf"}
+	{name ="outfit", interval = 1500, chance = 50, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, monster = "Werewolf"}
 }
 
 monster.elements = {

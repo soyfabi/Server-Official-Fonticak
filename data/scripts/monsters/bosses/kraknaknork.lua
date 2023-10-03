@@ -17,7 +17,7 @@ monster.health = 80
 monster.maxHealth = 80
 monster.race = "blood"
 monster.corpse = 5978
-monster.speed = 90
+monster.speed = 180
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -53,7 +53,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 1,
 	summons = {
-		{name = "Weakened Demon", chance = 20, interval = 2000, count = 1}
+		{name = "Weakened Demon", chance = 20, interval = 2000}
 	}
 }
 
@@ -77,7 +77,7 @@ monster.attacks = {
 	{name ="kraknaknork explosion wave", interval = 2000, chance = 10, minDamage = 0, maxDamage = -12, target = false},
 	{name ="combat", interval = 2000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -8, range = 7, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_MORTAREA, target = false},
 	{name ="speed", interval = 1000, chance = 6, speedChange = -100, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 20000},
-	{name ="outfit", interval = 2000, chance = 10, range = 7, target = false, duration = 3000, outfitMonster = "Sheep"}
+	{name ="outfit", interval = 2000, chance = 10, range = 7, target = false, duration = 3000, monster = "Sheep"}
 }
 
 monster.defenses = {

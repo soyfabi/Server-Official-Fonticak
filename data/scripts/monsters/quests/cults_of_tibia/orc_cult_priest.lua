@@ -17,7 +17,7 @@ monster.health = 1300
 monster.maxHealth = 1300
 monster.race = "blood"
 monster.corpse = 5978
-monster.speed = 140
+monster.speed = 280
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 0,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false
@@ -75,9 +75,9 @@ monster.attacks = {
 	{name ="melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -200},
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_ENERGYDAMAGE, minDamage = -200, maxDamage = -310, range = 7, shootEffect = CONST_ANI_ENERGYBALL, target = false},
 	{name ="combat", interval = 2000, chance = 5, type = COMBAT_FIREDAMAGE, minDamage = -200, maxDamage = -250, range = 7, radius = 1, shootEffect = CONST_ANI_FIRE, target = true},
-	{name ="outfit", interval = 4000, chance = 15, target = true, duration = 30000, outfitMonster = "orc warlord"},
-	{name ="outfit", interval = 4000, chance = 10, target = true, duration = 30000, outfitMonster = "orc shaman"},
-	{name ="outfit", interval = 4000, chance = 20, target = true, duration = 30000, outfitMonster = "orc"}
+	{name ="outfit", interval = 4000, chance = 15, target = true, duration = 30000, monster = "orc warlord"},
+	{name ="outfit", interval = 4000, chance = 10, target = true, duration = 30000, monster = "orc shaman"},
+	{name ="outfit", interval = 4000, chance = 20, target = true, duration = 30000, monster = "orc"}
 }
 
 monster.defenses = {

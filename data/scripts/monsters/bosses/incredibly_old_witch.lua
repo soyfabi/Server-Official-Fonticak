@@ -64,15 +64,15 @@ monster.loot = {
 }
 
 monster.attacks = {
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "rat"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "chicken"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "green frog"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "bug"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "pig"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "kongra"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "dog"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "skunk"},
-	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, outfitMonster = "donkey"}
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "rat"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "chicken"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "green frog"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "bug"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "pig"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "kongra"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "dog"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "skunk"},
+	{name ="outfit", interval = 4000, chance = 12, range = 7, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = true, duration = 2000, monster = "donkey"}
 }
 
 monster.defenses = {

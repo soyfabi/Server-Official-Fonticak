@@ -17,7 +17,7 @@ monster.health = 305
 monster.maxHealth = 305
 monster.race = "blood"
 monster.corpse = 6000
-monster.speed = 55
+monster.speed = 220
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -70,7 +70,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 35,
 	armor = 30,
-	{name ="outfit", interval = 2000, chance = 20, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 1500, outfitMonster = "mutated bat"}
+	{name ="outfit", interval = 2000, chance = 20, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 1500, monster = "mutated bat"}
 }
 
 monster.elements = {

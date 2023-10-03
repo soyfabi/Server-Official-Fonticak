@@ -74,15 +74,15 @@ monster.attacks = {
 	{name ="combat", interval = 2000, chance = 10, type = COMBAT_FIREDAMAGE, minDamage = -2, maxDamage = -26, range = 7, shootEffect = CONST_ANI_FIRE, target = false},
 	{name ="combat", interval = 2000, chance = 10, type = COMBAT_ENERGYDAMAGE, minDamage = -10, maxDamage = -20, range = 7, shootEffect = CONST_ANI_ENERGY, target = false},
 	{name ="combat", interval = 2000, chance = 10, type = COMBAT_PHYSICALDAMAGE, minDamage = 0, maxDamage = -24, range = 7, shootEffect = CONST_ANI_SMALLSTONE, target = false},
-	{name ="outfit", interval = 2000, chance = 1, range = 3, shootEffect = CONST_ANI_EXPLOSION, target = true, duration = 2000, outfitMonster = "cyclops"},
-	{name ="outfit", interval = 2000, chance = 1, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 2000, outfitItem = 2324}
+	{name ="outfit", interval = 2000, chance = 1, range = 3, shootEffect = CONST_ANI_EXPLOSION, target = true, duration = 2000, monster = "cyclops"},
+	{name ="outfit", interval = 2000, chance = 1, radius = 4, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 2000, monster = 2324}
 }
 
 monster.defenses = {
 	defense = 15,
 	armor = 15,
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 30, maxDamage = 40, effect = CONST_ME_MAGIC_GREEN, target = false},
-	{name ="outfit", interval = 2000, chance = 5, target = true, duration = 3000, outfitMonster = "green frog"}
+	{name ="outfit", interval = 2000, chance = 5, target = true, duration = 3000, monster = "green frog"}
 }
 
 monster.elements = {

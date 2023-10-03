@@ -17,7 +17,7 @@ monster.health = 330
 monster.maxHealth = 330
 monster.race = "blood"
 monster.corpse = 6020
-monster.speed = 110
+monster.speed = 220
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -79,7 +79,7 @@ monster.attacks = {
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_FIREDAMAGE, minDamage = -45, maxDamage = -80, range = 7, shootEffect = CONST_ANI_FIRE, target = false},
 	{name ="combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -60, maxDamage = -105, range = 7, radius = 1, shootEffect = CONST_ANI_SUDDENDEATH, effect = CONST_ME_SMALLCLOUDS, target = true},
 	{name ="drunk", interval = 2000, chance = 10, range = 7, shootEffect = CONST_ANI_ENERGY, target = false, duration = 5000},
-	{name ="outfit", interval = 2000, chance = 1, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 4000, outfitMonster = "rabbit"},
+	{name ="outfit", interval = 2000, chance = 1, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 4000, monster = "rabbit"},
 	{name ="djinn electrify", interval = 2000, chance = 15, range = 5, target = false},
 	{name ="djinn cancel invisibility", interval = 2000, chance = 10, target = false}
 }

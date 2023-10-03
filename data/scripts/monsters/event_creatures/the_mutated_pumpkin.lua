@@ -87,7 +87,7 @@ monster.attacks = {
 	{name ="combat", interval = 1000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -30, maxDamage = -300, radius = 8, effect = CONST_ME_POFF, target = false},
 	{name ="combat", interval = 3000, chance = 12, type = COMBAT_EARTHDAMAGE, minDamage = -100, maxDamage = -300, length = 8, spread = 3, effect = CONST_ME_PLANTATTACK, target = false},
 	{name ="combat", interval = 1000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -100, maxDamage = -400, length = 6, spread = 3, effect = CONST_ME_HITBYPOISON, target = false},
-	{name ="outfit", interval = 1000, chance = 2, radius = 8, effect = CONST_ME_LOSEENERGY, target = false, duration = 5000, outfitMonster = "The Mutated Pumpkin"}
+	{name ="outfit", interval = 1000, chance = 2, radius = 8, effect = CONST_ME_LOSEENERGY, target = false, duration = 5000, monster = "The Mutated Pumpkin"}
 }
 
 monster.defenses = {

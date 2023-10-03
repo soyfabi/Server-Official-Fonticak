@@ -17,7 +17,7 @@ monster.health = 700
 monster.maxHealth = 700
 monster.race = "undead"
 monster.corpse = 9001
-monster.speed = 130
+monster.speed = 260
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -87,12 +87,12 @@ monster.defenses = {
 	armor = 15,
 	{name ="speed", interval = 2000, chance = 15, speedChange = 240, effect = CONST_ME_MAGIC_RED, target = false, duration = 5000},
 	{name ="invisible", interval = 2000, chance = 10, effect = CONST_ME_YELLOW_RINGS},
-	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, outfitMonster = "nightstalker"},
-	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, outfitMonster = "werewolf"},
-	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, outfitMonster = "the count"},
-	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, outfitMonster = "grim reaper"},
-	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, outfitMonster = "tarantula"},
-	{name ="outfit", interval = 5000, chance = 1, target = false, duration = 4000, outfitMonster = "ferumbras"}
+	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, monster = "nightstalker"},
+	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, monster = "werewolf"},
+	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, monster = "the count"},
+	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, monster = "grim reaper"},
+	{name ="outfit", interval = 5000, chance = 10, target = false, duration = 4000, monster = "tarantula"},
+	{name ="outfit", interval = 5000, chance = 1, target = false, duration = 4000, monster = "ferumbras"}
 }
 
 monster.elements = {

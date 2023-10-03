@@ -53,8 +53,8 @@ monster.light = {
 monster.summon = {
 	maxSummons = 4,
 	summons = {
-		{name = "Ancient Scarab", chance = 100, interval = 1000, count = 2},
-		{name = "Green Djinn", chance = 100, interval = 1000, count = 2}
+		{name = "Ancient Scarab", chance = 100, interval = 1000},
+		{name = "Green Djinn", chance = 100, interval = 1000}
 	}
 }
 
@@ -94,7 +94,7 @@ monster.defenses = {
 	armor = 25,
 	{name ="combat", interval = 1000, chance = 20, type = COMBAT_HEALING, minDamage = 200, maxDamage = 400, effect = CONST_ME_MAGIC_BLUE, target = false},
 	{name ="invisible", interval = 1000, chance = 7, effect = CONST_ME_MAGIC_BLUE},
-	{name ="outfit", interval = 1000, chance = 3, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 6000, outfitMonster = "ancient scarab"}
+	{name ="outfit", interval = 1000, chance = 3, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 6000, monster = "ancient scarab"}
 }
 
 monster.elements = {

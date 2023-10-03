@@ -50,13 +50,6 @@ monster.light = {
 	color = 0
 }
 
-monster.summon = {
-	maxSummons = 3,
-	summons = {
-		{name = "Acid Blob", chance = 10, interval = 2000, count = 3}
-	}
-}
-
 monster.voices = {
 	interval = 5000,
 	chance = 10,
@@ -72,6 +65,13 @@ monster.attacks = {
 	{name ="combat", interval = 2000, chance = 30, type = COMBAT_EARTHDAMAGE, minDamage = -10, maxDamage = -20, radius = 4, effect = CONST_ME_HITBYPOISON, target = false},
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_EARTHDAMAGE, minDamage = -40, maxDamage = -60, length = 5, spread = 3, effect = CONST_ME_GREEN_RINGS, target = false},
 	{name ="combat", interval = 2000, chance = 10, type = COMBAT_EARTHDAMAGE, range = 7, shootEffect = CONST_ANI_POISON, target = true}
+}
+
+monster.summon = {
+	maxSummons = 3,
+	summons = {
+		{name = "Acid Blob", chance = 10, interval = 2000, count = 3}
+	}
 }
 
 monster.defenses = {

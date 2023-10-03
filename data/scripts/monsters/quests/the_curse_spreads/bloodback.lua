@@ -17,7 +17,7 @@ monster.health = 5200
 monster.maxHealth = 5200
 monster.race = "blood"
 monster.corpse = 27718
-monster.speed = 125
+monster.speed = 250
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 0,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false
@@ -53,7 +53,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{name = "Wereboar", chance = 20, interval = 2000, count = 2}
+		{name = "Wereboar", chance = 20, interval = 2000}
 	}
 }
 

@@ -53,10 +53,10 @@ monster.light = {
 monster.summon = {
 	maxSummons = 4,
 	summons = {
-		{name = "Blistering Fire Elemental", chance = 50, interval = 4000, count = 1},
-		{name = "Jagged Earth Elemental", chance = 50, interval = 4000, count = 1},
-		{name = "Roaring Water Elemental", chance = 50, interval = 4000, count = 1},
-		{name = "Overcharged Energy Elemental", chance = 50, interval = 4000, count = 1}
+		{name = "Blistering Fire Elemental", chance = 50, interval = 4000},
+		{name = "Jagged Earth Elemental", chance = 50, interval = 4000},
+		{name = "Roaring Water Elemental", chance = 50, interval = 4000},
+		{name = "Overcharged Energy Elemental", chance = 50, interval = 4000}
 	}
 }
 
@@ -85,10 +85,10 @@ monster.defenses = {
 	defense = 30,
 	armor = 30,
 	{name ="combat", interval = 1000, chance = 25, type = COMBAT_HEALING, minDamage = 100, maxDamage = 195, effect = CONST_ME_MAGIC_BLUE, target = false},
-	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, outfitMonster = "Energy Overlord"},
-	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, outfitMonster = "Fire Overlord"},
-	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, outfitMonster = "Earth Overlord"},
-	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, outfitMonster = "Ice Overlord"}
+	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, monster = "Energy Overlord"},
+	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, monster = "Fire Overlord"},
+	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, monster = "Earth Overlord"},
+	{name ="outfit", interval = 1500, chance = 40, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 3000, monster = "Ice Overlord"}
 }
 
 monster.elements = {

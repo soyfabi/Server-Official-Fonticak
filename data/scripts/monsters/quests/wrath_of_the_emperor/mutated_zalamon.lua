@@ -69,11 +69,11 @@ monster.defenses = {
 	defense = 65,
 	armor = 70,
 	{name ="combat", interval = 2000, chance = 9, type = COMBAT_HEALING, minDamage = 20, maxDamage = 560, effect = CONST_ME_MAGIC_BLUE, target = false},
-	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, outfitMonster = "Lizard Snakecharmer"},
-	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, outfitMonster = "Lizard Abomination"},
-	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, outfitMonster = "Serpent Spawn"},
-	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, outfitMonster = "Draken Abomination"},
-	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, outfitMonster = "Mutated Zalamon"}
+	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, monster = "Lizard Snakecharmer"},
+	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, monster = "Lizard Abomination"},
+	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, monster = "Serpent Spawn"},
+	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, monster = "Draken Abomination"},
+	{name ="outfit", interval = 2000, chance = 10, effect = CONST_ME_ENERGYHIT, target = false, duration = 10000, monster = "Mutated Zalamon"}
 }
 
 monster.elements = {

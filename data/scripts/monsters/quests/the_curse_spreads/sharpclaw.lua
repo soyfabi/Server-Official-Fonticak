@@ -17,7 +17,7 @@ monster.health = 3300
 monster.maxHealth = 3300
 monster.race = "blood"
 monster.corpse = 22067
-monster.speed = 125
+monster.speed = 250
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 0,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false
@@ -48,13 +48,6 @@ monster.flags = {
 monster.light = {
 	level = 0,
 	color = 0
-}
-
-monster.summon = {
-	maxSummons = 2,
-	summons = {
-		{name = "Werebadger", chance = 20, interval = 2000, count = 2}
-	}
 }
 
 monster.voices = {
@@ -87,11 +80,18 @@ monster.loot = {
 
 monster.attacks = {
 	{name ="melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -290},
-	{name ="combat", interval = 1000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = 100, maxDamage = 720, range = 7, shootEffect = CONST_ANI_SUDDENDEATH, target = false},
+	{name ="combat", interval = 1000, chance = 20, type = COMBAT_PHYSICALDAMAGE, minDamage = 100, maxDamage = 720, range = 7, shootEffect = CONST_ANI_SUDDENDEATH, target = true},
 	{name ="speed", interval = 2000, chance = 15, speedChange = -600, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 20000},
 	{name ="combat", interval = 1000, chance = 14, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -700, length = 5, spread = 3, effect = CONST_ME_MORTAREA, target = false},
-	{name ="outfit", interval = 1000, chance = 1, radius = 1, target = true, duration = 2000, outfitMonster = "Werebadger"},
+	{name ="outfit", interval = 1000, chance = 1, radius = 1, target = true, duration = 2000, monster = "Werebadger"},
 	{name ="ghastly dragon curse", interval = 2000, chance = 5, range = 1, target = false}
+}
+
+monster.summon = {
+	maxSummons = 2,
+	summons = {
+		{name = "Werebadger", chance = 20, interval = 2000}
+	}
 }
 
 monster.defenses = {

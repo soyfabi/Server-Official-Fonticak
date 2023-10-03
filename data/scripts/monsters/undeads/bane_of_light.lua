@@ -17,7 +17,7 @@ monster.health = 1100
 monster.maxHealth = 1100
 monster.race = "blood"
 monster.corpse = 6006
-monster.speed = 115
+monster.speed = 230
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -68,7 +68,7 @@ monster.attacks = {
 monster.defenses = {
 	defense = 38,
 	armor = 38,
-	{name ="outfit", interval = 4000, chance = 10, effect = CONST_ME_GROUNDSHAKER, target = false, duration = 5000, outfitMonster = "bat"},
+	{name ="outfit", interval = 4000, chance = 10, effect = CONST_ME_GROUNDSHAKER, target = false, duration = 5000, monster = "bat"},
 	{name ="speed", interval = 2000, chance = 15, speedChange = 300, effect = CONST_ME_MAGIC_RED, target = false, duration = 3000},
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_HEALING, minDamage = 15, maxDamage = 25, target = false}
 }

@@ -17,7 +17,7 @@ monster.health = 3000
 monster.maxHealth = 3000
 monster.race = "blood"
 monster.corpse = 18289
-monster.speed = 105
+monster.speed = 210
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 300,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false
@@ -53,7 +53,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{name = "War Wolf", chance = 100, interval = 2000, count = 2}
+		{name = "War Wolf", chance = 100, interval = 2000}
 	}
 }
 
@@ -85,7 +85,7 @@ monster.loot = {
 monster.attacks = {
 	{name ="melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -450},
 	{name ="combat", interval = 2000, chance = 10, type = COMBAT_LIFEDRAIN, minDamage = -180, maxDamage = -265, radius = 3, effect = CONST_ME_SOUND_RED, target = false},
-	{name ="outfit", interval = 2000, chance = 5, effect = CONST_ME_SOUND_BLUE, target = false, duration = 2000, outfitMonster = "Werewolf"},
+	{name ="outfit", interval = 2000, chance = 5, effect = CONST_ME_SOUND_BLUE, target = false, duration = 2000, monster = "Werewolf"},
 	{name ="combat", interval = 2000, chance = 40, type = COMBAT_PHYSICALDAMAGE, radius = 3, effect = CONST_ME_SOUND_WHITE, target = false},
 	{name ="werewolf skill reducer", interval = 2000, chance = 15, range = 1, target = false}
 }

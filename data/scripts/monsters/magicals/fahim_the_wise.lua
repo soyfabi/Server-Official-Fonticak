@@ -17,7 +17,7 @@ monster.health = 2000
 monster.maxHealth = 2000
 monster.race = "blood"
 monster.corpse = 6033
-monster.speed = 90
+monster.speed = 180
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -53,7 +53,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 3,
 	summons = {
-		{name = "blue djinn", chance = 10, interval = 2000, count = 3}
+		{name = "blue djinn", chance = 10, interval = 2000}
 	}
 }
 
@@ -88,7 +88,7 @@ monster.attacks = {
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_LIFEDRAIN, minDamage = -30, maxDamage = -90, range = 7, effect = CONST_ME_MAGIC_RED, target = false},
 	{name ="speed", interval = 2000, chance = 15, speedChange = -650, range = 7, effect = CONST_ME_MAGIC_RED, target = false, duration = 1500},
 	{name ="drunk", interval = 2000, chance = 10, range = 7, shootEffect = CONST_ANI_ENERGY, target = false, duration = 6000},
-	{name ="outfit", interval = 2000, chance = 1, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 4000, outfitMonster = "rabbit"},
+	{name ="outfit", interval = 2000, chance = 1, range = 7, effect = CONST_ME_MAGIC_BLUE, target = false, duration = 4000, monster = "rabbit"},
 	{name ="djinn electrify", interval = 2000, chance = 15, range = 5, target = false},
 	{name ="combat", interval = 2000, chance = 15, type = COMBAT_ENERGYDAMAGE, minDamage = -30, maxDamage = -90, radius = 3, effect = CONST_ME_ENERGYHIT, target = false}
 }

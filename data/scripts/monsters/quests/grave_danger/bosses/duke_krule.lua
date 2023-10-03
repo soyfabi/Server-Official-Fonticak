@@ -1,3 +1,11 @@
+local config = {
+    transformChance = 90, -- Percent
+    transformIntervals = {20000, 40000}, -- Milliseconds
+    transformOutfits = {49, 286}, -- LookTypes
+    damageIntervals = {5000, 10000}, -- Milliseconds
+    damageAmountRange = {1000, 2000} -- Hit Points
+}
+
 local mType = Game.createMonsterType("Duke Krule")
 local monster = {}
 
@@ -17,7 +25,7 @@ monster.health = 290000
 monster.maxHealth = 290000
 monster.race = "venom"
 monster.corpse = 31599
-monster.speed = 125
+monster.speed = 250
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +47,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 0,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true
@@ -114,7 +122,66 @@ monster.immunities = {
 	{type = "bleed", condition = false}
 }
 
+local fireCombat = Combat()
+fireCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_FIREDAMAGE)
+fireCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_FIREAREA)
+fireCombat:setArea(createCombatArea(AREA_CIRCLE3X3))
+
+function onGetFormulaValues(player, level, magicLevel)
+    return -config.damageAmountRange[1], -config.damageAmountRange[2]
+end
+
+fireCombat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
+
+local waterCombat = Combat()
+waterCombat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ICEDAMAGE)
+waterCombat:setParameter(COMBAT_PARAM_EFFECT, CONST_ME_ICEAREA)
+waterCombat:setArea(createCombatArea(AREA_CIRCLE3X3))
+
+function onGetFormulaValues(player, level, magicLevel)
+    return -config.damageAmountRange[1], -config.damageAmountRange[2]
+end
+
+waterCombat:setCallback(CALLBACK_PARAM_LEVELMAGICVALUE, "onGetFormulaValues")
+
+local intervalTicks = 0
+
 mType.onThink = function(monster, interval)
+	intervalTicks = intervalTicks + interval
+    if intervalTicks < 1000 then
+        return
+    end
+
+    local applyDamage = nil
+    local damageInterval = config.damageIntervals[math.random(#config.damageIntervals)]
+    if intervalTicks >= damageInterval then
+        intervalTicks = intervalTicks - damageInterval
+        applyDamage = true
+    end
+
+    local spectators = Game.getSpectators(monster:getPosition(), false, true, 10, 10, 10, 10)
+    if #spectators == 0 then
+        return
+    end
+
+    for _, spectator in pairs(spectators) do
+        local outfit = spectator:getOutfit()
+        if not table.contains(config.transformOutfits, outfit.lookType) then
+            if math.random(1, 100) <= config.transformChance then
+                local condition = Condition(CONDITION_OUTFIT)
+                outfit.lookType = config.transformOutfits[math.random(#config.transformOutfits)]
+                condition:setOutfit(outfit)
+                condition:setTicks(math.random(unpack(config.transformIntervals)))
+                spectator:addCondition(condition)
+            end
+        elseif applyDamage then
+            if outfit.lookType == config.transformOutfits[1] then
+                fireCombat:execute(monster, Variant(spectator:getPosition()))
+            elseif outfit.lookType == config.transformOutfits[2] then
+                waterCombat:execute(monster, Variant(spectator:getPosition()))
+            end
+        end
+    end
 end
 
 mType.onAppear = function(monster, creature)
