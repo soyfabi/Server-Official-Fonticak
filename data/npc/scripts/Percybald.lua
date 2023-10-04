@@ -88,6 +88,106 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 0
 		end
 	end
+	
+	if (msgcontains(msg, "outfit")) or (msgcontains(msg, "addon")) 
+		or (msgcontains(msg,"royal")) then
+		npcHandler:say("In exchange for a truly generous donation of gold and silver tokens, I will offer a special outfit. Do you want to make a donation?", cid)
+		npcHandler.topic[cid] = 12
+	elseif msgcontains(msg, "yes") then
+		-- vamos tratar todas condições para YES aqui
+		if npcHandler.topic[cid] == 12 then
+			-- para o primeiro Yes, o npc deve explicar como obter o outfit
+			npcHandler:say({
+				"Excellent! Now, let me explain. If you donate 30,000 silver tokens and 25,000 gold tokens, you will be entitled to wear a unique outfit. ...",
+				"You will be entitled to wear the armor for 15,000 silver tokens and 12,500 gold tokens, and the shield and the crown for additional 7,500 silver tokens and 6,250 gold tokens each. ...",
+				"What will it be?",
+			}, cid)
+			npcHandler.topic[cid] = 13
+			-- O NPC só vai oferecer os addons se o player já tiver escolhido.
+		elseif npcHandler.topic[cid] == 13 then
+			-- caso o player repita o yes, resetamos o tópico para começar de novo?
+			npcHandler:say("In that case, return to me once you made up your mind.", cid)
+			npcHandler.topic[cid] = 0
+			-- Inicio do outfit
+		elseif npcHandler.topic[cid] == 14 then -- ARMOR/OUTFIT 1457
+			if player:getStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit) < 1 then
+				if (player:removeItem(22516, 15000) and player:removeItem(22721, 12500)) then
+					npcHandler:say("Take this armor as a token of great gratitude. Let us forever remember this day, my friend!", cid)
+					player:addOutfit(1457)
+					player:addOutfit(1456)
+					player:getPosition():sendMagicEffect(171)
+					player:setStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit, 1)
+				else
+					npcHandler:say("You do not have enough tokens to donate that amount.", cid)
+				end
+			else
+				npcHandler:say("You alread have that addon.", cid)
+			end
+			npcHandler.topic[cid] = 13
+			-- Fim do outfit
+			-- Inicio do helmet
+		elseif npcHandler.topic[cid] == 15 then
+			if player:getStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit) == 1 then
+				if player:getStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit) < 2 then
+					if (player:removeItem(22516, 7500) and player:removeItem(22721, 6250)) then
+						npcHandler:say("Take this sheild as a token of great gratitude. Let us forever remember this day, my friend. ", cid)
+						player:addOutfitAddon(1457, 1)
+						player:addOutfitAddon(1456, 1)
+						player:getPosition():sendMagicEffect(171)
+						player:setStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit, 2)
+						npcHandler.topic[cid] = 13
+					else
+						npcHandler:say("You do not have enough tokens to donate that amount.", cid)
+						npcHandler.topic[cid] = 13
+					end
+				else
+					npcHandler:say("You alread have that outfit.", cid)
+					npcHandler.topic[cid] = 13
+				end
+			else
+				npcHandler:say("You need to donate {armor} outfit first.", cid)
+				npcHandler.topic[cid] = 13
+			end
+			npcHandler.topic[cid] = 13
+			-- Fim do helmet
+			-- Inicio da boots
+		elseif npcHandler.topic[cid] == 16 then
+			if player:getStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit) == 2 then
+				if player:getStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit) < 3 then
+					if (player:removeItem(22516, 7500) and player:removeItem(22721, 6250)) then
+						npcHandler:say("Take this crown as a token of great gratitude. Let us forever remember this day, my friend. ", cid)
+						player:addOutfitAddon(1457, 2)
+						player:addOutfitAddon(1456, 2)
+						player:getPosition():sendMagicEffect(171)
+						player:setStorageValue(Storage.OutfitQuest.RoyalCostumeOutfit, 3)
+						npcHandler.topic[cid] = 13
+					else
+						npcHandler:say("You do not have enough tokens to donate that amount.", cid)
+						npcHandler.topic[cid] = 13
+					end
+				else
+					npcHandler:say("You alread have that outfit.", cid)
+					npcHandler.topic[cid] = 13
+				end
+			else
+				npcHandler:say("You need to donate {shield} addon first.", cid)
+				npcHandler.topic[cid] = 13
+			end
+			-- Fim da boots
+			npcHandler.topic[cid] = 13
+		end
+		--inicio das opções armor/helmet/boots
+		-- caso o player não diga YES, dirá alguma das seguintes palavras:
+	elseif (msgcontains(msg, "armor")) and npcHandler.topic[cid] == 13 then
+		npcHandler:say("So you would like to donate 15,000 silver tokens and 12,500 gold tokens, which in return will entitle you to wear a unique red armor?", cid)
+		npcHandler.topic[cid] = 14 -- alterando o tópico para que no próximo YES ele faça o outfit
+	elseif (msgcontains(msg, "shield")) and npcHandler.topic[cid] == 13 then
+		npcHandler:say("So you would like to donate 7,500 silver tokens and 6,250 gold tokens, which in return will entitle you to wear a unique shield?", cid)
+		npcHandler.topic[cid] = 15 -- alterando o tópico para que no próximo YES ele faça o helmet
+	elseif (msgcontains(msg, "crown")) and npcHandler.topic[cid] == 13 then
+		npcHandler:say("So you would like to donate 7,500 silver tokens and 6,250 gold tokens, which in return will entitle you to wear a crown?", cid)
+		npcHandler.topic[cid] = 16 -- alterando o tópico para que no próximo YES ele faça a boots
+	end
 	return true
 end
 
