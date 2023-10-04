@@ -559,6 +559,56 @@ Game.createQuest("Secret Service", {
     }
 }):register()
 
+Game.createQuest("Bigfoot\'s Burden", {
+    storageId = Storage.BigfootBurden.QuestLine,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Looking for Gnomerik",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = "The dwarf Xelvar has sent you to meet the gnome Gnomerik. \z
+						He can recruit you to the Bigfoot Company. \z
+						Use the teleporter near Xelvar to enter the gnomish base and start looking for Gnomerik."
+        },
+		{
+            name = "A New Recruit",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 3,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = "You have found the gnomish recruiter and are ready to become a Bigfoot."
+        },
+		{
+            name = "Recruitment: A Test in Gnomology",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 5,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[5] = "Pass Gnomerik\'s test by answering his questions. \z
+						If you fail to get a high enough score drink a mushroom beer and start again.",
+					[6] = "You have passed the gnomish psychology test and can proceed to the medical exam. \z
+						Talk to Gnomespector about your next examination."
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.QuestLine)]
+            end
+        },
+		{
+            name = "Recruitment: Medical Examination",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 8,
+            endValue = 9,
+            ignoreEndValue = false,
+            description = "Walk through the g-ray apparatus for your g-raying."
+        },
+    }
+}):register()
+
 Game.createQuest("The White Raven Monastery", {
     storageId = Storage.WhiteRavenMonastery.QuestLog,
     storageValue = 1,

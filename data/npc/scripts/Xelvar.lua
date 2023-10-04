@@ -29,7 +29,7 @@ local function creatureSayCallback(cid, type, msg)
 			}, cid)
 
 			player:setStorageValue(Storage.BigfootBurden.QuestLine, 1)
-			player:addItem(18457, 4)
+			player:addItem(16167, 4)
 
 			--npcHandler:say("Right now I am sort of {recruiting} people.", cid)
 			npcHandler.topic[cid] = 1
@@ -73,13 +73,10 @@ local function creatureSayCallback(cid, type, msg)
 			}, cid)
 
 			player:setStorageValue(Storage.BigfootBurden.QuestLine, 1)
-			player:addItem(18457, 4)
-			npcHandler.topic[cid] = 0
+			player:addItem(16167, 4)
+			npcHandler:setTopic(playerId, 0)
 		end
-
 	end
-
-
 	return true
 end
 

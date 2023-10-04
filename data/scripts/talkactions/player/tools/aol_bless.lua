@@ -14,15 +14,14 @@ function Bless.onSay(player, words, param)
 		return false
 	end
 	
-	if player:removeMoney(Settings.BlessValue) then
+	if player:removeMoney(30000) then
 		for i = 1, bless do
 			player:addBlessing(i)
 		end
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have been blessed by the gods!")
-		player:say("[BleSSed]")
 		player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_YELLOW)
 	else
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, "You don't have ".. Settings.BlessValue .." gold coins for buy bless. Cost: [300K = 3 CC].")
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, "You don't have 30K gold coins for buy bless. Cost: [30K = 3 CC].")
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 	end
 

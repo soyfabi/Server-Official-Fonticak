@@ -10,17 +10,11 @@ local reloadTypes = {
 	
 	["events"] = RELOAD_TYPE_EVENTS,
 	
-	["monsters"] = RELOAD_TYPE_MONSTERS,
-	["monster"] = RELOAD_TYPE_MONSTERS,
-	
 	["global"] = RELOAD_TYPE_GLOBAL,
 	["items"] = RELOAD_TYPE_ITEMS,
 
 	["npc"] = RELOAD_TYPE_NPCS,
 	["npcs"] = RELOAD_TYPE_NPCS,
-
-	["quest"] = RELOAD_TYPE_QUESTS,
-	["quests"] = RELOAD_TYPE_QUESTS,
 
 	["scripts"] = RELOAD_TYPE_SCRIPTS,
 	["libs"] = RELOAD_TYPE_GLOBAL
