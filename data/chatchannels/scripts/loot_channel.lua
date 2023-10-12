@@ -13,6 +13,6 @@ end
 
 function onLeave(player)
 	player:sendTextMessage(MESSAGE_INFO_DESCR, "[Loot Channel]\nNow you will receive the loot in channel default.")
-	player:clearStorageValue(Storage.STORAGEVALUE_LOOT)
+	player:setStorageValue(Storage.STORAGEVALUE_LOOT, -1)
 	return false
 end

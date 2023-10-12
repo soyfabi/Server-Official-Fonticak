@@ -37,7 +37,8 @@ local function graveStoneTeleport(cid, fromPosition, toPosition)
 	end
 
 	player:teleportTo(toPosition)
-	player:say('Muahahahaha..', TALKTYPE_MONSTER_SAY, false, player)
+	player:say('Muahahahaha...', TALKTYPE_MONSTER_SAY, false, player)
+	player:setDirection(DIRECTION_NORTH)
 	fromPosition:sendMagicEffect(CONST_ME_DRAWBLOOD)
 	toPosition:sendMagicEffect(CONST_ME_MORTAREA)
 end

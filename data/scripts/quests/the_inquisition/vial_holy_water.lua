@@ -70,7 +70,9 @@ function othersHolyWater.onUse(player, item, fromPosition, target, toPosition, i
 			return true
 		end
 	
-		Game.createMonster('Pirate Ghost', Position(32259, 32791, 7))
+	
+		local monster = Game.createMonster('Pirate Ghost', Position(32259, 32791, 7))
+		monster:setDirection(DIRECTION_EAST)
 		toPosition:sendMagicEffect(CONST_ME_HOLYAREA)
 		item:remove(1)
 

@@ -4,12 +4,22 @@ local elevatorPusherItemId = 21053
 local elevatorStructureItemId = 21057
 local elevatorBaseItemId = 21061
 
+local exhaust = {}
+local exhaustTime = 3
+
 local elevator = Action()
 
 function elevator.onUse(player, item, fromPosition, target, toPosition, isHotkey)
     if player:getPosition() ~= firstFloor and player:getPosition() ~= secondFloor  then
         return true
     end
+	
+	local playerId = player:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, now wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
 
     local firstTile = Tile(firstFloor)
     local secondTile = Tile(secondFloor)
@@ -38,6 +48,7 @@ function elevator.onUse(player, item, fromPosition, target, toPosition, isHotkey
     else
         elevatorPusherItem:moveTo(fromTile)
     end
+	exhaust[playerId] = currentTime + exhaustTime
 
     return true
 end

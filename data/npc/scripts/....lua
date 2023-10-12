@@ -8,7 +8,7 @@ function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)
 function onThink()				npcHandler:onThink()					end
 
 local function greetCallback(cid)
-	if Game.getStorageValue(GlobalStorage.FerumbrasAscendantQuest.DesperateSoul) ~= 1 then
+	if getGlobalStorageValue(GlobalStorage.FerumbrasAscendant.DesperateSoul) ~= 1 then
 		npcHandler:setMessage(MESSAGE_GREET, "Hello my friend, I saw that you send my soul here.")
 		return true
 	end

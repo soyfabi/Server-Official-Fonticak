@@ -53,7 +53,7 @@ monster.light = {
 monster.summon = {
 	maxSummons = 2,
 	summons = {
-		{name = "war wolf", chance = 40, interval = 2000}
+		{name = "war wolf", chance = 40, interval = 2000, count = 2}
 	}
 }
 

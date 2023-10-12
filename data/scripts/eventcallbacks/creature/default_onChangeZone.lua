@@ -16,6 +16,7 @@ function event.onChangeZone(self, fromZone, toZone)
 	
 	-- Blessing Protect --
 	if not self:hasBlessing(5) then
+		if not self then return false end
 		if toZone == ZONE_NORMAL then
 			if self:getSlotItem(CONST_SLOT_NECKLACE) and self:getSlotItem(CONST_SLOT_NECKLACE):getId() == 3057 then
 				return false

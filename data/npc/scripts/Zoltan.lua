@@ -7,6 +7,24 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
+local function creatureSayCallback(cid, type, msg)
+	local player = Player(cid)
+
+	-- The paradox tower quest
+	if msgcontains(msg, "yenny the gentle") then
+		npcHandler:say("Ah, Yenny the Gentle was one of the founders of the druid order called Crunor's Caress, that has been originated in her hometown Carlin.", cid)
+		npcHandler.topic[cid] = 0
+	elseif msgcontains(msg, "crunors caress") then
+		if player:getStorageValue(Storage.Quest.U7_24.TheParadoxTower.TheFearedHugo) == 1 then
+			-- Questlog: The Feared Hugo (Padreia)
+			player:setStorageValue(Storage.Quest.U7_24.TheParadoxTower.TheFearedHugo, 2)
+		end
+		npcHandler:say("A quite undruidic order of druids they were, as far as we know. I have no more enlightening knowledge about them though.", cid)
+		npcHandler.topic[cid] = 0
+	end
+	return true
+end
+
 -- Female Summoner and Male Mage Hat Addon (needs to be rewritten)
 local hatKeyword = keywordHandler:addKeyword({'proof'}, StdModule.say, {npcHandler = npcHandler, text = '... I cannot believe my eyes. You retrieved this hat from Ferumbras\' remains? That is incredible. If you give it to me, I will grant you the right to wear this hat as addon. What do you say?'},
 		function(player) return not player:hasOutfit(player:getSex() == PLAYERSEX_FEMALE and 141 or 130, 2) end
@@ -42,6 +60,8 @@ keywordHandler:addKeyword({'myra'}, StdModule.say, {npcHandler = npcHandler,
 keywordHandler:addKeyword({'myra'}, StdModule.say, {npcHandler = npcHandler, text = 'Stop bothering me. I am a far too busy man to be constantly giving out awards.'}, function(player) return player:getStorageValue(Storage.OutfitQuest.MageSummoner.AddonHatCloak) == 11 end)
 keywordHandler:addKeyword({'myra'}, StdModule.say, {npcHandler = npcHandler, text = 'What the hell are you talking about?'})
 
+
+npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:setMessage(MESSAGE_GREET, 'Welcome |PLAYERNAME|, student of the arcane arts.')
 npcHandler:setMessage(MESSAGE_FAREWELL, 'Good bye, and don\'t come back too soon.')
 npcHandler:setMessage(MESSAGE_WALKAWAY, 'Good bye, and don\'t come back too soon.')

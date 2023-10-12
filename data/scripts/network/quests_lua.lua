@@ -23,7 +23,7 @@ Game.createQuest("Threatened Dreams", {
 						help, yet Ikassis didn't know any details.",
 					[6] = "You found the ghostly wolf and promised to search for her lost whelps. The wolf told you to start \z
 						your search at Ulderek's Rock",
-						[7] = "At Ulderek's Rock you found a sleeping war wolf. It might actually be the now grown up whelp you were \z
+					[7] = "At Ulderek's Rock you found a sleeping war wolf. It might actually be the now grown up whelp you were \z
 					looking for. The skeleton nearby implies that the hunter didn't survive his misdeed.",
 					[8] = "You talked to Irmana in Venore and she gave you the fur of one of the wolf whelps you're searching for. \z
 						You should talk to their mother's ghost.",
@@ -52,11 +52,17 @@ Game.createQuest("Threatened Dreams", {
             startValue = 1,
             endValue = 8,
             ignoreEndValue = false,
-            description = function(player) 
+            description = function(player)
 				local descriptions = {
-					[1] = "The fae queen asked for your help: Feyrist is threatened by intruders from Roshamuul. Kill 200 nightmare \z
-						monsters and Kroazur.\n\nYou killed %d weakened frazzlemaws and %d efeebled silencers.",
-                    [2] = "You killed 200 of the nightmare monsters that are invading Feyrist. Maelyrra was very happy but it seems \z
+					[1] = function()
+						return string.format(
+							"The fae queen asked for your help: Feyrist is threatened by intruders from Roshamuul. Kill 200 nightmare \z
+							monsters and Kroazur.\n\n- You killed %d weakened frazzlemaws.\n- You killed %d efeebled silencers.",
+							math.max(player:getStorageValue(Storage.Quest.U11_40.ThreatenedDreams.Mission02.FrazzlemawsMission), 0),
+							math.max(player:getStorageValue(Storage.Quest.U11_40.ThreatenedDreams.Mission02.EnfeebledMission), 0)
+						)
+					end,
+					[2] = "You killed 200 of the nightmare monsters that are invading Feyrist. Maelyrra was very happy but it seems \z
 						she still has other problems. She may need your help once more.",
 					[3] = "Maelyrra asked you to retrieve an artefact for her: the moon mirror. It was stolen by the tainted fae \z
 						who inhabit the caves underneath Feyrist. She also asked you to free some captured fairies.",
@@ -70,8 +76,36 @@ Game.createQuest("Threatened Dreams", {
 						dreambird trees with starlight and the five sun mosics with sunlight.",
 					[8] = "You repaired tha magical barrier that protects Feyrist from the outside world. The fae's secret realm \z
 						is safe again."
-                }
-                return descriptions[player:getStorageValue(Storage.Quest.U11_40.ThreatenedDreams.Mission02[1])]
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.Quest.U11_40.ThreatenedDreams.Mission02[1])
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },
+		{
+            name = "An Unlikely Couple",
+            storageId = Storage.Quest.U11_40.ThreatenedDreams.Mission03[1],
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Help Aurita and Taegen and find a spell to transform Aurita's fishtail into legs temporarily. A \z
+						fairy in a small fae village in the southwest of Feyrist might know more.",
+					[2] = "You have succesfully created the magical music notes for the mermaid Aurita. Talk to the faun \z
+						Taegen, he also needs your help.",
+					[3] = "The faun Taegen wants to spend some time with his lover, the mermaid Aurita. He wants to visit her \z
+						home and thus must be able to breath under water. Therefore he needs the rare raven herb.",
+					[4] = "You found the rare raven herb and gave it to Taegen. Now he will create a sun catcher for you. \z
+						You may also ask Aurita for the starlight vial now."
+					}
+                return descriptions[player:getStorageValue(Storage.Quest.U11_40.ThreatenedDreams.Mission03[1])]
             end
         },
     }
@@ -605,6 +639,947 @@ Game.createQuest("Bigfoot\'s Burden", {
             endValue = 9,
             ignoreEndValue = false,
             description = "Walk through the g-ray apparatus for your g-raying."
+        },
+    }
+}):register()
+
+Game.createQuest("Cults of Tibia", {
+    storageId = Storage.CultsOfTibia.Questline,
+    storageValue = 1,
+
+    missions = {
+		{
+            name = "The Strengthtening of the Minotaurs",
+            storageId = Storage.CultsOfTibia.Minotaurs.JamesfrancisTask,
+            startValue = 0,
+            endValue = 50,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("James asked you to enter the cave for hunting 50 empowered minotaurs. \z
+					Then he will be able to continue his research.\nMinotaurs killed: %d/50"):format(
+					player:getStorageValue(Storage.CultsOfTibia.Minotaurs.JamesfrancisTask)
+				)
+			end
+        },
+		{
+            name = "The Strengthtening of the Minotaurs",
+            storageId = Storage.CultsOfTibia.Minotaurs.Mission,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Gerimor told you that the naturalist Jamesfrancis is an expert of minotaurs. \z
+						Right now he is investigating a cave in minocity. But this time something seems to be completely different.",
+					[2] = "Jamesfrancis already entered the inner part of the cave weeks ago but had to flee when \z
+						the minotaurs became too strong. He gave you the key to investigate this room as well.",
+					[3] = "You found an entrance to the minotaur boss. You killed it and now you have to return to Jamesfrancis.",
+					[4] = "Jamesfrancis sent you to talk with Gerimor about the minotaur cult.",
+					[5] = "You have reported the Druid of Crunor about the minotaur cult."
+                }
+                return descriptions[player:getStorageValue(Storage.CultsOfTibia.Minotaurs.Mission)]
+            end
+        },
+		{
+            name = "Patron of Arts",
+            storageId = Storage.CultsOfTibia.MotA.Mission,
+            startValue = 1,
+            endValue = 15,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "The Druid of Cronor gave you the hint that the Thais exhibition has expanded. \z
+						The new section is called MOTA (Museum of Tibian Arts). It\'s really worth a visit.",
+					[2] = "Gareth told you how to become a patron of the arts. To fulfil your duty you have to manage some tasks. \z
+						First you have to investigate the crime scene of a theft in the museum.",
+					[3] = "You found a ransom note, wich requests you to pay some money for \z
+						the stolen picture to a stonge in Kazordoon. His name is Iwar. Nevertheless I should talk to Gareth first.",
+					[4] = "You told Gareth about the ransom note. \z
+						He asked you to pay the money to Iwar to get the picture back. In his opinion, there is no alternative.",
+					[5] = "You paid the money to stooge in Kazordoon. \z
+						You were told that the picture is delivered to Gareth himself.",
+					[6] = "You have to go to Angelo and get a magnifier to investigate all small \z
+						pictures in the entrance hall of the MOTA. One of them should be a fake.",
+					[7] = "Angelo allowed you to take a magnifier from a crate next to the cave entrance.",
+					[8] = "You've fetched the magnifier from Angelo\'s crate. You're ready for your job in the museum.",
+					[9] = "Indeed! One of the investigated small pictures is fake. Report to Gareth!",
+					[10] = "After you told Gareth about the fake painting, he asked you to go to Angelo to get a new picture.",
+					[11] = "Angelo was not willing to give you a new picture. \z
+						However, they havent found any artefact in the sandy cave yet. Report to Gareth about your failure.",
+					[12] = "Even though you weren't successful in getting a replacement for the fake picture, \z
+						Gareth gave you access to the last floor of the museum. This area is for patrons only.",
+					[13] = "INTERNAL MESSAGE: THIS NEED QUESTLOG INFORMATION",
+					[14] = "The Denomintator opened the door for you after you answered his questions to the wanted number. \z
+						In the end he mentioned the Druid of Conor. Maybe you should pay him a visit.",
+					[15] = "In the end you told the Druid of Crunor about your experiences in the MoTA."
+                }
+                return descriptions[player:getStorageValue(Storage.CultsOfTibia.MotA.Mission)]
+            end
+        },
+		{
+            name = "Barkless",
+            storageId = Storage.CultsOfTibia.Barkless.Mission,
+            startValue = 1,
+            endValue = 7,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "The members of the Barkless follow a rigid path of hardship and sacrifice. \z
+						Their cult is located somewhere beneath Ab'dendriel. \z
+						Whatever happened to their leader, only a true Barkless can find out.",
+					[2] = "You survived the sulphur and tar trial. You accepted the stigma of misfortune and vanity. \z
+						The hardest part, however, is yet to come. Give your life to the ice... to become true and purified.",
+					[3] = function(player)
+							return ("You survived the Trial. Barkless now have the right to see the cult leader but a \z
+							powerful relic is sealing the path. Barkless markings broken to reverse the power of the cult object: \z %d of 10"):format(math.max(player:getStorageValue(Storage.CultsOfTibia.Barkless.Objects), 0))
+						end,
+					[4] = "You broke enough Barkless markings to now reverse the seal \z
+						held up by the cult object in the ritual chamber. \z
+						The power you gained feels unnatural and excessive but it seems ther is no other way.",
+					[5] = 'Something far more powerful than the beliel of your Barkless brothers \z
+						and sisters powered the seal to the leader. Whatever the case - find Leiden, \z
+						or as he\'s known to his devotees: the "Penitent".',
+					[6] = "The Leiden you confronted has strayed far from his own original vision of Barkless. \z
+						What you encountered was more monster than elf and less virtuous than his devotees would have you believe.",
+					[7] = "You returned to Gerimor after putting an end to the mischief of Leyden the Penitent. \z
+						May the Barkless walk the true path again one day."
+                }
+                return descriptions[player:getStorageValue(Storage.CultsOfTibia.Barkless.Mission)]
+            end
+        },
+        {
+            name = "Misguided",
+            storageId = Storage.CultsOfTibia.Misguided.Mission,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "ASD",
+					[2] = "Below a ruin in the vicinity of the outlaw camp east of Thais a strange figure in ragged clothes \z
+						hinted at something weird going on in a cave. He seemed too confused to decide whether to stop you.",
+					[3] = function(player)
+						return ("While rubbish, the amulet you equipe emits a strange aura of splendour. \z
+						You feel an urge to fulfill the amulets hunger for especific deaths... Exorcisms: %d/5 "):format(math.max(player:getStorageValue(Storage.CultsOfTibia.Misguided.Exorcisms), 0))
+					end,
+					[4] = "You defeated the cult leader of Misguided by uncovering the true master to pull his strings \z
+					and freeing this world from its malicious existance. Return to Gerimor to tell him about the victory.",
+					[5] = "You have spoken to Gerimor about your victory."
+                }
+                return descriptions[player:getStorageValue(Storage.CultsOfTibia.Misguided.Mission)]
+            end
+        },
+		{
+            name = "The Orc Idol",
+            storageId = Storage.CultsOfTibia.Orcs.Mission,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "ASD",
+					[2] = "ASD",
+					[3] = "You returned to Gerimor after facing the being the orcs worshipped. \z
+					Whatever it was, it did not find the orcs by accident. \z
+					A far more powerful force seems to have strategically place it here."
+                }
+                return descriptions[player:getStorageValue(Storage.CultsOfTibia.Orcs.Mission)]
+            end
+        },
+		{
+            name = "The Secret of the Sandy Cave",
+            storageId = Storage.CultsOfTibia.Life.Mission,
+            startValue = 1,
+            endValue = 10,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "ASD",
+					[2] = "ASD",
+					[3] = "In the cave you haven't found one of the missing scientists. \z
+						However, you have faced a lots of strange mummies and a green oasis at the end.",
+					[4] = "After you informed Angelo about your experiences in the cave, \z
+						he asked you to go back to analyse the water of the oasis. For that reason you got an analysis tool.",
+					[5] = "You have analysed the water with the help of the analysis tool from Angelo.",
+					[6] = "You informed Angelo about the analyzed water. \z
+						He gave you a counteragent, wich you have to apply to the oasis.",
+					[7] = "You applied the counteragent to the oasis, just like Angelo had asked you to. \z
+						But the effect was different from what you had expected. \z
+						A sandstorm approached and caused create damage to the oasis.",
+					[8] = "You Killed the boss",
+					[9] = "You reported your victory to Angelo",
+					[10] = "You have told Gerimor about your stay in the sandy cave. \z
+						He was not really surprised and felt vindicated that the rumors about a cult in the cave might be true."
+                }
+                return descriptions[player:getStorageValue(Storage.CultsOfTibia.Life.Mission)]
+            end
+        },
+		{
+            name = "Zathroth Remmants",
+            storageId = Storage.CultsOfTibia.Humans.Mission,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = function(player)
+							return ("A remnant cult of Zathroth has formed in a forbidden temple beneath Carlin. \z
+						Find out what's behind this and stop it in time.\nTemporarily vaporised souls:\n%d Decaying\n%d Withering"):format(
+								math.max(player:getStorageValue(18551), 0),
+								math.max(player:getStorageValue(18550), 0)
+							)
+						end,
+					[2] = "ASD",
+					[3] = "You returned to Gerimor after encounter with the remnants of Zathroth. On one hand its is \z
+						furtunate that Zathroth indeed wasn't behind all this, but on the other... what is going on there?"
+                }
+                return descriptions[player:getStorageValue(Storage.CultsOfTibia.Humans.Mission)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("A Father\'s Burden", {
+    storageId = Storage.FathersBurden.QuestLog,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "The Birthday Presents",
+            storageId = Storage.FathersBurden.Status,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Gather the material Tereban listed. \z
+						Talk to him about your mission when you have given him everything he was looking for.",
+					[2] = "You brought all the required materials to Tereban and guaranteed his sons a great birthday party."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Status)]
+            end
+        },
+		{
+            name = "The Magic Bow - Sinew",
+            storageId = Storage.FathersBurden.Sinew,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find the wyvern Heoni in the Edron mountains and take his sinew to Tereban.",
+					[2] = "You delivered Heoni\'s sinew to Tereban."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Sinew)]
+            end
+        },
+		{
+            name = "The Magic Bow - Wood",
+            storageId = Storage.FathersBurden.Wood,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find the special wood in the barbarian camps of Hrodmir and bring it to Tereban. \z
+						It might be a good idea to start looking in the northernmost camp.",
+					[2] = "You delivered the Wood to Tereban."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Wood)]
+            end
+        },
+		{
+            name = "The Magic Robe - Cloth",
+            storageId = Storage.FathersBurden.Cloth,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                   [1] = "Find the spectral cloth hidden deep in the crypts of the isle of the kings and bring it to Tereban. \z
+						You might have to look for a secret entrance.",
+					[2] = "You delivered the spectral cloth to Tereban."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Cloth)]
+            end
+        },
+		{
+            name = "The Magic Robe - Silk",
+            storageId = Storage.FathersBurden.Silk,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find exquisite silk in the spider caves of southern Zao and deliver it to Tereban.",
+					[2] = "You brought Tereban the required silk."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Silk)]
+            end
+        },
+		{
+            name = "The Magic Rod - Crystal",
+            storageId = Storage.FathersBurden.Crystal,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find a magic crystal in the tomb buried under the sand east of Ankrahmun and bring it to Tereban.",
+					[2] = "Tereban received the magic crystal he was looking for."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Crystal)]
+            end
+        },
+		{
+            name = "The Magic Rod - Root",
+            storageId = Storage.FathersBurden.Root,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Find the mystic root under the city of Banuta and bring it to Tereban.",
+					[2] = "The magic root was delievered to Tereban."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Root)]
+            end
+        },
+		{
+            name = "The Magic Shield - Iron",
+            storageId = Storage.FathersBurden.Iron,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find some old iron in the mines of Kazordoon for Tereban. Don't get lost - \z
+						start searching close to the city.",
+					[2] = "Tereban got the old iron he required."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Iron)]
+            end
+        },
+		{
+            name = "The Magic Shield - Scale",
+            storageId = Storage.FathersBurden.Scale,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Find the dragon Glitterscale in the caves north of Thais and take its scale to Tereban.",
+					[2] = "You handed the looted scale to Tereban."
+                }
+                return descriptions[player:getStorageValue(Storage.FathersBurden.Scale)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("The Paradox Tower", {
+    storageId = Storage.Quest.U7_24.TheParadoxTower.QuestLine,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "The Feared Hugo",
+            storageId = Storage.Quest.U7_24.TheParadoxTower.TheFearedHugo,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Oldrak told you that the fearsome Hugo was accidentally created by the mage Yenny the Gentle. Try to find out more about this.",
+					[2] = "Zoltan told you about Crunor's Caress, a druid order originating from Carlin. Try to find out more about this.",
+					[3] = "Padreia told you that Crunor's Caress founded the inn Crunor's Cottage south of Mt. Sternum. Try to find out more about this.",
+					[4] = "Lubo told you about a magical experiment that went wrong and created a demonbunny. Someone might be interested in this...",
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U7_24.TheParadoxTower.TheFearedHugo)]
+            end
+        },
+		{
+            name = "Favorite colour: Green",
+            storageId = Storage.Quest.U7_24.TheParadoxTower.FavoriteColour,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Favorite colour is the green.",
+					[2] = "Favorite colour is the green."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U7_24.TheParadoxTower.FavoriteColour)]
+            end
+        },
+		{
+            name = "The Secret of Mathemagics",
+            storageId = Storage.Quest.U7_24.TheParadoxTower.Mathemagics,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You learnt Mathemagics. Everything is based on the simple fact that 1+1=1.",
+					[2] = "You learnt Mathemagics. Everything is based on the simple fact that 1+1=1."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U7_24.TheParadoxTower.Mathemagics)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("The Inquisition", {
+    storageId = Storage.TheInquisition.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Mission 1: Interrogation",
+            storageId = Storage.TheInquisition.Mission01,
+            startValue = 1,
+            endValue = 7,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Your mission is to investigate the 5 guards in Thais regarding the Heretic behavior. \z
+						Tim, Kulag, Grof, Miles and Walter are their names. If you do well you see a holy sprite on you.",
+					[2] = "You investigated 1 of 5 guards in Thais.",
+					[3] = "You investigated 2 of 5 guards in Thais.",
+					[4] = "You investigated 3 of 5 guards in Thais.",
+					[5] = "You investigated 4 of 5 guards in Thais.",
+					[6] = "You investigated 5 of 5 guards in Thais. Get back to Thais and report your mission to Henricus.",
+					[7] = "You investigated all guards in Thais."
+				}
+                return descriptions[player:getStorageValue(Storage.TheInquisition.Mission01)]
+            end
+        },
+		{
+            name = "Mission 2: Eclipse",
+            storageId = Storage.TheInquisition.Mission02,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Henricus tells you to get The Witches' Grimoire, he sends you to Femor Hills where you \z
+						can fly to the witches' mountain, say Eclipse to Uzon and he will take you there. \z
+						Use the vial of holy water that he gives you on the big cauldron and open the chest to your left, \z
+						then bring the witches' grimoire to Henricus.",
+					[2] = "Find the witches' grimoire and bring it to Henricus.",
+					[3] = "You already brought the witches' grimoire to Henricus."
+				}
+                return descriptions[player:getStorageValue(Storage.TheInquisition.Mission02)]
+            end
+        },
+		{
+            name = "Mission 3: Vampire Hunt",
+            storageId = Storage.TheInquisition.Mission03,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Henricus wants you to find the Dwarfish Vampire Hunter, Storkus, located west of the Dwarf Bridge. \z
+						It\'s good idea bring your 20 Vampire Dusts with you to save some time.",
+					[2] = "Go Back to Storkus the Dwarf and ask for Mission.",
+					[3] = "Now Storkus wants you to kill a vampire lord, The Count in the Green Claw Swamp, \z
+						The Count is located near to the Blood Herb Quest. To summon The Count, \z
+						you must use the coffin in the center of the room. Kill it and bring The Ring of the Count to Storkus.",
+					[4] = "Kill The Count and bring his ring to Storkus the Dwarf and ask for Mission.",
+					[5] = "Return to Henricus and tell him that you finished your job here.",
+					[6] = "Get back to Thais and report your mission to Henricus."
+				}
+                return descriptions[player:getStorageValue(Storage.TheInquisition.Mission03)]
+            end
+        },
+		{
+            name = "Mission 4: The Haunted Ruin",
+            storageId = Storage.TheInquisition.Mission04,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Henricus will gave you a Special Flask (vial of holy water). Go to Liberty Bay \z
+						and use the vial on an old house. Use this vial of holy water on that spot to drive out the evil being.",
+					[2] = "Kill the Pirate Ghost and get back to Thais and report your mission to Henricus.",
+					[3] = "You already cleaned the abandoned and haunted house in Liberty, ask Henricus for mission."
+				}
+                return descriptions[player:getStorageValue(Storage.TheInquisition.Mission04)]
+            end
+        },
+		{
+            name = "Mission 5: Essential Gathering",
+            storageId = Storage.TheInquisition.Mission05,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Henricus wants 20 Demonic Essences as a proof of your accomplishments.",
+					[2] = "Now ask Henricus for outfit to get the Demon Hunter Outfit.",
+					[3] = "You got the Demon Hunter Outfit! Ask Henricus for mission to unlock more addons."
+				}
+                return descriptions[player:getStorageValue(Storage.TheInquisition.Mission05)]
+            end
+        },
+		{
+            name = "Mission 6: The Demon Ungreez",
+            storageId = Storage.TheInquisition.Mission06,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Henricus wants you to kill a demon called Ungreez. Head to Edron Hero Cave and go down a few levels.",
+					[2] = "You killed Ungreez, report your mission to Henricus.",
+					[3] = "You got the the first addon of Demon Hunter Outfit! Ask Henricus for mission to unlock more addons."
+				}
+                return descriptions[player:getStorageValue(Storage.TheInquisition.Mission06)]
+            end
+        },
+		{
+            name = "Mission 7: The Shadow Nexus",
+            storageId = Storage.TheInquisition.Mission07,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Your mission is to go to the Demon Forge and slay seven of The Ruthless Seven Minions. \z
+						The Demon Forge is located in the Edron Hero Cave, through a portal after the Vampire Shield Quest.",
+					[2] = "You destroyed the shadow nexus! Get back to Thais and report your mission to Henricus.",
+					[3] = "Now ask to Henricus for a outfit. He will give you the 2nd addon of the Demon Hunter Outfits.",
+					[4] = "You got the the second addon of Demon Hunter Outfit! Go now to the reward room and choose one wisely!",
+					[5] = "You have completed The Inquisition Quest! You can now buy the Blessing of the Inquisition!"
+				}
+                return descriptions[player:getStorageValue(Storage.TheInquisition.Mission07)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("Unnatural Selection", {
+    storageId = Storage.UnnaturalSelection.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Mission 1: Skulled",
+            storageId = Storage.UnnaturalSelection.Mission01,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Your mission is to find the Holy Skull. It is in a cave in the northern orc settlement, \z
+						which is located north-west on the Zao Steppe.",
+					[2] = "You found the Holy Skull. Retrieve it to Lazaran in the Zao Mountains.",
+					[3] = "You brought Lazaran the Holy Skull. Ask him for new mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.UnnaturalSelection.Mission01)]
+            end
+        },
+		{
+            name = "Mission 2: All Around the World",
+            storageId = Storage.UnnaturalSelection.Mission02,
+            startValue = 1,
+            endValue = 13,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Edron.",
+					[2] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Ab'dendriel.",
+					[3] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Femor Hills.",
+					[4] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Darashia",
+					[5] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Ankrahmun",
+					[6] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Port Hope",
+					[7] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Liberty Bay",
+					[8] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Yalahar",
+					[9] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Svargrond",
+					[10] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Thais",
+					[11] = "You received the Skull of a Caveman and need to explore the world, letting the skull see everything. \z
+						You need to stand at the highest place of Carlin",
+					[12] = "You visited all the highest places with the skull. \z
+						Turn the skull back to Lazaran and report him your mission!",
+					[13] = "You turned the skull already back to Lazaran. Ask him for new mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.UnnaturalSelection.Mission02)]
+            end
+        },
+		{
+            name = "Mission 3: Dance Dance Evolution",
+            storageId = Storage.UnnaturalSelection.Mission03,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Lazaran told you to go to Ulala, who is located above Lazaran.",
+					[2] = "Ulala told you to dance to please their god Krunus. \z
+						On the south mountain in the camp you will find the Krunus altar, there are lots of leaves on the ground.",
+					[3] = "You solved the dance. Head back to Ulala and report your mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.UnnaturalSelection.Mission03)]
+            end
+        },
+		{
+            name = "Mission 4: Bits and Pieces",
+            storageId = Storage.UnnaturalSelection.Mission04,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Now the god Krunus is pleased, another god called Pandor needs to be pleased. \z
+						Ulala wants you to collect 5 Orc Teeth, 5 Minotaur leathers and 5 Lizard Leathers. Bring them to her.",
+					[2] = "You brought Ulala 5 Orc Teeth, 5 Minotaur leathers and 5 Lizard Leathers. Ask her for new mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.UnnaturalSelection.Mission04)]
+            end
+        },
+		{
+            name = "Mission 5: Ray of Light",
+            storageId = Storage.UnnaturalSelection.Mission05,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "The third god which needs to be pleased is called Fasuon. \z
+						Find the great crystal on top of mountain of Fasuon and pray there for his support!",
+					[2] = "You already prayed at the great crystal. Report it to Ulala",
+					[3] = "You have reported back to Ulala that you have completed the mission."
+				}
+                return descriptions[player:getStorageValue(Storage.UnnaturalSelection.Mission05)]
+            end
+        },
+		{
+            name = "Mission 6: Firewater Burn",
+            storageId = Storage.UnnaturalSelection.Mission06,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Speak with Lazaran and tell the gods are pleased now.",
+					[2] = "Bring Lazaran a Pot of brown water for a party after the great hunt.",
+					[3] = "You brought Lazaran the beer and got a Serpent Crest as reward!"
+				}
+                return descriptions[player:getStorageValue(Storage.UnnaturalSelection.Mission06)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("The New Frontier", {
+    storageId = Storage.Quest.U8_54.TheNewFrontier.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Mission 01: New Land",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission01,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Explore the new land and reach the bottom of the mountain.",
+					[2] = "You have found a passage from the mountains. You can report back to Ongulf.",
+					[3] = "You have reported the scouted route to Ongulf."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission01)]
+            end
+        },
+		{
+            name = "Mission 02: From Kazordoon With Love",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission02[1],
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find Melfar of the imperial mining guild close to a mine entrance west of Kazordoon. \z
+						Ask him to send more miners and wood.",
+					[2] = "Prepare the three trees which Melfar marked on your map with the beaver bait. \z
+						Once you've marked all three return to Melfar and tell him about your success.",
+					[3] = "Melfar has finally promised to send more miners and wood. Report this to Ongulf in Farmine.",
+					[4] = "You have reported that Melfar will send more miners and wood for Farmine."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission02[1])]
+            end
+        },
+		{
+            name = "Mission 03: Strangers in the Night",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission03,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find the unknown stalkers somewhere in the mountains. They apparently climbed up \z
+						somewhere during their escape. Try to negotiate a peaceful agreement if possible.",
+					[2] = "You have talked to the leader of the primitive humans and have assured their peacefulness. \z
+						Report this to Ongulf back in the base.",
+					[3] = "You have negotiated a peacful agreement between the dwarfs and the local primitives."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission03)]
+            end
+        },
+		{
+            name = "Mission 04: The Mine Is Mine",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission04,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Free the mine of the monstrous threat. Use a lift to reach the mines and look for a leader \z
+						of the stone creatures. Slay this creature and report back to Ongulf.",
+					[2] = "You have slain the monster that terrorised the mines."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission04)]
+            end
+        },
+		{
+            name = "Mission 05: Getting Things Busy",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission05[1],
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Try getting the support of the people mentioned. Talk to them about \"farmine\", then \z
+							choose the \"flatter\", \"threaten\", \"impress\", \"bluff\", \"reason\" or \"plea\" and report \z
+							any progress to Ongulf.",
+					[2] = "You have gained the necessary support for Farmine."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission05[1])]
+            end
+        },
+		{
+            name = "Mission 5: Support of Kazordoon's Worm Tamer",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission05.Humgolf,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Talk to the worm tamer in Kazordoon.",
+					[2] = "Find an item that interests Humgolf to get another chance."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission05.Humgolf)]
+            end
+        },
+		{
+            name = "Mission 5: Support of the Edron Academy",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission05.Wyrdin,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Talk to the magician Wyrdin in the Edron Academy.",
+					[2] = "Find an item that interests Wyrdin to get another chance."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission05.Wyrdin)]
+            end
+        },
+		{
+            name = "Mission 5: Support of the Explorer Society",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission05.Angus,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Talk to the representative of the Explorer Society in Port Hope.",
+					[2] = "Find an item that interests Angus to get another chance."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission05.Angus)]
+            end
+        },
+		{
+            name = "Mission 5: Support of the Inventor Telas",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission05.Telas,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Talk to the inventor Telas in Edron.",
+					[2] = "Find an item that interests Telas to get another chance."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission05.Telas)]
+            end
+        },
+		{
+            name = "Mission 5: Support of the Thaian King",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission05.KingTibianus,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Talk to King Tibianus in the Thaian Castle.",
+					[2] = "Find an item that interests King Tibianus to get another chance."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission05.KingTibianus)]
+            end
+        },
+		{
+            name = "Mission 5: Support of the Venorean Traders",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission05.Leeland,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Talk to Leeland Slim, the representative of the Venorean Traders.",
+					[2] = "Find an item that interests Leeland Slim to get another chance."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission05.Leeland)]
+            end
+        },
+		{
+            name = "Mission 06: Days Of Doom",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission06,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Try to pacify the orcs of the steppe. It is probably necessary to find some leader of the orcish tribes.",
+					[2] = "You have talked to the minotaur leaders of the orcs. They agreed to spare Farmine if you \z
+						prove your worth in their arena. You will have to survive against Mooh'Tah master for 2 minutes, so prepare!",
+					[3] = "You have survived the arena. Talk to Curos again about your mission.",
+					[4] = "Your negotiations had moderate success. Your can report back to Ongulf.",
+					[5] = "You have ensured a brittle peace between Farmine and the orcs."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission06)]
+            end
+        },
+		{
+            name = "Mission 07: Messengers Of Peace",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission07[1],
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Find a lizardman somewhere in the north and try to start a negotiation of peace.",
+					[2] = "It seems that the lizardmen are not interested in peace and you will have to focus \z
+						on other problems at hand."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission07[1])]
+            end
+        },
+		{
+            name = "Mission 08: An Offer You Can't Refuse",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission08,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Captured by lizardmen trap you have to find a way out of the prison. Perhaps \z
+						something in your cell might lead you to an opportunity for freedom.",
+					[2] = "You managed to find a way of the captivity of the lizardmen - but for a price."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission08)]
+            end
+        },
+		{
+            name = "Mission 09: Mortal Combat",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission09[1],
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "You are expected to participate in the great tournament of the lizard race. \z
+						Travel to the Isle of Strife and brave the challenges there.",
+					[2] = "You are the champion of the great tournament! Still the lizardmen are a menace to \z
+						behold. You should report to Chrak before you leave the isle.",
+					[3] = "You have reported your latest doings to Chrak. It seems you bought the dwarfs some \z
+						time of peace. Only the dragon kings may know how long though."
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission09[1])]
+            end
+        },
+		{
+            name = "Mission 10: New Horizons",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.Mission10[1],
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Ongulf will be anxious to learn about your latest adventures. Travel back to Farmine \z
+						for a final report.",
+					[2] = "Ongulf got very satisfied with your journey, this land is yours to be taken. You can \z
+						find now on top of the mountain a red carpet, it might offer you access to some cities." -- This last questlog message is not accurate, need to update.
+				}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission10[1])]
+            end
+        },
+		{
+            name = "Tome of Knowledge Counter",
+            storageId = Storage.Quest.U8_54.TheNewFrontier.TomeofKnowledge,
+            startValue = 1,
+            endValue = 12,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "You brought the fist Tome of Knowledge to Cael. He learnt more about the lizard culture. \z
+						Pompan will sell you dragon tapestries from now on.",
+					[2] = "You brought the second Tome of Knowledge to Cael. He learnt more about the minotaur culture. \z
+						Pompan will sell you minotaur backpacks from now on.",
+					[3] = "You brought the third Tome of Knowledge to Cael. \z
+						He learnt more about the last stand of the draken culture. Esrik will sell you lizard weapon rack from now on.",
+					[4] = "You brought the fourth Tome of Knowledge to Cael. \z
+						He learnt something interesting about a certain food that the lizardmen apparently prepare. \z
+						Swolt will trade you a bunch of ripe rice for 10 rice balls from now on.",
+					[5] = "You brought the fifth Tome of Knowledge to Cael. \z
+						He learnt more about the last stand of the lizards in the South, Zzaion. \z
+						Pompan will sell you lizard backpacks from now on.",
+					[6] = "You brought the sixth Tome of Knowledge to Cael. \z
+						He learnt a few things about the primitive human culture on this continent. \z
+						Cael will sell you War Drums and Didgeridoo from now on.",
+					[7] = "You brought the seventh Tome of Knowledge to Cael. \z
+						He learnt something interesting about the Zao steppe. \z
+						Now you to use the snake teleport at the peak of the mountain.",
+					[8] = "You brought the eighth Tome of Knowledge to Cael. \z
+						He learnt a few things about an illness. \z
+						Now you can enter a corruption hole in the north-eastern end of Zao.",
+					[9] = "You brought the ninth Tome of Knowledge to Cael. \z
+						He learnt something interesting about the Draken origin. \z
+						Esrik will buy lizard equipment from you now.",
+					[10] = "You brought the tenth Tome of Knowledge to Cael. \z
+						He learnt more about the last stand of the lizard dynasty. \z
+						Now you can enter the Zao Palace. It is situated deep underground, below the mountain base of the Lizards.",
+					[11] = "You brought the eleventh Tome of Knowledge to Cael. \z
+						He learnt something interesting about dragons and their symbolism. \z
+						You can buy a Dragon Statue from NPC Cael after you bring him a Red Lantern.",
+					[12] = "You brought the twelfth Tome of Knowledge to Cael. \z
+						He learnt something about reveals some of the power structures in Zao. \z
+						Cael will now make a Dragon Throne for you after you bring him a Red Piece of Cloth. \z
+						He will reward you with 5000 experience points for each extra tome you give to him."
+					}
+                return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.TomeofKnowledge)]
+            end
         },
     }
 }):register()

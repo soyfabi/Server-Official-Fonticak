@@ -11871,7 +11871,9 @@ local items = {
 		level = 100,
 		vocation = {
 			{"Sorcerer", true},
-			{"Master Sorcerer"}
+			{"Master Sorcerer"},
+			{"Druid", true},
+			{"Elder Druid"}
 		}
 	},
 	{

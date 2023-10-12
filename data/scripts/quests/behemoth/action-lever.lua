@@ -10,6 +10,7 @@ local lever = Action()
 
 function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid == 2773 then
+		player:say("The walls have already been fallen.")
 		return false
 	end
 

@@ -9,12 +9,12 @@
 	<parameters>
 	<parameter key="module_shop" value="1" />
 		<parameter key="shop_buyable" value="
-Drum,2073,140;
-Harp Kit,3934,50;
-Lute,2072,195;
-Lyre,2071,120;
-Simple Fanfare,2075,150;
-Piano Kit,3933,200
+Drum,14253,140;
+Harp Kit,2808,50;
+Lute,2950,195;
+Lyre,2949,120;
+Simple Fanfare,2954,150;
+Piano Kit,2807,200
 " />
 
 

@@ -15,7 +15,7 @@ spell:group("healing")
 spell:vocation("druid;true", "elder druid;true", "knight;true", "elite knight;true", "paladin;true",
                "royal paladin;true", "sorcerer;true", "master sorcerer;true")
 spell:id(29)
-spell:cooldown(6000)
+spell:cooldown(3000)
 spell:groupCooldown(1000)
 spell:level(10)
 spell:mana(30)

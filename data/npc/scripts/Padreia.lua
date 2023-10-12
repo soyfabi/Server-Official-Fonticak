@@ -66,7 +66,7 @@ local function creatureSayCallback(cid, type, msg)
 	end
 	
 	-- The paradox tower quest
-	if msgcontains(msg, "crunor's caress") then
+	if msgcontains(msg, "crunors caress") then
 		npcHandler:say("Don't ask. They were only an unimportant footnote of history.", cid)
 		npcHandler.topic[cid] = 0
 	elseif msgcontains(msg, "footnote") then

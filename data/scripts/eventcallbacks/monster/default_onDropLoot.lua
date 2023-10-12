@@ -13,6 +13,10 @@ event.onDropLoot = function(self, corpse)
 	end
 
 	local player = Player(corpse:getCorpseOwner())
+	if not player then
+		return false
+	end
+	
 	local mType = self:getType()
 	if not player or player:getStamina() > 840 then
 		local monsterLoot = mType:getLoot()

@@ -17,7 +17,7 @@ monster.health = 1
 monster.maxHealth = 1
 monster.race = "venom"
 monster.corpse = 6036
-monster.speed = 40
+monster.speed = 0
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 100,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = false,
 	canWalkOnFire = false,
 	canWalkOnPoison = false

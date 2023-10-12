@@ -27,9 +27,9 @@ local function creatureSayCallback(cid, type, msg)
 		npcHandler.topic[cid] = 0
 	elseif msgcontains(msg, "help") then
 		npcHandler:say("You mean you want help us?", cid)
-		npcHandler:setTopic(playerId, 11)
+		npcHandler.topic[cid] = 11
 	elseif msgcontains(msg, "mission") and npcHandler.topic[cid] == 12 and player:getStorageValue(Storage.UnnaturalSelection.Questline) < 1 
-	and player:getStorageValue(TheNewFrontier.Mission03) == 3 then
+	and player:getStorageValue(TheNewFrontier.Mission01) == 1 then
 		npcHandler:say({
 				"Big problem we have! Skull of first leader gone. He ancestor of whole tribe but died long ago in war. We have keep his skull on our sacred place. ...",
 				"Then one night, green men came with wolves... and one of wolves took skull and ran off chewing on it! We need back - many wisdom and power is in skull. Maybe they took to north fortress. But can be hard getting in. You try get our holy skull back?"
@@ -116,7 +116,7 @@ local function creatureSayCallback(cid, type, msg)
 			end
 		elseif npcHandler.topic[cid] == 11 then
 			npcHandler:say("Me have many small task, but also big {mission}. You say what want.", cid)
-			npcHandler:setTopic(playerId, 12)
+			npcHandler.topic[cid] = 12
 		end
 	elseif msgcontains(msg, "war") then
 		npcHandler:say("Many mighty monster rule land. We fight. We lose. We flee to mountain to hide.", cid)

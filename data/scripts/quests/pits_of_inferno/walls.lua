@@ -24,7 +24,7 @@ local function doRemoveFirewalls(fwPos)
 end
 
 local exhaust = {}
-local exhaustTime = 3
+local exhaustTime = 1
 
 local pitsOfInfernoWalls = Action()
 function pitsOfInfernoWalls.onUse(player, item, fromPosition, target, toPosition, isHotkey)
@@ -39,20 +39,45 @@ function pitsOfInfernoWalls.onUse(player, item, fromPosition, target, toPosition
 	if(item.itemid == 2772) then
 		doRemoveFirewalls(pos[item.uid])
 		Position(pos[item.uid]):sendMagicEffect(CONST_ME_FIREAREA)
-		addEvent(revertLever, 60 * 1000, toPosition)
+		addEvent(revertLever, 10 * 60 * 1000, toPosition)
 	else
 		Game.createItem(6288, 1, pos[item.uid])
 		Position(pos[item.uid]):sendMagicEffect(CONST_ME_FIREAREA)
 	end
 	
-	local tile = Position(pos[item.uid]):getTile()
-	if tile then
-		local thing = tile:getItemById(6288)
-		if not thing then
-		addEvent(function()Game.createItem(6288, 1, pos[item.uid]) end, 60 * 1000)
+	local teleportDestinations = {
+		[Position(32831, 32333, 11)] = Position(32830, 32333, 11),
+		[Position(32833, 32333, 11)] = Position(32832, 32333, 11),
+		[Position(32835, 32333, 11)] = Position(32834, 32333, 11),
+		[Position(32837, 32333, 11)] = Position(32836, 32333, 11)
+	}
+	
+	function teleportPlayersToDestinations(teleportDestinations)
+		for targetPos, teleportTargetPos in pairs(teleportDestinations) do
+			local tile = targetPos:getTile()
+			if tile then
+				local players = tile:getCreatures()
+				for _, player in ipairs(players) do
+					if player:isPlayer() then
+						player:teleportTo(teleportTargetPos, true)
+					end
+				end
+			end
 		end
 	end
-	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have 1 minute to pass, or the flames will close again.")
+	
+	local function createFirewallIfNeeded(position)
+		local tile = position:getTile()
+		if tile then
+			local thing = tile:getItemById(6288)
+			if not thing then
+				Game.createItem(6288, 1, position)
+				teleportPlayersToDestinations(teleportDestinations)
+			end
+		end
+	end
+	addEvent(function() createFirewallIfNeeded(Position(pos[item.uid])) end, 10 * 60 * 1000)
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have 10 minute to pass, or the flames will close again.")
 	exhaust[playerId] = currentTime + exhaustTime
 	item:transform(item.itemid == 2772 and 2773 or 2772)
 	return true

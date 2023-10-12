@@ -43,10 +43,29 @@ function kroazurRoom.onStepIn(creature, item, position, fromPosition)
 	end
 
 	if player:getStorageValue(room.timer) > os.time() then
+		local timeremaining = player:getStorageValue(room.timer) - os.time()
+				
+		if timeremaining > 0 then
+			local horasRestantes = math.floor(timeremaining / 3600)
+			local minutosRestantes = math.floor((timeremaining % 3600) / 60)
+			local segundosRestantes = timeremaining % 60
+			local message = "You have to wait to challenge this enemy again, wait"
+			if horasRestantes > 0 then
+				message = message .. string.format(' %d hours', horasRestantes)
+			end
+			if minutosRestantes > 0 then
+				message = message .. string.format(' %d minutes', minutosRestantes)
+			end
+			if segundosRestantes > 0 then
+				message = message .. string.format(' %d seconds', segundosRestantes)
+			end
+			
+			player:sendCancelMessage(message .. '.')
+		end
+	
 		position:sendMagicEffect(CONST_ME_TELEPORT)
 		player:teleportTo(fromPosition, true)
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-		player:say('You have to wait to challenge this enemy again!', TALKTYPE_MONSTER_SAY)
 		return true
 	end
 

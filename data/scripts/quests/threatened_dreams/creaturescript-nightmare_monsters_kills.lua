@@ -15,26 +15,23 @@ function threatenedDreamsNightmareMonstersKills.onKill(player, target)
 		return true
 	end
 	
-
-
 	local enfeebledKills = player:getStorageValue(ThreatenedDreams.Mission02.EnfeebledMission)
 	local frazzlemawsKills = player:getStorageValue(ThreatenedDreams.Mission02.FrazzlemawsMission)
 	if player:getStorageValue(ThreatenedDreams.Mission02[1]) == 1 then
-		player:setStorageValue(ThreatenedDreams.Mission02[1], 1)
 		if target:getName():lower() == nightmareMonsters[1] then
-			if player:getStorageValue(ThreatenedDreams.Mission02.EnfeebledMission) == 5 then
+			if player:getStorageValue(ThreatenedDreams.Mission02.EnfeebledMission) == 200 then
 				return false
 			end
 			Game.sendAnimatedText("+1 Task", player:getPosition(), 102)
-			player:sendTextMessage(MESSAGE_EVENT_ORANGE, "You have already killed ".. enfeebledKills .. "/200.")
 			player:setStorageValue(ThreatenedDreams.Mission02.EnfeebledMission, enfeebledKills + 1)
+			player:sendTextMessage(MESSAGE_EVENT_ORANGE, "You have already killed ".. enfeebledKills .. "/200.")
 		elseif target:getName():lower() == nightmareMonsters[2] then
-			if player:getStorageValue(ThreatenedDreams.Mission02.FrazzlemawsMission) == 5 then
+			if player:getStorageValue(ThreatenedDreams.Mission02.FrazzlemawsMission) == 200 then
 				return false
 			end
 			Game.sendAnimatedText("+1 Task", player:getPosition(), 102)
-			player:sendTextMessage(MESSAGE_EVENT_ORANGE, "You have already killed ".. frazzlemawsKills .. "/200 Weakened Frazzlemaw.")
 			player:setStorageValue(ThreatenedDreams.Mission02.FrazzlemawsMission, frazzlemawsKills + 1)
+			player:sendTextMessage(MESSAGE_EVENT_ORANGE, "You have already killed ".. frazzlemawsKills .. "/200 Weakened Frazzlemaw.")
 		elseif target:getName():lower() == nightmareMonsters[3] then
 			Game.sendAnimatedText("+1 Task", player:getPosition(), 102)
 			player:setStorageValue(ThreatenedDreams.Mission02.KroazurMission, 1)

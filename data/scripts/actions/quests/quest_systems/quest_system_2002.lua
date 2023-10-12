@@ -247,12 +247,401 @@ local config = {
 		},
 		storage = Storage.Quest.U7_1.BlackKnight.Rewards.CrownShield
 	},
+	[15736] = {
+		items = {
+			{itemId = 2970, actionId = 3899}
+		},
+		storage = Storage.Quest.Key.ID3899,
+	},
+	[15737] = {
+		items = {
+			{itemId = 3215}
+		},
+		storage = Storage.Quest.U7_24.TheParadoxTower.Reward.Egg,
+	},
+	[15738] = {
+		items = {
+			{itemId = 3035, count = 100}
+		},
+		storage = Storage.Quest.U7_24.TheParadoxTower.Reward.Gold,
+	},
+	[15739] = {
+		items = {
+			{itemId = 3034, count = 32}
+		},
+		storage = Storage.Quest.U7_24.TheParadoxTower.Reward.Talon,
+	},
+	[15740] = {
+		items = {
+			{itemId = 3073}
+		},
+		storage = Storage.Quest.U7_24.TheParadoxTower.Reward.Wand,
+	},
 	[15151] = {
 		items = {
 			{itemId = 2972, actionId = 3980}
 		},
-		storage = 1515656
+		storage = Storage.Quest.Key.ID3980
 	},
+	[15152] = {
+		items = {
+			{itemId = 2969, actionId = 4055}
+		},
+		storage = Storage.Quest.Key.ID4055
+	},
+	[15153] = {
+		items = {
+			{itemId = 2969, actionId = 5010}
+		},
+		storage = Storage.Quest.Key.ID5010
+	},
+	[15154] = {
+		items = {
+			{itemId = 2969, actionId = 0909}
+		},
+		storage = Storage.Quest.Key.ID0909
+	},
+	[15155] = {
+		items = {
+			{itemId = 3587}
+		},
+		storage = Storage.Quest.U6_0.StuddedShield.Rewards.BananaFree
+	},
+	[15156] = {
+		items = {
+			{itemId = 3587}
+		},
+		storage = Storage.Quest.U6_0.StuddedShield.Rewards.BananaPremium
+	},
+	[15157] = {
+		items = {
+			{itemId = 4871}
+		},
+		storage = Storage.Quest.U6_1.ExplorerBrooch.Brooch
+	},
+	[15158] = {
+		items = {
+			{itemId = 21392}
+		},
+		storage = Storage.Quest.Key.ID0010
+	},
+	[15159] = {
+		items = {
+			{itemId = 2970, actionId = 3800}
+		},
+		storage = Storage.Quest.Key.ID3800
+	},
+	[15160] = {
+		items = {
+			{itemId = 2970, actionId = 3802}
+		},
+		storage = Storage.Quest.Key.ID3802
+	},
+	[15161] = {
+		items = {
+			{itemId = 3034}
+		},
+		storage = Storage.Quest.U7_24.GiantSmithhammer.Talon
+	},
+	[15162] = {
+		items = {
+			{itemId = 12510}
+		},
+		storage = Storage.Quest.U7_24.GiantSmithhammer.Hammer
+	},
+	[15163] = {
+		items = {
+			{itemId = 3031, count = 100}
+		},
+		storage = Storage.Quest.U7_24.GiantSmithhammer.GoldCoin
+	},
+	[15164] = {
+		items = {
+			{itemId = 3014}
+		},
+		storage = Storage.Quest.U7_24.MadMageRoom.StarAmulet
+	},
+	[15165] = {
+		items = {
+			{itemId = 3210}
+		},
+		storage = Storage.Quest.U7_24.MadMageRoom.Hat
+	},
+	[15166] = {
+		items = {
+			{itemId = 3014}
+		},
+		storage = Storage.Quest.U7_24.MadMageRoom.StarAmulet
+	},
+	[15167] = {
+		items = {
+			{itemId = 3026}, {itemId = 3207}
+		},
+		storage = Storage.Quest.U7_24.SkullOfRatha.Bag1
+	},
+	[15168] = {
+		items = {
+			{itemId = 3012}, {itemId = 3097}
+		},
+		storage = Storage.Quest.U7_24.SkullOfRatha.Bag2
+	},
+	[15169] = {
+		items = {
+			{itemId = 2970, actionId = 3801}, {itemId = 3598, count = 20}, {itemId = 3598, count = 7}
+		},
+		storage = Storage.Quest.U6_1.EmperorsCookies.Rewards.Cookies,
+	},
+	[15170] = {
+		items = {
+			{itemId = 2970, actionId = 4502}, {itemId = 3031, count = 23}, {itemId = 3147}, {itemId = 3298, count = 4}, {itemId = 3384}
+		},
+		storage = Storage.Quest.Key.ID4502
+	},
+	[15171] = {
+		items = {
+			{itemId = 2821}
+		},
+		storage = Storage.Quest.PreU6_0.ShortSword.Rewards.Book
+	},
+	[15172] = {
+		items = {
+			{itemId = 3305}
+		},
+		storage = Storage.Quest.PreU6_0.ThaisLighthouse.Rewards.BattleHammer
+	},
+	[15173] = {
+		items = {
+			{itemId = 3421}
+		},
+		storage = Storage.Quest.PreU6_0.ThaisLighthouse.DarkShield
+	},
+	[15174] = {
+		items = {
+			{itemId = 3374}
+		},
+		storage = Storage.Quest.U10_55.SanctuaryOfTheLizardGod.LegionHelmet
+	},
+	[15175] = {
+		items = {
+			{itemId = 21378}
+		},
+		storage = Storage.Quest.U10_55.Dawnport.TornLogBook
+	},
+	[15176] = {
+		items = {
+			{itemId = 3147, count = 3}
+		},
+		storage = Storage.Quest.U6_4.ShamanTreasure.Rewards.BlankRunes
+	},
+	[15177] = {
+		items = {
+			{itemId = 27261}
+		},
+		storage = Storage.Quest.U11_50.HiddenThreats.Rewards.keyFragment02
+	},
+	[15178] = {
+		items = {
+			{itemId = 27262}
+		},
+		storage = Storage.Quest.U11_50.HiddenThreats.Rewards.keyFragment01
+	},
+	[15179] = {
+		items = {
+			{itemId = 27270}
+		},
+		storage = Storage.Quest.U11_50.HiddenThreats.Rewards.metalFile
+	},
+	[15180] = {
+		items = {
+			{itemId = 2969, actionId = 3002}
+		},
+		storage = Storage.Quest.Key.ID3002
+	},
+	[15181] = {
+		items = {
+			{itemId = 9081}, {itemId = 28821}, {itemId = 28823}, {itemId = 9058}, {itemId = 6299}, {itemId = 3052}, {itemId = 3035, count = 10}
+		},
+		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastionChestsTimer.Coast
+	},
+	[15182] = {
+		items = {
+			{itemId = 9081}, {itemId = 28821}, {itemId = 28823}, {itemId = 9058}, {itemId = 6299}, {itemId = 3052}, {itemId = 3035, count = 10}
+		},
+		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastionChestsTimer.Island
+	},
+	[15183] = {
+		items = {
+			{itemId = 9081}, {itemId = 28821}, {itemId = 28823}, {itemId = 9058}, {itemId = 6299}, {itemId = 3052}, {itemId = 3035, count = 10}
+		},
+		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastionChestsTimer.ThroneHall
+	},
+	[15184] = {
+		items = {
+			{itemId = 9081}, {itemId = 28821}, {itemId = 28823}, {itemId = 9058}, {itemId = 6299}, {itemId = 3052}, {itemId = 3035, count = 10}
+		},
+		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastionChestsTimer.Shortcut
+	},
+	[15185] = {
+		items = {
+			{itemId = 9081}, {itemId = 28821}, {itemId = 28823}, {itemId = 9058}, {itemId = 6299}, {itemId = 3052}, {itemId = 3035, count = 10}
+		},
+		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastionChestsTimer.LowerBastion
+	},
+	[15186] = {
+		items = {
+			{itemId = 9081}, {itemId = 28821}, {itemId = 28823}, {itemId = 9058}, {itemId = 6299}, {itemId = 3052}, {itemId = 3035, count = 10}
+		},
+		storage = Storage.Quest.U11_80.TheSecretLibrary.FalconBastionChestsTimer.UndergroundBastion
+	},
+	[15187] = {
+		items = {
+			{itemId = 268}, {itemId = 266}, {itemId = 3449, count = 30}, {itemId = 3448, count = 60}
+		},
+		storage = Storage.Quest.U7_1.DragonTower.Rewards.Backpack1
+	},
+	[15188] = {
+		items = {
+			{itemId = 3350}, {itemId = 3029}
+		},
+		storage = Storage.Quest.U7_1.DragonTower.Rewards.Backpack2
+	},
+	[15189] = {
+		items = {
+			{itemId = 3448, count = 30}, {itemId = 3299}, {itemId = 3299}
+		},
+		storage = Storage.Quest.U6_4.PoisonDaggers.Rewards.BackpackReward
+	},
+	[15190] = {
+		items = {
+			{itemId = 3026, count = 3}
+		},
+		storage = Storage.Quest.U6_5.AlawarsVault.Rewards.WhitePearl
+	},
+	[15191] = {
+		items = {
+			{itemId = 3301}
+		},
+		storage = Storage.Quest.U6_5.AlawarsVault.Rewards.Broadsword
+	},
+	[15192] = {
+		items = {
+			{itemId = 2971}, {itemId = 3509}, {itemId = 3351}, {itemId = 3424}, {itemId = 2821}, {itemId = 3271}, {itemId = 3085}, {itemId = 3048}
+		},
+		storage = Storage.Quest.PreU6_0.OrnamentedShield.Rewards.OrnamentedShield
+	},
+	[15193] = {
+		items = {
+			{itemId = 2949}, {itemId = 3059}, {itemId = 3083}, {itemId = 3035}, {itemId = 3053}
+		},
+		storage = Storage.Quest.PreU6_0.OrnamentedShield.Rewards.TimeRing
+	},
+	[15194] = {
+		items = {
+			{itemId = 3033, count = 2}, {itemId = 3050}, {itemId = 2953}
+		},
+		storage = Storage.Quest.U6_1.Panpipe.Rewards.Panpipe
+	},
+	[15195] = {
+		items = {
+			{itemId = 3031, count = 98}, {itemId = 3031, count = 77}, {itemId = 3026, count = 3}
+		},
+		storage = Storage.Quest.U6_4.BerserkerTreasure.Rewards.WhitePearls
+	},
+	[15196] = {
+		items = {
+			{itemId = 3098, count = 1}, {itemId = 3085, count = 200}, {itemId = 3028, count = 7}
+		},
+		storage = Storage.Quest.U6_4.FireAxe.Rewards.Bag
+	},
+	[15197] = {
+		items = {
+			{itemId = 3284, count = 1}, {itemId = 3297, count = 1}
+		},
+		storage = Storage.Quest.U6_2.Draconia.Rewards.BagWithWeapons
+	},
+	[15198] = {
+		items = {
+			{itemId = 3081, count = 5}, {itemId = 3051, count = 1}
+		},
+		storage = Storage.Quest.U6_2.Draconia.Rewards.BagWithAmulets
+	},
+	[15199] = {
+		items = {
+			{itemId = 3083, count = 150}
+		},
+		storage = Storage.Quest.U6_4.TrollCave.Rewards.GarlicNecklace
+	},
+	[15200] = {
+		items = {
+			{itemId = 3372, count = 1}
+		},
+		storage = Storage.Quest.U6_4.TrollCave.Rewards.BrassLegs
+	},
+	[15201] = {
+		items = {
+			{itemId = 3320, count = 1}
+		},
+		storage = Storage.Quest.U6_4.FireAxe.Rewards.FireAxe
+	},
+	[15202] = {
+		items = {
+			{itemId = 3054, count = 200}
+		},
+		storage = Storage.Quest.U6_4.EdronGoblin.Rewards.SilverAmulet
+	},
+	[15203] = {
+		items = {
+			{itemId = 3409, count = 1}
+		},
+		storage = Storage.Quest.U6_4.EdronGoblin.Rewards.SteelShield
+	},
+	[15204] = {
+		items = {
+			{itemId = 3039, count = 1}
+		},
+		storage = Storage.Quest.U6_4.DoubleHero.Rewards.RedGem
+	},
+	[15205] = {
+		items = {
+			{itemId = 3093, count = 1}
+		},
+		storage = Storage.Quest.U6_4.DoubleHero.Rewards.ClubRing
+	},
+	[15206] = {
+		items = {
+			{itemId = 3383, count = 1}
+		},
+		storage = Storage.Quest.U6_4.DarkArmor.Rewards.Armor
+	},
+	[15207] = {
+		items = {
+			{itemId = 3317, count = 1}
+		},
+		storage = Storage.Quest.U6_4.BarbarianAxe.Rewards.BarbarianAxe
+	},
+	[15208] = {
+		items = {
+			{itemId = 3307, count = 1}
+		},
+		storage = Storage.Quest.U6_4.BarbarianAxe.Rewards.Scimitar
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	[50032] = {
 		items = {
 			{itemId = 3734}
