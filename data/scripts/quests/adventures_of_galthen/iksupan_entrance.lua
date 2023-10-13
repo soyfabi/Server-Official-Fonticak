@@ -12,7 +12,6 @@ function entrance.onUse(creature, item, position, fromPosition)
 			if player:getLevel() < 150 then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need at least level 150 to enter.")
 				player:teleportTo(fromPosition, true)
-				player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 				return false
 			end
 			for value in pairs(config) do

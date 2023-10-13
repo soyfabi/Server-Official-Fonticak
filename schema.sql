@@ -374,6 +374,12 @@ CREATE TABLE IF NOT EXISTS `player_storage` (
   FOREIGN KEY (`player_id`) REFERENCES `players`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
+CREATE TABLE `global_storage` (
+  `key` varchar(32) NOT NULL,
+  `value` text NOT NULL,
+  `switchNum` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `server_config` (
   `config` varchar(50) NOT NULL,
   `value` varchar(256) NOT NULL DEFAULT '',
