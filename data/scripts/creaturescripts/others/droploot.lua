@@ -1,3 +1,10 @@
+local bag_dead = {
+	{ item = 2853 }, -- bag
+	{ item = 2861 }, -- blue bag
+	{ item = 2862 }, -- grey bag
+	{ item = 2863 } -- golden bag
+}
+
 local DropLoot = CreatureEvent("DropLoot")
 function DropLoot.onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
 	if player:hasFlag(PlayerFlag_NotGenerateLoot) or player:getVocation():getId() == VOCATION_NONE then
@@ -37,16 +44,15 @@ function DropLoot.onDeath(player, corpse, killer, mostDamageKiller, lastHitUnjus
 	end
 
 	if not player:getSlotItem(CONST_SLOT_BACKPACK) then
-		player:addItem(ITEM_BAG, 1, false, CONST_SLOT_BACKPACK)
+		player:addItem(bag_dead[math.random(1, #bag_dead)].item, bag_dead, CONST_SLOT_BACKPACK)
 	end
 	return true
 end
 DropLoot:register()
 
-local event = CreatureEvent("DropLoot")
-function event.onLogin(player)
-player:registerEvent("DropLoot")
+local login = CreatureEvent("DropLogin")
+function login.onLogin(player)
+	player:registerEvent("DropLoot")
 	return true
 end
-
-event:register()
+login:register()

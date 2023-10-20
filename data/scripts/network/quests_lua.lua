@@ -1584,6 +1584,440 @@ Game.createQuest("The New Frontier", {
     }
 }):register()
 
+Game.createQuest("The Secret Library", {
+    storageId = Storage.TheSecretLibrary.FalconBastionAccess,
+    storageValue = 1,
+
+    missions = {
+	
+		{
+            name = "Liquid Death",
+            storageId = Storage.TheSecretLibrary.LiquidDeath,
+            startValue = 1,
+            endValue = 14,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "I need you to go to port hope and find a book in a sea cave.",
+					[2] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 0/9",
+					[3] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 1/9",
+					[4] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 2/9",
+					[5] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 3/9",
+					[6] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 4/9",
+					[7] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 5/9",
+					[8] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 6/9",
+					[9] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 7/9",
+					[10] = "A large scout party of ancestors of the Njey have returned to fight the Deeplings. You have to deal with two enemy parties. Try to win the Deeplings over temporarily by restoring their idols: 8/9",
+					[11] = "Now that the idols have been established, you now need to kill the boss Brokul.",
+					[12] = "You have defeated the Brokul, now report the mission to Spectulus.",
+					[13] = "Go to the Thais museum and talk to Gareth.",
+					[14] = "Mission completed.",
+                }
+                return descriptions[player:getStorageValue(Storage.TheSecretLibrary.LiquidDeath)]
+            end
+        },
+	
+        {
+            name = "Access to the Falcon Bastion",
+            storageId = Storage.TheSecretLibrary.FalconBastionAccess,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have managed to reach the access to Falcon Bastion."
+                }
+                return descriptions[player:getStorageValue(Storage.TheSecretLibrary.FalconBastionAccess)]
+            end
+        },		
+		{
+            name = "Access to the Lower Bastion",
+            storageId = Storage.TheSecretLibrary.LowerBastionAccess,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You now have access to the Lower Bastion doors."
+                }
+                return descriptions[player:getStorageValue(Storage.TheSecretLibrary.LowerBastionAccess)]
+            end
+        },
+		{
+            name = "Access to the Underground Bastion",
+            storageId = Storage.TheSecretLibrary.UndergroundBastionAccess,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You now have access to the Underground Bastion doors."
+                }
+                return descriptions[player:getStorageValue(Storage.TheSecretLibrary.UndergroundBastionAccess)]
+            end
+        },
+		{
+            name = "Access to the Oberon Bastion",
+            storageId = Storage.TheSecretLibrary.OberonAccess,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You now have access to the Oberon Bastion."
+                }
+                return descriptions[player:getStorageValue(Storage.TheSecretLibrary.OberonAccess)]
+            end
+        },
+		{
+            name = "Discovered Shortcut to Bastion",
+            storageId = Storage.TheSecretLibrary.ShortcutToBastion,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have discovered a shortcut to Falcon Bastion."
+                }
+                return descriptions[player:getStorageValue(Storage.TheSecretLibrary.ShortcutToBastion)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("Adventurers Guild", {
+    storageId = Storage.AdventurersGuild.GreatDragonHunt.WarriorSkeleton,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "The Great Dragon Hunt",
+            storageId = Storage.AdventurersGuild.GreatDragonHunt.WarriorSkeleton,
+            startValue = 0,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+				return ("You are exploring the Kha'zeel Dragon Lairs. Others obviously found a terrible end here. \z
+					But the dragon hoards might justify the risks. You killed %d/50 dragons and dragon lords."):format(
+				math.max(player:getStorageValue(Storage.AdventurersGuild.GreatDragonHunt.DragonCounter), 0)
+				)
+			end
+        },
+    }
+}):register()
+
+Game.createQuest("Wrath of the Emperor", {
+    storageId = Storage.WrathoftheEmperor.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Mission 01: Catering the Lions Den",
+            storageId = Storage.WrathoftheEmperor.Mission01,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You must bring Zalamon 3 nails and a piece of wood so that he can make a Marked Crate for you.",
+					[2] = "Go to the tunnel in eastern Muggy Plains and reach the other side. \z
+						Try to hide in the dark and avoid being seen at all by using the crate. \z
+						After that you need to find the rebel hideout and talk to their leader Chartan.",
+					[3] = "You passed the maintenance tunnel and successfully made contact with the resistance in their hideout north of the Great Gate."
+					}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission01)]
+            end
+        },
+		{
+            name = "Mission 02: First Contact",
+            storageId = Storage.WrathoftheEmperor.Mission02,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Chartan needs you to reactivate the teleport to the Muggy Plains. \z
+						Head downstairs and into the temple and craft material to repair the teleport. \z
+						To do this you will need some tools to improvise.",
+					[2] = "As you give the coal into the pool the corrupted fluid begins to dissolve, leaving purified, \z
+						refreshing water. The teleporter is reactivated. Report back to Chartan.",
+					[3] = "Report back to Zalamon for the next mission."
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission02)]
+            end
+        },
+		{
+            name = "Mission 03: The Keeper",
+            storageId = Storage.WrathoftheEmperor.Mission03,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Zalamon gives you a Flask of Plant Poison to destroy plants in the garden \z
+						of the Emperor to lure out and kill The Keeper to get his tail. The garden is southeast of the rebel hideout.",
+					[2] = "You killed the Keeper and got his tail. Bring it to Zalamon.",
+					[3] = "You brought the tail of the Keeper to Zalamon and completed the mission. Ask for the next mission."
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission03)]
+            end
+        },
+		{
+            name = "Mission 04: Sacrament of the Snake",
+            storageId = Storage.WrathoftheEmperor.Mission04,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Zalamon now wants you to go to Deeper Banuta and get an Ancient Sceptre \z
+						that will help in the fight against the emperor. \z
+						On each floor under Deeper Banuta you collect a sceptre part from a Ghost of a Priest. \z
+						On the 4th and final floor you need to assemble the sceptre..",
+					[2] = "After you've assembled the Snake Sceptre and fought your way back out, \z
+						head back to Zalamon and give it to him.",
+					[3] = "You have delievered the recreated sceptre to the rebels."
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission04)]
+            end
+        },
+		{
+            name = "Mission 05: New in Town",
+            storageId = Storage.WrathoftheEmperor.Mission05,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Enter the imperial city Razachai to the west and talk to your contact in the ministry there for further missions.",
+					[2] = "Now you only have to walk west until you find Zlak inside the big green building.",
+					[3] = "You went deep inside the city to find Zlak and completed the mission. Ask for the next mission."
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission05)]
+            end
+        },
+		{
+            name = "Mission 06: The Office Job",
+            storageId = Storage.WrathoftheEmperor.Mission06,
+            startValue = 0,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+				return string.format(
+					"Kill four Magistrati in the office building. Then report back to Zlak. You have killed %d magistrati so far.",
+				(math.max(player:getStorageValue(Storage.WrathoftheEmperor.Mission06), 0))
+				)
+			end
+        },
+		{
+            name = "Mission 07: A Noble Cause",
+            storageId = Storage.WrathoftheEmperor.Mission07,
+            startValue = 0,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+				return string.format(
+					"Kill six nobles in the city and report back to Zlak. You have killed %d nobles so far.",
+				(math.max(player:getStorageValue(Storage.WrathoftheEmperor.Mission07), 0))
+				)
+			end
+        },
+		{
+            name = "Mission 08: Uninvited Guests",
+            storageId = Storage.WrathoftheEmperor.Mission08,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Use the old escape tunnel in the northern basement of the ministry to enter the imperial palace. Fight your way to the basement to meet your new rebel contact.",
+					[2] = "You have reached your rebel contact Zizzle in the imperial palace."
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission08)]
+            end
+        },
+		{
+            name = "Mission 09: The Sleeping Dragon",
+            storageId = Storage.WrathoftheEmperor.Mission09,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "To enter the inner realms of the Emperor you need to free the mind of a dragon. \z
+						An interdimensional potion will help you to enter this dream and unleash his consciousness.",
+					[2] = "You travelled through the Sleeping Dragon dreams and freed his mind."
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission09)]
+            end
+        },
+		{
+            name = "Mission 10: A Message of Freedom",
+            storageId = Storage.WrathoftheEmperor.Mission10,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "After solving the riddle, and talking again to the Sleeping Dragon you got a Spiritual Charm. \z
+						Report back to Zizzle.",
+					[2] = "You possess the key to enter the inner realms of the emperor. \z
+						Start with the one in the north-west and work your way clockwise trough the room and kill those manifestation. \z
+						Then use your sceptre on the remain to destroy the emperor\'s influence over the crystal.",
+					[3] = "You possess the key to enter the inner realms of the emperor. \z
+						You destroyed 1 of 4 emperor\'s influences.",
+					[4] = "You possess the key to enter the inner realms of the emperor. \z
+						You destroyed 2 of 4 emperor\'s influences.",
+					[5] = "You possess the key to enter the inner realms of the emperor. \z
+						You destroyed 3 of 4 emperor\'s influences.",
+					[6] = "You possess the key to enter the inner realms of the emperor. \z
+						You destroyed all emperor\'s influences."
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission10)]
+            end
+        },
+		{
+            name = "Mission 11: Payback Time",
+            storageId = Storage.WrathoftheEmperor.Mission11,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Your Mission is to kill Zalamon. Step into the teleporter to confront him. \z
+						Finally use your sceptre on the death body.",
+					[2] = "Go back to Awareness Of The Emperor and report him your success!"
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission11)]
+            end
+        },
+		{
+            name = "Mission 12: Just Rewards",
+            storageId = Storage.WrathoftheEmperor.Mission12,
+            startValue = 0,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[0] = "The Emperor has promised you wealth beyond measure. Go claim it in the ministry.",
+					[1] = "You completed this Quest!"
+				}
+                return descriptions[player:getStorageValue(Storage.WrathoftheEmperor.Mission12)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("Children of the Revolution", {
+    storageId = Storage.ChildrenoftheRevolution.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Prove Your Worzz!",
+            storageId = Storage.ChildrenoftheRevolution.Mission00,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Your Mission is to go to a little camp of lizards at north-east of the Dragonblaze Peaks. \z
+							You have to find and deliver the Tactical map complete the mission.",
+					[2] = "You delivered the Tactical map to Zalamon."
+				}
+                return descriptions[player:getStorageValue(Storage.ChildrenoftheRevolution.Mission00)]
+            end
+        },
+		{
+            name = "Mission 1: Corruption",
+            storageId = Storage.ChildrenoftheRevolution.Mission01,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Go to the Temple of Equilibrium (it\'s marked on your map) and find out what happened there.",
+					[2] = "The temple has been corrupted and is lost. Zalamon should be informed about this as soon as possible.",
+					[3] = "You already reported Zalamon about the Temple! Ask him for new mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.ChildrenoftheRevolution.Mission01)]
+            end
+        },
+		{
+            name = "Mission 2: Imperial Zzecret Weaponzz",
+            storageId = Storage.ChildrenoftheRevolution.Mission02,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Go into the small camp Chaochai to the north of the Dragonblaze Peaks \z
+							(Zalamon marks the entrance on your map). There are 3 buildings which you have to spy",
+					[2] = "You spied 1 of 3 buildings of the camp.",
+					[3] = "You spied 2 of 3 buildings of the camp.",
+					[4] = "You spied 3 of 3 buildings of the camp. Zalamon should be informed about this as soon as possible.",
+					[5] = "You already reported Zalamon about the camp! Ask him for new mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.ChildrenoftheRevolution.Mission02)]
+            end
+        },
+		{
+            name = "Mission 3: Zee Killing Fieldzz",
+            storageId = Storage.ChildrenoftheRevolution.Mission03,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Get the poison from Zalamon\'s storage room. Then go to the teleporter to the Muggy Plains and head \z
+						east from there to the rice fields. Go to the very top rice field and use the poison anywhere on the water.",
+					[2] = "The rice has been poisoned. This will weaken the Emperor\'s army significantly. \z
+						Return and tell Zalamon about your success.",
+					[3] = "You already reported Zalamon about your success! Ask him for new mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.ChildrenoftheRevolution.Mission03)]
+            end
+        },
+		{
+            name = "Mission 4: Zze Way of Zztonezz",
+            storageId = Storage.ChildrenoftheRevolution.Mission04,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Your mission is to find a way to enter the north of the valley and find a \z
+						passage to the great gate itself. Search any temples or settlements you come across for hidden passages.",
+					[2] = "Report Zalamon about the strange symbols that you found.",
+					[3] = "Get the greasy oil from Zalamon\'s storage room and put them on the levers that you found.",
+					[4] = "Due to being extra greasy, the leavers can now be moved.",
+					[5] = "You found the right combination for the puzzle in the mountains and triggered some kind of mechanism. \z
+						You should head back to Zalamon to report your success.",
+					[6] = "You already reported Zalamon about your success! You got a Tome of Knowledge as reward! \z
+						Ask him for new mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.ChildrenoftheRevolution.Mission04)]
+            end
+        },
+		{
+            name = "Mission 5: Phantom Army",
+            storageId = Storage.ChildrenoftheRevolution.Mission05,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Zalamon has sent you on a quest to find out what lies beneath the secret portal in the temple. Find it and explore the other side.",
+					[2] = "Eternal guardians and lizard chosen has been awaken. Survive them and report it to Zalamon!",
+					[3] = "You Survived the Waves and reported Zalamon about your success! You got a Serpent Crest as reward!",
+					[4] = "Children of the Revolution has been completed, now ask for another quest to start Wrath of the Emperor."
+				}
+                return descriptions[player:getStorageValue(Storage.ChildrenoftheRevolution.Mission05)]
+            end
+        },
+    }
+}):register()
+
 Game.createQuest("The White Raven Monastery", {
     storageId = Storage.WhiteRavenMonastery.QuestLog,
     storageValue = 1,

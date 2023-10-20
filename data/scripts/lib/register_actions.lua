@@ -1,3 +1,6 @@
+local exhaust = {}
+local exhaustTime = 700
+
 local holeId = {
 	294, 369, 370, 385, 394, 411, 412, 413, 432, 433, 435, 8709, 594, 595, 615, 609, 610, 615, 1156, 482, 483, 868, 874, 4824, 7768, 433, 432, 413, 7767, 411, 370, 369, 7737, 7755, 7768, 7767, 7515, 7516, 7517, 7518, 7519, 7520, 7521, 7522, 7762, 8144, 8690, 8709, 12203, 12961, 17239, 19220, 23364
 }
@@ -97,10 +100,10 @@ end
 
 local cutItems = {
 	[2291] = 3146,
-	[2292] = 3146,
-	[2293] = 3145,
+	[2292] = 3145,
+	[2293] = 3146,
 	[2294] = 3145,
-	[2295] = 3145,
+	[2295] = 3146,
 	[2296] = 3145,
 	[2314] = 3136,
 	[2315] = 3136,
@@ -258,6 +261,13 @@ function onDestroyItem(player, item, fromPosition, target, toPosition, isHotkey)
 	if not target or target == nil or type(target) ~= "userdata" or not target:isItem() then
 		return false
 	end
+	
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
 
 	if target:hasAttribute(ITEM_ATTRIBUTE_UNIQUEID) or target:hasAttribute(ITEM_ATTRIBUTE_ACTIONID) then
 		return false
@@ -319,12 +329,20 @@ function onDestroyItem(player, item, fromPosition, target, toPosition, isHotkey)
 	end
 
 	toPosition:sendMagicEffect(CONST_ME_POFF)
+	exhaust[playerId] = currentTime + exhaustTime
 	return true
 end
 
 function onUseRope(player, item, fromPosition, target, toPosition, isHotkey)
 	if toPosition.x == CONTAINER_POSITION then
 		return false
+	end
+	
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
 	end
 
 	local tile = Tile(toPosition)
@@ -352,10 +370,18 @@ function onUseRope(player, item, fromPosition, target, toPosition, isHotkey)
 	else
 		return false
 	end
+	exhaust[playerId] = currentTime + exhaustTime
 	return true
 end
 
 function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	addFerumbrasAscendantReward(player, target, toPosition)
 	--Dawnport quest (Morris amulet task)
 	local sandPosition = Position(32099, 31933, 7)
@@ -377,7 +403,9 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You dig up some worms. But you are confident that you'll find the amulet here, somewhere.")
 				end
 				toPosition:sendMagicEffect(CONST_ME_POFF)
+				exhaust[playerId] = currentTime + exhaustTime
 			else
+				exhaust[playerId] = currentTime + exhaustTime
 				return false
 			end
 		end
@@ -403,11 +431,13 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 		elseif rand == 1 then
 			Game.createItem(3042, 1, toPosition)
 		elseif rand > 95 then
+			player:say("*Ahhhh!*")
 			Game.createMonster("Scarab", toPosition)
 		end
 		toPosition:sendMagicEffect(CONST_ME_POFF)
+		exhaust[playerId] = currentTime + exhaustTime
 	-- Rookgaard tutorial island
-	elseif target.itemid == 351 and target.actionid == 8024 then
+	elseif target.actionid == 8024 then
 		player:addItem(11341, 1)
 		player:say("You dig out a handful of earth from this sacred place.", TALKTYPE_MONSTER_SAY)
 	elseif target.itemid == 7749 and player:getStorageValue(Storage.RookgaardTutorialIsland.tutorialHintsStorage) < 20 then
@@ -498,13 +528,22 @@ function onUseShovel(player, item, fromPosition, target, toPosition, isHotkey)
 		target:transform(5731)
 		target:decay()
 		toPosition:sendMagicEffect(CONST_ME_POFF)
+		exhaust[playerId] = currentTime + exhaustTime
 	else
+		exhaust[playerId] = currentTime + exhaustTime
 		return false
 	end
 	return true
 end
 
 function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	local stonePos = Position(32648, 32134, 10)
 	if (toPosition == stonePos) then
 		local tile = Tile(stonePos)
@@ -537,6 +576,8 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 			return true
 		end
 	end
+	
+	exhaust[playerId] = currentTime + exhaustTime
 
 	if table.contains({354, 355}, target.itemid) and target.actionid == 101 then
 		target:transform(394)
@@ -805,22 +846,31 @@ function onUsePick(player, item, fromPosition, target, toPosition, isHotkey)
 		end
 		return true
 	end
+	exhaust[playerId] = currentTime + exhaustTime
 	return true
 end
 
 function onUseMachete(player, item, fromPosition, target, toPosition, isHotkey)
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	if table.contains(JUNGLE_GRASS, target.itemid) then
 		target:transform(target.itemid == 17153 and 17151 or target.itemid - 1)
 		target:decay()
+		exhaust[playerId] = currentTime + exhaustTime
 		return true
 	end
 
 	if table.contains(WILD_GROWTH, target.itemid) then
 		toPosition:sendMagicEffect(CONST_ME_POFF)
 		target:remove()
+		exhaust[playerId] = currentTime + exhaustTime
 		return true
 	end
-
 	return onDestroyItem(player, item, fromPosition, target, toPosition, isHotkey)
 end
 
@@ -970,6 +1020,13 @@ function onUseSpoon(player, item, fromPosition, target, toPosition, isHotkey)
 end
 
 function onUseScythe(player, item, fromPosition, target, toPosition, isHotkey)
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	if not table.contains({3453, 9596}, item.itemid) then
 		return false
 	end
@@ -987,6 +1044,7 @@ function onUseScythe(player, item, fromPosition, target, toPosition, isHotkey)
 		player:teleportTo({x = 32515, y = 32535, z = 12})
 		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
 	else
+		exhaust[playerId] = currentTime + exhaustTime
 		return false
 	end
 	return onDestroyItem(player, item, fromPosition, target, toPosition, isHotkey)
@@ -1075,6 +1133,14 @@ function onGrindItem(player, item, fromPosition, target, toPosition)
 	if not(target.itemid == 21573) then
 		return false
 	end
+	
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	for index, value in pairs(Itemsgrinder) do
 		if item.itemid == index then
 			local topParent = item:getTopParent()
@@ -1094,6 +1160,7 @@ function onGrindItem(player, item, fromPosition, target, toPosition)
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You grind a " .. ItemType(index):getName() .. " into fine, " .. ItemType(value.item_id):getName() .. ".")
 			item:remove(1)
 			doSendMagicEffect(target:getPosition(), value.effect)
+			exhaust[playerId] = currentTime + exhaustTime
 			return
 		end
 	end

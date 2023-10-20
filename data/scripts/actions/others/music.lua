@@ -33,7 +33,17 @@ local MusicEffect = {
 }
 
 local music = Action()
+
+local exhaust = {}
+local exhaustTime = 700
+
 function music.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+
+	local playerId = player:getId()
+    local currentTime = os.mtime()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		return true
+	end
 
 	if item.itemid == 2949 then
 		if isInRange(player:getPosition(), Position(32695, 31717, 2), Position(32699, 31719, 2)) then
@@ -65,6 +75,7 @@ function music.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	player:addAchievementProgress('Rockstar', 100)
 	item:getPosition():sendMagicEffect(MusicEffect[item.itemid])
+	exhaust[playerId] = currentTime + exhaustTime
 	return true
 end
 

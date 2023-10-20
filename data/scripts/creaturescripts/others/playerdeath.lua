@@ -90,13 +90,12 @@ function playerDeath.onDeath(player, corpse, killer, mostDamageKiller, lastHitUn
 end
 playerDeath:register()
 
-local event = CreatureEvent("PlayerDeath")
-function event.onLogin(player)
-player:registerEvent("PlayerDeath")
+local login = CreatureEvent("PlayerLogin")
+function login.onLogin(player)
+	player:registerEvent("PlayerDeath")
 	return true
 end
-
-event:register()
+login:register()
 
 local config = {
     channelId = 12,
@@ -148,11 +147,9 @@ end
 
 creatureEvent:register()
 
-local creatureEvent = CreatureEvent("DeathChannelOnLogin")
-
-function creatureEvent.onLogin(player)
-    player:registerEvent("DeathChannelOnDeath")
-    return true
+local login2 = CreatureEvent("DeathChannelOnDeathLL")
+function login2.onLogin(player)
+	player:registerEvent("DeathChannelOnDeath")
+	return true
 end
-
-creatureEvent:register()
+login2:register()

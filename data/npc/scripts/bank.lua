@@ -139,19 +139,51 @@ local function creatureSayCallback(cid, type, msg)
 	elseif msgcontains(msg, 'balance') then
 		npcHandler.topic[cid] = 0
 		if player:getBankBalance() >= 100000000 then
-			npcHandler:say('I think you must be one of the richest inhabitants in the world! Your account balance is {' .. player:getBankBalance() .. '} gold.', cid)
+			local balance = player:getBankBalance()
+			local balanceText
+			
+			if balance >= 100000000 then
+				balanceText = math.floor(balance / 1000000) .. "KK"
+			end
+			npcHandler:say('I think you must be one of the richest inhabitants in the world! Your account balance is {' .. balance .. '} gold coins, Equal to: {' .. balanceText ..'}.', cid)
 			return true
 		elseif player:getBankBalance() >= 10000000 then
-			npcHandler:say('You have made ten millions and it still grows! Your account balance is {' .. player:getBankBalance() .. '} gold.', cid)
+			local balance = player:getBankBalance()
+			local balanceText
+			
+			if balance >= 10000000 then
+				balanceText = math.floor(balance / 1000000) .. "KK"
+			end
+			npcHandler:say('You have made ten millions and it still grows! Your account balance is {' .. balance .. '} gold coins, Equal to: {' .. balanceText ..'}.', cid)
 			return true
 		elseif player:getBankBalance() >= 1000000 then
-			npcHandler:say('Wow, you have reached the magic number of a million gp!!! Your account balance is {' .. player:getBankBalance() .. '} gold!', cid)
+			local balance = player:getBankBalance()
+			local balanceText
+			
+			if balance >= 1000000 then
+				balanceText = math.floor(balance / 1000000) .. "KK"
+			end
+			npcHandler:say('Wow, you have reached the magic number of a million gp!!! Your account balance is {' .. balance .. '} gold coins, Equal to: {' .. balanceText ..'}.', cid)
 			return true
 		elseif player:getBankBalance() >= 100000 then
 			npcHandler:say('You certainly have made a pretty penny. Your account balance is {' .. player:getBankBalance() .. '} gold.', cid)
 			return true
+		elseif player:getBankBalance() >= 1000 then
+			local balance = player:getBankBalance()
+			local balanceText
+			
+			if balance >= 1000 then
+				balanceText = math.floor(balance / 1000) .. "K"
+			end
+			npcHandler:say('Your account balance is {' .. balance .. '} gold coins, Equal to: {'.. balanceText ..'}.', cid)
 		else
-			npcHandler:say('Your account balance is {' .. player:getBankBalance() .. '} gold.', cid)
+			local balance = player:getBankBalance()
+			local balanceText
+			
+			if balance >= 100 then
+				balanceText = math.floor(balance / 1) .. "gps"
+			end
+			npcHandler:say('Your account balance is {' .. balance .. '} gold coins, Equal to: {'.. balanceText ..'}.', cid)
 			return true
 		end
 ---------------------------- deposit ---------------------
@@ -175,7 +207,7 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler.topic[cid] = 0
 				return false
 			end
-			npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold to your {guild}?', cid)
+			npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold coins to your {guild}?', cid)
 			npcHandler.topic[cid] = 23
 			return true
 		else
@@ -186,7 +218,7 @@ local function creatureSayCallback(cid, type, msg)
 	elseif npcHandler.topic[cid] == 22 then
 		count[cid] = getMoneyCount(msg)
 		if isValidMoney(count[cid]) then
-			npcHandler:say('Would you really like to deposit ' .. count[cid] .. ' gold to your {guild}?', cid)
+			npcHandler:say('Would you really like to deposit ' .. count[cid] .. ' gold coins to your {guild}?', cid)
 			npcHandler.topic[cid] = 23
 			return true
 		else
@@ -196,7 +228,7 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif npcHandler.topic[cid] == 23 then
 		if msgcontains(msg, 'yes') then
-			npcHandler:say('Alright, we have placed an order to deposit the amount of {' .. count[cid] .. '} gold to your {guild account}. Please check your {inbox} for confirmation.', cid)
+			npcHandler:say('Alright, we have placed an order to deposit the amount of {' .. count[cid] .. '} gold coins to your {guild account}. Please check your {inbox} for confirmation.', cid)
 			local guild = player:getGuild()
 			local info = {
 				type = 'Guild Deposit',
@@ -233,18 +265,31 @@ local function creatureSayCallback(cid, type, msg)
 		end
 		if msgcontains(msg, 'all') then
 			count[cid] = player:getMoney()
-			npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold?', cid)
+			npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold coins?', cid)
 			npcHandler.topic[cid] = 2
 			return true
 		else
+			local function formatGold(amount)
+				if amount >= 100000000 then
+					return math.floor(amount / 100000000) .. "KKK"
+				elseif amount >= 10000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000 then
+					return math.floor(amount / 1000) .. "K"
+				else
+					return math.floor(amount / 1) .. "gps"
+				end
+			end
 			if string.match(msg,'%d+') then
 				count[cid] = getMoneyCount(msg)
 				if count[cid] < 1 then
-					npcHandler:say('You do not have enough gold.', cid)
+					npcHandler:say('You do not have enough gold coins.', cid)
 					npcHandler.topic[cid] = 0
 					return false
 				end
-				npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold?', cid)
+				npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold coins, Equal to: {' .. formatGold(count[cid]) .. '}?', cid)
 				npcHandler.topic[cid] = 2
 				return true
 			else
@@ -260,8 +305,21 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif npcHandler.topic[cid] == 1 then
 		count[cid] = getMoneyCount(msg)
+			local function formatGold(amount)
+				if amount >= 100000000 then
+					return math.floor(amount / 100000000) .. "KKK"
+				elseif amount >= 10000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000 then
+					return math.floor(amount / 1000) .. "K"
+				else
+					return math.floor(amount / 1) .. "gps"
+				end
+			end
 		if isValidMoney(count[cid]) then
-			npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold?', cid)
+			npcHandler:say('Would you really like to deposit {' .. count[cid] .. '} gold coins, Equal to: {' .. formatGold(count[cid]) .. '}?', cid)
 			npcHandler.topic[cid] = 2
 			return true
 		else
@@ -272,7 +330,7 @@ local function creatureSayCallback(cid, type, msg)
 	elseif npcHandler.topic[cid] == 2 then
 		if msgcontains(msg, 'yes') then
 			if player:depositMoney(count[cid]) then
-				npcHandler:say('Alright, we have added the amount of {' .. count[cid] .. '} gold to your {balance}. You can {withdraw} your money anytime you want to.', cid)
+				npcHandler:say('Alright, we have added the amount of {' .. count[cid] .. '} gold coins to your {balance}. You can {withdraw} your money anytime you want to.', cid)
 			else
 				npcHandler:say('You do not have enough gold.', cid)
 			end
@@ -351,10 +409,23 @@ local function creatureSayCallback(cid, type, msg)
 		return true
 --------------------------------guild bank-----------------------------------------------
 	elseif msgcontains(msg, 'withdraw') then
+			local function formatGold(amount)
+				if amount >= 100000000 then
+					return math.floor(amount / 100000000) .. "KKK"
+				elseif amount >= 10000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000 then
+					return math.floor(amount / 1000) .. "K"
+				else
+					return math.floor(amount / 1) .. "gps"
+				end
+			end
 		if string.match(msg,'%d+') then
 			count[cid] = getMoneyCount(msg)
 			if isValidMoney(count[cid]) then
-				npcHandler:say('Are you sure you wish to withdraw {' .. count[cid] .. '} gold from your {bank account}?', cid)
+				npcHandler:say('Are you sure you wish to withdraw {' .. count[cid] .. '} gold coins, Equal to: {' .. formatGold(count[cid]) .. '}, from your {bank account}?', cid)
 				npcHandler.topic[cid] = 7
 			else
 				npcHandler:say('There is not enough gold on your account.', cid)
@@ -382,7 +453,20 @@ local function creatureSayCallback(cid, type, msg)
 				if not player:withdrawMoney(count[cid]) then
 					npcHandler:say('There is not enough gold on your {bank account}.', cid)
 				else
-					npcHandler:say('Here you are, {' .. count[cid] .. '} gold. Now your balance is {'.. player:getBankBalance() ..'}. Please let me know if there is something else I can do for you.', cid)
+					local balance = player:getBankBalance()
+					local balanceText
+
+					if balance >= 100000000 then
+						balanceText = math.floor(balance / 1000000) .. "KK"
+					elseif balance >= 10000000 then
+						balanceText = math.floor(balance / 1000000) .. "KK"
+					elseif balance >= 1000000 then
+						balanceText = math.floor(balance / 1000000) .. "KK"
+					else
+						balanceText = balance .. " gps"
+					end
+
+					npcHandler:say('Here you are, {' .. count[cid] .. '} gold. Now your balance is {'.. balance ..'} gold coins. Equal to: {' .. balanceText ..'}. Please let me know if there is something else I can do for you.', cid)
 				end
 			else
 				npcHandler:say('Whoah, hold on, you have no room in your inventory to carry all those coins. I don\'t want you to drop it on the floor, maybe come back with a cart!', cid)
@@ -487,8 +571,22 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 0
 			return true
 		end
+		
+		local function formatGold(amount)
+				if amount >= 100000000 then
+					return math.floor(amount / 100000000) .. "KKK"
+				elseif amount >= 10000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000000 then
+					return math.floor(amount / 1000000) .. "KK"
+				elseif amount >= 1000 then
+					return math.floor(amount / 1000) .. "K"
+				else
+					return math.floor(amount / 1) .. "gps"
+				end
+			end
 		if isValidMoney(count[cid]) then
-			npcHandler:say('Who would you like transfer ' .. count[cid] .. ' gold to?', cid)
+			npcHandler:say('Who would you like transfer {' .. count[cid] .. '} gold coins to?, Equal to: {' .. formatGold(count[cid]) .. '}.', cid)
 			npcHandler.topic[cid] = 12
 		else
 			npcHandler:say('There is not enough gold on your account.', cid)
@@ -519,7 +617,7 @@ local function creatureSayCallback(cid, type, msg)
 			if not player:transferMoneyTo(transfer[cid], count[cid]) then
 				npcHandler:say('You cannot transfer money to this account.', cid)
 			else
-				npcHandler:say('Very well. You have transferred ' .. count[cid] .. ' gold to ' .. transfer[cid] ..'.', cid)
+				npcHandler:say('Very well. You have transferred {' .. count[cid] .. '} gold coins to ' .. transfer[cid] ..'.', cid)
 				transfer[cid] = nil
 			end
 		elseif msgcontains(msg, 'no') then
@@ -541,8 +639,8 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif npcHandler.topic[cid] == 15 then
 		if msgcontains(msg, 'yes') then
-			if player:removeItem(2148, count[cid] * 100) then
-				player:addItem(2152, count[cid])
+			if player:removeItem(3031, count[cid] * 100) then
+				player:addItem(3035, count[cid])
 				npcHandler:say('Here you are.', cid)
 			else
 				npcHandler:say('Sorry, you do not have enough gold coins.', cid)
@@ -556,7 +654,7 @@ local function creatureSayCallback(cid, type, msg)
 		npcHandler.topic[cid] = 16
 	elseif npcHandler.topic[cid] == 16 then
 		if msgcontains(msg, 'gold') then
-			npcHandler:say('How many platinum coins would you like to change into gold?', cid)
+			npcHandler:say('How many platinum coins would you like to change into gold coins?', cid)
 			npcHandler.topic[cid] = 17
 		elseif msgcontains(msg, 'crystal') then
 			npcHandler:say('How many crystal coins would you like to get?', cid)
@@ -576,8 +674,8 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif npcHandler.topic[cid] == 18 then
 		if msgcontains(msg, 'yes') then
-			if player:removeItem(2152, count[cid]) then
-				player:addItem(2148, count[cid] * 100)
+			if player:removeItem(3035, count[cid]) then
+				player:addItem(3031, count[cid] * 100)
 				npcHandler:say('Here you are.', cid)
 			else
 				npcHandler:say('Sorry, you do not have enough platinum coins.', cid)
@@ -597,8 +695,8 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif npcHandler.topic[cid] == 20 then
 		if msgcontains(msg, 'yes') then
-			if player:removeItem(2152, count[cid] * 100) then
-				player:addItem(2160, count[cid])
+			if player:removeItem(3035, count[cid] * 100) then
+				player:addItem(3043, count[cid])
 				npcHandler:say('Here you are.', cid)
 			else
 				npcHandler:say('Sorry, you do not have enough platinum coins.', cid)
@@ -621,8 +719,8 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif npcHandler.topic[cid] == 22 then
 		if msgcontains(msg, 'yes') then
-			if player:removeItem(2160, count[cid])  then
-				player:addItem(2152, count[cid] * 100)
+			if player:removeItem(3043, count[cid])  then
+				player:addItem(3035, count[cid] * 100)
 				npcHandler:say('Here you are.', cid)
 			else
 				npcHandler:say('Sorry, you do not have enough crystal coins.', cid)

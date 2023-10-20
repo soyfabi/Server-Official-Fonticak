@@ -5176,11 +5176,11 @@
 	</item>
 	<item id="3145" name="trashed wooden bars">
 		<attribute key="duration" value="120"/>
-		<attribute key="decayTo" value="2295"/>
+		<attribute key="decayTo" value="2296"/>
 	</item>
 	<item id="3146" name="trashed wooden bars">
 		<attribute key="duration" value="120"/>
-		<attribute key="decayTo" value="2296"/>
+		<attribute key="decayTo" value="2295"/>
 	</item>
 	<item id="3147" article="a" name="blank rune">
 		<attribute key="type" value="rune"/>

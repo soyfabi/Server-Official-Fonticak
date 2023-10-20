@@ -6,7 +6,6 @@ function onCreateWildGrowth(creature, tile)
 		wildGrowth = ITEM_WILDGROWTH
 	end
 	local item = Game.createItem(wildGrowth, 1, tile)
-	item:setDuration(30, 60)
 end
 
 local combat = Combat()

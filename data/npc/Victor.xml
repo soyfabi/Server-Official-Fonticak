@@ -6,8 +6,10 @@
   <parameters>
 		<parameter key="module_shop" value="1" />
 		<parameter key="shop_buyable" value="
-			stone,24173,5000;
-			rusty,24181,5000
+			great health potion,239,300;
+			health potion,266,75;
+			strong health potion,236,150;
+			ultimate health potion,7643,500
 			" />
 
 	</parameters>

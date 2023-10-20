@@ -1,5 +1,5 @@
 local function revertKeeperstorage()
-	Game.setStorageValue(Storage.WrathoftheEmperor.Mission03, 0)
+	setGlobalStorageValue(Storage.WrathoftheEmperor.Mission03, 0)
 end
 
 local wrathEmperorMiss3Keeper = Action()

@@ -10,7 +10,7 @@ function wrathEmperorMiss10Message.onUse(player, item, fromPosition, target, toP
 	if boss[target.uid] and target.itemid == 11427 then
 		target:transform(10797)
 		Game.createMonster(boss[target.uid], {x = toPosition.x + 4, y = toPosition.y, z = toPosition.z})
-		Game.setStorageValue(target.uid - 4, 1)
+		setGlobalStorageValue(target.uid - 4, 1)
 	elseif target.itemid == 11361 then
 		if toPosition.x > 33034 and toPosition.x < 33071 and
 			toPosition.y > 31079 and toPosition.y < 31102 then

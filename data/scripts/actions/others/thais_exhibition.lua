@@ -297,7 +297,7 @@ end
 local thaisExhibition = Action()
 function thaisExhibition.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	if item.itemid == 2773 then
-		return false
+		return true
 	end
 
 	local settings = ThaisExhibitionConfig[item.uid]

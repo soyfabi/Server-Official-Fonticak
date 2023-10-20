@@ -306,7 +306,6 @@ local taskboard2 = Action()
 
 function taskboard2.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
-	if Position(32353, 32213, 7) == item:getPosition() then
 	local currentDay = os.date("%A")
     local taskList = task_daily[currentDay]
 	
@@ -368,10 +367,9 @@ function taskboard2.onUse(player, item, fromPosition, target, toPosition, isHotk
 		  
 		message = message .. "\n"
 	end	
-		player:popupFYI(message)
-	end
+	player:popupFYI(message)
 
 	return true
 end
-taskboard2:id(42549)
+taskboard2:id(42549, 42550)
 taskboard2:register()

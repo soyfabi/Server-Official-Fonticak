@@ -9,13 +9,7 @@ function Machete.onSay(player, words, param)
         return false
     end
 	
-	local tile = Tile(player:getPosition())
-	if not tile then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, 'Invalid tile position.')
-		return false
-	end
-	
-	local itemType = ItemType(2420)
+	local itemType = ItemType(3308)
 	local itemWeight = itemType:getWeight()
 	local playerCap = player:getFreeCapacity()
 	if playerCap < itemWeight then
@@ -31,15 +25,14 @@ function Machete.onSay(player, words, param)
 		return false
 	end
 	
-	
-	if player:removeMoney(Settings.MacheteValue) then
+	if player:removeMoney(1000) then
 		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
 		player:say("You bought an Machete.")
-		player:addItem(2420, 1)	
+		player:addItem(3308, 1)	
 		exhaust[playerId] = currentTime + exhaustTime
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-		player:sendCancelMessage("You dont have "..Settings.MacheteValue.." Golds.")
+		player:sendCancelMessage("You dont have 10K gold coins. Cost: [10K = 1 CC].")
 	end
 	return false
 end
@@ -56,12 +49,6 @@ function Pick.onSay(player, words, param)
         player:sendCancelMessage("The Pick is still on cooldown. (0." .. exhaust[playerId] - currentTime .. "s).")
         return false
     end
-	
-	local tile = Tile(player:getPosition())
-	if not tile then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, 'Invalid tile position.')
-		return false
-	end
 	
 	local itemType = ItemType(3456)
 	local itemWeight = itemType:getWeight()
@@ -87,7 +74,7 @@ function Pick.onSay(player, words, param)
 		exhaust[playerId] = currentTime + exhaustTime
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-		player:sendCancelMessage("You dont have 1000 gold coins.")
+		player:sendCancelMessage("You dont have 10K gold coins. Cost: [10K = 1 CC].")
 	end
 	return false
 end
@@ -105,13 +92,7 @@ function Shovel.onSay(player, words, param)
         return false
     end
 	
-	local tile = Tile(player:getPosition())
-	if not tile then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, 'Invalid tile position.')
-		return false
-	end
-	
-	local itemType = ItemType(2554)
+	local itemType = ItemType(3457)
 	local itemWeight = itemType:getWeight()
 	local playerCap = player:getFreeCapacity()
 	if playerCap < itemWeight then
@@ -128,14 +109,14 @@ function Shovel.onSay(player, words, param)
 	end
 	
 	
-	if player:removeMoney(Settings.ShovelValue) then
+	if player:removeMoney(1000) then
 		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
 		player:say("You bought an Shovel.")
-		player:addItem(2554, 1)	
+		player:addItem(3457, 1)	
 		exhaust[playerId] = currentTime + exhaustTime
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
-		player:sendCancelMessage("You dont have "..Settings.ShovelValue.." Golds.")
+		player:sendCancelMessage("You dont have 10K gold coins. Cost: [10K = 1 CC].")
 	end
 	return false
 end

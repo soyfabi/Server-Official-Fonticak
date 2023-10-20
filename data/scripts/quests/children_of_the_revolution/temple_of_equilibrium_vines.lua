@@ -1,6 +1,17 @@
 local templeOfEquilibriumVines = Action()
 
+local exhaust = {}
+local exhaustTime = 4
+
 function templeOfEquilibriumVines.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	
+	local playerId = player:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, now wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	if item.actionid == 12141 then
 		local destination = Position(33187, 31206, 7)
 		player:teleportTo(destination)
@@ -11,6 +22,7 @@ function templeOfEquilibriumVines.onUse(player, item, fromPosition, target, toPo
 		player:say("The vines are too slippery down here to climb them.", TALKTYPE_MONSTER_SAY)
 		fromPosition:sendMagicEffect(CONST_ME_SMALLPLANTS)
 	end
+	exhaust[playerId] = currentTime + exhaustTime
 	return true
 end
 

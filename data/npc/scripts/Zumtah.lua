@@ -20,11 +20,13 @@ local function creatureSayCallback(cid, type, msg)
 	if msgcontains(msg, "exit") then
 		if player:getStorageValue(Storage.WrathoftheEmperor.ZumtahStatus) ~= 1 then
 			if npcHandler.topic[cid] < 1 then
-				npcHandler:say("Oh of course, may I show you around a bit before? You want to go straight to the exit? Would you please follow me. Oh right, I am terribly sorry but THERE IS NONE. Will you finally give it up please?", cid)
+				npcHandler:say("You are searching for the way out? Do you want to go home? Are you homesick, nostalgic, allergic? I am sorry. You will stay. Muhahahaha. Haha. Are you giving up then?", cid)
 				npcHandler.topic[cid] = 1
 			elseif npcHandler.topic[cid] == 3 then
+				npcHandler:say("A what? I don't even know what you're talking about, human. If you aren't just giving up - will you kindly change the topic please?", cid)
 				npcHandler.topic[cid] = 4
 			elseif npcHandler.topic[cid] == 6 then
+				npcHandler:say("I'm not sure, there is an entry, though. Muhahaha. And isn't that enough after all?", cid)
 				npcHandler.topic[cid] = 7
 			elseif npcHandler.topic[cid] == 10 then
 				npcHandler:say("Oh, you mean - if I have ever been out of here in those 278 years? Well, I - I can't remember. No, I can't remember. Sorry.", cid)
@@ -33,16 +35,18 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler:say("No, I really can't remember. I enjoyed my stay here so much that I forgot how it looks outside of this hole. Outside. The air, the sky, the light. Oh well... well.", cid)
 				npcHandler.topic[cid] = 12
 			elseif npcHandler.topic[cid] == 12 then
-				npcHandler:say("Oh yes, yes. I... I never really thought about how you creatures feel in here I guess. I... just watched all these beings die here. ...", cid)
+				npcHandler:say({"Oh yes, yes. I... I never really thought about how you creatures feel in here I guess. I... just watched all these beings die here. ...",
+				"I... enjoyed this torture so much that I forgot time and everything around me. ...",
+				"I feel - sorry. Yes, sorry."}, cid)
 				npcHandler.topic[cid] = 13
 			elseif npcHandler.topic[cid] == 13 then
-				npcHandler:say("Oh, excuse me of course, you... wanted to go. Like all... the others. I am sorry, so sorry. You... you can leave. Yes. You can go. You are free. I shall stay here and help every poor soul which ever gets thrown in here from this day onward. ...", cid)
+				npcHandler:say({"Oh, excuse me of course, you... wanted to go. Like all... the others. I am sorry, so sorry. You... you can leave. Yes. You can go. You are free. I shall stay here and help every poor soul which ever gets thrown in here from this day onward. ...",
+				"Yes, I will redeem myself. Maybe in another 278 years. ...",
+				"If you want to go, just ask for an {exit} and I will transform you into a creature small enough to fit through that hole over there."}, cid)
 				npcHandler.topic[cid] = 14
 			elseif npcHandler.topic[cid] == 14 then
-				npcHandler:say({
-					"Alright, as I said you are free now. There will not be an outside for the next three centuries, but you - go. ...",
-					"Oh and I recovered the strange crate you where hiding in, it will wait for you at the exit since you can't carry it as... a beetle, muhaha. Yes, you shall now crawl through the passage as a beetle. There you go."
-				}, cid)
+				npcHandler:say({"Alright, as I said you are free now. There will not be an outside for the next three centuries, but you - go. ...",
+				"Oh and I recovered the strange crate you where hiding in, it will wait for you at the exit since you can't carry it as... a beetle, muhaha. Yes, you shall now crawl through the passage as a beetle. There you go."}, cid)
 				npcHandler.topic[cid] = 0
 				player:setStorageValue(Storage.WrathoftheEmperor.ZumtahStatus, 1)
 				player:setStorageValue(Storage.WrathoftheEmperor.PrisonReleaseStatus, 1)
@@ -55,18 +59,21 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	elseif msgcontains(msg, "no") then
 		if npcHandler.topic[cid] == 1 then
-			npcHandler:say("You are starting to get on my nerves. Is this the only topic you know?", cid)
+			npcHandler:say("I've already told you that you can't get out. What's the problem? Do you even see an exit?", cid)
 			npcHandler.topic[cid] = 2
 		elseif npcHandler.topic[cid] == 4 then
+			npcHandler:say("You are starting to get on my nerves. Is this the only topic you know?", cid)
 			npcHandler.topic[cid] = 5
 		elseif npcHandler.topic[cid] == 7 then
+			npcHandler:say("But there is no escape, I said NO. You've already asked several times and my answer will stay the same. What is this? Are you trying to test me?", cid)
 			npcHandler.topic[cid] = 8
 		end
 	elseif msgcontains(msg, "yes") then
 		if npcHandler.topic[cid] == 2 then
-			npcHandler:say("Pesky, persistent human.", cid)
+			npcHandler:say("Muhahaha. Where? I can only see a dark cave with nothing than bones and a djinn in it. You mean that small hole there? Muhahaha.", cid)
 			npcHandler.topic[cid] = 3
 		elseif npcHandler.topic[cid] == 5 then
+			npcHandler:say("Pesky, persistent human.", cid)
 			npcHandler.topic[cid] = 6
 		elseif npcHandler.topic[cid] == 8 then
 			npcHandler:say("Muhahaha. Then I will give you a test. How many years do you think have I been here? {89}, {164} or {278}?", cid)

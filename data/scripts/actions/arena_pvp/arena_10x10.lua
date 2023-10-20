@@ -43,6 +43,6 @@ function arena10x10.onUse(player, item, fromPosition, target, toPosition, monste
 	return true
 end
 
-arena10x10:id(24181)
+arena10x10:id(22076)
 arena10x10:register()
 

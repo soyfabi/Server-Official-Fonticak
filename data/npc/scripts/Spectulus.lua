@@ -624,7 +624,7 @@ local function creatureSayCallback(cid, type, msg)
 			},
 			cid)
 		npcHandler.topic[cid] = 25
-	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 25 then
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 25 and player:getStorageValue(Storage.TheSecretLibrary.LiquidDeath) < 1 then
 		if npcHandler.topic[cid] == 25 then
 			npcHandler:say(
 				{
@@ -636,6 +636,23 @@ local function creatureSayCallback(cid, type, msg)
 			player:setStorageValue(Storage.TheSecretLibrary.LiquidDeath, 1)
 			npcHandler.topic[cid] = 0
 		end
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 25 and player:getStorageValue(Storage.TheSecretLibrary.LiquidDeath) == 2 then
+		npcHandler:say(
+			{
+				"Excellent, excellent. The rumours pointed to the north of Tiquanda, a \z
+				sunken temple probably half drowned in water. Return to me if you find \z
+				anything interesting!"
+			},
+		cid)
+		npcHandler.topic[cid] = 0
+	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 25 and player:getStorageValue(Storage.TheSecretLibrary.LiquidDeath) == 12 then
+		npcHandler:say(
+			{
+				"Excellent, excellent. Go to the Thais museum and talk to Gareth."
+			},
+		cid)
+		player:setStorageValue(Storage.TheSecretLibrary.LiquidDeath, 13)
+		npcHandler.topic[cid] = 0
 	end
 	
 	return true

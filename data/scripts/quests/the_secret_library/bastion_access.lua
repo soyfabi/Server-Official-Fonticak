@@ -9,13 +9,14 @@ function bastionAccess.onUse(player, item, fromPosition, target, toPosition, isH
 	local currentTime = os.date("%H:%M") -- get current server time in format HH:MM
 	if currentTime >= "20:00" and currentTime <= "22:59" then
 		if target:getId() == 27836 and player:getStorageValue(Storage.TheSecretLibrary.FalconBastionAccess) == 1 then
-		player:teleportTo(Position{x = 33357, y = 31308, z = 4})
-		player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-	else
-		player:say("You need to complete access to falcon bastion.")
+			player:teleportTo(Position{x = 33357, y = 31308, z = 4})
+			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You mix the chalk with a drop of your blood and a bit of water and renew the symbol on the floor.")
+		else
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Nothing happens. Maybe something more is required here.")
 		end
 	else
-		player:say("You can only cross when it is night.")
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You can only cross when it is night.")
 	end
 	return true
 end

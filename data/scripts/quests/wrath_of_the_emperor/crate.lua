@@ -268,19 +268,19 @@ function crate.onStepIn(creature, item, position, fromPosition, toPosition)
 			end
 		elseif j >= 176 and j <= 183 then
 			if player:getPosition() == Position(positions[j]) then
-				if Game.getStorageValue(GlobalStorage.WrathOfTheEmperor.Light01) ~= 1 then
+				if getGlobalStorageValue(GlobalStorage.WrathOfTheEmperor.Light01) ~= 1 then
 					catchPlayer(player)
 				end
 			end
 		elseif j >= 184 and j <= 197 then
 			if player:getPosition() == Position(positions[j]) then
-				if Game.getStorageValue(GlobalStorage.WrathOfTheEmperor.Light02) ~= 1 then
+				if getGlobalStorageValue(GlobalStorage.WrathOfTheEmperor.Light02) ~= 1 then
 					catchPlayer(player)
 				end
 			end
 		elseif j >= 198 and j <= 204 then
 			if player:getPosition() == Position(positions[j]) then
-				if Game.getStorageValue(GlobalStorage.WrathOfTheEmperor.Light03) ~= 1 then
+				if getGlobalStorageValue(GlobalStorage.WrathOfTheEmperor.Light03) ~= 1 then
 					catchPlayer(player)
 				end
 			end

@@ -1,8 +1,8 @@
 local devotion_kill = CreatureEvent("devotion_kill")
 
 local bossPoints = {
-    ["Dog"] = 10,
-    ["Cat"] = 20,
+    ["Scarlett Etzel"] = 10,
+    ["Grand Master Oberon"] = 20,
 }
 
 function devotion_kill.onKill(player, target)
@@ -11,13 +11,18 @@ function devotion_kill.onKill(player, target)
     end
 	
 	local targetName = target:getName()
-	
 	local devotion = bossPoints[targetName]
 	
-	if devotion then
-        player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "For killing the Boss " .. targetName .. " you were awarded " .. devotion .. " Devotion Points.")
-        player:addDevotion(devotion)
-    end
+	local damageMap = target:getDamageMap()
+	for key, value in pairs(damageMap) do
+		local attackerPlayer = Player(key)
+		if attackerPlayer then
+			if devotion then
+				attackerPlayer:sendTextMessage(MESSAGE_EVENT_ADVANCE, "For killing the Boss " .. targetName .. " you were awarded " .. devotion .. " Devotion Points.")
+				attackerPlayer:addDevotion(devotion)
+			end
+		end
+	end
 	
 	return true
 end

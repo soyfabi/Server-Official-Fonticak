@@ -9,7 +9,7 @@ function childrenZalamon.onUse(player, item, fromPosition, target, toPosition, i
 			item:transform(item.itemid + 1)
 		end
 	else
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "The door seems to be sealed against unwanted intruders.")
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to complete The New Frontier mission up to mission 8.")
 	end
 	return true
 end

@@ -48,7 +48,7 @@ function wrathEmperorMiss2FirstContact.onUse(player, item, fromPosition, target,
 		end
 		for i = 1, 6 do
 			Tile(waterpos[i]):getItemById(10494):transform(10113)
-			addEvent(revertWater, 60 * 1000, waterpos[i])
+			addEvent(revertWater, 3000, waterpos[i])
 		end
 	end
 	return true

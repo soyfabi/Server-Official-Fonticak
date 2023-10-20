@@ -69,7 +69,7 @@ local player = Player(cid)
 		else return false
 		end
 	elseif msgcontains(msg, "Venore") then
-		if player:getStorageValue(Storage.SearoutesAroundYalahar.Venore) ~= 1 and player:getStorageValue(Storage.SearoutesAroundYalahar.TownsCounter) < 5 then
+		if player:getStorageValue(Storage.SearoutesAroundYalahar.Venore) < 1 then  --and player:getStorageValue(Storage.SearoutesAroundYalahar.TownsCounter) < 5 then
 			npcHandler:say({
 				"Another port full of smelly humans, fittingly located in a swamp. Or did you find something interesting there?",
 			}, cid)
@@ -155,7 +155,7 @@ local player = Player(cid)
 			player:setStorageValue(Storage.SearoutesAroundYalahar.Darashia, 1)
 			player:setStorageValue(Storage.SearoutesAroundYalahar.TownsCounter, player:getStorageValue(Storage.SearoutesAroundYalahar.TownsCounter) + 1)
 			npcHandler.topic[cid] = 0
-		elseif npcHandler.topic[cid] == 3 and player:removeItem(9675,1) then
+		elseif npcHandler.topic[cid] == 3 then --and player:removeItem(9675,1) then
 			npcHandler:say("Some special spice might be of value indeed.", cid)
 			player:setStorageValue(Storage.SearoutesAroundYalahar.Venore, 1)
 			player:setStorageValue(Storage.SearoutesAroundYalahar.TownsCounter, player:getStorageValue(Storage.SearoutesAroundYalahar.TownsCounter) + 1)

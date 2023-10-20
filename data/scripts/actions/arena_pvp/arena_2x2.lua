@@ -38,6 +38,6 @@ function arena2x2.onUse(player, item, fromPosition, target, toPosition, monster,
 	return true
 end
 
-arena2x2:id(24173)
+arena2x2:id(22077)
 arena2x2:register()
 
