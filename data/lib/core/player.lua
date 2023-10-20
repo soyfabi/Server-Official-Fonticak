@@ -328,20 +328,25 @@ function Player.getQuests(self)
 end
 
 function Player.sendQuestLog(self)
-	local msg = NetworkMessage()
-	msg:addByte(0xF0)
-	local quests = self:getQuests()
-	msg:addU16(#quests)
+    local msg = NetworkMessage()
+    msg:addByte(0xF0)
+    local quests = self:getQuests()
+    msg:addU16(#quests)
 
-	for _, quest in pairs(quests) do
-		msg:addU16(quest.id)
-		msg:addString(quest.name)
-		msg:addByte(quest:isCompleted(self))
-	end
+    for _, quest in pairs(quests) do
+        local questName = quest.name
+        if quest:isCompleted(self) then
+            questName = questName .. " (Completed)"
+        end
 
-	msg:sendToPlayer(self)
-	msg:delete()
-	return true
+        msg:addU16(quest.id)
+        msg:addString(questName)
+        msg:addByte(quest:isCompleted(self))
+    end
+
+    msg:sendToPlayer(self)
+    msg:delete()
+    return true
 end
 
 function Player.sendQuestLine(self, quest)
