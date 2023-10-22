@@ -426,8 +426,8 @@ local function creatureSayCallback(cid, type, msg)
 	elseif npcHandler.topic[cid] == 18 then
 		if msgcontains(msg, 'yes') then
 			npcHandler:say('Friend of the ape people! Take my gift and become me apprentice! Here is shaman clothing for you!', cid)
-			player:addOutfit(154)
-			player:addOutfit(158)
+			player:addOutfitAddon(154, 3)
+			player:addOutfitAddon(158, 3)
 			player:setStorageValue(Storage.TheApeCity.ShamanOutfit, 1)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 		elseif msgcontains(msg, 'no') then

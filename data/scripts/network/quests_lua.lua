@@ -1307,7 +1307,7 @@ Game.createQuest("The New Frontier", {
             name = "Mission 02: From Kazordoon With Love",
             storageId = Storage.Quest.U8_54.TheNewFrontier.Mission02[1],
             startValue = 1,
-            endValue = 4,
+            endValue = 3,
             ignoreEndValue = false,
             description = function(player)
                 local descriptions = {
@@ -1316,7 +1316,8 @@ Game.createQuest("The New Frontier", {
 					[2] = "Prepare the three trees which Melfar marked on your map with the beaver bait. \z
 						Once you've marked all three return to Melfar and tell him about your success.",
 					[3] = "Melfar has finally promised to send more miners and wood. Report this to Ongulf in Farmine.",
-					[4] = "You have reported that Melfar will send more miners and wood for Farmine."
+					[4] = "You have reported that Melfar will send more miners and wood for Farmine.",
+					[5] = "Report this to Melfar."
 				}
                 return descriptions[player:getStorageValue(Storage.Quest.U8_54.TheNewFrontier.Mission02[1])]
             end
@@ -2013,6 +2014,842 @@ Game.createQuest("Children of the Revolution", {
 					[4] = "Children of the Revolution has been completed, now ask for another quest to start Wrath of the Emperor."
 				}
                 return descriptions[player:getStorageValue(Storage.ChildrenoftheRevolution.Mission05)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("In Service of Yalahar", {
+    storageId = Storage.InServiceofYalahar.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Mission 01: Something Rotten",
+            storageId = Storage.InServiceofYalahar.Mission01,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Palimuth asked you to help with some sewer malfunctions. \z
+							You will need a Crowbar, there are 4 places where you need to go marked with an X on your map.",
+					[2] = "You cleaned 1 pipe of 4 from the garbage.",
+					[3] = "You cleaned 2 pipes of 4 from the garbage.",
+					[4] = "You cleaned 3 pipes of 4 from the garbage.",
+					[5] = "You cleaned 4 pipes of 4 from the garbage. Go back to Palimuth and report your mission",
+					[6] = "You cleaned all pipes from the garbage! Go back to Palimuth and ask for mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission01)]
+            end
+        },
+		{
+            name = "Mission 02: Watching the Watchmen",
+            storageId = Storage.InServiceofYalahar.Mission02,
+            startValue = 1,
+            endValue = 8,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have to find all 7 guards and give a report to them. \z
+						You should start by Foreign Quarter or by Trade Quarter and follow the order of the path..",
+					[2] = "You reported to 1 of 7 guards",
+					[3] = "You reported to 2 of 7 guards",
+					[4] = "You reported to 3 of 7 guards",
+					[5] = "You reported to 4 of 7 guards",
+					[6] = "You reported to 5 of 7 guards",
+					[7] = "You reported to 6 of 7 guards",
+					[8] = "You reported to 7 of 7 guards! Go back to Palimuth and ask for mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission02)]
+            end
+        },
+		{
+            name = "Mission 03: Death to the Deathbringer",
+            storageId = Storage.InServiceofYalahar.Mission03,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Get the notes in Palimuths room and read them. Talk to Palimuth again when you've read the notes.",
+					[2] = "Talk to Azerus the Yalahari in the city centre to get your next mission.",
+					[3] = "Get the notes behind the Yalahari and read them. \z
+						Talk to Azerus again and ask him for mission when you've read the notes.",
+					[4] = "Ask Palimuth for mission.",
+					[5] = "First you will need to kill the three plague bearers and then get The Alchemists' Formulas. \z
+							When this have been done head back to either Palimuth (good side) or Yalahari (Azerus) (bad side).",
+					[6] = "Ask Azerus the Yalahari for a mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission03)]
+            end
+        },
+		{
+            name = "Mission 04: Good to be Kingpin",
+            storageId = Storage.InServiceofYalahar.Mission04,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Ask Palimuth for mission.",
+					[2] = "For this mission you are asked to go to the Trade Quarter and negotiate or threaten Mr. West. \z
+						Once again you will gain access to the mechanism although if you \z
+						choose to help Palimuth you should go through the sewers.",
+					[3] = "You decided to help Palimuth, report him your mission.",
+					[4] = "You decided to help Azerus, report him your mission. ",
+					[5] = "Get back to Azerus and report him your mission.",
+					[6] = "Ask Azerus for a mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission04)]
+            end
+        },
+		{
+            name = "Mission 05: Food or Fight",
+            storageId = Storage.InServiceofYalahar.Mission05,
+            startValue = 1,
+            endValue = 8,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Ask Palimuth for mission.",
+					[2] = "On this mission you are asked to find a druid by the name of Tamerin, on the Arena Quarter. \z
+						You now have permission to use the gates mechanism.",
+					[3] = "The first is to bring Tamerin a flask of Animal Cure, \z
+						you can buy this from Siflind on Nibelor (northeast of Svargrond).",
+					[4] = "Now you have to kill Morik the Gladiator and bring his helmet to Tamerin as proof.",
+					[5] = "Report back to Tamerin as he will listen to your request and you can now make your choice: \z
+						Cattle for Palimuth (good side), Warbeasts for Yalahari (Azerus) (bad side). \z
+						Then report the one you decided your mission.",
+					[6] = "You decided to help Palimuth, report him your mission.",
+					[7] = "You decided to help Azerus, report him your mission.",
+					[8] = "Ask Azerus for a mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission05)]
+            end
+        },
+		{
+            name = "Mission 06: Frightening Fuel",
+            storageId = Storage.InServiceofYalahar.Mission06,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Ask Palimuth for mission.",
+					[2] = "Yalahari (Azerus) orders you to travel to the Cemetery Quarter and find the Strange Carving. \z
+						He gives you a Ghost Charm and tells you to charge it with the tormented souls of the ghosts there \z
+						to be used as an energy source. Palimuth wants the Charged Ghost Charm in order to free those souls. \z
+						You can new use the Cemetery Quarter mechanism now. Go to the big building in the Cemetery Quarter and \z
+						use the Ghost Charm on the Strange Carving at the back of the room.",
+					[3] = "Good side: Go to Palimuth, ask him about your mission, and hand in the charm. Bad side: \z
+						Ask about your mission to Yalahari (Azerus) and give it back.",
+					[4] = "Get back to Azerus and report him your mission.",
+					[5] = "Ask Azerus for a mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission06)]
+            end
+        },
+		{
+            name = "Mission 07: A Fishy Mission",
+            storageId = Storage.InServiceofYalahar.Mission07,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Ask Palimuth for mission.",
+					[2] = "Bad side: Yalahari (Azerus) will send you for a new mission to go to the Sunken Quarter and kill the \z
+						Quara Leaders, Inky, Splasher and Sharptooth. Good side: Rather than fighting any Quara leaders Palimuth \z
+						will instead send you to find the cause for the Quaras aggressive behavior. Find Maritima and talk to her \z
+						about the Quara and she will explain what their problem is.",
+					[3] = "Get back to Palimuth and report him your mission.",
+					[4] = "You killed the Quarabosses. Ask Azerus for a mission.",
+					[5] = "Ask Azerus for a mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission07)]
+            end
+        },
+		{
+            name = "Mission 08: Dangerous Machinations",
+            storageId = Storage.InServiceofYalahar.Mission08,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Ask Palimuth for mission.",
+					[2] = "Bad side: For this mission the Yalahari requests you go to the Factory Quarter and \z
+						find a pattern crystal, which will be used to supply weapons to help take control of the city. Good side: \z
+						Palimuth will send you there to use the crystal to supply food for the city.",
+					[3] = "Get back to Azerus and report him your mission.",
+					[4] = "Ask Azerus for a mission."
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission08)]
+            end
+        },
+		{
+            name = "Mission 09: Decision",
+            storageId = Storage.InServiceofYalahar.Mission09,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You now need to decide between supporting Palimuth or the Yalahari\'s goal. \z
+						To choose Palimuth\'s good side go to him, and simply ask him for a mission mission. \z
+						Likewise, to join the Yalahari (Azerus) (bad side) go to him and say the same.",
+					[2] = "You already decided!"
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission09)]
+            end
+        },
+		{
+            name = "Mission 10: The Final Battle",
+            storageId = Storage.InServiceofYalahar.Mission10,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Palimuth told you that a circle of Yalahari is planning some kind of ritual. They plan to create \z
+						a portal for some powerful demons and to unleash them in the city to 'purge' it once and for all.",
+					[2] = "The entrance to their inner sanctum has been opened for you. \z
+						Be prepared for a HARD battle! Better gather some friends to assist you.",
+					[3] = "Report back to whichever principal you have chosen to help and you will receive Yalaharian Outfits.",
+					[4] = "You got the access to the reward room. \z
+						Choose carefully which reward you pick as you can only take one item.",
+					[5] = "You have completed the Quest!"
+				}
+                return descriptions[player:getStorageValue(Storage.InServiceofYalahar.Mission10)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("The Explorer Society", {
+    storageId = Storage.ExplorerSociety.QuestLine,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Joining the Explorers",
+            storageId = Storage.ExplorerSociety.JoiningTheExplorers,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "The mission should be simple to fulfil. You have to seek out Uzgod in \z
+						Kazordoon and get the pickaxe for us. Or just find dwarven pickaxe on your own...",
+					[2] = "Get into Dwacatra and get Uzgod's family brooch.",
+					[3] = "Bring family brooch back to Uzgod",
+					[4] = "Bring the pickaxe back to the Explorer Society representative.",
+					[5] = "You have completed Joining the Explorers"
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.JoiningTheExplorers)]
+            end
+        },
+		{
+            name = "The Ice Delivery",
+            storageId = Storage.ExplorerSociety.TheIceDelivery,
+            startValue = 6,
+            endValue = 8,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [6] = "Take this ice pick and use it on a block of ice in the caves beneath Folda. \z
+						Get some ice and bring it here as fast as you can. \z
+						If the ice melt away, report on your ice delivery mission anyway.",
+					[7] = "You have 10 minutes before the icicle defrosts. Run back to the Explorer Society representative!",
+					[8] = "You have completed The Ice Delivery."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheIceDelivery)]
+            end
+        },
+		{
+            name = "The Butterfly Hunt",
+            storageId = Storage.ExplorerSociety.TheButterflyHunt,
+            startValue = 9,
+            endValue = 17,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [9] = "This preparation kit will allow you to collect a PURPLE butterfly you have killed. \z
+						Just use it on the fresh corpse of a PURPLE butterfly.",
+					[10] = "Return the prepared butterfly to Explorer Society representative.",
+					[11] = "Ask for another butterfly hunt.",
+					[12] = "This preparation kit will allow you to collect a BLUE butterfly you have killed. \z
+						Just use it on the fresh corpse of a BLUE butterfly.",
+					[13] = "Return the prepared butterfly to Explorer Society representative.",
+					[14] = "Ask for another butterfly hunt.",
+					[15] = "This preparation kit will allow you to collect a RED butterfly you have killed. \z
+						Just use it on the fresh corpse of a RED butterfly.",
+					[16] = "Return the prepared butterfly to Explorer Society representative.",
+					[17] = "You have completed The Butterfly Hunt."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheButterflyHunt)]
+            end
+        },
+		{
+            name = "The Plant Collection",
+            storageId = Storage.ExplorerSociety.ThePlantCollection,
+            startValue = 18,
+            endValue = 26,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [18] = "Take botanist\'s container. Use it on a jungle bells plant to collect a sample.",
+					[19] = "Report about your plant collection to Explorer Society representative.",
+					[20] = "Ask for plant collection when you are ready to continue.",
+					[21] = "Use botanist\'s container on a witches cauldron to collect a sample.",
+					[22] = "Report about your plant collection to Explorer Society representative.",
+					[23] = "Ask for plant collection when you are ready to continue.",
+					[24] = "Use this botanist\'s container on a giant jungle rose to obtain a sample.",
+					[25] = "Report about your plant collection to Explorer Society representative.",
+					[26] = "You have completed The Plant Collection."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.ThePlantCollection)]
+            end
+        },
+		{
+            name = "The Lizard Urn",
+            storageId = Storage.ExplorerSociety.TheLizardUrn,
+            startValue = 27,
+            endValue = 29,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [27] = "In the south-east of Tiquanda is a small settlement of the lizard people. \z
+						Beneath the newly constructed temple there, the lizards hide the urn. \z
+						Acquire an ancient urn which is some sort of relic to the lizard people of Tiquanda.",
+					[28] = "Bring the Funeral Urn back to the Explorer Society.",
+					[29] = "You have completed The Lizard Urn."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheLizardUrn)]
+            end
+        },
+		{
+            name = "The Bonelord Secret",
+            storageId = Storage.ExplorerSociety.TheBonelordSecret,
+            startValue = 30,
+            endValue = 32,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [30] = "Travel to the city of Darashia and then head north-east for the pyramid. \z
+						If any documents are left, you probably find them in the catacombs beneath.",
+					[31] = "Bring the Wrinkled Parchment back to the Explorer Society representative.",
+					[32] = "You have completed The Bonelord Secret."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheBonelordSecret)]
+            end
+        },
+		{
+            name = "The Orc Powder",
+            storageId = Storage.ExplorerSociety.TheOrcPowder,
+            startValue = 33,
+            endValue = 35,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [33] = "As far as we can tell, the orcs maintain some sort of training facility \z
+						in some hill in the north-east of their city. \z
+						There you should find lots of their war wolves and hopefully also some of the orcish powder.",
+					[34] = "Bring the Strange Powder to the Explorer Society representative to complete your mission.",
+					[35] = "You have completed The Orc Powder."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheOrcPowder)]
+            end
+        },
+		{
+            name = "The Elven Poetry",
+            storageId = Storage.ExplorerSociety.TheElvenPoetry,
+            startValue = 36,
+            endValue = 38,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [36] = "This mission is easy but nonetheless vital. Travel Hellgate beneath Ab'Dendriel and get the book.",
+					[37] = "Bring back an elven poetry book to the Explorer Society representative.",
+					[38] = "You have completed The Elven Poetry."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheElvenPoetry)]
+            end
+        },
+		{
+            name = "The Memory Stone",
+            storageId = Storage.ExplorerSociety.TheMemoryStone,
+            startValue = 39,
+            endValue = 41,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [39] = "In the ruins of north-western Edron you should be able to find a memory stone. ",
+					[40] = "Bring back a memory stone to the Explorer Society representative.",
+					[41] = "You have completed The Memory Stone."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheMemoryStone)]
+            end
+        },
+		{
+            name = "The Rune Writings",
+            storageId = Storage.ExplorerSociety.TheRuneWritings,
+            startValue = 42,
+            endValue = 44,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[42] = "Somewhere under the ape infested city of Banuta, one can find dungeons \z
+						that were once inhabited by lizards. Look there for an atypical structure that \z
+						would rather fit to Ankrahmun and its Ankrahmun Tombs. Copy the runes you will find on this structure.",
+					[43] = "Report back to the Explorer Society representative.",
+					[44] = "You have completed The Rune Writings."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheRuneWritings)]
+            end
+        },
+		{
+            name = "The Ectoplasm",
+            storageId = Storage.ExplorerSociety.TheEctoplasm,
+            startValue = 45,
+            endValue = 47,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[45] = "Take ectoplasm container and use it on a ghost that was recently slain.",
+					[46] = "Return back to the Explorer Society representative with the collected ectoplasm.",
+					[47] = "You have completed The Ectoplasm."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheEctoplasm)]
+            end
+        },
+		{
+            name = "The Spectral Dress",
+            storageId = Storage.ExplorerSociety.TheSpectralDress,
+            startValue = 48,
+            endValue = 50,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[48] = "The queen of the banshees lives in the so called Ghostlands, south west of Carlin. \z
+						Try to get a spectral dress from her.",
+					[49] = "Report to the Explorer Society with the spectral dress.",
+					[50] = "You have completed The Spectral Dress."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheSpectralDress)]
+            end
+        },
+		{
+            name = "The Spectral Stone",
+            storageId = Storage.ExplorerSociety.TheSpectralStone,
+            startValue = 51,
+            endValue = 55,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[51] = "Please travel to our second base and ask them to mail us their latest research reports. \z
+							Then return here and ask about new missions.",
+					[52] = "Tell our fellow explorer that the papers are in the mail already.",
+					[53] = "Take the spectral essence and use it on the strange carving in this building \z
+							as well as on the corresponding tile in our second base.",
+					[54] = "Good! Now use the spectral essence on the strange carving in our second base.",
+					[55] = "You have completed The Spectral Stone."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheSpectralStone)]
+            end
+        },
+		{
+            name = "The Astral Portals",
+            storageId = Storage.ExplorerSociety.TheAstralPortals,
+            startValue = 56,
+            endValue = 56,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[56] = "Both carvings are now charged and harmonised. You are able to travel in zero time from \z
+						one base to the other, but you need to have an orichalcum pearl in your possession to use it as power source."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheAstralPortals)]
+            end
+        },
+		{
+            name = "The Island of Dragons",
+            storageId = Storage.ExplorerSociety.TheIslandofDragons,
+            startValue = 57,
+            endValue = 59,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[57] = "Travel to Okolnir and try to find a proof for the existence of dragon lords there in the old times. \z
+						I think old Buddel might be able to bring you there.",
+					[58] = "Report back to Lurik with the dragon scale.",
+					[59] = "You have completed The Island of Dragons."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheIslandofDragons)]
+            end
+        },
+		{
+            name = "The Ice Music",
+            storageId = Storage.ExplorerSociety.TheIceMusic,
+            startValue = 60,
+            endValue = 62,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[60] = "There is a cave on Hrodmir, north of the southernmost barbarian camp Krimhorn. \z
+						In this cave, there are a waterfall and a lot of stalagmites. \z
+						Take the resonance crystal and use it on the stalagmites in the cave to record the sound of the wind.",
+					[61] = "Report back to Lurik.",
+					[62] = "Now you may use the Astral Bridge from Liberty Bay to Svargrond."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.TheIceMusic)]
+            end
+        },
+		{
+            name = "The Undersea Kingdom",
+            storageId = Storage.ExplorerSociety.CalassaQuest,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Captain Max will bring you to Calassa whenever you are ready. \z
+						Please try to retrieve the missing logbook which must be in one of the sunken shipwrecks.",
+					[2] = "Report about your Calassa mission to Berenice in Liberty Bay.",
+					[3] = "You have completed The Undersea Kingdom."
+				}
+                return descriptions[player:getStorageValue(Storage.ExplorerSociety.CalassaQuest)]
+            end
+        },	
+    }
+}):register()
+
+Game.createQuest("The Ice Islands", {
+    storageId = Storage.TheIceIslands.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Befriending the Musher",
+            storageId = Storage.TheIceIslands.Mission01,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Find Sniffler the husky of Iskan. He should be somewhere north west of the town. \z
+						He is probably marking his territory so you should be able to find his trace. \z
+						Call him sniffler and feed him with meat.",
+					[2] = "Tell Iskan that you found and feed Sniffler",
+					[3] = "You are now a friend of Iskan and can ask him for a passage to Nibelor. \z
+						You should ask Hjaern in Nibelor if you can help him."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission01)]
+            end
+        },
+		{
+            name = "Nibelor 1: Breaking the Ice",
+            storageId = Storage.TheIceIslands.Mission02,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Chakoyas may use the ice for a passage to the west and attack Svargrond. Use the rocks at east \z
+						of nibelor on at least three of these places and the chakoyas probably won't be able to pass the ice.",
+					[2] = "You have broke 1 of 3 icepassages",
+					[3] = "You have broke 2 of 3 icepassages",
+					[4] = "You have broke 3 of 3 icepassages! Tell Hjaern your mission!",
+					[5] = "You should ask Silfind if you can help her in some matters."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission02)]
+            end
+        },
+		{
+            name = "Nibelor 2: Ecological Terrorism",
+            storageId = Storage.TheIceIslands.Mission03,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Siflind send you to travel to a distant land to get ants from an Ant-Hill to \z
+						perform ecological terrorism on some pirates on Tyrsung. Just use the jug on an anthill.",
+					[2] = "Now head back to Svargrond and go to Buddel, the drunk sailor in southern Svargrond, \z
+						and ask him to take you to Tyrsung. Now go all the way to the southern shores \z
+						where you find a outpost. Go to the bottom deck and use the jug with the western mast",
+					[3] = "Go tell Siflind that you released the ants and aks her for mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission03)]
+            end
+        },
+		{
+            name = "Nibelor 3: Artful Sabotage",
+            storageId = Storage.TheIceIslands.Mission04,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Siflind gave you a Vial of Paint to use on some Baby Seals. \z
+						Go back to Tyrsung and follow the shore from Buddel south. Use the Vial of Paint on three of these seals.",
+					[2] = "Go tell Siflind that you painted the seals and aks her for mission!"
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission04)]
+            end
+        },
+		{
+            name = "Nibelor 4: Berserk Brewery",
+            storageId = Storage.TheIceIslands.Mission05,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "The first things needed are 5 bat wings to brew a berserker elixir. Bring her them!",
+					[2] = "The next items Siflind need are 4 bear paws. Bring her them!",
+					[3] = "The next items Siflind need are 3 bonelord eyes. Bring her them!",
+					[4] = "The next items Siflind need are 2 fish fins. Bring her them!",
+					[5] = "The next item Siflind need is a green dragon scale. Bring her that!",
+					[6] = "You helped Siflind to defend Svargrond. Now Nilsor need help, go ask him for mission."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission05)]
+            end
+        },
+		{
+            name = "Nibelor 5: Cure the Dogs",
+            storageId = Storage.TheIceIslands.Mission06,
+            startValue = 1,
+            endValue = 8,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "To cure Nilsor dogs, bring him the 1st of 7 ingredients: a Part of the Sun Adorer Cactus. \z
+						Only an ordinary kitchen knife will be precise enough to produce the ingredient weneed.",
+					[2] = "To cure Nilsor dogs, bring him the 2nd of 7 ingredients: Geyser Water in a Waterskin. \z
+						Use it on a geyser that is NOT active. The water of active geysers is far too hot.",
+					[3] = "To cure Nilsor dogs, bring him the 3rd of 7 ingredients: Fine Sulphur. \z
+						Use an ordinary kitchen spoon on an inactive lava hole.",
+					[4] = "To cure Nilsor dogs, bring him the 4th of 7 ingredients: the Frostbite Herb. \z
+						You can find it on mountain peaks. You will need to cut it with a fine kitchen knife.",
+					[5] = "To cure Nilsor dogs, bring him the 5th of 7 ingredients: Purple Kiss Blossom. \z
+						The purple kiss is a plant that grows in a place called jungle. \z
+						You will have to use a kitchen knife to harvest its blossom.",
+					[6] = "To cure Nilsor dogs, bring him the 6th of 7 ingredients: the Hydra Tongue. \z
+						The hydra tongue is a common pest plant in warmer regions. You might find one in a shop.",
+					[7] = "To cure Nilsor dogs, bring him the 7th of 7 ingredients: Spores of a Giant Glimmercap Mushroom. \z
+						The giant glimmercap mushroom exists in caves and other preferably warm and humid places. \z
+						Use an ordinary kitchen spoon on a mushroom to collectits spores.",
+					[8] = "You found all ingredients to cure Nilsor dogs, ask him for mission. \z
+						You can now travel by Dog Sleds to Inukaya."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission06)]
+            end
+        },
+		{
+            name = "The Secret of Helheim",
+            storageId = Storage.TheIceIslands.Mission07,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Hjaern might have a mission for you. So maybe you go and talk to him.",
+					[2] = "Hjaern send you to find someone in Svargrond who can give you a passage to \z
+					Helheim and seek the reason for the unrest there.",
+					[3] = "You discovered the necromantic altar and should report Hjaern about it."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission07)]
+            end
+        },
+		{
+            name = "The Contact",
+            storageId = Storage.TheIceIslands.Mission08,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Get out of Nibelor and go to the Svargrond Explorer\'s Society. Ask Lurik for the mission.",
+					[2] = "Get to the raider camp, then follow to the extreme south where you find lots of barbarians. \z
+					Near the southern most coastline, try looking for the NPC Nor. Ask him about Memory Crystal.",
+					[3] = "Go back to Lurik and deliver him the memory crystal.",
+					[4] = "Give Lurik some time to evaluate the information (ca. 5min). \z
+					Then talk to him again about your mission."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission08)]
+            end
+        },
+		{
+            name = "Formorgar Mines 1: The Mission",
+            storageId = Storage.TheIceIslands.Mission09,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Find the entrance of the Formorgar Mines. \z
+					Find some hint or someone who is willing to talk about what is going on there.",
+					[2] = "You found a old and tattered written paper in a skeleton next to a Restless Soul, \z
+					you can only make out a signature: Tylaf, apprentice of Hjaern. Ask Hjaern about Tylaf."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission09)]
+            end
+        },
+		{
+            name = "Formorgar Mines 2: Ghostwhisperer",
+            storageId = Storage.TheIceIslands.Mission10,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Go back to the mine and ask the restless soul about his story.",
+					[2] = "You already have listen to his story!"
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission10)]
+            end
+        },
+		{
+            name = "Formorgar Mines 3: The Secret",
+            storageId = Storage.TheIceIslands.Mission11,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "The Cultists plan is to create a new demon army for their master to conquer the world. \z
+					Hjaern and the other shamans must learn about it! Hurry before its too late.",
+					[2] = "The Cultists plan is to create a new demon army for their master to conquer the world. \z
+					Hjaern and the other shamans are already informed!"
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission11)]
+            end
+        },
+		{
+            name = "Formorgar Mines 4: Retaliation",
+            storageId = Storage.TheIceIslands.Mission12,
+            startValue = 1,
+            endValue = 6,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Hjaern gave you a spirit charm of cold. Travel to the mines and find four \z
+						special obelisks to mark them with the charm.",
+					[2] = "1 of 4 obelisks are marked.",
+					[3] = "2 of 4 obelisks are marked.",
+					[4] = "3 of 4 obelisks are marked.",
+					[5] = "Once all 4 obelisks are marked report back to Hjaern.",
+					[6] = "You got the Norseman outfit and you have access to the Yakchal room deep in the Formorgar Mines."
+				}
+                return descriptions[player:getStorageValue(Storage.TheIceIslands.Mission12)]
+            end
+        },
+		{
+            name = "Barbarian Test 1: Barbarian Booze",
+            storageId = Storage.BarbarianTest.Mission01,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "You participate in the drinking challenge. Now you can get the permission for a few sips of barbarian mead in exchange for some honey.",
+					[2] = "Now drink from the bucket until you drink 10 sips in a row without passing out",
+					[3] = "You have mastered the first task of the barbarian test. If you haven't done so yet, talk to Sven about it."
+				}
+                return descriptions[player:getStorageValue(Storage.BarbarianTest.Mission01)]
+            end
+        },
+		{
+            name = "Barbarian Test 2: The Bear Hugging",
+            storageId = Storage.BarbarianTest.Mission02,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Somewhere north of Svargrond you will find a lonely bear which you have to hug. You wonder what you were thinking when accepting this quest...",
+					[2] = "You passed the bear hugging test (and should take a bath). If you haven't done so yet, talk to Sven about it."
+				}
+                return descriptions[player:getStorageValue(Storage.BarbarianTest.Mission02)]
+            end
+        },
+		{
+            name = "Barbarian Test 3: The Mammoth Pushing",
+            storageId = Storage.BarbarianTest.Mission03,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[1] = "Find a mammoth north-west of Svargrond and knock it over. You wonder whether your mission is becoming a barbarian or rather commiting suicide.",
+					[2] = "You have knocked over a mammoth - though you wonder what this crushing noise at your spine was. If you haven't done so yet, talk to Sven about the mammoth pushing."
+				}
+                return descriptions[player:getStorageValue(Storage.BarbarianTest.Mission03)]
+            end
+        },
+		{
+            name = "The Honorary Barbarian",
+            storageId = Storage.BarbarianTest.Questline,
+            startValue = 8,
+            endValue = 8,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[8] = "You are now a honorary barbarian and can become a citizen of Svargrond. If you haven't done so yet, you should look for a barbarian in need of help in the north of the town."
+				}
+                return descriptions[player:getStorageValue(Storage.BarbarianTest.Questline)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("The Ultimate Challenges", {
+    storageId = Storage.SvargrondArena.QuestLogGreenhorn,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Barbarian Arena - Greenhorn Mode",
+            storageId = Storage.SvargrondArena.QuestLogGreenhorn,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have to defeat all enemies in this mode.",
+					[2] = "You have defeated all enemies in this mode."
+				}
+                return descriptions[player:getStorageValue(Storage.SvargrondArena.QuestLogGreenhorn)]
+            end
+        },
+		{
+            name = "Barbarian Arena - Scrapper Mode",
+            storageId = Storage.SvargrondArena.QuestLogScrapper,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have to defeat all enemies in this mode.",
+					[2] = "You have defeated all enemies in this mode."
+				}
+                return descriptions[player:getStorageValue(Storage.SvargrondArena.QuestLogScrapper)]
+            end
+        },
+		{
+            name = "Barbarian Arena - Warlord Mode",
+            storageId = Storage.SvargrondArena.QuestLogWarlord,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have to defeat all enemies in this mode.",
+					[2] = "You have defeated all enemies in this mode."
+				}
+                return descriptions[player:getStorageValue(Storage.SvargrondArena.QuestLogWarlord)]
             end
         },
     }

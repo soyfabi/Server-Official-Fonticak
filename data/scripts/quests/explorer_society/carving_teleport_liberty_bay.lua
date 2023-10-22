@@ -1,6 +1,6 @@
 local destination = {
-	[25020] = {position = Position(32320, 31137, 6)},
-	[25021] = {position = Position(32359, 32807, 6)}
+	[25020] = {position = Position(32359, 32807, 6)},
+	[25021] = {position = Position(32320, 31137, 6)}
 }
 
 local carvingTeleportLibertyBay = MoveEvent()
@@ -25,6 +25,7 @@ function carvingTeleportLibertyBay.onStepIn(creature, item, position, fromPositi
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 		player:teleportTo(fromPosition)
+		player:say("You need a orichalcum pearl for pass.")
 	end
 	return true
 end

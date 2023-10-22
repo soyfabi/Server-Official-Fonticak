@@ -144,7 +144,7 @@ local function creatureSayCallback(cid, type, msg)
 			else
 				npcHandler:say("Come back when you have the ingredient.", cid)
 			end
-			npcHandler.topic[cid] = 0
+			npcHandler:setTopic(playerId, 0)
 		elseif npcHandler.topic[cid] == 7 then
 			if player:removeItem(7249, 1) then
 				npcHandler:say("Thank you for this ingredient. Now bring me the {Hydra Tongue}", cid)

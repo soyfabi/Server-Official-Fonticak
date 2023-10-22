@@ -17,18 +17,7 @@ local function addTravelKeyword(keyword, text, cost, discount, destination)
 		travelKeyword:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, text = text[3], reset = true})
 end
 
-addTravelKeyword('farmine', {'Do you seek a ride to {Farmine} for {110 gold coins}?', 'Hold on!', 'You shouldn\'t miss the experience.'}, 110, {'postman', 'new frontier'},
-	function(player)
-		local destination = Position(33025, 31552, 10)
-		if player:getStorageValue(Storage.TheNewFrontier.Mission05) == 7 then --if The New Frontier Quest 'Mission 05: Getting Things Busy' complete then Stage 3
-			destination.z = 10
-		elseif player:getStorageValue(Storage.TheNewFrontier.Mission03) >= 2 then --if The New Frontier Quest 'Mission 03: Strangers in the Night' complete then Stage 2
-			destination.z = 10
-		end
-
-		return destination
-	end
-)
+addTravelKeyword('farmine', {'Do you want to go to {Farmine} to try the beer there? {160 gold coins}?', 'Set the sails!', 'Then not.'}, 160, 'postman', Position(33024, 31553, 10))
 addTravelKeyword('kazordoon', {'Do you want to go to {Kazordoon} to try the beer there? {160 gold coins}?', 'Set the sails!', 'Then not.'}, 160, 'postman', Position(32660, 31957, 15))
 addTravelKeyword('gnomprona', {'Would you like to travel to {Gnomprona} for {200 gold coins}?', 'Full steam ahead!', 'Then not.'}, 200, 'postman', Position(33516, 32856, 14))
 

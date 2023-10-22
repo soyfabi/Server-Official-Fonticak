@@ -1,6 +1,6 @@
 local destination = {
-	[25018] = {position = Position(32498, 31622, 6)},
-	[25019] = {position = Position(32665, 32735, 6)}
+	[25018] = {position = Position(32665, 32735, 6)},
+	[25019] = {position = Position(32498, 31621, 6)}
 }
 
 local carvingTeleportPortHope = MoveEvent()
@@ -25,6 +25,7 @@ function carvingTeleportPortHope.onStepIn(creature, item, position, fromPosition
 	else
 		player:getPosition():sendMagicEffect(CONST_ME_POFF)
 		player:teleportTo(fromPosition)
+		player:say("You need a orichalcum pearl for pass.")
 	end
 	return true
 end

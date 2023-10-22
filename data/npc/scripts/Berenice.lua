@@ -7,12 +7,72 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
+local function getTable(player)
+local itemsList = {}
+	
+local buyList = {
+	{ name = "atlas", id = 6108, buy = 150 },
+	{ name = "first verse of the hymn", id = 6087, sell = 100 },
+	{ name = "fourth verse of the hymn", id = 6090, sell = 800 },
+	{ name = "orichalcum pearl", id = 5021, buy = 80 },
+	{ name = "second verse of the hymn", id = 6088, sell = 250 },
+	{ name = "third verse of the hymn", id = 6089, sell = 400 }
+}
+
+	for i = 1, #buyList do
+		table.insert(itemsList, buyList[i])
+	end
+	return itemsList
+end
+
+local function setNewTradeTable(table)
+	local items, item = {}
+	for i = 1, #table do
+		item = table[i]
+		items[item.id] = {itemId = item.id, buyPrice = item.buy, sellPrice = item.sell, subType = 0, realName = item.name}
+	end
+	return items
+end
+
+local function onBuy(cid, item, subType, amount, ignoreCap, inBackpacks)
+	local player = Player(cid)
+	local items = setNewTradeTable(getTable(player))
+	if not ignoreCap and player:getFreeCapacity() < ItemType(items[item].itemId):getWeight(amount) then
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'You don\'t have enough cap.')
+	end
+	if not player:removeMoneyNpc(items[item].buyPrice * amount) then
+		selfSay("You don't have enough money.", cid)
+	else
+		player:addItem(items[item].itemId, amount)
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Bought '..amount..'x '..items[item].realName..' for '..items[item].buyPrice * amount..' gold coins.')
+	end
+	return true
+end
+
+local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
+	local player = Player(cid)
+	local items = setNewTradeTable(getTable(player))
+	if items[item].sellPrice and player:removeItem(items[item].itemId, amount) then
+		player:addMoney(items[item].sellPrice * amount)
+		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'Sold '..amount..'x '..items[item].realName..' for '..items[item].sellPrice * amount..' gold coins.')
+	else
+		selfSay("You don't have item to sell.", cid)
+	end
+	return true
+end
+
 local function creatureSayCallback(cid, type, msg)
 	if not npcHandler:isFocused(cid) then
 		return false
 	end
 
 	local player = Player(cid)
+	
+	if isInArray({"trade", "offer", "shop", "trad", "tra", "tradde", "tradee", "tade"}, msg:lower()) then
+		local items = setNewTradeTable(getTable(player))
+		openShopWindow(cid, getTable(player), onBuy, onSell)
+		npcHandler:say("Of course, just browse through my wares. Or do you want to look only at {potions}, {wands} or {runes}?", cid)
+	end
 
 	if msgcontains(msg, "mission") then
 		if player:getStorageValue(Storage.ExplorerSociety.CalassaQuest) == 2 then
@@ -28,6 +88,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 2
 		elseif npcHandler.topic[cid] == 4 then
 			npcHandler:say("Captain Max will bring you to Calassa whenever you are ready. Please try to retrieve the missing logbook which must be in one of the sunken shipwrecks.", cid)
+			player:setStorageValue(Storage.ExplorerSociety.CalassaDoor, 1)
 			player:setStorageValue(Storage.ExplorerSociety.CalassaQuest, 1)
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.ExplorerSociety.CalassaQuest) == 2 then
@@ -50,8 +111,10 @@ local function creatureSayCallback(cid, type, msg)
 		elseif npcHandler.topic[cid] == 3 then
 			npcHandler:say("Excellent! I will immediately inform Captain Max to bring you to {Calassa} whenever you are ready. Don't forget to make thorough preparations!", cid)
 			npcHandler.topic[cid] = 4
+			player:setStorageValue(Storage.ExplorerSociety.CalassaQuest, 1)
+			player:setStorageValue(Storage.ExplorerSociety.CalassaDoor, 1)
 		elseif npcHandler.topic[cid] == 5 then
-			if player:removeItem(6124, 1) then
+			if player:removeItem(21378, 1) then
 				player:setStorageValue(Storage.ExplorerSociety.CalassaQuest, 3)
 				npcHandler:say("Yes! That's the logbook! However... it seems that the water has already destroyed many of the pages. This is not your fault though, you did your best. Thank you!", cid)
 				npcHandler.topic[cid] = 0

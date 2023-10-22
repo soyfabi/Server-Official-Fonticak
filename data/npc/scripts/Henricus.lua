@@ -202,10 +202,10 @@ local function creatureSayCallback(cid, type, msg)
 		end              
            npcHandler.topic[cid] = 0			
 		elseif npcHandler.topic[cid] == 7 then
-			if player:getBlessings() == 5 then
+			if player:hasBlessing(5) then
 				npcHandler:say("You already have been blessed!", cid)
 			elseif player:removeMoneyNpc(totalBlessPrice) then
-				npcHandler:say("You have been blessed by all of five gods!, |PLAYERNAME|.", cid)
+				npcHandler:say("You have been blessed by all of five gods!, ".. player:getName() ..".", cid)
 				for b = 1, 5 do
 					player:addBlessing(b)
 				end
@@ -230,14 +230,12 @@ local function creatureSayCallback(cid, type, msg)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			npcHandler.topic[cid] = 0
 		elseif player:getStorageValue(Storage.TheInquisition.Questline) == 23 then
-			npcHandler:say("Here is the final addon for your demon hunter outfit. Congratulations!", cid)
+			npcHandler:say("Here is the final addon for your {demon hunter outfit}. Congratulations!", cid)
 			player:setStorageValue(Storage.TheInquisition.Questline, 24)
 			player:setStorageValue(Storage.TheInquisition.Mission07, 4) -- The Inquisition Questlog- "Mission 7: The Shadow Nexus"
 			player:setStorageValue(Storage.TheInquisition.RewardDoor, 1)
-			player:addOutfitAddon(288, 1)
-			player:addOutfitAddon(289, 1)
-			player:addOutfitAddon(288, 2)
-			player:addOutfitAddon(289, 2)
+			player:addOutfitAddon(288, 3)
+			player:addOutfitAddon(289, 3)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			player:addAchievement('Demonbane')
 			npcHandler.topic[cid] = 0

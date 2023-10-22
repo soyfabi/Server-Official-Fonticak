@@ -10,10 +10,16 @@ function ungreezKill.onKill(creature, target)
 	end
 
 	local player = creature:getPlayer()
-	if player:getStorageValue(Storage.TheInquisition.Questline) == 18 then
-		-- The Inquisition Questlog- 'Mission 6: The Demon Ungreez'
-		player:setStorageValue(Storage.TheInquisition.Mission06, 2)
-		player:setStorageValue(Storage.TheInquisition.Questline, 19)
+	local damageMap = target:getDamageMap()
+	for key, value in pairs(damageMap) do
+		local attackerPlayer = Player(key)
+		if attackerPlayer then
+			if player:getStorageValue(Storage.TheInquisition.Questline) == 18 then
+				-- The Inquisition Questlog- 'Mission 6: The Demon Ungreez'
+				player:setStorageValue(Storage.TheInquisition.Mission06, 2)
+				player:setStorageValue(Storage.TheInquisition.Questline, 19)
+			end
+		end
 	end
 	return true
 end

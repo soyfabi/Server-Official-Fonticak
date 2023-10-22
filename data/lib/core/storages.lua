@@ -984,7 +984,7 @@ Storage = {
 		Casks = 51068,
 		HolyApeHair = 51069,
 		SnakeDestroyer = 51070,
-		ShamanOufit = 51071
+		ShamanOutfit = 51071
 	},
 	TheInquisition = {
 		-- Reserved storage from 51110 - 51139

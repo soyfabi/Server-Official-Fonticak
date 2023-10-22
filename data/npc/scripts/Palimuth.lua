@@ -203,8 +203,8 @@ local function creatureSayCallback(cid, type, msg)
 			player:setStorageValue(Storage.InServiceofYalahar.Questline, 53)
 			player:setStorageValue(Storage.InServiceofYalahar.DoorToReward, 1)
 			player:setStorageValue(Storage.InServiceofYalahar.Mission10, 4) -- StorageValue for Questlog "Mission 10: The Final Battle"
-			player:addOutfit(324, 0)
-			player:addOutfit(325, 0)
+			player:addOutfitAddon(324, 3)
+			player:addOutfitAddon(325, 3)
 			player:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
 			npcHandler.topic[cid] = 0
 		end

@@ -16,7 +16,7 @@
 			cheese,3607,6;
 			ham,3582,8;
 			meat,3577,5;
-			mug of tea,2880,3,35;
-			mug of mead,2880,5,43;" />
+			mug,2880,35,3;
+			mug,2880,43,5;" />
 	</parameters>
 </npc>

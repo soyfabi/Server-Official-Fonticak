@@ -107,6 +107,9 @@ local function creatureSayCallback(cid, type, msg)
 				player:setStorageValue(Storage.TheIceIslands.Questline, 1)
 				player:setStorageValue(Storage.BarbarianTest.Mission01, 2) -- Questlog Barbarian Test Quest Barbarian Test 1: Barbarian Booze
 				player:setStorageValue(Storage.BarbarianTest.MeadTotalSips, 0)
+			else
+				npcHandler:say("You bring me a honeycomb and don't waste my time.", cid)
+				npcHandler.topic[cid] = 0
 			end
 		end
 	elseif msgcontains(msg, "no") then

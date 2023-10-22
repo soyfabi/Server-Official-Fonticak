@@ -126,8 +126,8 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 0
 		end
 	elseif msgcontains(msg, 'cookie') then
-		if player:getStorageValue(Storage.WhatAFoolishQuest.Questline) == 31
-				and player:getStorageValue(Storage.WhatAFoolishQuest.CookieDelivery.Hjaern) ~= 1 then
+		if player:getStorageValue(Storage.WhatAFoolish.Questline) == 31
+				and player:getStorageValue(Storage.WhatAFoolish.CookieDelivery.Hjaern) ~= 1 then
 			npcHandler:say('You want to sacrifice a cookie to the spirits?', cid)
 			npcHandler.topic[cid] = 6
 		end
@@ -167,21 +167,21 @@ local function creatureSayCallback(cid, type, msg)
 				npcHandler.topic[cid] = 0
 			end
 		elseif npcHandler.topic[cid] == 6 then
-			if not player:removeItem(8111, 1) then
+			if not player:removeItem(130, 1) then
 				npcHandler:say('You have no cookie that I\'d like.', cid)
 				npcHandler.topic[cid] = 0
 				return true
 			end
 
-			player:setStorageValue(Storage.WhatAFoolishQuest.CookieDelivery.Hjaern, 1)
+			player:setStorageValue(Storage.WhatAFoolish.CookieDelivery.Hjaern, 1)
 			if player:getCookiesDelivered() == 10 then
 				player:addAchievement('Allow Cookies?')
 			end
 
-			Npc():getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
+			npc:getPosition():sendMagicEffect(CONST_ME_GIFT_WRAPS)
 			npcHandler:say('In the name of the spirits I accept this offer ... UHNGH ... The spirits are not amused!', cid)
-			npcHandler:releaseFocus(cid)
-			npcHandler:resetNpc(cid)
+			npcHandler:removeInteraction(cid)
+			npcHandler:resetNpc(creature)
 		end
 	elseif msgcontains(msg, 'no') then
 		if npcHandler.topic[cid] == 6 then

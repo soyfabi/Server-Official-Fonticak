@@ -12,19 +12,15 @@ local function creatureSayCallback(cid, type, msg)
 		return false
 	end
 	local player = Player(cid)
-	if msgcontains(msg, "sniffler") then
-		if player:getStorageValue(Storage.TheIceIslands.Questline) == 1 then
-			npcHandler:say("!", cid)
-			npcHandler.topic[cid] = 1
-		end
-	elseif msgcontains(msg, "meat") then
-		if npcHandler.topic[cid] == 1 then
-			if player:removeItem(2666, 1) then
-				npcHandler:say("<munch>", cid)
+	if msgcontains(msg, "meat") then
+		if player:removeItem(3577, 1) then
+			npcHandler:say("<munch>", cid)
+			if player:getStorageValue(Storage.TheIceIslands.Mission01) == 1 then
 				player:setStorageValue(Storage.TheIceIslands.Questline, 2)
 				player:setStorageValue(Storage.TheIceIslands.Mission01, 2) -- Questlog The Ice Islands Quest, Befriending the Musher
-				npcHandler.topic[cid] = 0
 			end
+		else
+			npcHandler:releaseFocus(cid)
 		end
 	end
 	return true

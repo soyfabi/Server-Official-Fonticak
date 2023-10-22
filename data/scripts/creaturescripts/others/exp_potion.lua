@@ -57,7 +57,7 @@ for i, value in pairs(expPotion) do
 	exp:id(i)
 end
 
-exp:register()
+--exp:register()
 
 local event = Event()
 event.onGainExperience = function(self, source, exp, rawExp)

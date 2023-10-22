@@ -10,7 +10,7 @@ function onThink()		npcHandler:onThink()		end
 local voices = { {text = 'Whoah. That was a large shadow passing by.'} }
 npcHandler:addModule(VoiceModule:new(voices))
 
-local travelNode = keywordHandler:addKeyword({'liberty bay'}, StdModule.say, {npcHandler = npcHandler, text = 'Do you want go back to Liberty Bay?'})
+local travelNode = keywordHandler:addKeyword({'liberty bay'}, StdModule.say, {npcHandler = npcHandler, text = 'Do you want go back to {Liberty Bay}?'})
 	travelNode:addChildKeyword({'yes'}, StdModule.travel, {npcHandler = npcHandler, premium = false, level = 0, cost = 0, destination = Position(32298, 32895, 6) })
 	travelNode:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, reset = true, text = 'Maybe another time, then.'})
 

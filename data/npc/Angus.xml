@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <npc name="Angus" script="Angus.lua" walkinterval="2000" floorchange="0">
 	<health now="100" max="100" />
-	<look type="128" head="57" body="132" legs="114" feet="113" addons="0" />
+	<look type="133" head="57" body="132" legs="114" feet="113" addons="0" />
 	<parameters>
 		<parameter key="message_greet" value="Be greeted, noble |PLAYERNAME| and welcome to the Explorer Society." />
 		<parameter key="message_farewell" value="Come back soon, noble |PLAYERNAME|." />
