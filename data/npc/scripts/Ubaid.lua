@@ -7,12 +7,12 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
-local function greetCallback(cid, message)
+local function greetCallback(cid)
 	local player = Player(cid)
-	if not msgcontains(message, 'djanni\'hah') and player:getStorageValue(Storage.DjinnWar.Faction.Efreet) ~= 1 then
+	--[[if not msgcontains(msg, "djanni'hah") and player:getStorageValue(Storage.DjinnWar.Faction.EfreetDoor) ~= 1 then
 		npcHandler:say('Shove off, little one! Humans are not welcome here, |PLAYERNAME|!', cid)
 		return false
-	end
+	end]]
 
 	if player:getStorageValue(Storage.DjinnWar.Faction.Greeting) == -1 then
 		npcHandler:say({
@@ -22,7 +22,7 @@ local function greetCallback(cid, message)
 		return false
 	end
 
-	if player:getStorageValue(Storage.DjinnWar.Faction.Efreet) ~= 1 then
+	if player:getStorageValue(Storage.DjinnWar.Faction.EfreetDoor) ~= 1 then
 		npcHandler:setMessage(MESSAGE_GREET, 'What? You know the word, |PLAYERNAME|? All right then - I won\'t kill you. At least, not now.  What brings you {here}?')
 	else
 		npcHandler:setMessage(MESSAGE_GREET, 'Still alive, |PLAYERNAME|? What brings you {here}?')
@@ -36,8 +36,6 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	local player = Player(cid)
-
-	-- To Appease the Mighty Quest
 	if msgcontains(msg, "mission") and player:getStorageValue(Storage.TibiaTales.ToAppeaseTheMightyQuest) == 2 then
 			npcHandler:say({
 				'You have the smell of the Marid on you. Tell me who sent you?'}, cid)
@@ -50,7 +48,7 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	if msgcontains(msg, 'passage') then
-		if player:getStorageValue(Storage.DjinnWar.Faction.Efreet) ~= 1 then
+		if player:getStorageValue(Storage.DjinnWar.Faction.EfreetDoor) ~= 1 then
 			npcHandler:say({
 				'Only the mighty Efreet, the true djinn of Tibia, may enter Mal\'ouquah! ...',
 				'All Marid and little worms like yourself should leave now or something bad may happen. Am I right?'
@@ -73,7 +71,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 0
 
 		elseif msgcontains(msg, 'no') then
-			if player:getStorageValue(Storage.DjinnWar.Faction.Marid) == 1 then
+			if player:getStorageValue(Storage.DjinnWar.Faction.MaridDoor) == 1 then
 				npcHandler:say('Who do you think you are? A Marid? Shove off you worm!', cid)
 				npcHandler.topic[cid] = 0
 			else
@@ -103,7 +101,7 @@ local function creatureSayCallback(cid, type, msg)
 				'Go now to general Baa\'leal and don\'t forget to greet him correctly! ...',
 				'And don\'t touch anything!'
 			}, cid)
-			player:setStorageValue(Storage.DjinnWar.Faction.Efreet, 1)
+			player:setStorageValue(Storage.DjinnWar.Faction.EfreetDoor, 1)
 			player:setStorageValue(Storage.DjinnWar.Faction.Greeting, 0)
 
 		elseif msgcontains(msg, 'no') then
@@ -114,14 +112,11 @@ local function creatureSayCallback(cid, type, msg)
 	return true
 end
 
+keywordHandler:addGreetKeyword({"djanni'hah"}, {npcHandler = npcHandler, text = "Shove off, little one! Humans are not welcome here, |PLAYERNAME|"})
+
 npcHandler:setMessage(MESSAGE_FAREWELL, 'Farewell human!')
 npcHandler:setMessage(MESSAGE_WALKAWAY, 'Farewell human!')
 
 npcHandler:setCallback(CALLBACK_GREET, greetCallback)
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
-
-local focusModule = FocusModule:new()
-focusModule:addGreetMessage('hi')
-focusModule:addGreetMessage('hello')
-focusModule:addGreetMessage('djanni\'hah')
-npcHandler:addModule(focusModule)
+npcHandler:addModule(FocusModule:new())

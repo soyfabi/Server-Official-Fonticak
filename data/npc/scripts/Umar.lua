@@ -7,32 +7,6 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
-local function greetCallback(cid, message)
-	local player = Player(cid)
-	if not msgcontains(message, 'djanni\'hah') and player:getStorageValue(Storage.DjinnWar.Faction.Marid) ~= 1 then
-		npcHandler:say('Whoa! A human! This is no place for you, |PLAYERNAME|. Go and play somewhere else.', cid)
-		return false
-	end
-
-	if player:getStorageValue(Storage.DjinnWar.Faction.Greeting) == -1 then
-		npcHandler:say({
-			'Hahahaha! ...',
-			'|PLAYERNAME|, that almost sounded like the word of greeting. Humans - cute they are!'
-		}, cid)
-		return false
-	end
-
-	if player:getStorageValue(Storage.DjinnWar.Faction.Marid) ~= 1 then
-		npcHandler:setMessage(MESSAGE_GREET, {
-			'Whoa? You know the word! Amazing, |PLAYERNAME|! ...',
-			'I should go and tell Fa\'hradin. ...',
-			'Well. Why are you here anyway, |PLAYERNAME|?'
-		})
-	else
-		npcHandler:setMessage(MESSAGE_GREET, '|PLAYERNAME|! How\'s it going these days? What brings you {here}?')
-	end
-	return true
-end
 
 local function creatureSayCallback(cid, type, msg)
 	if not npcHandler:isFocused(cid) then
@@ -99,8 +73,6 @@ end
 
 npcHandler:setMessage(MESSAGE_FAREWELL, '<salutes>Aaaa -tention!')
 npcHandler:setMessage(MESSAGE_WALKAWAY, '<salutes>Aaaa -tention!')
-
-npcHandler:setCallback(CALLBACK_GREET, greetCallback)
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 
 local focusModule = FocusModule:new()

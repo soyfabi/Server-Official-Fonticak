@@ -2855,6 +2855,59 @@ Game.createQuest("The Ultimate Challenges", {
     }
 }):register()
 
+Game.createQuest("Factions", {
+    storageId = Storage.Factions,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "The Marid and the Efreet - Djinn Greeting",
+            storageId = Storage.DjinnWar.Faction.Greeting,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Melchior told you the word &quot;Djanni'hah&quot; which can be used to talk to Djinns. \z
+						Be aware that once you become an ally of one Djinn race, you cannot switch sides anymore.",
+					[2] = ""
+				}
+                return descriptions[player:getStorageValue(Storage.DjinnWar.Faction.Greeting)]
+            end
+        },
+		{
+            name = "The Marid and the Efreet - Djinn Greeting",
+            storageId = Storage.DjinnWar.Faction.MaridDoor,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have joined the Marid. These friendly, blue Djinns are honest and fair allies. \z
+						You have pledged eternal loyalty to King Gabel and may enter Asha'daramai freely. Djanni'hah!",
+					[2] = ""
+				}
+                return descriptions[player:getStorageValue(Storage.DjinnWar.Faction.MaridDoor)]
+            end
+        },
+		{
+            name = "The Efreet and the Efreet - Efreet Faction",
+            storageId = Storage.DjinnWar.Faction.EfreetDoor,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have joined the Efreet. These evil, green Djinns are always up to mischievous pranks. \z
+						You have pledged eternal loyalty to King Malor and may enter Mal'ouquah freely. Djanni'hah!",
+					[2] = ""
+				}
+                return descriptions[player:getStorageValue(Storage.DjinnWar.Faction.EfreetDoor)]
+            end
+        },
+    }
+}):register()
+
 Game.createQuest("The White Raven Monastery", {
     storageId = Storage.WhiteRavenMonastery.QuestLog,
     storageValue = 1,

@@ -13,12 +13,12 @@ condition:addDamage(150, 2000, -10)
 
 local function greetCallback(cid, message)
 	local player = Player(cid)
-	if not player:getCondition(CONDITION_FIRE) and not msgcontains(message, 'djanni\'hah') then
+	--[[if not player:getCondition(CONDITION_FIRE) and not msgcontains(msg, 'djanni\'hah') then
 		player:getPosition():sendMagicEffect(CONST_ME_EXPLOSIONAREA)
 		player:addCondition(condition)
 		npcHandler:say('Take this!', cid)
 		return false
-	end
+	end]]
 
 	if player:getStorageValue(Storage.DjinnWar.EfreetFaction.Mission01) < 1 then
 		npcHandler:setMessage(MESSAGE_GREET, 'You know the code human! Very well then... What do you want, |PLAYERNAME|?')
@@ -44,7 +44,7 @@ local function creatureSayCallback(cid, type, msg)
 			}, cid)
 			npcHandler.topic[cid] = 1
 
-		elseif isInArray({1, 2}, missionProgress) then
+		elseif table.contains({1, 2}, missionProgress) then
 			npcHandler:say('Did you find the thief of our supplies?', cid)
 			npcHandler.topic[cid] = 2
 		else

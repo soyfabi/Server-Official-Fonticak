@@ -26,6 +26,10 @@ function zorvoraxSecrets.onStepIn(creature, item, position, fromPosition)
 		return true
 	end
 
+	if player:getStorageValue(Storage.FirstDragon.Questline) < 0 then
+		return true
+	end
+	
 	if player:getStorageValue(setting.storage) < 1 then
 		player:setStorageValue(setting.storage, 1)
 		player:setStorageValue(Storage.FirstDragon.SecretsCounter, player:getStorageValue(Storage.FirstDragon.SecretsCounter) + 1)

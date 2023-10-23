@@ -190,6 +190,20 @@ local questTable = {
 	{storage = Storage.BarbarianTest.MeadSuccessSips, storageValue = 9},
 	{storage = Storage.BarbarianTest.HonoraryBarbarian, storageValue = 1},]]
 	
+	-- Djinn War --
+	--[[{storage = Storage.DjinnWar.Faction.Greeting, storageValue = 2},
+	{storage = Storage.DjinnWar.Faction.MaridDoor, storageValue = 2},
+	{storage = Storage.DjinnWar.Faction.EfreetDoor, storageValue = 2},
+	{storage = Storage.DjinnWar.EfreetFaction.Start, storageValue = 1},
+	{storage = Storage.DjinnWar.EfreetFaction.Mission01, storageValue = 3},
+	{storage = Storage.DjinnWar.EfreetFaction.Mission02, storageValue = 3},
+	{storage = Storage.DjinnWar.EfreetFaction.Mission03, storageValue = 3},
+	{storage = Storage.DjinnWar.MaridFaction.Start, storageValue = 1},
+	{storage = Storage.DjinnWar.MaridFaction.Mission01, storageValue = 2},
+	{storage = Storage.DjinnWar.MaridFaction.Mission02, storageValue = 2},
+	{storage = Storage.DjinnWar.MaridFaction.RataMari, storageValue = 2},
+	{storage = Storage.DjinnWar.MaridFaction.Mission03, storageValue = 3},]]
+	
 }
 
 local function playerFreeQuestStart(playerId, index)
