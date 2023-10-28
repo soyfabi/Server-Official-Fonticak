@@ -157,6 +157,7 @@ class ConfigManager
 			MAGIC_WALL_ID,
 			OLD_MAGIC_WALL_ID,
 			MAGIC_WALL_STORAGE,
+			STORAGEVALUE_EMOTE,
 
 			LAST_INTEGER_CONFIG /* this must be the last one */
 		};

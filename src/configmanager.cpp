@@ -337,6 +337,7 @@ bool ConfigManager::load()
 	integer[MAGIC_WALL_ID] = getGlobalNumber(L, "magicWallId", 2129);
 	integer[OLD_MAGIC_WALL_ID] = getGlobalNumber(L, "oldMagicWallId", 2130);
 	integer[MAGIC_WALL_STORAGE] = getGlobalNumber(L, "magicWallStorage", 90000);
+	integer[STORAGEVALUE_EMOTE] = getGlobalNumber(L, "emoteStorage", 90001);
 	
 	//Floating Config
 	floating[MLVL_BONUSDMG] = getGlobalFloat(L, "monsterBonusDamage", 0);
