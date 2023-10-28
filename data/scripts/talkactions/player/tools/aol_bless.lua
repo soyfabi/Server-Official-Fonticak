@@ -14,7 +14,7 @@ function Bless.onSay(player, words, param)
 		return false
 	end
 	
-	if player:removeMoney(30000) then
+	if player:removeTotalMoney(30000) then
 		for i = 1, bless do
 			player:addBlessing(i)
 		end
@@ -41,7 +41,7 @@ function Aol.onSay(player, words, param)
         return false
     end
 
-	if player:removeMoney(10000) then
+	if player:removeTotalMoney(10000) then
 		player:addItem(3057, 1)
 		player:getPosition():sendMagicEffect(CONST_ME_MAGIC_GREEN)
 		player:say("You bought an Aol.")

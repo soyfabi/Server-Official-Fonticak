@@ -12,6 +12,8 @@ local reloadTypes = {
 	
 	["global"] = RELOAD_TYPE_GLOBAL,
 	["items"] = RELOAD_TYPE_ITEMS,
+	
+	["mounts"] = RELOAD_TYPE_MOUNTS,
 
 	["npc"] = RELOAD_TYPE_NPCS,
 	["npcs"] = RELOAD_TYPE_NPCS,

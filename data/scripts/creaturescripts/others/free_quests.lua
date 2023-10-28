@@ -234,7 +234,8 @@ function FreeQuests.onLogin(player)
 	player:getStorageValue(Storage.FreeQuests) == 1 then
 		return true
 	end
-
+	--player:addMount(1)
+	--player:addMount(2)
 	player:sendTextMessage(MESSAGE_INFO_DESCR, "You will receive free missions in a few moments...")
 	addEvent(playerFreeQuestStart, 500, player:getId(), 0)
 	return true

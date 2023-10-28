@@ -28,9 +28,20 @@ local signs = {
 -- Lions rock entrance
 local lionsRockEntrance = MoveEvent()
 
+local exhaust = {}
+local exhaustTime = 3
+
 function lionsRockEntrance.onStepIn(creature, item, position, fromPosition)
 	local player = creature:getPlayer()
 	if not player then
+		return true
+	end
+	
+	local playerId = player:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, now wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		player:teleportTo(fromPosition, true)
 		return true
 	end
 
@@ -44,6 +55,7 @@ function lionsRockEntrance.onStepIn(creature, item, position, fromPosition)
 		player:teleportTo(fromPosition, true)
 		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have to pass the Lion's Tests to enter the inner sanctum!")
 	end
+	exhaust[playerId] = currentTime + exhaustTime
 	return true
 end
 

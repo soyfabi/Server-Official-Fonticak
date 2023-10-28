@@ -2908,6 +2908,90 @@ Game.createQuest("Factions", {
     }
 }):register()
 
+Game.createQuest("Lion's Rock", {
+    storageId = Storage.LionsRock.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Lion's Rock",
+            storageId = Storage.LionsRock.Questline,
+            startValue = 1,
+            endValue = 11,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = function()
+						return string.format(
+							"You have discovered the Lion's Rock. If you pass the following tests you may enter the inner sanctum.\n\nThe Lion's Strength %d/1\nThe Lion's Beauty %d/1\nThe Lion's Tears %d/1",
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsStrength), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsBeauty), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsTears), 0)
+						)
+					end,
+					[2] = function()
+						return string.format(
+							"You have discovered the Lion's Rock. If you pass the following tests you may enter the inner sanctum.\n\nThe Lion's Strength %d/1\nThe Lion's Beauty %d/1\nThe Lion's Tears %d/1",
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsStrength), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsBeauty), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsTears), 0)
+						)
+					end,
+					[3] = function()
+						return string.format(
+							"You have discovered the Lion's Rock. If you pass the following tests you may enter the inner sanctum.\n\nThe Lion's Strength %d/1\nThe Lion's Beauty %d/1\nThe Lion's Tears %d/1",
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsStrength), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsBeauty), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.OuterSanctum.LionsTears), 0)
+						)
+					end,
+					[4] = "You have passed the three tests of Lion's Rock and thus lit the three mystical pyramids. You may enter the inner sanctum now. - What other secrets could be hidden down there?",
+					[5] = "You found a mysterious scroll in the debris of an old amphora. It seems it could help to translate the old temple inscriptions.",
+					[6] = function()
+						return string.format(
+							"Lions' enemies in this area of the temple. What could be the resolution?\n\nBlood %d/1\nEgg %d/1\nEye %d/1\nPoison %d/1",
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.SnakeSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.LizardSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.ScorpionSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.HyenaSign), 0)
+						)
+					end,
+					[7] = function()
+						return string.format(
+							"Lions' enemies in this area of the temple. What could be the resolution?\n\nBlood %d/1\nEgg %d/1\nEye %d/1\nPoison %d/1",
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.SnakeSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.LizardSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.ScorpionSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.HyenaSign), 0)
+						)
+					end,
+					[8] = function()
+						return string.format(
+							"Lions' enemies in this area of the temple. What could be the resolution?\n\nBlood %d/1\nEgg %d/1\nEye %d/1\nPoison %d/1",
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.SnakeSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.LizardSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.ScorpionSign), 0),
+							math.max(player:getStorageValue(Storage.LionsRock.InnerSanctum.HyenaSign), 0)
+						)
+					end,
+					[9] = 'In the north-west area of the Inner Sanctum, find the southern rectangular room to the south-west. In this room you will find 4 "sun" floor inscriptions as well as a rock in the center. The sun inscriptions represent gem slots.',
+					[10] = "By solving the gem puzzle you unveiled the last secret of the Lion's Rock. You drew a treasure out of the ornamented fountain in the lower temple areas.",
+					[11] = "You have completed the Lion Rocks."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.LionsRock.Questline)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },	
+    }
+}):register()
+
 Game.createQuest("The White Raven Monastery", {
     storageId = Storage.WhiteRavenMonastery.QuestLog,
     storageValue = 1,

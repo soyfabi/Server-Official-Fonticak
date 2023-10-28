@@ -80,12 +80,23 @@ lionsRockSacrificesTest:register()
 -- Get lions mane
 local lionsGetLionsMane = Action()
 
+local exhaust = {}
+local exhaustTime = 30
+
 function lionsGetLionsMane.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	
+	local playerId = player:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, now wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You picked a beautiful lion's mane flower.")
 	player:addItem(21389, 1)
-	player:setStorageValue(Storage.LionsRock.Questline, math.max(player:getStorageValue(Storage.LionsRock.Questline), 1))
-	--player:setStorageValue(Storage.TibiaTales.DefaultStart, 1)
+	player:setStorageValue(Storage.LionsRock.Questline, 1)
 	item:transform(21935)
+	exhaust[playerId] = currentTime + exhaustTime
 	addEvent(function() item:transform(21388) end, 60 * 1000)
 	return true
 end
@@ -99,21 +110,20 @@ local lionsGetHolyWater = Action()
 local exhaust = {}
 local exhaustTime = 30
 
-
 function lionsGetHolyWater.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 
 	local playerId = player:getId()
     local currentTime = os.time()
     if exhaust[playerId] and exhaust[playerId] > currentTime then
-		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		player:sendCancelMessage("You are on cooldown, now wait (0." .. exhaust[playerId] - currentTime .. "s).")
 		return true
 	end
-
+	
 	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, 'You took some holy water from the sacred well.')
 	player:addItem(21466, 1)
-	player:setStorageValue(Storage.LionsRock.Questline, math.max(player:getStorageValue(Storage.LionsRock.Questline), 1))
-	--player:setStorageValue(Storage.TibiaTales.DefaultStart, 1)
+	player:setStorageValue(Storage.LionsRock.Questline, 1)
 	exhaust[playerId] = currentTime + exhaustTime
+
 	return true
 end
 
@@ -124,6 +134,10 @@ lionsGetHolyWater:register()
 local lionsRockFountain = Action()
 
 function lionsRockFountain.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	if player:getStorageValue(Storage.LionsRock.Questline) < 1 then
+		return true
+	end
+	
 	if player:getStorageValue(Storage.LionsRock.Time) < os.time() then
 		local reward = ''
 		if player:hasMount(40) then
