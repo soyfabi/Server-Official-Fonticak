@@ -24,11 +24,12 @@ function replicaServant.onKill(creature, target)
 	if not bossConfig then
 		return true
 	end
+	
 	if bossConfig.storage < 0 then
-		Game.setStorageValue(bossConfig.storage, 0)
+		setGlobalStorageValue(bossConfig.storage, 0)
 	end
-	Game.setStorageValue(bossConfig.storage, Game.getStorageValue(bossConfig.storage) + 1)
-	if Game.getStorageValue(GlobalStorage.ForgottenKnowledge.GoldenServant) >= 1 and Game.getStorageValue(GlobalStorage.ForgottenKnowledge.DiamondServant) >= 1 then
+	setGlobalStorageValue(bossConfig.storage, getGlobalStorageValue(bossConfig.storage) + 1)
+	if getGlobalStorageValue(GlobalStorage.ForgottenKnowledge.GoldenServant) >= 5 and getGlobalStorageValue(GlobalStorage.ForgottenKnowledge.DiamondServant) >= 5 then
 		if not Tile(Position(32815, 32870, 13)):getItemById(10840) then
 			local teleport = Game.createItem(10840, 1, Position(32815, 32870, 13))
 			if teleport then
@@ -43,7 +44,6 @@ function replicaServant.onKill(creature, target)
 	return true
 end
 replicaServant:register()
-
 
 local login = CreatureEvent("ReplicaServantLogin")
 

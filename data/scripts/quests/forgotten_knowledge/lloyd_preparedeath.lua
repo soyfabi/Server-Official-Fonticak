@@ -9,8 +9,10 @@ local function revertLloyd(prismId)
 	local lloydTile = Tile(Position(32799, 32826, 14))
 	if lloydTile then
 		local lloyd = lloydTile:getTopCreature()
-		lloyd:teleportTo(Position(32799, 32829, 14))
-		lloyd:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+		if lloyd then
+			lloyd:teleportTo(Position(32799, 32829, 14))
+			lloyd:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+		end
 	end
 
 	Tile(monsters[prismId].pos):getTopCreature():remove()

@@ -17,7 +17,7 @@ monster.health = 420000
 monster.maxHealth = 420000
 monster.race = "undead"
 monster.corpse = 32702
-monster.speed = 125
+monster.speed = 250
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 1,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true
@@ -82,6 +82,8 @@ monster.loot = {
 	{name = "bloody tears", chance = 1500},
 	{name = "ghost chestplate", chance = 150},
 	{name = "spooky hood", chance = 150},
+	{name = "pale worm's scalp", chance = 1200},
+	{name = "spectral scrap of cloth", chance = 250},
 	{name = "fabulous legs", chance = 150},
 	{name = "phantasmal axe", chance = 150},
 	{name = "ghost backpack", chance = 150},

@@ -88,9 +88,29 @@ function teleportBoss.onStepIn(creature, item, position, fromPosition)
 				return true
 			end
 			if creature:getStorageValue(value.storage) > os.time() then
-				creature:teleportTo(fromPosition, true)
-				creature:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
-				creature:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have to wait " .. value.timeToFightAgain .. " hours to face ".. value.bossName .. " again!")
+				local timeremaining = creature:getStorageValue(value.storage) - os.time()	
+				if timeremaining > 0 then
+					local horasRestantes = math.floor(timeremaining / 3600)
+					local minutosRestantes = math.floor((timeremaining % 3600) / 60)
+					local segundosRestantes = timeremaining % 60
+
+					local message = "You have to wait " .. value.timeToFightAgain .. " hours to face ".. value.bossName .." again!\nYou are still exhausted from your last battle, wait"
+
+					if horasRestantes > 0 then
+						message = message .. string.format(' %d hours', horasRestantes)
+					end
+
+					if minutosRestantes > 0 then
+						message = message .. string.format(' %d minutes', minutosRestantes)
+						end
+
+					if segundosRestantes > 0 then
+						message = message .. string.format(' %d seconds', segundosRestantes)
+					end
+					creature:teleportTo(fromPosition, true)
+					creature:getPosition():sendMagicEffect(CONST_ME_TELEPORT)
+					creature:sendTextMessage(MESSAGE_EVENT_ADVANCE, message .. '.')
+				end	
 				return true
 			end
 			spec:removeMonsters()

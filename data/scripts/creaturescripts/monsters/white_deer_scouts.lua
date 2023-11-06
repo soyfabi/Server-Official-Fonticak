@@ -1,4 +1,4 @@
-local creatureevent = CreatureEvent("WhiteDeerScouts")
+local creatureevent = CreatureEvent("WhiteDeerScoutsDeath")
 
 function creatureevent.onDeath(creature, corpse, killer, mostDamageKiller, lastHitUnjustified, mostDamageUnjustified)
 	local targetMonster = creature:getMonster()

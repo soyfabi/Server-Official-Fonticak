@@ -202,7 +202,54 @@ local questTable = {
 	{storage = Storage.DjinnWar.MaridFaction.Mission01, storageValue = 2},
 	{storage = Storage.DjinnWar.MaridFaction.Mission02, storageValue = 2},
 	{storage = Storage.DjinnWar.MaridFaction.RataMari, storageValue = 2},
-	{storage = Storage.DjinnWar.MaridFaction.Mission03, storageValue = 3},]]
+	{storage = Storage.DjinnWar.MaridFaction.Mission03, storageValue = 3},
+	{storage = Storage.DjinnWar.EfreetFaction.DoorToLamp, storageValue = 1},
+	{storage = Storage.DjinnWar.EfreetFaction.DoorToMaridTerritory, storageValue = 1},
+	{storage = Storage.DjinnWar.MaridFaction.DoorToLamp, storageValue = 1},
+	{storage = Storage.DjinnWar.MaridFaction.DoorToEfreetTerritory, storageValue = 1},]]
+	
+	-- The Shattered Isles --
+	--[[{storage = Storage.TheShatteredIsles.DefaultStart, storageValue = 3},
+	{storage = Storage.TheShatteredIsles.TheGovernorDaughter, storageValue = 3},
+	{storage = Storage.TheShatteredIsles.TheErrand, storageValue = 2},
+	{storage = Storage.TheShatteredIsles.AccessToMeriana, storageValue = 1},
+	{storage = Storage.TheShatteredIsles.APoemForTheMermaid, storageValue = 3},
+	{storage = Storage.TheShatteredIsles.ADjinnInLove, storageValue = 5},
+	{storage = Storage.TheShatteredIsles.AccessToLagunaIsland, storageValue = 1},
+	{storage = Storage.TheShatteredIsles.AccessToGoroma, storageValue = 1},
+	{storage = Storage.TheShatteredIsles.AccessToNargor, storageValue = 1},
+	{storage = Storage.TheShatteredIsles.RaysMission1, storageValue = 3},
+	{storage = Storage.TheShatteredIsles.RaysMission2, storageValue = 3},
+	{storage = Storage.TheShatteredIsles.RaysMission3, storageValue = 2},
+	{storage = Storage.TheShatteredIsles.RaysMission4, storageValue = 5},
+	{storage = Storage.TheShatteredIsles.ReputationInSabrehaven, storageValue = 22},	
+	{storage = Storage.TheShatteredIsles.Shipwrecked, storageValue = 2},
+	{storage = Storage.TheShatteredIsles.DragahsSpellbook, storageValue = 1},
+	{storage = Storage.TheShatteredIsles.TheCounterspell, storageValue = 4},]]
+	
+	-- Travelling Trader --
+	--[[{storage = Storage.TravellingTrader.Mission01, storageValue = 1},
+	{storage = Storage.TravellingTrader.Mission01, storageValue = 2},
+	{storage = Storage.TravellingTrader.Mission02, storageValue = 5},
+	{storage = Storage.TravellingTrader.Mission03, storageValue = 3},
+	{storage = Storage.TravellingTrader.Mission04, storageValue = 3},
+	{storage = Storage.TravellingTrader.Mission05, storageValue = 3},
+	{storage = Storage.TravellingTrader.Mission06, storageValue = 2},
+	{storage = Storage.TravellingTrader.Mission07, storageValue = 1},]]
+	
+	-- The Order Of The Lion --
+	--[[{storage = Storage.Quest.U12_40.TheOrderOfTheLion.AccessEastSide, storageValue = 1},
+	{storage = Storage.Quest.U12_40.TheOrderOfTheLion.AccessSouthernSide, storageValue = 1},]]
+	
+	-- Friends and Traders --
+	--[[{storage = Storage.FriendsandTraders.DefaultStart, storageValue = 1},
+	{storage = Storage.FriendsandTraders.TheSweatyCyclops, storageValue = 2},
+	{storage = Storage.FriendsandTraders.TheMermaidMarina, storageValue = 2},
+	{storage = Storage.FriendsandTraders.TheBlessedStake, storageValue = 12},]]
+	
+	-- Kilmaresh --
+	--[[{storage = Storage.Kilmaresh.AccessDoor, storageValue = 1},
+	{storage = Storage.Kilmaresh.CatacombDoors, storageValue = 1},]]
 	
 }
 

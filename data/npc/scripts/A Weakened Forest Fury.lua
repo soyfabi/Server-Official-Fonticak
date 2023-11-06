@@ -37,7 +37,7 @@ local function creatureSayCallback(cid, type, msg)
 			"You will find {phials} for water near this sacred well which will take you safely to the glade. No seeds are left, they are in the hands of the intruders now. Have faith in yourself, guardian."
 			}, cid)
 			player:setStorageValue(Storage.ForgottenKnowledge.BirdCage, 1)
-			player:addItem(26480, 1)
+			player:addItem(23812, 1)
 		end
 	elseif msgcontains(msg, "seeds") then
 			if npcHandler.topic[cid] == 1 then
@@ -87,6 +87,6 @@ local function creatureSayCallback(cid, type, msg)
 	return true
 end
 
-npcHandler:setCallback(CALLBACK_GREET, greetCallback)
+npcHandler:setMessage(MESSAGE_GREET, "I greet you, human. This is a time of {distress}, more than ever are we in need of guardians to protect us and our world.")
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new())

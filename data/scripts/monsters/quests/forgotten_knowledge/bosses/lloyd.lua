@@ -17,7 +17,7 @@ monster.health = 64000
 monster.maxHealth = 64000
 monster.race = "venom"
 monster.corpse = 24927
-monster.speed = 200
+monster.speed = 400
 monster.manaCost = 0
 
 monster.changeTarget = {
@@ -39,7 +39,7 @@ monster.flags = {
 	targetDistance = 1,
 	runHealth = 1,
 	healthHidden = false,
-	isBlockable = false,
+	ignoreSpawnBlock = false,
 	canWalkOnEnergy = true,
 	canWalkOnFire = true,
 	canWalkOnPoison = true
@@ -85,7 +85,7 @@ monster.loot = {
 	{id = 11454, chance = 5000}, -- luminous orb
 	{id = 7440, chance = 5000}, -- mastermind potion
 	{id = 5904, chance = 5000}, -- magic sulphur
-	{id = 24959, chance = 500, unique = true}, -- part of a rune
+	{id = 24959, chance = 500}, -- part of a rune
 	{id = 3098, chance = 1970}, -- ring of healing
 	{id = 8092, chance = 1970}, -- wand of starstorm
 	{id = 8072, chance = 1970}, -- spellbook of enlightenment

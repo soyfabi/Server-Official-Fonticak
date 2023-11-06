@@ -46,7 +46,7 @@ monster.flags = {
 }
 
 monster.events = {
-	"First Dragon Death"
+	"FirstDragonDeath"
 }
 
 monster.light = {

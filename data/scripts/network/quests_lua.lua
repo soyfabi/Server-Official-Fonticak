@@ -2992,6 +2992,595 @@ Game.createQuest("Lion's Rock", {
     }
 }):register()
 
+Game.createQuest("The Shattered Isles", {
+    storageId = Storage.TheShatteredIsles.DefaultStart,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "A Djinn in Love",
+            storageId = Storage.TheShatteredIsles.ADjinnInLove,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You need to return to Marina and ask her for a date with Ocelus.",
+					[2] = "You need to return to Ocelus with the bad news.",
+					[3] = "Ocelus told you to get a poem for him, if you didn't buy one already, \z
+					head to Ab'Dendriel and buy a Love Poem from Elvith.",
+					[4] = "You need to go recite the poem to Marina and impress her \z
+					with the Djinn\'s romantic and poetic abilities.",
+					[5] = "After reciting the poem to Marina, she decided to date Ocelus and release Ray Striker from her spell."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.ADjinnInLove)]
+            end
+        },
+		{
+            name = "A Poem for the Mermaid",
+            storageId = Storage.TheShatteredIsles.APoemForTheMermaid,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You need to find the man-stealing mermaid and try to break her spell over poor Raymond, \z
+						the mermaid Marina is near the northern coast of the island.",
+					[2] = "You discovered that she does in fact have a spell on him, and will not release him unless \z
+						someone better comes along.",
+					[3] = "You are a true master in reciting love poems now. \z
+						No mermaid will be able to resist if you ask for a date!"
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.APoemForTheMermaid)]
+            end
+        },
+		{
+            name = "Access to Goroma",
+            storageId = Storage.TheShatteredIsles.AccessToGoroma,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "After helping Jack Fate to collect the 30 woodpieces, \z
+						Jack Fate in Liberty Bay will bring you to Goroma."
+        },
+		{
+            name = "Access to Laguna Island",
+            storageId = Storage.TheShatteredIsles.AccessToLagunaIsland,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "After arranging a date for Marina and Ocelus, you are allowed to use Marina\'s sea turtles. \z
+						They will bring you to the idyllic Laguna Islands."
+        },
+		{
+            name = "Access to Meriana",
+            storageId = Storage.TheShatteredIsles.AccessToMeriana,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "After earning the trust of the governor\'s daughter Eleonore, \z
+						Captain Waverider in Liberty Bay will bring you to Meriana if you tell him the secret codeword 'peg leg'."
+        },
+		{
+            name = "Access to Nargor",
+            storageId = Storage.TheShatteredIsles.AccessToNargor,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "After convincing the people in Sabrehaven that you are a trustworthy hero, \z
+					Sebastian will sail you to Nargor."
+        },
+		{
+            name = "Ray\'s Mission 1: Fafnar\'s Fire",
+            storageId = Storage.TheShatteredIsles.RaysMission1,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Ray Striker asked you to travel to Edron and pretend to the alchemist Sandra that you are the one \z
+						whom the other pirates sent to get the fire. When she asks for a payment, tell her \z
+						'Your continued existence is payment enough'.",
+					[2] = "Sandra will be enraged and will cut any deals with pirates. Report back to Raymond Striker.",
+					[3] = "Ray Striker was pleased to hear about Sandra\'s rage. If you haven't done so yet, \z
+						ask him for other missions."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.RaysMission1)]
+            end
+        },
+		{
+            name = "Ray\'s Mission 2: Sabotage",
+            storageId = Storage.TheShatteredIsles.RaysMission2,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Buy a fire bug at Liberty Bay and infiltrate Nargor. \z
+						Find the pirates' harbor and use the fire bug to sabotage their catapult there.",
+					[2] = "You were able to sabotage the catapult in the pirate\'s harbor. \z
+						Report back to Ray Striker to tell him about mission.",
+					[3] = "Ray Striker was pleased to hear about successful sabotage. \z
+						If you haven't done so yet, ask him for other missions."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.RaysMission2)]
+            end
+        },
+		{
+            name = "Ray\'s Mission 3: Spy Mission",
+            storageId = Storage.TheShatteredIsles.RaysMission3,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Travel to Nargor and try to enter de pirate\'s tavern by deceiving the guard in front of it. \z
+						Read all the plans which you can find in the tavern and report back to Striker.",
+					[2] = "You studied all of the pirate\'s plans in their tavern which will give insight about their next strikes. \z
+						If you haven't done so yet, ask Ray for another mission."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.RaysMission3)]
+            end
+        },
+		{
+            name = "Ray\'s Mission 4: Proof of Death",
+            storageId = Storage.TheShatteredIsles.RaysMission4,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Travel to Nargor and try to find out more about the mission Klaus offers. \z
+						He apparently wants the death of Ray Striker and your task is to convince him that Ray is dead.",
+					[2] = "Klaus told you to kill Ray Striker and bring him his lucky pillow as a proof. \z
+						Ray should be interested in hearing about this mission.",
+					[3] = "You informed Ray that Klaus needs his lucky pillow as proof of his death. \z
+						Ray gave it to you, now go convince Klaus that the mission is fulfilled and Ray is Dead!",
+					[4] = "Klaus belieaves that Ray Striker is dead and will celebrate a big party. \z
+						You should tell Ray about your successful mission.",
+					[5] = "Ray was very impressed to hear about your successful mission \z
+						and gave you a ship and a pirate outfit as reward."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.RaysMission4)]
+            end
+        },
+		--[[{
+            name = "Reputation in Sabrehaven: Suspicious",
+            storageId = Storage.TheShatteredIsles.ReputationInSabrehaven,
+            startValue = 2,
+            endValue = 13,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [2] = "Ariella asked you for a few days of adequate supply. \z
+						Help her and improve your reputation in Sabrehaven.",
+					[3] = "You have finished one mission. Ask around in Sabrehaven and surroundings whether the \z
+						people there might have missions for you. This will improve your reputation and earn their trust.",
+					[4] = "Morgan asked you to deliver a letter safely to old Eremo on Cormaya. \z
+						Help him and improve your reputation in Sabrehaven.",
+					[5] = "You delivered the letter safely to old Eremo. Report back to Morgan and \z
+						improve your reputation in Sabrehaven.",
+					[6] = "You have finished two missions. Ask around in Sabrehaven and surroundings \z
+						whether the people there might have missions for you. This will improve your reputation and earn their trust.",
+					[7] = "Duncan requested an atlas of the explorers society. Help him and improve your reputation in Sabrehaven.",
+					[8] = "You have finished three missions. Ask around in Sabrehaven and surroundings whether the \z
+						people there might have missions for you. This will improve your reputation and earn their trust.",
+					[9] = "Chondur asked at least five pirate voodoo dolls to lift the curse. Help him and improve \z
+						your reputation in Sabrehaven.",
+					[10] = "You have finished four missions. Ask around in Sabrehaven and surroundings whether the \z
+						people there might have missions for you. This will improve your reputation and earn their trust.",
+					[11] = "Ariella asked you to bring a sample of whisper beer from a secret whisper bar in Carlin. \z
+						Help her and improve your reputation in Sabrehaven.",
+					[12] = "Take the sample of whisper beer to Ariella. Help her and improve your reputation in Sabrehaven."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven)]
+            end
+        },
+		{
+            name = "Reputation in Sabrehaven: Suspicious",
+            storageId = Storage.TheShatteredIsles.ReputationInSabrehaven,
+            startValue = 14,
+            endValue = 17,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [14] = "You have finished five missions. People in Sabrehaven seem to start trusting you. \z
+						Maybe this is a good time for some more difficult missions.",
+					[15] = "You have finished six missions. People in Sabrehaven seem to start trusting you. \z
+						Maybe this is a good time for some more difficult missions.",
+					[16] = "You have finished seven missions. People in Sabrehaven seem to start trusting you. \z
+						Maybe this is a good time for some more difficult missions."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven)]
+            end
+        },
+		{
+            name = "Reputation in Sabrehaven: Cordial",
+            storageId = Storage.TheShatteredIsles.ReputationInSabrehaven,
+            startValue = 18,
+            endValue = 19,
+            ignoreEndValue = false,
+            description = "You have finished eight missions. \z
+					People in Sabrehaven seem to trust you, but there is still one last mission left."
+        },]]
+		{
+            name = "Reputation in Sabrehaven: Loyal",
+            storageId = Storage.TheShatteredIsles.ReputationInSabrehaven,
+            startValue = 20,
+            endValue = 22,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [20] = "You have finished nine missions. People in Sabrehaven are considering you as one of them.",
+					[22] = "You have finished all missions. \z
+						People in Sabrehaven are considering you as one of them and you earned their full trust."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven)]
+            end
+        },
+		{
+            name = "The Counterspell",
+            storageId = Storage.TheShatteredIsles.TheCounterspell,
+            startValue = 1,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You have begun Chondur\'s ritual. Bring him a fresh dead chicken so that he can begin to \z
+						create a counterspell which will allow you to pass the magical barrier on Goroma.",
+					[2] = "You have begun Chondur\'s ritual. Bring him a fresh dead rat so that he can continue \z
+						creating a counterspell which will allow you to pass the magical barrier on Goroma.",
+					[3] = "You have begun Chondur\'s ritual. Bring him a fresh dead black sheep so that he can \z
+						complete his counterspell which will allow you to pass the magical barrier on Goroma.",
+					[4] = "You may pass the energy barrier on Goroma. The counterspell Chondur created for you \z
+						with his ritual will allow you to withstand the evil magic of the cultist."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.TheCounterspell)]
+            end
+        },
+		{
+            name = "The Errand",
+            storageId = Storage.TheShatteredIsles.TheErrand,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You told Eleonore to run a small errand. Deliver the 200 gold pieces she \z
+						gave to the herbalist Charlotta in the south-western part of Liberty Bay.",
+					[2] = "You delivered the gold to Charlotta. Return to Eleonore and tell her the secret password: peg leg"
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.TheErrand)]
+            end
+        },
+		{
+            name = "The Governor\'s Daughter",
+            storageId = Storage.TheShatteredIsles.TheGovernorDaughter,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "You promised to find Eleonore\'s lost ring. She told you that a parrot stole it from her \z
+						dressing table and flew to the nearby mountains. You might need a rake to retrieve the ring.",
+					[2] = "You found the ring. Return it to Eleonore.",
+					[3] = "You returned the ring to Eleonore."
+				}
+                return descriptions[player:getStorageValue(Storage.TheShatteredIsles.TheGovernorDaughter)]
+            end
+        },
+    }
+}):register()
+
+Game.createQuest("The Travelling Trader Quest", {
+    storageId = Storage.TravellingTrader.Mission01,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Mission 1: Trophy",
+            storageId = Storage.TravellingTrader.Mission01,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Your first mission for becoming a recognized trader is to bring the \z
+						traveling salesman Rashid a Deer Trophy.",
+					[2] = "You have completed this mission. Talk with Rashid to continue."
+				}
+                return descriptions[player:getStorageValue(Storage.TravellingTrader.Mission01)]
+            end
+        },
+		{
+            name = "Mission 2: Delivery",
+            storageId = Storage.TravellingTrader.Mission02,
+            startValue = 1,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Your mission is to get the package from Willard the weapon dealer at Edron.",
+					[2] = "Willard forgot to pick it up from Snake Eye at Outlaw Camp. \z
+						So he wants you to go and pick it up from Snake Eye.",
+					[3] = "Take the package just next door.",
+					[4] = "Now bring back the package to Rashid.",
+					[5] = "You have completed this mission. Talk with Rashid to continue."
+				}
+                return descriptions[player:getStorageValue(Storage.TravellingTrader.Mission02)]
+            end
+        },
+		{
+            name = "Mission 3: Cheese",
+            storageId = Storage.TravellingTrader.Mission03,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Rashid wants you to pick his special order from Miraia in Darashia. \z
+						But you have to be quick, Scarab cheese can rot really fast in high temperature.",
+					[2] = "Now quickly bring back the Scarab cheese to Rashid.",
+					[3] = "You have completed this mission. Talk with Rashid to continue."
+				}
+                return descriptions[player:getStorageValue(Storage.TravellingTrader.Mission03)]
+            end
+        },
+		{
+            name = "Mission 4: Vase",
+            storageId = Storage.TravellingTrader.Mission04,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Rashid have ordered a special elven vase from Briasol in Ab'Dendriel. \z
+						He asks you to buy it from Briasol and bring it back. \z
+                        But you should be carefully, since the vase is very fragile.",
+					[2] = "Now carefully bring the vase back to Rashid.",
+					[3] = "You have completed this mission. Talk with Rashid to continue."
+				}
+                return descriptions[player:getStorageValue(Storage.TravellingTrader.Mission04)]
+            end
+        },
+		{
+            name = "Mission 5: Make a deal",
+            storageId = Storage.TravellingTrader.Mission05,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "This time, Rashid is testing your trading skills to buy a Crimson Sword from Uzgod. \z
+						But it have to be less than 400 gold coins and the quality has to be perfect.",
+					[2] = "Now bring the sword back to Rashid.",
+					[3] = "You have completed this mission. Talk with Rashid to continue."
+				}
+                return descriptions[player:getStorageValue(Storage.TravellingTrader.Mission05)]
+            end
+        },
+		{
+            name = "Mission 5: Make a deal",
+            storageId = Storage.TravellingTrader.Mission05,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "This time, Rashid is testing your trading skills to buy a Crimson Sword from Uzgod. \z
+						But it have to be less than 400 gold coins and the quality has to be perfect.",
+					[2] = "Now bring the sword back to Rashid.",
+					[3] = "You have completed this mission. Talk with Rashid to continue."
+				}
+                return descriptions[player:getStorageValue(Storage.TravellingTrader.Mission05)]
+            end
+        },
+		{
+            name = "Mission 6: Goldfish",
+            storageId = Storage.TravellingTrader.Mission06,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Rashid wants you to bring him a Goldfish Bowl.",
+					[2] = "You have completed this mission. Talk with Rashid to continue."
+				}
+                return descriptions[player:getStorageValue(Storage.TravellingTrader.Mission06)]
+            end
+        },
+		{
+            name = "Mission 7: Declare",
+            storageId = Storage.TravellingTrader.Mission07,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "Rashid has declare you as one of his recognized traders, \z
+						and now you are able to trade with him anytime.."
+        },
+    }
+}):register()
+
+Game.createQuest("Forgotten Knowledge", {
+    storageId = Storage.ForgottenKnowledge.Tomes,
+    storageValue = 1,
+
+    missions = {
+		{
+            name = "Access Portal Ice",
+            storageId = Storage.ForgottenKnowledge.AccessIce,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You now have access to the ice portal."
+        },
+		{
+            name = "Access Portal Golden",
+            storageId = Storage.ForgottenKnowledge.AccessGolden,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You now have access to the golden portal."
+        },
+		{
+            name = "Access Portal Violet",
+            storageId = Storage.ForgottenKnowledge.AccessViolet,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You now have access to the violet portal."
+        },
+		{
+            name = "Access Portal Earth",
+            storageId = Storage.ForgottenKnowledge.AccessEarth,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You now have access to the earth portal."
+        },
+		{
+            name = "Access Portal Death",
+            storageId = Storage.ForgottenKnowledge.AccessDeath,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You now have access to the death portal."
+        },
+		{
+            name = "Access Portal Fire",
+            storageId = Storage.ForgottenKnowledge.AccessFire,
+            startValue = 1,
+            endValue = 1,
+            ignoreEndValue = false,
+            description = "You now have access to the fire portal."
+        },
+        {
+            name = "Circle of the Black Sphinx",
+            storageId = Storage.ForgottenKnowledge.LadyTenebrisKilled,
+            startValue = 0,
+            endValue = 1699109152,
+            ignoreEndValue = false,
+            description = "You defeated the rogue Lady Tenebris."
+        },
+		{
+            name = "Bane of the Cosmic Force",
+            storageId = Storage.ForgottenKnowledge.LloydKilled,
+            startValue = 0,
+            endValue = 1699109152,
+            ignoreEndValue = false,
+            description = "You calmed poor, misguided Lloyd. All he wanted was protection from the outside world. \z
+						Luckily he seems to have learned his lesson... or has he?"
+        },
+		{
+            name = "The Desecrated Glade",
+            storageId = Storage.ForgottenKnowledge.ThornKnightKilled,
+            startValue = 0,
+            endValue = 1699109152,
+            ignoreEndValue = false,
+            description = "You defeated the Thorn Knight and shattered the root of evil with all your might. \z
+						The honor of being a guardian of the glade indeed comes with pride as well as responsibility."
+        },
+		{
+            name = "The Unwary Mage",
+            storageId = Storage.ForgottenKnowledge.DragonkingKilled,
+            startValue = 0,
+            endValue = 1699109152,
+            ignoreEndValue = false,
+            description = "With help of Ivalisse from the temple of the Astral Shapers in Thais and her father, \z
+						you averted the Dragon King\'s menace deep in the Zao Muggy Plains."
+        },
+		{
+            name = "Dragon in Distress",
+            storageId = Storage.ForgottenKnowledge.HorrorKilled,
+            startValue = 0,
+            endValue = 1699109152,
+            ignoreEndValue = false,
+            description = "You saved the Dragon Mother\'s egg and she melted the ice wall that blocked your way."
+        },
+		{
+            name = "Time is a Window",
+            storageId = Storage.ForgottenKnowledge.TimeGuardianKilled,
+            startValue = 0,
+            endValue = 1699109152,
+            ignoreEndValue = false,
+            description = "You defeated the Time Guardian and are free to return to your own time. \z
+						For some creatures in this world, it seems neither past nor future are an obstacle."
+        },
+		{
+            name = "Final Fight",
+            storageId = Storage.ForgottenKnowledge.LastLoreKilled,
+            startValue = 0,
+            endValue = 1699109152,
+            ignoreEndValue = false,
+            description = "Description Fault."
+        },
+    }
+}):register()
+
+Game.createQuest("Friends and Traders", {
+    storageId = Storage.FriendsandTraders.DefaultStart,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "The Sweaty Cyclops",
+            storageId = Storage.FriendsandTraders.TheSweatyCyclops,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Big Ben, the cyclops in Ab'Dendriel sends you to bring him 3 bast skirts for his woman. \z
+						After this he will help you to forge different steel.",
+					[2] = "Big Ben, the cyclops in Ab'Dendriel will help you to forge different steel now. \z
+						Just ask him if you need something."
+				}
+                return descriptions[player:getStorageValue(Storage.FriendsandTraders.TheSweatyCyclops)]
+            end
+        },
+		{
+            name = "The Mermaid Marina",
+            storageId = Storage.FriendsandTraders.TheMermaidMarina,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Marina, the mermaid north of Sabrehaven sends you to bring her 50 honeycombs. \z
+						After this she will help you create spool of yarn.",
+					[2] = "Marina, the mermaid north of Sabrehaven will help you to create a spool of yarn \z
+						from 10 pieces of spider silk. Just ask her if you need something."
+				}
+                return descriptions[player:getStorageValue(Storage.FriendsandTraders.TheMermaidMarina)]
+            end
+        },
+		{
+            name = "The Blessed Stake",
+            storageId = Storage.FriendsandTraders.TheBlessedStake,
+            startValue = 1,
+            endValue = 12,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+                    [1] = "Quentin told you about an old prayer which can bind holy energy to an object. Each of its ten lines has to be recited by a different priest though. Bring Quentin a wooden stake from Gamon to start.",
+					[2] = 'You received Quentin\'s prayer: "Light shall be near - and darkness afar". Now, bring your stake to Tibra in the Carlin church for the next line of the prayer.',
+					[3] = 'You received Tibra\'s prayer: "Hope may fill your heart - doubt shall be banned". Now, bring your stake to Maealil in the Elven settlement for the next line of the prayer.',
+					[4] = 'You received Maealil\'s prayer: "Peace may fill your soul - evil shall be cleansed". Now, bring your stake to Yberius in the Venore temple for the next line of the prayer.',
+					[5] = 'You received Yberius\' prayer: "Protection will be granted - from dangers at hand". Now, bring your stake to Isimov in the dwarven settlement for the next line of the prayer.',
+					[6] = 'You received Isimov\'s prayer: "Unclean spirits shall be repelled". Now, bring your stake to Amanda in Edron for the next line of the prayer.',
+					[7] = 'You received Amanda\'s prayer: "Wicked curses shall be broken". Now, bring your stake to Kasmir in Darashia for the next line of the prayer.',
+					[8] = 'You received Kasmir\'s prayer: "Let there be honor and humility". Now, bring your stake to Rahkem in Ankrahmun for the next line of the prayer.',
+					[9] = 'You received Rahkem\'s prayer: "Let there be power and compassion". Now, bring your stake to Brewster in Port Hope for the next line of the prayer.',
+					[10] = 'You received Brewster\'s prayer: "Your hand shall be guided - your feet shall walk in harmony". Now, bring your stake to Tyrias in Liberty Bay for the next line of the prayer.',
+					[11] = 'You received Tyrias\' prayer: "Your mind shall be a vessel for joy, light and wisdom". He wasn\'t exactly happy though and said that if you need some mumbo jumbo again, you should rather go to Chondur.',
+					[12] = "Chondur was surprised to hear that you had to travel through all of Tibia to have your wooden stake blessed. He offered you help with the blessing if you should need one again in the future."
+				}
+                return descriptions[player:getStorageValue(Storage.FriendsandTraders.TheBlessedStake)]
+            end
+        },
+    }
+}):register()
+
 Game.createQuest("The White Raven Monastery", {
     storageId = Storage.WhiteRavenMonastery.QuestLog,
     storageValue = 1,

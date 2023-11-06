@@ -1,25 +1,24 @@
+local items = {
+	[0] = { id = 3035, count = 3, chance = 100 },
+	[1] = { id = 2881, count = 1, chance = 80 },
+	[2] = { id = 12550, count = 1, chance = 25 },
+}
+
 local cupOfMoltenGold = Action()
 
-function cupOfMoltenGold.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-	local targetId = target.itemid
-	if not table.contains({3614, 19111}, targetId) then -- fir tree or fir cone
-		return false
-	end
-	if math.random(100) <= 10 then
-		if targetId == 19111 then -- fir cone
-			item:transform(12550) -- golden fir cone
-		else
-			player:addItem(13539, 1)
+function cupOfMoltenGold.onUse(cid, item, fromPosition, itemEx, toPosition)
+	if itemEx.itemid == 3614 or itemEx.itemid == 19111 then
+		doRemoveItem(item.uid, 1)
+		for i = 0, #items do
+			if items[i].chance > math.random(1, 100) then
+				doPlayerAddItem(cid, items[i].id, items[i].count)
+				doSendMagicEffect(toPosition, CONST_ME_EXPLOSIONAREA)
+				doPlayerSendTextMessage(cid, MESSAGE_EVENT_ADVANCE, "Drizzling all over the fir cone, the molten gold only covers about half of it - not enough.")
+			end
 		end
-	else
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Drizzling all over a fir cone you picked from the tree, the molten gold only covers about half of it - not enough.")
-		if targetId == 19111 then -- fir cone
-			target:remove(1)
-		end
-		item:remove(1)
 	end
 	return true
 end
 
-cupOfMoltenGold:id(13941) -- cup of molten gold
+cupOfMoltenGold:id(12804) -- cup of molten gold
 cupOfMoltenGold:register()

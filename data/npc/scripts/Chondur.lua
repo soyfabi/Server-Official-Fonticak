@@ -15,27 +15,56 @@ local function creatureSayCallback(cid, type, msg)
 	local player = Player(cid)
 	if msgcontains(msg, 'stampor') or msgcontains(msg, 'mount') then
 		if not player:hasMount(11) then
-				npcHandler:say('You did bring all the items I requqested, cuild. Good. Shall I travel to the spirit realm and try finding a stampor compasion for you?', cid)
-				npcHandler.topic[cid] = 1
+			npcHandler:say(
+				'You did bring all the items I requqested, cuild. Good. \
+				Shall I travel to the spirit realm and try finding a stampor compasion for you?',
+			cid)
+			npcHandler.topic[cid] = 1
 		else
 			npcHandler:say('You already have stampor mount.', cid)
 			npcHandler.topic[cid] = 0
 		end
+	elseif msgcontains(msg, 'mission') then
+		if player:getStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven) == 8 then
+			npcHandler:say(
+				'The evil cult has placed a curse on one of the captains here. \
+				I need at least five of their pirate voodoo dolls to lift that curse.',
+			cid)
+			player:setStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven, 9)
+			npcHandler.topic[cid] = 0
+		elseif player:getStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven) == 9 then
+			npcHandler:say('Did you bring five pirate voodoo dolls?', cid)
+			npcHandler.topic[cid] = 2
+		end
 	elseif msgcontains(msg, 'yes') then
 		if npcHandler.topic[cid] == 1 then
-			if player:removeItem(13299, 50) and player:removeItem(13301, 30) and player:removeItem(13300, 100) then
-				npcHandler:say({
-					'Ohhhhh Mmmmmmmmmmmm Ammmmmgggggggaaaaaaa ...',
-					'Aaaaaaaaaahhmmmm Mmmaaaaaaaaaa Kaaaaaamaaaa ...',
-					'Brrt! I think it worked! It\'s a male stampor. I linked this spirit to yours. You can probably already summon him to you ...',
-					'So, since me are done here... I need to prepare another ritual, so please let me work, cuild.'
-				}, cid)
+			if player:removeItem(12312, 50) and player:removeItem(12314, 30) and player:removeItem(12313, 100) then
+				npcHandler:say(
+					{
+						'Ohhhhh Mmmmmmmmmmmm Ammmmmgggggggaaaaaaa ...',
+						'Aaaaaaaaaahhmmmm Mmmaaaaaaaaaa Kaaaaaamaaaa ...',
+						"Brrt! I think it worked! It's a male stampor. \
+						I linked this spirit to yours. You can probably already summon him to you ...",
+						'So, since me are done here... I need to prepare another ritual, so please let me work, cuild.'
+					},
+				cid)
 				player:addMount(11)
 				player:getPosition():sendMagicEffect(CONST_ME_MAGIC_RED)
 			else
-				npcHandler:say('Sorry you don\'t have the necessary items.', cid)
+				npcHandler:say("Sorry you don't have the necessary items.", cid)
 			end
 			npcHandler.topic[cid] = 0
+		elseif npcHandler.topic[cid] == 2 then
+			if player:getStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven) == 9 then
+				if player:removeItem(5810, 5) then
+					npcHandler:say('Finally I can put an end to that curse. I thank you so much.', cid)
+					player:setStorageValue(Storage.TheShatteredIsles.ReputationInSabrehaven, 10)
+					npcHandler.topic[cid] = 0
+				else
+					npcHandler:say("You don't have it...", cid)
+					npcHandler.topic[cid] = 0
+				end
+			end
 		end
 	elseif msgcontains(msg, 'no') and npcHandler.topic[cid] > 2 then
 		npcHandler:say('Maybe next time.', cid)
@@ -131,7 +160,7 @@ addItemKeyword('mandrake', 'voodoo doll',
 			'Together with the spirits of the ancestors, I seek for wisdom. Together we can change the flow of magic to do things that are beyond the limits of ordinary magic. ...',
 			'In conversations with the spirits, I gain insight into secrets that would have been lost otherwise.'
 		}
-	}, 1, {{itemId = 5015, count = 1}, {itemId = 3955, count = 5}}, 2, Storage.OutfitQuest.Shaman.MissionStaff
+	}, 1, {{itemId = 5015, count = 1}, {itemId = 3002, count = 5}}, 2, Storage.OutfitQuest.Shaman.MissionStaff
 )
 addItemKeyword('tribal mask', 'banana staff',
 	{
@@ -139,7 +168,7 @@ addItemKeyword('tribal mask', 'banana staff',
 		'Well done, my child! I hereby grant you the right to wear a shamanic mask. Do it proudly.',
 		'Sometimes dworcs are seen with these masks.',
 		'A banana staff is the sign of a high ape magician.'
-	}, 3, {{itemId = 3966, count = 5}, {itemId = 3967, count = 5}}, 1, Storage.OutfitQuest.Shaman.MissionMask, true
+	}, 3, {{itemId = 3348, count = 5}, {itemId = 3403, count = 5}}, 1, Storage.OutfitQuest.Shaman.MissionMask, true
 )
 
 -- Task status
