@@ -53594,8 +53594,8 @@
 		<attribute key="absorbpercentice" value="7"/>
 		<attribute key="absorbpercentphysical" value="3"/>
 		<attribute key="magicpoints" value="2"/>
-		<!--attribute key="firemagiclevelpoints" value="2"/-->
-		<!--attribute key="energymagiclevelpoints" value="2"/-->
+		<!--attribute key="magiclevelfire" value="2"/-->
+		<!--attribute key="magiclevelenergy" value="2"/-->
 		<attribute key="defense" value="20"/>
 		<attribute key="weight" value="1300"/>
 		<attribute key="imbuementslots" value="1"/>
@@ -54234,5 +54234,541 @@
 	<item id="43517" article="a" name="shield of destiny replica">
 		<attribute key="description" value="Souvenir from Thais Museum."/>
 		<attribute key="weight" value="6800"/>
+	</item>
+	<item id="43665" article="a" name="dead elder bloodjaw">
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43667" article="a" name="dead elder bloodjaw">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43666"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43668" article="a" name="dead elder bloodjaw">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43667"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43669" article="a" name="dead elder bloodjaw">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43668"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43729" article="a" name="werecrocodile tongue">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43730" article="a" name="weretiger tooth">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43731" article="a" name="werepanther claw">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43732" article="a" name="silver moon coin">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43734" article="a" name="golden sun coin">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43736" article="a" name="moon pin">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43737" article="a" name="sun brooch">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43739" article="a" name="moon compass">
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43751" article="a" name="dead werecrocodile">
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43752" article="a" name="dead werecrocodile">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43751"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43753" article="a" name="dead werecrocodile">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43752"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43754" article="a" name="dead werecrocodile">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43753"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43755" article="a" name="dead werepanther">
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43756" article="a" name="dead werepanther">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43755"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43757" article="a" name="dead werepanther">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43756"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43758" article="a" name="dead werepanther">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43757"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43764" article="a" name="dead feral werecrocodile">
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43765" article="a" name="dead feral werecrocodile">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43764"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43766" article="a" name="dead feral werecrocodile">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43765"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43767" article="a" name="dead feral werecrocodile">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43766"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43778" article="a" name="organic acid">
+		<attribute key="description" value="Using this volatile acid on certain fungi will release rotten micro spores."/>
+	</item>
+	<item id="43779" article="a" name="unstable darklight matter">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43780" article="a" name="yellow darklight matter">
+		<attribute key="description" value="This rare form of darklight matter is highly volatile."/>
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43781" article="a" name="darklight obsidian axe">
+		<attribute key="description" value="A rare variant of obsidian that originates from highly compressed darklight matter."/>
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43782" article="a" name="lichen gobbler">
+		<attribute key="description" value="This little critter just loves dead lichen."/>
+		<attribute key="weight" value="280"/>
+	</item>
+	<item id="43813" article="a" name="dead bloated man-maggot">
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43814" article="a" name="dead bloated man-maggot">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43813"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43815" article="a" name="dead bloated man-maggot">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43814"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43816" article="a" name="dead bloated man-maggot">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43815"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43846" article="a" name="decayed finger bone">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43848" article="a" name="worm sponge">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43849" article="a" name="rotten root">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43850" article="a" name="dark obsidian splinter">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43851" article="a" name="darklight matter (object)">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43852" article="a" name="darklight basalt chunk">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43853" article="a" name="darklight core (object)">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43858" article="a" name="basalt crumb">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43857" article="a" name="blooded worm">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43859" article="a" name="basalt core">
+		<attribute key="weight" value="100"/>
+	</item>
+	<item id="43864" article="a" name="sanguine blade">
+		<attribute key="weaponType" value="sword"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="elementfire" value="46"/>
+		<attribute key="extradef" value="3"/>
+		<attribute key="defense" value="32"/>
+		<attribute key="skillsword" value="5"/>
+		<attribute key="weight" value="6100"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43865" article="a" name="grand sanguine blade">
+		<attribute key="weaponType" value="sword"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="elementfire" value="46"/>
+		<attribute key="extradef" value="3"/>
+		<attribute key="defense" value="32"/>
+		<attribute key="skillsword" value="5"/>
+		<attribute key="weight" value="6000"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43866" article="a" name="sanguine cudgel">
+		<attribute key="weaponType" value="club"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="elementdeath" value="46"/>
+		<attribute key="extradef" value="3"/>
+		<attribute key="defense" value="32"/>
+		<attribute key="skillclub" value="5"/>
+		<attribute key="weight" value="6900"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43867" article="a" name="grand sanguine cudgel">
+		<attribute key="weaponType" value="club"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="elementdeath" value="46"/>
+		<attribute key="extradef" value="3"/>
+		<attribute key="defense" value="32"/>
+		<attribute key="skillclub" value="5"/>
+		<attribute key="weight" value="6800"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43868" article="a" name="sanguine hatchet">
+		<attribute key="weaponType" value="axe"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="elementfire" value="46"/>
+		<attribute key="extradef" value="3"/>
+		<attribute key="defense" value="32"/>
+		<attribute key="skillaxe" value="5"/>
+		<attribute key="weight" value="7200"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43869" article="a" name="grand sanguine hatchet">
+		<attribute key="weaponType" value="axe"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="elementfire" value="46"/>
+		<attribute key="extradef" value="3"/>
+		<attribute key="defense" value="32"/>
+		<attribute key="skillaxe" value="5"/>
+		<attribute key="weight" value="7200"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43870" article="a" name="sanguine razor">
+		<attribute key="weaponType" value="sword"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="elementenergy" value="50"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="defense" value="35"/>
+		<attribute key="skillsword" value="5"/>
+		<attribute key="weight" value="8100"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43871" article="a" name="grand sanguine razor">
+		<attribute key="weaponType" value="sword"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="elementenergy" value="50"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="defense" value="35"/>
+		<attribute key="skillsword" value="5"/>
+		<attribute key="weight" value="7900"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43872" article="a" name="sanguine bludgeon">
+		<attribute key="weaponType" value="club"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="elementearth" value="50"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="defense" value="35"/>
+		<attribute key="skillclub" value="5"/>
+		<attribute key="weight" value="9300"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43873" article="a" name="grand sanguine bludgeon">
+		<attribute key="weaponType" value="club"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="elementearth" value="50"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="defense" value="35"/>
+		<attribute key="skillclub" value="5"/>
+		<attribute key="weight" value="9100"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43874" article="a" name="sanguine battleaxe">
+		<attribute key="weaponType" value="axe"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="elementdeath" value="50"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="defense" value="35"/>
+		<attribute key="skillaxe" value="5"/>
+		<attribute key="weight" value="8500"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43875" article="a" name="grand sanguine battleaxe">
+		<attribute key="weaponType" value="axe"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="elementdeath" value="50"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="attack" value="8"/>
+		<attribute key="defense" value="35"/>
+		<attribute key="skillaxe" value="5"/>
+		<attribute key="weight" value="8300"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43876" article="a" name="sanguine legs">
+		<attribute key="absorbpercentphysical" value="9"/>
+		<attribute key="absorbpercentdeath" value="6"/>
+		<attribute key="skillaxe" value="4"/>
+		<attribute key="skillclub" value="4"/>
+		<attribute key="skillsword" value="4"/>
+		<attribute key="armor" value="12"/>
+		<attribute key="weight" value="3800"/>
+	</item>
+	<item id="43877" article="a" name="sanguine bow">
+		<attribute key="weaponType" value="distance"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="ammotype" value="arrow"/>
+		<attribute key="absorbpercentearth" value="6"/>
+		<attribute key="skilldist" value="4"/>
+		<attribute key="hitchance" value="6"/>
+		<attribute key="range" value="6"/>
+		<attribute key="attack" value="9"/>
+		<attribute key="weight" value="4700"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43878" article="a" name="grand sanguine bow">
+		<attribute key="weaponType" value="distance"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="ammotype" value="arrow"/>
+		<attribute key="absorbpercentearth" value="6"/>
+		<attribute key="skilldist" value="4"/>
+		<attribute key="hitchance" value="6"/>
+		<attribute key="range" value="6"/>
+		<attribute key="attack" value="9"/>
+		<attribute key="weight" value="4700"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43879" article="a" name="sanguine crossbow">
+		<attribute key="weaponType" value="distance"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="ammotype" value="bolt"/>
+		<attribute key="absorbpercentfire" value="6"/>
+		<attribute key="skilldist" value="4"/>
+		<attribute key="hitchance" value="7"/>
+		<attribute key="range" value="6"/>
+		<attribute key="attack" value="10"/>
+		<attribute key="weight" value="4700"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43880" article="a" name="grand sanguine crossbow">
+		<attribute key="weaponType" value="distance"/>
+		<attribute key="slotType" value="two-handed"/>
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="ammotype" value="bolt"/>
+		<attribute key="absorbpercentfire" value="6"/>
+		<attribute key="skilldist" value="4"/>
+		<attribute key="hitchance" value="7"/>
+		<attribute key="range" value="6"/>
+		<attribute key="attack" value="10"/>
+		<attribute key="weight" value="4700"/>
+		<attribute key="imbuementslots" value="3"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43881" article="a" name="sanguine greaves">
+		<attribute key="absorbpercentphysical" value="7"/>
+		<attribute key="absorbpercentenergy" value="9"/>
+		<attribute key="skilldist" value="4"/>
+		<!--<attribute key="magiclevelholy" value="1"/>-->
+		<attribute key="armor" value="11"/>
+		<attribute key="slotType" value="legs"/>
+		<attribute key="weight" value="3200"/>
+	</item>
+	<item id="43882" article="a" name="sanguine coil">
+		<attribute key="weaponType" value="wand"/>
+		<attribute key="shootType" value="energy"/>
+		<attribute key="absorbpercentearth" value="7"/>
+		<!--<attribute key="magiclevelpoints" value="5"/>
+		<attribute key="magiclevelfire" value="1"/>
+		<attribute key="magiclevelenergy" value="1"/>-->
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="weight" value="2200"/>
+		<attribute key="imbuementslots" value="2"/>
+	</item>
+	<item id="43883" article="a" name="grand sanguine coil">
+		<attribute key="weaponType" value="wand"/>
+		<attribute key="shootType" value="energy"/>
+		<attribute key="absorbpercentearth" value="7"/>
+		<!--<attribute key="magiclevelpoints" value="5"/>
+		<attribute key="magiclevelfire" value="1"/>
+		<attribute key="magiclevelenergy" value="1"/>-->
+		<attribute key="criticalhitamount" value="12"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="weight" value="2100"/>
+		<attribute key="imbuementslots" value="2"/>
+	</item>
+	<item id="43884" name="sanguine boots">
+		<attribute key="absorbpercentphysical" value="2"/>
+		<attribute key="absorbpercentice" value="8"/>
+		<!--<attribute key="magiclevelpoints" value="2"/>-->
+		<!--<attribute key="magicleveldeath" value="1"/>-->
+		<attribute key="speed" value="10"/>
+		<attribute key="armor" value="3"/>
+		<attribute key="slotType" value="feet"/>
+		<attribute key="weight" value="1900"/>
+		<attribute key="imbuementslots" value="1"/>
+	</item>
+	<item id="43885" article="a" name="sanguine rod">
+		<attribute key="weaponType" value="wand"/>
+		<attribute key="shootType" value="earth"/>
+		<attribute key="absorbpercentdeath" value="7"/>
+		<!--<attribute key="magiclevelpoints" value="5"/>-->
+		<!--<attribute key="magiclevelearth" value="1"/>-->
+		<!--<attribute key="magiclevelice" value="1"/>-->
+		<attribute key="criticalhitamount" value="5"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="weight" value="2500"/>
+		<attribute key="imbuementslots" value="2"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43886" article="a" name="grand sanguine rod">
+		<attribute key="weaponType" value="wand"/>
+		<attribute key="shootType" value="earth"/>
+		<attribute key="absorbpercentdeath" value="7"/>
+		<!--<attribute key="magiclevelpoints" value="5"/>-->
+		<!--<attribute key="magiclevelearth" value="1"/>-->
+		<!--<attribute key="magiclevelice" value="1"/>-->
+		<attribute key="criticalhitamount" value="5"/>
+		<attribute key="criticalhitchance" value="10"/>
+		<attribute key="weight" value="2400"/>
+		<attribute key="imbuementslots" value="2"/>
+		<attribute key="classification" value="4"/>
+	</item>
+	<item id="43887" article="a" name="sanguine galoshes">
+		<attribute key="absorbpercentphysical" value="2"/>
+		<attribute key="absorbpercentfire" value="8"/>
+		<!--<attribute key="magiclevelpoints" value="2"/>-->
+		<attribute key="boostpercenthealing" value="1"/>
+		<attribute key="speed" value="10"/>
+		<attribute key="armor" value="3"/>
+		<attribute key="slotType" value="feet"/>
+		<attribute key="weight" value="1700"/>
+		<attribute key="imbuementslots" value="1"/>
+	</item>
+	<item id="43895" article="a" name="bag you covet">
+		<attribute key="weight" value="20"/>
+	</item>
+	<item id="43915" article="a" name="weretiger trophy">
+		<attribute key="weight" value="2800"/>
+	</item>
+	<item id="43916" article="a" name="werecrocodile trophy">
+		<attribute key="weight" value="2800"/>
+	</item>
+	<item id="43917" article="a" name="werepanther trophy">
+		<attribute key="weight" value="2800"/>
+	</item>
+	<item id="44036" article="a" name="dead ayana the crimson curse">
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="44037" article="a" name="dead ayana the crimson curse">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="44036"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="44038" article="a" name="dead ayana the crimson curse">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="44037"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="44039" article="a" name="dead ayana the crimson curse">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="44038"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="44064" article="an" name="training shield">
+		<attribute key="showCharges" value="1"/>
+		<attribute key="charges" value="50"/>
+		<attribute key="weight" value="1000"/>
+	</item>
+	<item id="44065" article="an" name="exercise shield">
+		<attribute key="showCharges" value="1"/>
+		<attribute key="charges" value="500"/>
+		<attribute key="weight" value="1000"/>
+	</item>
+	<item id="44066" article="an" name="durable exercise shield">
+		<attribute key="showCharges" value="1"/>
+		<attribute key="charges" value="1800"/>
+		<attribute key="weight" value="1000"/>
+	</item>
+	<item id="44067" article="an" name="lasting exercise shield">
+		<attribute key="showCharges" value="1"/>
+		<attribute key="charges" value="14400"/>
+		<attribute key="weight" value="1000"/>
 	</item>
 </items>
