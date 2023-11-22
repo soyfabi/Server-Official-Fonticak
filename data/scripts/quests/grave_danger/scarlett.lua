@@ -135,7 +135,7 @@ function graveScarlettAid.onUse(player, item, fromPosition, target, toPosition, 
 						message = message .. string.format(' %d seconds', segundosRestantes)
 					end
 
-					player:sendCancelMessage(message .. '.')
+					player:sendTextMessage(MESSAGE_EVENT_ADVANCE, message .. '.')
 					return true
 				end
 				player:teleportTo(entry.roomEntryPos)

@@ -54223,6 +54223,71 @@
 	</item>
 	<item id="42368" name="podium of tenacity">
 	</item>
+	<item id="42391" name="stairs">
+		<attribute key="floorchange" value="north"/>
+	</item>
+	<item id="42393" name="stairs">
+		<attribute key="floorchange" value="west"/>
+	</item>
+	<item id="42395" name="stairs">
+		<attribute key="floorchange" value="east"/>
+	</item>
+	<item id="42397" name="stairs">
+		<attribute key="floorchange" value="south"/>
+	</item>
+	<item id="42618" name="stairs"></item>
+	<item id="42619" name="stairs">
+		<attribute key="floorchange" value="north"/>
+	</item>
+	<item id="42621" name="stairs">
+		<attribute key="floorchange" value="west"/>
+	</item>
+	<item id="42622" name="stairs"></item>
+	<item id="42623" name="stairs">
+		<attribute key="floorchange" value="south"/>
+	</item>
+	<item id="42629" article="an" name="open door">
+		<attribute key="type" value="door"/>
+	</item>
+	<item id="42631" name="stairs"></item>
+	<item id="42632" name="stairs">
+		<attribute key="floorchange" value="east"/>
+	</item>
+	<item id="42965" name="stairs">
+		<attribute key="floorchange" value="north"/>
+	</item>
+	<item id="42967" name="stairs">
+		<attribute key="floorchange" value="west"/>
+	</item>
+	<item id="42969" name="stairs">
+		<attribute key="floorchange" value="east"/>
+	</item>
+	<item id="42971" name="stairs">
+		<attribute key="floorchange" value="south"/>
+	</item>
+	<item id="43130" name="stairs">
+		<attribute key="floorchange" value="north"/>
+	</item>
+	<item id="43132" name="stairs">
+		<attribute key="floorchange" value="west"/>
+	</item>
+	<item id="43134" name="stairs">
+		<attribute key="floorchange" value="south"/>
+	</item>
+	<item id="43160" name="stairs">
+		<attribute key="floorchange" value="north"/>
+	</item>
+	<item id="43162" name="stairs">
+		<attribute key="floorchange" value="west"/>
+	</item>
+	<item id="43164" name="stairs">
+		<attribute key="floorchange" value="south"/>
+	</item>
+	<item id="43372" article="a" name="hole">
+		<attribute key="floorchange" value="down"/>
+	</item>
+	<item id="43374" article="a" name="ladder">
+	</item>
 	<item id="43510" name="tibiora's box replica">
 		<attribute key="description" value="Souvenir from Thais Museum."/>
 		<attribute key="weight" value="4200"/>
@@ -54234,6 +54299,10 @@
 	<item id="43517" article="a" name="shield of destiny replica">
 		<attribute key="description" value="Souvenir from Thais Museum."/>
 		<attribute key="weight" value="6800"/>
+	</item>
+	<item id="43584" name="sarcophagus"></item>
+	<item id="43585" name="ocarina">
+		<attribute key="weight" value="150"/>
 	</item>
 	<item id="43665" article="a" name="dead elder bloodjaw">
 		<attribute key="decayTo" value="0"/>
@@ -54282,6 +54351,29 @@
 	<item id="43739" article="a" name="moon compass">
 		<attribute key="weight" value="280"/>
 	</item>
+	<item id="43747" article="a" name="dead weretiger">
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43748" article="a" name="dead weretiger">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43747"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43749" article="a" name="dead weretiger">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43748"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43750" article="a" name="dead weretiger">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43749"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
 	<item id="43751" article="a" name="dead werecrocodile">
 		<attribute key="decayTo" value="0"/>
 		<attribute key="duration" value="60"/>
@@ -54325,6 +54417,30 @@
 	<item id="43758" article="a" name="dead werepanther">
 		<attribute key="containerSize" value="30"/>
 		<attribute key="decayTo" value="43757"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43759" article="a" name="dead white weretiger">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43760" article="a" name="dead white weretiger">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43759"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43761" article="a" name="dead white weretiger">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43760"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43762" article="a" name="dead white weretiger">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43761"/>
 		<attribute key="duration" value="10"/>
 		<attribute key="fluidSource" value="blood"/>
 	</item>
@@ -54727,6 +54843,31 @@
 	</item>
 	<item id="43917" article="a" name="werepanther trophy">
 		<attribute key="weight" value="2800"/>
+	</item>
+	<item id="43953" name="gate of expertise"></item>
+	<item id="43956" article="a" name="dead cunning werepanther">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="0"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43957" article="a" name="dead cunning werepanther">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43956"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43958" article="a" name="dead cunning werepanther">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43957"/>
+		<attribute key="duration" value="60"/>
+		<attribute key="fluidSource" value="blood"/>
+	</item>
+	<item id="43959" article="a" name="dead cunning werepanther">
+		<attribute key="containerSize" value="30"/>
+		<attribute key="decayTo" value="43958"/>
+		<attribute key="duration" value="10"/>
+		<attribute key="fluidSource" value="blood"/>
 	</item>
 	<item id="44036" article="a" name="dead ayana the crimson curse">
 		<attribute key="decayTo" value="0"/>

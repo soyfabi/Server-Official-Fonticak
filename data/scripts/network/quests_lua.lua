@@ -3581,6 +3581,23 @@ Game.createQuest("Friends and Traders", {
     }
 }):register()
 
+Game.createQuest("Oramond", {
+    storageId = Storage.Oramond.QuestLine,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "To Take Roots",
+            storageId = Storage.Oramond.MissionToTakeRoots,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = "Five Juicy roots from the outskirts of Rathleton may already help feed the poor. \z
+					Try to find a city official to deliver them to or go to the Rathleton poor house."
+        },
+    }
+}):register()
+
 Game.createQuest("The White Raven Monastery", {
     storageId = Storage.WhiteRavenMonastery.QuestLog,
     storageValue = 1,

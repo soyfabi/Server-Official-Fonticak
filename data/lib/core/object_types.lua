@@ -227,6 +227,10 @@ CustomDoorTable = {
 	{ closedDoor = 33635, openDoor = 33637 },
 	{ closedDoor = 34221, openDoor = 34222 },
 	{ closedDoor = 34223, openDoor = 34224 },
+	{ closedDoor = 43934, openDoor = 43940 },
+	{ closedDoor = 43935, openDoor = 43941 },
+	{ closedDoor = 43938, openDoor = 43942 },
+	{ closedDoor = 43939, openDoor = 43943 },
 }
 
 -- These are the doors for missions, they need access from some mission (storage) to be able to enter. Put the storage value in the action id of the door and it will open only to the player who has the storage value.
@@ -353,6 +357,9 @@ LevelDoorTable = {
 	{ closedDoor = 30034, openDoor = 30036 },
 	{ closedDoor = 30037, openDoor = 30039 },
 	{ closedDoor = 30038, openDoor = 30040 },
+	{ closedDoor = 43953, openDoor = 42629 },
+	{ closedDoor = 43952, openDoor = 43954 },
+	{ closedDoor = 43953, openDoor = 43955 },
 }
 
 windowTable = {

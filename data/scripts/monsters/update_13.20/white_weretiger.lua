@@ -5,11 +5,11 @@ monster.description = "a White Weretiger"
 monster.experience = 5200
 monster.outfit = {
 	lookType = 1646,
-	lookHead = 19,
+	lookHead = 0,
 	lookBody = 40,
-	lookLegs = 19,
+	lookLegs = 0,
 	lookFeet = 0,
-	lookAddons = 3,
+	lookAddons = 2,
 	lookMount = 0
 }
 

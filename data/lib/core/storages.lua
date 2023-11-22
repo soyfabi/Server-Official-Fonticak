@@ -2941,7 +2941,8 @@ Storage = {
 					Monster = 47904,
 					MutatedAbomination = 47905,
 				},
-			}
+			},
+			Ocarina = 47930,
 		}
 	},
 	-- Reserved storage from 63951 - 63999

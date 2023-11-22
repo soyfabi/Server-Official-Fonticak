@@ -625,6 +625,12 @@ local config = {
 		},
 		storage = Storage.Quest.U6_4.BarbarianAxe.Rewards.Scimitar
 	},
+	[15209] = {
+		items = {
+			{itemId = 43585, count = 1}
+		},
+		storage = Storage.Quest.U13_10.Ocarina
+	},
 	
 	
 	

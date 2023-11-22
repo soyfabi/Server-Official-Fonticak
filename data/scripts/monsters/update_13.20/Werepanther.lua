@@ -5,11 +5,11 @@ monster.description = "a Werepanther"
 monster.experience = 3380
 monster.outfit = {
 	lookType = 1648,
-	lookHead = 1,
-	lookBody = 1,
-	lookLegs = 1,
-	lookFeet = 45,
-	lookAddons = 3,
+	lookHead = 114,
+	lookBody = 95,
+	lookLegs = 87,
+	lookFeet = 82,
+	lookAddons = 1,
 	lookMount = 0
 }
 
