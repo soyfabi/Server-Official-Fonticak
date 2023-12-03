@@ -33,7 +33,7 @@ local tests = {
 		pagodaPosition = { x = 33156, y = 32279, z = 8},
 		item = 21466,
 		message = "You have purified a sacret pedestal with holy water. You have now passed the last test\z
-		to enter thge inner sanctum.",
+		to enter the inner sanctum.",
 		effect = CONST_ME_LOSEENERGY
 	}
 }
