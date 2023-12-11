@@ -82,7 +82,7 @@ function talkAction.onSay(player, words, param)
 		player:setSpectators(data)
 		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have removed password for your stream.")
 		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have removed password for your stream.")
-		player:clearStorageValue(Storage.isCastingPassword)
+		player:setStorageValue(Storage.isCastingPassword, -1)
 		return false
 	elseif action == "off" then
 		if player:getStorageValue(Storage.isCasting) == 1 then
@@ -90,7 +90,7 @@ function talkAction.onSay(player, words, param)
 		player:setSpectators(data)
 		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have stopped casting your gameplay.")
 		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have stopped casting your gameplay.")
-		player:clearStorageValue(Storage.isCasting)
+		player:setStorageValue(Storage.isCasting, -1)
 		else
 		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
 		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")

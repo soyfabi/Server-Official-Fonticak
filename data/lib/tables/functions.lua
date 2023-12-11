@@ -626,3 +626,40 @@ function Player.addMagicLevel(self, amt)
     local manaSpent = self:getManaSpent()
     self:addManaSpent(self:getVocation():getRequiredManaSpent(new + 1) - manaSpent)
 end
+
+function Player.checkGnomeRank(self)
+	local points = self:getStorageValue(Storage.BigfootBurden.Rank)
+	local questProgress = self:getStorageValue(Storage.BigfootBurden.QuestLine)
+	if points >= 30 and points < 120 then
+		if questProgress <= 25 then
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 26)
+			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+			self:addAchievement("Gnome Little Helper")
+		end
+	elseif points >= 120 and points < 480 then
+		if questProgress <= 26 then
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 27)
+			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+			self:addAchievement("Gnome Little Helper")
+			self:addAchievement("Gnome Friend")
+		end
+	elseif points >= 480 and points < 1440 then
+		if questProgress <= 27 then
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 28)
+			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+			self:addAchievement("Gnome Little Helper")
+			self:addAchievement("Gnome Friend")
+			self:addAchievement("Gnomelike")
+		end
+	elseif points >= 1440 then
+		if questProgress <= 29 then
+			self:setStorageValue(Storage.BigfootBurden.QuestLine, 30)
+			self:getPosition():sendMagicEffect(CONST_ME_MAGIC_BLUE)
+			self:addAchievement("Gnome Little Helper")
+			self:addAchievement("Gnome Friend")
+			self:addAchievement("Gnomelike")
+			self:addAchievement("Honorary Gnome")
+		end
+	end
+	return true
+end

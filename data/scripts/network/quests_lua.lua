@@ -640,6 +640,233 @@ Game.createQuest("Bigfoot\'s Burden", {
             ignoreEndValue = false,
             description = "Walk through the g-ray apparatus for your g-raying."
         },
+		{
+            name = "Recruitment: Ear Examination",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 10,
+            endValue = 12,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[10] = "You have been g-rayed. It has been an ... unexpected experience. Now you are ready for your \z
+						ear examination. Walk up to doctor Gnomedix and wait for him to finish your ear examination.",
+					[11] = "You passed the ear examination. Well, at least most of you did. \z
+						Now talk to Gnomaticus about your next test. "
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.QuestLine)]
+            end
+        },
+		{
+            name = "Recruitment: Gnomish Warfare",
+            storageId = Storage.BigfootBurden.Shooting,
+            startValue = 0,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("Hit five targets in a row. \z
+						Don't hit an innocent target as it will reset your hit counter. %d / 5"):format(
+					player:getStorageValue(Storage.BigfootBurden.Shooting)
+				)
+			end
+        },
+		{
+            name = "Recruitment: Gnomish Warfare",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 15,
+            endValue = 16,
+            ignoreEndValue = false,
+            description = "You are now ready for your endurance test. Talk to Gnomewart about it."
+        },
+		{
+            name = "Recruitment: Endurance Test",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 17,
+            endValue = 20,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[17] = "Enter the lower chamber for your endurance test. Reach the teleporter north of the hall.",
+					[18] = "You have passed the endurance test. Report back to Gnomewart.",
+					[19] = "You passed the endurance test and are ready to talk to Gnomelvis about your soul melody."
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.QuestLine)]
+            end
+        },
+		{
+            name = "Recruitment: Soul Melody",
+            storageId = Storage.BigfootBurden.QuestLine,
+            startValue = 21,
+            endValue = 23,
+            ignoreEndValue = false,
+            description = function(player)
+                local descriptions = {
+					[21] = "Find your personal soul melody by trial and error. \z
+						Create the complete soul melody of seven notes and then report to Gnomelvis. Red notes indicate a failure.",
+					[22] = "You found your very own soul melody. You should talk to Gnomelvis about it!"
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.QuestLine)]
+            end
+        },
+		{
+            name = "Recruitment",
+            storageId = Storage.BigfootBurden.QuestLineComplete,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = "You are now a true member of the Bigfoot company."
+        },
+		{
+            name = "Gnome Reputation",
+            storageId = Storage.BigfootBurden.Rank,
+            startValue = 0,
+            endValue = 999999,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("Your reputation in the eyes of gnomekind is %d.\nYour standing rises at: \z
+						\nReputation 30 - I \nReputation 120 - II \nReputation 480 - III \nReputation 1440 - IV \n"):format(
+					player:getStorageValue(Storage.BigfootBurden.Rank)
+				)
+			end
+		},
+		{
+            name = "Daily Minor: Crystal Keeper",
+            storageId = Storage.BigfootBurden.RepairedCrystalCount,
+            startValue = 0,
+            endValue = 5,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("Use the repair crystal to repair five damaged blue crystals in the crystal caves. \z
+						Damaged crystals will not glow.\n%d / 5"):format(
+					player:getStorageValue(Storage.BigfootBurden.RepairedCrystalCount)
+				)
+			end
+		},
+		{
+            name = "Daily Minor: Raiders of the Lost Spark",
+            storageId = Storage.BigfootBurden.ExtractedCount,
+            startValue = 0,
+            endValue = 7,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("Kill crystal crushers and use the discharger item on the corpse to collect their charges. \z
+						Gather 7 charges and report back. %d / 7"):format(
+					player:getStorageValue(Storage.BigfootBurden.ExtractedCount)
+				)
+			end
+		},
+		{
+            name = "Daily Minor Plus: Exterminators",
+            storageId = Storage.BigfootBurden.ExterminatedCount,
+            startValue = 0,
+            endValue = 10,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("Kill 10 of the wigglers for the gnomes. Then report back. %d / 10"):format(
+					player:getStorageValue(Storage.BigfootBurden.ExterminatedCount)
+				)
+			end
+		},
+		{
+            name = "Daily Minor Plus: Mushroom Digger",
+            storageId = Storage.BigfootBurden.MushroomCount,
+            startValue = 0,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("Find a truffle sniffing pig and lure it around. \z
+						Occasionally it will unearth some truffles. Use the baby pig on the truffles to feed it 3 times. \z
+						Then report back to the gnomes. %d / 3"):format(
+					player:getStorageValue(Storage.BigfootBurden.MushroomCount)
+				)
+			end
+		},
+		{
+            name = "Daily Major: Matchmaker",
+            storageId = Storage.BigfootBurden.MatchmakerStatus,
+            startValue = 0,
+            endValue = 1,
+            ignoreEndValue = false,
+			description = function(player)
+                local descriptions = {
+					[0] = "You have to enter the crystal caves and find a crystal that is fitting the crystal you got \z
+						from the gnomes. Use the crystal on one of the bigger red crystals in the caves to bond them.",
+					[1] = "You have finished this quest for now."
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.MatchmakerStatus)]
+            end
+		},
+		{
+            name = "Daily Major: The Tinker\'s Bell",
+            storageId = Storage.BigfootBurden.GolemCount,
+            startValue = 0,
+            endValue = 4,
+            ignoreEndValue = false,
+            description = function(player)
+					return ("Use the harmonic bell on the mad golems in the golem workshop so that they will \z
+						automatically be teleported to the gnomish workshops. Then report back to the gnomes. %d / 4"):format(
+					player:getStorageValue(Storage.BigfootBurden.GolemCount)
+				)
+			end
+		},
+		{
+            name = "Daily Major Advanced: Spores",
+            storageId = Storage.BigfootBurden.SporeCount,
+            startValue = 0,
+            endValue = 4,
+            ignoreEndValue = false,
+			description = "Gather spores in the correct order. \z
+						Your spore gathering list will display the next color you have to look for."
+		},
+		{
+            name = "Daily Major Advanced: Yet Another Grinding",
+            storageId = Storage.BigfootBurden.GrindstoneStatus,
+            startValue = 0,
+            endValue = 2,
+            ignoreEndValue = false,
+			description = "Gather a grindstone from the lava area en report back."
+		},
+		{
+            name = "Gnomish War Hero (Warzone 1)",
+            storageId = Storage.BigfootBurden.Warzone1Access,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+			description = function(player)
+                local descriptions = {
+					[1] = "Deliver the Deathstrike\'s snippet to gnomission to enter the first warzone for free.",
+					[2] = "You may enter the first warzone without using a mission crystal."
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.Warzone1Access)]
+            end
+		},
+		{
+            name = "Gnomish War Hero (Warzone 2)",
+            storageId = Storage.BigfootBurden.Warzone2Access,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+			description = function(player)
+                local descriptions = {
+					[1] = "Deliver the Gnomevil\'s hat to gnomission to enter the second warzone for free.",
+					[2] = "You may enter the second warzone without using a mission crystal."
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.Warzone2Access)]
+            end
+		},
+		{
+            name = "Gnomish War Hero (Warzone 3)",
+            storageId = Storage.BigfootBurden.Warzone3Access,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+			description = function(player)
+                local descriptions = {
+					[1] = "Deliver the Abyssador\'s lash to gnomission to enter the third warzone for free.",
+					[2] = "You may enter the third warzone without using a mission crystal."
+                }
+                return descriptions[player:getStorageValue(Storage.BigfootBurden.Warzone3Access)]
+            end
+		},
     }
 }):register()
 
@@ -3594,6 +3821,237 @@ Game.createQuest("Oramond", {
             ignoreEndValue = false,
             description = "Five Juicy roots from the outskirts of Rathleton may already help feed the poor. \z
 					Try to find a city official to deliver them to or go to the Rathleton poor house."
+        },
+    }
+}):register()
+
+Game.createQuest("Dangerous Depths", {
+    storageId = Storage.DangerousDepths.Questline,
+    storageValue = 1,
+
+    missions = {
+        {
+            name = "Dwarves: Home Improvement",
+            storageId = Storage.DangerousDepths.Dwarves.Home,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = function()
+						return string.format(
+							"Destroy makeshift homes of the Lost to force them to fight you! Try making some \z
+							prisoners in the progress and report back to Klom Stonecutter.\n\nLost Exiles: %d/20\nPrisoners (bonus): \z
+							%d/3",
+							math.max(player:getStorageValue(Storage.DangerousDepths.Dwarves.LostExiles), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Dwarves.Prisoners), 0)
+						)
+					end,
+					[2] = "You drove off the Lost but more are sure to come. Check back with Klom Stonecutter at a later time."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.DangerousDepths.Dwarves.Home)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },
+		{
+            name = "Dwarves: Subterranean Life",
+            storageId = Storage.DangerousDepths.Dwarves.Subterranean,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = function()
+						return string.format(
+							"Klome Stonecutter sent you on a grave mission to exterminate large populaces of \z
+							subterranian life. Looks like the dwarves make short work of the deep intruders.\n\nSubterranean organisms: \z
+							%d/50",
+							math.max(player:getStorageValue(Storage.DangerousDepths.Dwarves.Organisms), 0)
+						)
+					end,
+					[2] = "You helped Klom defend the outpost by cutting down a number of vermin from deep down below. \z
+						The gnomes don't seem to completely approve of this but everyone appreciates the drop in the enemy's ranks."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.DangerousDepths.Dwarves.Subterranean)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },
+		{
+            name = "Gnomes: Gnomal Warming Measurements",
+            storageId = Storage.DangerousDepths.Gnomes.Measurements,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = function()
+						return string.format(
+							"Gnomus sent you on a mission to measure the rising heat from below.\n\nLocation A: \z
+							%d/1\nLocation B: %d/1\nLocation C: %d/1\nLocation D: %d/1\nLocation E: %d/1",
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.LocationA), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.LocationB), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.LocationC), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.LocationD), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.LocationE), 0)
+						)
+					end,
+					[2] = "You helped Lardoc Bashsmite fighting back the verminous growth in the northern mineshaft. \z
+						Return to him later to see if he has more work for you."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.DangerousDepths.Gnomes.Measurements)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },
+		{
+            name = "Gnomes: Ordnance",
+            storageId = Storage.DangerousDepths.Gnomes.Ordnance,
+            startValue = 1,
+            endValue = 3,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = "Gnomus sent you to find and rescue the gnome ordnance the outpost is currently waiting for. \z
+						Travel to the east of the cave system and find the old gnome trail where reinforcements will arrive.",
+					[2] = function()
+						return string.format(
+							"You found the old gnome trail where ordnance for the gnome outpost arrive, escort them \z
+							and their pack animals to safety and return to Gnomus.\n\nRescued gnomes: %d/5\nRescued animals: %d/3",
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.GnomesCount), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.CrawlersCount), 0)
+						)
+					end,
+					[3] = "You helped Lardoc Bashsmite fighting back the verminous growth in the northern mineshaft. \z
+						Return to him later to see if he has more work for you."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.DangerousDepths.Gnomes.Ordnance)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },
+		{
+            name = "Gnomes: Uncharted Territory",
+            storageId = Storage.DangerousDepths.Gnomes.Charting,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = function()
+						return string.format(
+							"Chart the area around the deep base for Gnomus. Look for especific landmarks: \z
+							\n\nOld Gate: %d/1\nThe Gaze: %d/1\nLost Ruin: %d/1\nOutpost: %d/1\nBastion: %d/1\nBroken Tower: \z
+							%d/1",
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.OldGate), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.TheGaze), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.LostRuin), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.Outpost), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.Bastion), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Gnomes.BrokenTower), 0)
+						)
+					end,
+					[2] = "You helped Gnomus chart the area around the deep base. You found traces of what \z
+						could have been an old civilisation but there's not enough left to draw any conclusion."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.DangerousDepths.Gnomes.Charting)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },
+		{
+            name = "Scouts: Explosive Growth",
+            storageId = Storage.DangerousDepths.Scouts.Growth,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = function()
+						return string.format(
+							"You found the mine shaft. Burn all the growth and report back to Lardoc Bashsmite! \z
+							\n\nFirst Room: %d/1\nSecond room: %d/1\nThird room: %d/1\nFourth room: %d/1\nFifth room: %d/1",
+							math.max(player:getStorageValue(Storage.DangerousDepths.Scouts.FirstBarrel), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Scouts.SecondBarrel), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Scouts.ThirdBarrel), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Scouts.FourthBarrel), 0),
+							math.max(player:getStorageValue(Storage.DangerousDepths.Scouts.FifthBarrel), 0)
+						)
+					end,
+					[2] = "You helped Lardoc Bashsmite fighting back the verminous growth in the northern mineshaft. \z
+						Return to him later to see if he has more work for you."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.DangerousDepths.Scouts.Growth)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
+        },
+		{
+            name = "Scouts: Pesticide",
+            storageId = Storage.DangerousDepths.Scouts.Diremaw,
+            startValue = 1,
+            endValue = 2,
+            ignoreEndValue = false,
+            description = function(player)
+				local descriptions = {
+					[1] = function()
+						return string.format(
+							"Lardoc asked you to follow a plan of the gnomes to stop the deep threat by trying to \z
+							neutralise diremaw spawn with pesticies. Diremaws lay eggs inside corpses of their skin. \z
+							\n\nNeutralised: %d/20",
+							math.max(player:getStorageValue(Storage.DangerousDepths.Scouts.DiremawsCount), 0)
+						)
+					end,
+					[2] = "You reported back to Lardoc Bashsmite to inform him that the gnome's plan to \z
+						neutralise diremaw corpses seems to work."
+				}
+
+				local descriptionKey = player:getStorageValue(Storage.DangerousDepths.Scouts.Diremaw)
+				local description = descriptions[descriptionKey]
+
+				if type(description) == "function" then
+					return description()
+				else
+					return description
+				end
+			end
         },
     }
 }):register()

@@ -33,7 +33,20 @@ local function creatureSayCallback(cid, type, msg)
 				player:setStorageValue(Storage.BigfootBurden.RepairedCrystalCount, 0)
 				player:addItem(15703, 1)   --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.CrystalKeeperTimout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.CrystalKeeperTimout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionCrystalKeeper) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.RepairedCrystalCount) >= 5 then -- can report missions
 					player:removeItem(15703, 1)
@@ -71,7 +84,20 @@ local function creatureSayCallback(cid, type, msg)
 				player:setStorageValue(Storage.BigfootBurden.ExtractedCount, 0)
 				player:addItem(15696, 1)   --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.RaidersOfTheLostSparkTimeout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.RaidersOfTheLostSparkTimeout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionRaidersOfTheLostSpark) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.ExtractedCount) >= 7 then -- can report missions
 					player:setStorageValue(Storage.BigfootBurden.Rank, player:getStorageValue(Storage.BigfootBurden.Rank) + 5)
@@ -107,7 +133,20 @@ local function creatureSayCallback(cid, type, msg)
 				player:setStorageValue(Storage.BigfootBurden.MissionExterminators, 1)
 				player:setStorageValue(Storage.BigfootBurden.ExterminatedCount, 0) --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.ExterminatorsTimeout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.ExterminatorsTimeout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionExterminators) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.ExterminatedCount) >= 10 then -- can report missions
 					player:setStorageValue(Storage.BigfootBurden.Rank, player:getStorageValue(Storage.BigfootBurden.Rank) + 5)
@@ -148,7 +187,20 @@ local function creatureSayCallback(cid, type, msg)
 				player:setStorageValue(Storage.BigfootBurden.MushroomCount, 0)
 				player:addItem(15828, 1)   --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.MushroomDiggerTimeout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.MushroomDiggerTimeout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionMushroomDigger) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.MushroomCount) >= 3 then -- can report missions
 					player:removeItem(15828, 1)
@@ -159,7 +211,7 @@ local function creatureSayCallback(cid, type, msg)
 					player:setStorageValue(Storage.BigfootBurden.MushroomCount, -1)
 					player:setStorageValue(Storage.BigfootBurden.MushroomDiggerTimeout, os.time() + 20 * 60 * 60)
 					player:addAchievement('The Picky Pig')
-					player:checkGnomeRank()
+					--player:checkGnomeRank()
 					npcHandler:say("You did well. That will help us a lot. Take your {token} and this gnomish supply package as a reward. ", cid)
 					npcHandler.topic[cid] = 0
 				else   -- haven't finished

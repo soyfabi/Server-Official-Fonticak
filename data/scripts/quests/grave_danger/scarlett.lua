@@ -129,7 +129,7 @@ function graveScarlettAid.onUse(player, item, fromPosition, target, toPosition, 
 
 					if minutosRestantes > 0 then
 						message = message .. string.format(' %d minutes', minutosRestantes)
-						end
+					end
 
 					if segundosRestantes > 0 then
 						message = message .. string.format(' %d seconds', segundosRestantes)

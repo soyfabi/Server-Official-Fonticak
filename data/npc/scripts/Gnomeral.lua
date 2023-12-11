@@ -37,22 +37,35 @@ local function creatureSayCallback(cid, type, msg)
 			}, cid)
 				player:setStorageValue(Storage.BigfootBurden.MissionMatchmaker, 1)
 				player:setStorageValue(Storage.BigfootBurden.MatchmakerStatus, 0)
-				player:setStorageValue(Storage.BigfootBurden.MatchmakerIdNeeded, math.random(18320, 18326))
-				player:addItem(18313, 1)   --- taking missions
+				player:setStorageValue(Storage.BigfootBurden.MatchmakerIdNeeded, math.random(15809, 15815))
+				player:addItem(15802, 1)   --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.MatchmakerTimeout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.MatchmakerTimeout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionMatchmaker) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.MatchmakerStatus) == 1 then -- can report missions
 					player:setStorageValue(Storage.BigfootBurden.Rank, player:getStorageValue(Storage.BigfootBurden.Rank) + 10)
-					player:addItem(18422, 2)
-					player:addItem(18215, 1)
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.BigfootBurden.MissionMatchmaker, 0)
 					player:setStorageValue(Storage.BigfootBurden.MatchmakerStatus, -1)
 					player:setStorageValue(Storage.BigfootBurden.MatchmakerIdNeeded, -1)
 					player:setStorageValue(Storage.BigfootBurden.MatchmakerTimeout, os.time() + 72000)
 					player:addAchievement('Crystals in Love')
 					player:checkGnomeRank()
-					npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
+					npcHandler:say("Gnomo arigato "..player:getName().."! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
 					npcHandler.topic[cid] = 0
 				else   -- haven't finished
 					if npcHandler.topic[cid] >= 1 then
@@ -80,21 +93,34 @@ local function creatureSayCallback(cid, type, msg)
 				}, cid)
 				player:setStorageValue(Storage.BigfootBurden.MissionTinkersBell, 1)
 				player:setStorageValue(Storage.BigfootBurden.GolemCount, 0)
-				player:addItem(18343, 1)  --- taking missions
+				player:addItem(15832, 1)  --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.TinkerBellTimeout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.TinkerBellTimeout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionTinkersBell) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.GolemCount) >= 4 then -- can report missions
-					player:removeItem(18343, 1)
+					player:removeItem(15832, 1)
 					player:setStorageValue(Storage.BigfootBurden.Rank, player:getStorageValue(Storage.BigfootBurden.Rank) + 10)
-					player:addItem(18422, 2)
-					player:addItem(18215, 1)
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.BigfootBurden.MissionTinkersBell, 0)
 					player:setStorageValue(Storage.BigfootBurden.GolemCount, -1)
 					player:setStorageValue(Storage.BigfootBurden.TinkerBellTimeout, os.time() + 72000)
 					player:addAchievement('Substitute Tinker')
 					player:checkGnomeRank()
-					npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
+					npcHandler:say("Gnomo arigato "..player:getName().."! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
 					npcHandler.topic[cid] = 0
 				else   -- haven't finished
 					if npcHandler.topic[cid] >= 1 then
@@ -121,22 +147,35 @@ local function creatureSayCallback(cid, type, msg)
 				}, cid)
 				player:setStorageValue(Storage.BigfootBurden.MissionSporeGathering, 1)
 				player:setStorageValue(Storage.BigfootBurden.SporeCount, 0)
-				player:addItem(18328, 1)
+				player:addItem(15817, 1)
 				npcHandler.topic[cid] = 0  --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.SporeGatheringTimeout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.SporeGatheringTimeout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionSporeGathering) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.SporeCount) == 4 then -- can report missions
-					player:removeItem(18332, 1)
+					player:removeItem(15821, 1)
 					player:setStorageValue(Storage.BigfootBurden.Rank, player:getStorageValue(Storage.BigfootBurden.Rank) + 10)
-					player:addItem(18422, 2)
-					player:addItem(18215, 1)
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.BigfootBurden.MissionSporeGathering, 0)
 					player:setStorageValue(Storage.BigfootBurden.SporeCount, -1)
 					player:setStorageValue(Storage.BigfootBurden.SporeGatheringTimeout, os.time() + 72000)
 					player:addAchievement('Spore Hunter')
 					player:checkGnomeRank()
-					npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
+					npcHandler:say("Gnomo arigato "..player:getName().."! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
 					npcHandler.topic[cid] = 0
 				else   -- haven't finished
 					if npcHandler.topic[cid] >= 1 then
@@ -164,19 +203,32 @@ local function creatureSayCallback(cid, type, msg)
 				player:setStorageValue(Storage.BigfootBurden.GrindstoneStatus, 0)
 				npcHandler.topic[cid] = 0 --- taking missions
 			elseif player:getStorageValue(Storage.BigfootBurden.GrindstoneTimeout) > os.time() then  -- trying to take mission while in cooldown
-				npcHandler:say("Sorry, you will have to wait before you can undertake this mission again.", cid)
+				local timeStorage = player:getStorageValue(Storage.BigfootBurden.GrindstoneTimeout)
+				if timeStorage > os.time() then
+					local remainingTime = timeStorage - os.time()
+					local hours = math.floor(remainingTime / 3600)
+					local minutes = math.floor((remainingTime / 60) / 60)
+					local seconds = remainingTime % 60
+					if hours > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. hours .. ' hours} and {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					elseif minutes > 0 then
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. minutes .. ' minutes} and {' .. seconds .. ' second} more.', cid)
+					else	
+						npcHandler:say('Sorry, you will have to wait before you can undertake this mission again.\nYou must wait {' .. seconds .. ' second} more.', cid)
+					end
+				end
 			elseif player:getStorageValue(Storage.BigfootBurden.MissionGrindstoneHunt) > 0 then  -- reporting mission
 				if player:getStorageValue(Storage.BigfootBurden.GrindstoneStatus) == 1 then -- can report missions
-					player:removeItem(18337, 1)
+					player:removeItem(15826, 1)
 					player:setStorageValue(Storage.BigfootBurden.Rank, player:getStorageValue(Storage.BigfootBurden.Rank) + 10)
-					player:addItem(18422, 2)
-					player:addItem(18215, 1)
+					player:addItem(16128, 2)
+					player:addItem(15698, 1)
 					player:setStorageValue(Storage.BigfootBurden.MissionGrindstoneHunt, 0)
 					player:setStorageValue(Storage.BigfootBurden.GrindstoneStatus, -1)
 					player:setStorageValue(Storage.BigfootBurden.GrindstoneTimeout, os.time() + 72000)
 					player:addAchievement('Grinding Again')
 					player:checkGnomeRank()
-					npcHandler:say("Gnomo arigato |PLAYERNAME|! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
+					npcHandler:say("Gnomo arigato "..player:getName().."! You did well. That will help us a lot. Take your tokens and this gnomish supply package as a reward. ", cid)
 					npcHandler.topic[cid] = 0
 				else   -- haven't finished
 					if npcHandler.topic[cid] >= 1 then

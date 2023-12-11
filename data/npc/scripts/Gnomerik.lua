@@ -7,30 +7,30 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
-keywordHandler:addGreetKeyword({'hi'}, {npcHandler = npcHandler, text = 'Hello and welcome in the gnomish {recruitment} office.'},
-  function (player)
-  	if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 1 then
-
-  		player:setStorageValue(Storage.BigfootBurden.QuestLine, 3)
-  	end
+local function greetCallback(cid)
+	local player = Player(cid)
+	if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 1 then
+		npcHandler:setMessage(MESSAGE_GREET, "Hello and welcome in thdgdgdgddde gnomish {recruitment} office.")
+		player:setStorageValue(Storage.BigfootBurden.QuestLine, 3)
+		return true
 	end
-)
-keywordHandler:addAliasKeyword({'hello'})
+	npcHandler:setMessage(MESSAGE_GREET, "Hello and welcome in thdgdgdgddde gnomish {recruitment} office.")
+	return true
+end
 
 local function creatureSayCallback(cid, type, msg)
 	if not npcHandler:isFocused(cid) then
 		return false
 	end
-	local player = Player(cid)
-
+	local player = Player(cid)	
 	if player:getStorageValue(Storage.BigfootBurden.NeedsBeer) == 1 then
-		if msgcontains(msg, "recruit") or msgcontains(msg, "test") or msgcontains(msg, "result") then
+		if msgcontains(msg, "recruit") or msgcontains(msg, "recluitment") or msgcontains(msg, "test") or msgcontains(msg, "result") then
 			npcHandler:say({"I suggest you relax a bit with a fresh mushroom beer and we can talk after that. ...", "Gnominus... He is the one you need right now, find him."}, cid)
 		end
 		return
 	end
 
-	if msgcontains(msg, "recruit") then
+	if msgcontains(msg, "recruit") or msgcontains(msg, "recluitment") then
 		if player:getStorageValue(Storage.BigfootBurden.QuestLine) == 5 then
 			npcHandler:say("Yes... Yes... <sigh>. We already talked about that. I can't remember if you have already tried the {test}, so lets get going.", cid)
 		elseif player:getStorageValue(Storage.BigfootBurden.QuestLine) == 3 then
@@ -265,5 +265,6 @@ local function creatureSayCallback(cid, type, msg)
 	return true
 end
 
+npcHandler:setCallback(CALLBACK_GREET, greetCallback)
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new())

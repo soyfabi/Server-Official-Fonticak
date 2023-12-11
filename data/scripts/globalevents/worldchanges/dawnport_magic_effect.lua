@@ -11,11 +11,15 @@ local positions = {
 local dawnportMagicEffect = GlobalEvent("DawnportMagicEffect")
 
 function dawnportMagicEffect.onThink(interval)
-	for i = 1, #positions do
-		Position(positions[i]):sendMagicEffect(CONST_ME_THUNDER)
+	local spectators, spectator = Game.getSpectators(Position(32064, 31891, 5), false, true, 0, 8, 0, 8)
+	for i = 1, #spectators do
+		spectator = spectators[i]
+		for i = 1, #positions do
+			Position(positions[i]):sendMagicEffect(CONST_ME_THUNDER)
+		end
 	end
 	return true
 end
 
---dawnportMagicEffect:interval(5000)
---dawnportMagicEffect:register()
+dawnportMagicEffect:interval(5000)
+dawnportMagicEffect:register()

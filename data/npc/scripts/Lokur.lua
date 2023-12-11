@@ -100,33 +100,66 @@ local function greetCallback(cid)
     return true
 end
 
+local function getTimeRemainingText(remainingSeconds)
+    local days = math.floor(remainingSeconds / (24 * 3600))
+    remainingSeconds = remainingSeconds % (24 * 3600)
+    local hours = math.floor(remainingSeconds / 3600)
+    remainingSeconds = remainingSeconds % 3600
+    local minutes = math.floor(remainingSeconds / 60)
+    local seconds = remainingSeconds % 60
+    
+    local timeString = ""
+    
+    if days > 0 then
+        timeString = days .. " days, " .. hours .. " hours, " .. minutes .. " minutes and " .. seconds .. " seconds"
+    elseif hours > 0 then
+        timeString = hours .. " hours, " .. minutes .. " minutes"
+    elseif minutes > 0 then
+        timeString = minutes .. " minutes, " .. seconds .. " seconds"
+    else
+        timeString = seconds .. " seconds"
+    end
+    
+    return timeString
+end
+
 local function creatureSayCallback(cid, type, msg)
     if not npcHandler:isFocused(cid) then
         return false
     end
     local player = Player(cid)
 	
-	if msgcontains(msg, "ticket") then
-		if player:getStorageValue(Storage.WagonTicket) >= os.time() then
-			npcHandler:say("Your weekly ticket is still valid. Would be a waste of money to purchase a second one", cid)
-			return true
-		end
-
-		npcHandler:say("Do you want to purchase a weekly ticket for the ore wagons? With it you can travel freely and swiftly through Kazordoon for one week. 250 gold only. Deal?", cid)
-		npcHandler.topic[cid] = 9
-	elseif msgcontains(msg, "yes") and npcHandler.topic[cid] == 9 then
-		if not player:removeMoneyNpc(250) then
-			npcHandler:say("You don't have enough money.", cid)
+	 if(msgcontains(msg, "ticket")) then
+        local currentTime = os.time()
+        local expirationTime = player:getStorageValue(Storage.WagonTicket)
+        
+        if expirationTime > currentTime then
+            local remainingTime = expirationTime - currentTime
+            local timeString = getTimeRemainingText(remainingTime)
+            
+            npcHandler:say("Your weekly ticket is still valid. It will expire in {" .. timeString .. "}.", cid)
+            npcHandler.topic[cid] = 0
+        else
+            npcHandler:say("Do you want to purchase a weekly ticket for the ore wagons? With it, you can travel freely and swiftly through Kazordoon for one week. It's only 250 gold. Deal?", cid)
+            npcHandler.topic[cid] = 1
+        end
+    elseif(msgcontains(msg, "yes")) then
+		if(npcHandler.topic[cid] == 1) then
+			if player:getMoney() + player:getBankBalance() >= 250 then
+				player:removeMoneyNpc(250)
+				player:setStorageValue(Storage.WagonTicket, os.time() + 7 * 24 * 60 * 60)
+				npcHandler:say("Here is your stamp. It can't be transferred to another person and will last one week from now. You'll get notified upon using an ore wagon when it isn't valid anymore.", cid)
+			else
+				npcHandler:say("You don't have enough money.", cid)
+			end
 			npcHandler.topic[cid] = 0
-			return true
 		end
-
-		player:setStorageValue(Storage.WagonTicket, os.time() + 7 * 24 * 60 * 60)
-		npcHandler:say("Here is your stamp. It can't be transferred to another person and will last one week from now. You'll get notified upon using an ore wagon when it isn't valid anymore.", cid)
-		npcHandler.topic[cid] = 0
-	elseif msgcontains(msg, "no") and npcHandler.topic[cid] == 9 then
-		npcHandler:say("No then.", cid)
-		npcHandler.topic[cid] = 0
+	elseif(npcHandler.topic[cid] == 1) then
+		if(msgcontains(msg, "no")) then
+			npcHandler:say("No then.", cid)
+			npcHandler.topic[cid] = 0
+		end
+	-- WAGON TICKET
 	end
 ---------------------------- help ------------------------
     if msgcontains(msg, 'bank account') then
@@ -645,32 +678,8 @@ local function creatureSayCallback(cid, type, msg)
         npcHandler.topic[cid] = 0
     end
 	-- WAGON TICKET
-	if msgcontains(msg, 'ticket') then
-		if player:getStorageValue(Storage.wagonTicket) < os.time() then
-			npcHandler:say("Do you want to purchase a weekly ticket for the ore wagons? With it you can travel freely and swiftly through Kazordoon for one week. 250 gold only. Deal?", cid)
-			npcHandler.topic[cid] = 29
-		else
-			npcHandler:say("Your weekly ticket is still valid. Would be a waste of money to purchase a second one", cid)
-			npcHandler.topic[cid] = 0
-		end
-	elseif msgcontains(msg, 'yes') then
-		if npcHandler.topic[cid] == 29 then
-			if player:removeMoneyNpc(250) then
-				player:setStorageValue(Storage.wagonTicket, os.time() + 7 * 24 * 60 * 60)
-				npcHandler:say("Here is your stamp. It can't be transferred to another person and will last one week from now. You'll get notified upon using an ore wagon when it isn't valid anymore.", cid)
-			else
-				npcHandler:say("You don't have enough money.", cid)
-			end
-			npcHandler.topic[cid] = 0
-		end
-	elseif npcHandler.topic[cid] == 29 then
-		if msgcontains(msg, 'no') then
-			npcHandler:say("No then.", cid)
-			npcHandler.topic[cid] = 0
-		end
-	-- WAGON TICKET
-	elseif msgcontains(msg, 'measurements') then
-		if player:getStorageValue(Storage.postman.Mission07) >= 1 then
+	if msgcontains(msg, 'measurements') then
+		if player:getStorageValue(Storage.Postman.Mission07) >= 1 then
 			npcHandler:say("Come on, I have no clue what they are. Better ask my armorer Kroox for such nonsense.Go and ask him for good ol' Lokurs measurements, he'll know.", cid)
 		end
 	end

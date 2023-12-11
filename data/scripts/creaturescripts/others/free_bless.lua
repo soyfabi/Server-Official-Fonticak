@@ -13,7 +13,7 @@ function free_bless.onLogin(player)
 		end
 		
 		player:getPosition():sendMagicEffect(50)
-		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You received adventurers blessings for you to be level less than ".. freeBless.level ..".")
+		player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You received adventurers blessings for you to be level less than ".. freeBless.level ..".\nIf you die while PK you will lose the free bless.")
 		for i = 1, #freeBless.blesses do
 			player:addBlessing(freeBless.blesses[i])
 		end

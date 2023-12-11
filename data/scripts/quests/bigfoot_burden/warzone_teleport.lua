@@ -13,7 +13,7 @@ function warzoneTeleport.onStepIn(creature, item, position, fromPosition)
 
 	for a = 1, #teleports do
 		if player:getPosition() == Position(teleports[a].teleportPosition) then
-			--[[if player:getStorageValue(Storage.BigfootBurden.Rank) < 1440 then
+			if player:getStorageValue(Storage.BigfootBurden.Rank) < 1440 then
 				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You are not permitted to enter.")
 				player:teleportTo(fromPosition)
 				position:sendMagicEffect(CONST_ME_TELEPORT)
@@ -32,7 +32,7 @@ function warzoneTeleport.onStepIn(creature, item, position, fromPosition)
 				player:teleportTo(fromPosition)
 				position:sendMagicEffect(CONST_ME_TELEPORT)
 				return true
-			end]]
+			end
 
 			player:teleportTo(teleports[a].teleportDestination)
 			player:getPosition():sendMagicEffect(CONST_ME_TELEPORT)

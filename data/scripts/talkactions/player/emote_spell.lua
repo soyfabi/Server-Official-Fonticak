@@ -14,16 +14,16 @@ function emoteSpell.onSay(player, words, param, type)
 	
 	if param == "on" then
 		player:setStorageValue(90001, 1)
-		player:sendTextMessage(MESSAGE_INFO_DESCR, "You activated emoted spells")
+		player:sendTextMessage(MESSAGE_INFO_DESCR, "You activated emoted spells.")
 		exhaust[playerId] = currentTime + exhaustTime
 		return false
 	elseif param == "off" then
 		player:setStorageValue(90001, 0)
-		player:sendTextMessage(MESSAGE_INFO_DESCR, "You desactivated emoted spells")
+		player:sendTextMessage(MESSAGE_INFO_DESCR, "You desactivated emoted spells.")
 		exhaust[playerId] = currentTime + exhaustTime
 		return false
 	end
-	player:sendCancelMessage("Usage: !emotespells on/off")
+	player:sendCancelMessage("Usage: !emotespells on/off.")
 	exhaust[playerId] = currentTime + exhaustTime
 	return false
 end

@@ -25,7 +25,7 @@ local function creatureSayCallback(cid, type, msg)
 				"To the left you see our shooting range. Grab a cannon and shoot at the targets. You need five hits to succeed. ...",
 				"Shoot at the villain targets that will pop up. DON'T shoot innocent civilians since this will reset your score and you have to start all over. Report to me afterwards."
 			}, cid)
-			player:setStorageValue(Storage.BigfootBurden.QuestLine, 7) -- tirar do questlog
+			player:setStorageValue(Storage.BigfootBurden.QuestLine, 13) -- tirar do questlog
 			player:setStorageValue(Storage.BigfootBurden.Shooting, 0)
 		elseif player:getStorageValue(Storage.BigfootBurden.QuestLine) == 13 then
 			npcHandler:say("Shoot at the villain targets that will pop up. DON'T shoot innocent civilians since this will reset your score and you have to start all over. {Report} to me afterwards.", cid)

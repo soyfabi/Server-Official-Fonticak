@@ -25,7 +25,7 @@ function talkAction.onSay(player, words, param, type)
 	end
 
 	exhaust[playerId] = currentTime + exhaustTime
-	player:sendCancelMessage("Usage: !oldwall on/off")
+	player:sendCancelMessage("Usage: !oldwall on/off.")
 	return false
 end
 

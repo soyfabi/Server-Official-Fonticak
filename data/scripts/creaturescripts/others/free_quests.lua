@@ -251,6 +251,24 @@ local questTable = {
 	--[[{storage = Storage.Kilmaresh.AccessDoor, storageValue = 1},
 	{storage = Storage.Kilmaresh.CatacombDoors, storageValue = 1},]]
 	
+	-- Big Foot Burden --
+	--{storage = Storage.BigfootBurden.QuestLine, storageValue = 93},
+	--{storage = Storage.BigfootBurden.Shooting, storageValue = 6},
+	--{storage = Storage.BigfootBurden.QuestLineComplete, storageValue = 2},
+	--{storage = Storage.BigfootBurden.Rank, storageValue = 1440},
+	{storage = Storage.BigfootBurden.Warzone1Access, storageValue = 2},
+	{storage = Storage.BigfootBurden.Warzone2Access, storageValue = 2},
+	{storage = Storage.BigfootBurden.Warzone3Access, storageValue = 2},
+	
+	-- Dangerous Depths --
+	--[[{storage = Storage.DangerousDepths.Questline, storageValue = 10},
+	{storage = Storage.DangerousDepths.Access.LavaPumpWarzoneVI, storageValue = 10},
+	{storage = Storage.DangerousDepths.Access.LavaPumpWarzoneV, storageValue = 10},
+	{storage = Storage.DangerousDepths.Access.LavaPumpWarzoneIV, storageValue = 30},
+	{storage = Storage.DangerousDepths.Dwarves.Status, storageValue = 10},
+	{storage = Storage.DangerousDepths.Scouts.Status, storageValue = 10},
+	{storage = Storage.DangerousDepths.Gnomes.Status, storageValue = 10},]]
+	
 }
 
 local function playerFreeQuestStart(playerId, index)

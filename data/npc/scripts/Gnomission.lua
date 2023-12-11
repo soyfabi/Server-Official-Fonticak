@@ -35,7 +35,7 @@ local function creatureSayCallback(cid, type, msg)
 	elseif(msgcontains(msg, "snippet")) then
 		if npcHandler.topic[cid] == 3 then
 			if player:getStorageValue(Storage.BigfootBurden.QuestLine) < 30 then
-				npcHandler:say("It seems you did not even set one big foot into the warzone, I am sorry.")
+				npcHandler:say("It seems you did not even set one big foot into the warzone, I am sorry.", cid)
 			else
 				if player:getStorageValue(Storage.BigfootBurden.Warzone1Access) < 1 then
 					if player:removeItem(18430, 1) then
