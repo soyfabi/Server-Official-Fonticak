@@ -267,7 +267,15 @@ local questTable = {
 	{storage = Storage.DangerousDepths.Access.LavaPumpWarzoneIV, storageValue = 30},
 	{storage = Storage.DangerousDepths.Dwarves.Status, storageValue = 10},
 	{storage = Storage.DangerousDepths.Scouts.Status, storageValue = 10},
-	{storage = Storage.DangerousDepths.Gnomes.Status, storageValue = 10},]]
+	{storage = Storage.DangerousDepths.Gnomes.Status, storageValue = 10},
+	{storage = Storage.DangerousDepths.Questline, storageValue = 1},
+	{storage = Storage.DangerousDepths.Dwarves.Home, storageValue = 2},
+	{storage = Storage.DangerousDepths.Dwarves.Subterranean, storageValue = 2},
+	{storage = Storage.DangerousDepths.Gnomes.Measurements, storageValue = 2},
+	{storage = Storage.DangerousDepths.Gnomes.Ordnance, storageValue = 3},
+	{storage = Storage.DangerousDepths.Gnomes.Charting, storageValue = 2},
+	{storage = Storage.DangerousDepths.Scouts.Growth, storageValue = 2},
+	{storage = Storage.DangerousDepths.Scouts.Diremaw, storageValue = 2},]]
 	
 }
 

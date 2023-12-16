@@ -663,3 +663,7 @@ function Player.checkGnomeRank(self)
 	end
 	return true
 end
+
+function Position:compare(position)
+	return self.x == position.x and self.y == position.y and self.z == position.z
+end

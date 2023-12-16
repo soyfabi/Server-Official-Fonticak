@@ -52,8 +52,18 @@ local function createCrystal(crystalId, player)
 	return true
 end
 
+local exhaust = {}
+local exhaustTime = 2
+
 local dangerousDepthWarzoneCrystals = Action()
 function dangerousDepthWarzoneCrystals.onUse(player, item, fromPosition, target, toPosition, isHotkey)
+	local playerId = player:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+		player:sendCancelMessage("You are on cooldown, wait (0." .. exhaust[playerId] - currentTime .. "s).")
+		return true
+	end
+	
 	local crystalTimer = crystals[item:getActionId()]
 	if not crystalTimer or crystalTimer > os.time() then
 		return true
@@ -64,6 +74,7 @@ function dangerousDepthWarzoneCrystals.onUse(player, item, fromPosition, target,
 	if crystal then
 		player:setStorageValue(crystalTimer, os.time() + crystalDuration)
 	end
+	exhaust[playerId] = currentTime + exhaustTime
 
 	return true
 end
