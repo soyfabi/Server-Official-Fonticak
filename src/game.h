@@ -336,6 +336,7 @@ class Game
 		void playerReportBug(uint32_t playerId, const std::string& message);
 		void playerDebugAssert(uint32_t playerId, const std::string& assertLine, const std::string& date, const std::string& description, const std::string& comment);
 		void playerReportRuleViolation(uint32_t playerId, const std::string& targetName, uint8_t reportType, uint8_t reportReason, const std::string& comment, const std::string& translation);
+		void playerAnswerModalWindow(uint32_t playerId, uint32_t modalWindowId, uint8_t button, uint8_t choice);
 
 		bool internalStartTrade(Player* player, Player* tradePartner, Item* tradeItem);
 		void internalCloseTrade(Player* player, bool sendCancel = true);
@@ -554,6 +555,8 @@ class Game
 		std::map<uint32_t, BedItem*> bedSleepersMap;
 
 		std::unordered_set<Tile*> tilesToClean;
+		
+		ModalWindow offlineTrainingWindow{ std::numeric_limits<uint32_t>::max(), "Choose a Skill", "Please choose a skill:" };
 
 		static constexpr uint8_t LIGHT_DAY = 250;
 		static constexpr uint8_t LIGHT_NIGHT = 40;

@@ -617,6 +617,7 @@ void ProtocolGame::parsePacket(NetworkMessage& msg)
 		case 0xE8: parseDebugAssert(msg); break;
 		case 0xF2: parseRuleViolationReport(msg); break;
 		case 0xF3: /* get object info */ break;
+		case 0xF9: parseModalWindowAnswer(msg); break;
 
 		default:
 			auto task = new Task([=]() {
@@ -1170,6 +1171,14 @@ void ProtocolGame::parseEnableSharedPartyExperience(NetworkMessage& msg)
 {
 	bool sharedExpActive = msg.getByte() == 1;
 	addGameTask(&Game::playerEnableSharedPartyExperience, player->getID(), sharedExpActive);
+}
+
+void ProtocolGame::parseModalWindowAnswer(NetworkMessage& msg)
+{
+	uint32_t id = msg.get<uint32_t>();
+	uint8_t button = msg.getByte();
+	uint8_t choice = msg.getByte();
+	addGameTask(&Game::playerAnswerModalWindow, player->getID(), id, button, choice);
 }
 
 // Send methods
@@ -2222,6 +2231,34 @@ void ProtocolGame::sendAnimatedText(const std::string& message, const Position& 
 	msg.addPosition(pos);
 	msg.addByte(color);
 	msg.addString(message);
+	writeToOutputBuffer(msg);
+}
+
+void ProtocolGame::sendModalWindow(const ModalWindow& modalWindow)
+{
+	NetworkMessage msg;
+	msg.addByte(0xFA);
+
+	msg.add<uint32_t>(modalWindow.id);
+	msg.addString(modalWindow.title);
+	msg.addString(modalWindow.message);
+
+	msg.addByte(modalWindow.buttons.size());
+	for (const auto& it : modalWindow.buttons) {
+		msg.addString(it.first);
+		msg.addByte(it.second);
+	}
+
+	msg.addByte(modalWindow.choices.size());
+	for (const auto& it : modalWindow.choices) {
+		msg.addString(it.first);
+		msg.addByte(it.second);
+	}
+
+	msg.addByte(modalWindow.defaultEscapeButton);
+	msg.addByte(modalWindow.defaultEnterButton);
+	msg.addByte(modalWindow.priority ? 0x01 : 0x00);
+
 	writeToOutputBuffer(msg);
 }
 

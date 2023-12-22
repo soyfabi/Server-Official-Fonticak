@@ -349,6 +349,15 @@ class ProtocolSpectator {
             for (auto& it : spectators)
                 it->sendAnimatedText(message, pos, color);
         }
+		
+		void sendModalWindow(const ModalWindow& modalWindow) const {
+            if (owner) {
+                owner->sendModalWindow(modalWindow);
+            }
+
+            for (auto& it : spectators)
+                it->sendModalWindow(modalWindow);
+        }
 
         void sendCreatureTurn(const Creature *creature, uint32_t stackPos) {
             if (owner)
