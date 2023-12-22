@@ -99,6 +99,8 @@ int64_t OTSYS_TIME();
 
 SpellGroup_t stringToSpellGroup(const std::string& value);
 
+const std::vector<Direction>& getShuffleDirections();
+
 template <typename E>
 auto format_as(E e)
 {

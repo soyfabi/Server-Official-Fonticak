@@ -559,16 +559,56 @@ achievements =
 	[475] = { name = "Taskmaster", grade = 1, points = 2, description = "Having hunted and bested them all, you live for the thrill of the hunt!" },
 	[476] = { name = "Verminbane", grade = 1, points = 2, description = "And so it begins!" },
 
-	--Custom
-	[477] = { name = "Waypoint Explorer", grade = 1, points = 1, description = "You've explored all the towns of Tibia and discovered each town's waypoint." },
-	[478] = { name = "Up the Molehill", grade = 1, points = 3, description = "Putting this candle stump on your new mount was kind of a waiting game. You're even tempted to call it whack-a-mole. But in the end you found a loyal companion for your journeys into the depths." },
-	[479] = { name = "Inquisition's Arm", grade = 1, points = 2, description = "Your special outfit, bestowed exclusively on a dedicated hand of the Inquisition, is now complete." },
+	-- 11.53
+	[477] = { name = "Up the Molehill", grade = 1, points = 3, description = "Putting this candle stump on your new mount was kind of a waiting game. You're even tempted to call it whack-a-mole. But in the end you found a loyal companion for your journeys into the depths."},
+	
+	-- 11.90.7293
+	[478] = { name = "Areas of Effect", grade = 1, points = 3, secret = true, description = "Wisely contributing your resources to areas, you pushed creatures to maximum effect, allowing improved respawn for everyone! Well done!"},
+	
+	[479] = { name = "Drama in Darama", grade = 1, points = 3, description = "f a pride of lions and a pack of hyaenas feud, it is not called a catfight but a ... whatsoever. For sure, it caused a lot of drama in the Darama Desert."},
+	[480] = { name = "Lionheart", grade = 1, points = 3, description = "You bested the maleficent duo Drume and Fugue and restored order to the besieged town of Bounac. You conquered the exotic stronghold of the Order of the Cobra and bested the undead knights of the Order of the Falcon. A true knight in heart and mind."},
+	[481] = { name = "Malefitz", grade = 1, points = 1, secret = true, description = "Made acquaintance with three brothers Fitz."},
+	[482] = { name = "Unleash the Beast", grade = 3, points = 8, description = "You defeated the manifestation of Goshnar's evil traits by fighting your way through beasts you didn't even want to imagine. It transformed you and now you can also look the part."},
+	[483] = { name = "Well Roared, Lion!", grade = 1, points = 1, description = "You helped Domizian and thus proved yourself worthy to enter the werelion sanctum underneath Lion's Rock. You faced the mighty werelions there and one of the rare white lions even chose to accompany you."},
+	[484] = { name = "You Got Horse Power", grade = 3, points = 8, description = "Brought back to the realm of the living this magnificent creature will carry you through death and everything that lays beyond."},
+	
+	-- 12.60
+	[485] = { name = "Honorary Rascoohan", grade = 1, points = 2, description = "When in Rascacoon, do as the Rascoohans do!"},
+	[486] = { name = "Pied Piper", grade = 1, points = 3, secret = true, description = "You are not exactly the Pied Piper of Hamelin but at least you managed to fend off a decent amount of pirats and helped to keep them out of the cities."},
+	[487] = { name = "Release the Kraken", grade = 1, points = 3, description = "Riding around on this squishy companion gives you the feeling of flying through the air... uhm... swimming through the seven seas!"},
+	
+	-- 12.70
+	[488] = { name = "Bounacean Chivalry", grade = 1, points = 2, secret = true, description = "Yselda forever stands watch against the carnisylvan menace. Ever awake, waiting in the dark, her heart longs to be united with her king once again. Deep empathy let a hero to bring her Kesar's tulip as a token of his love. That hero was you."},
+	[489] = { name = "Citizen of Issavi", grade = 1, points = 2, description = "It was not the first time that you helped the Sapphire Blade or the Midnight Flame with a difficult task. You may now wear the Kilmareshian robes as well as the tagralt blade and the eye-embroidered veil of the seers as a sign of Issavi's gratitude."},
+	[490] = { name = "Hot on the Trail", grade = 1, points = 3, description = "Since it is fireproof, this flaming creature feels right at home in raging infernos. But remember: just because it doesn't burn, you still do!"},
+	[491] = { name = "King's Council", grade = 1, points = 3, description = "Your continued efforts in keeping Bounac and the people of Kesar the Younger safe, earned you a permanent place at the royal court as an advisor to the king."},
+	[492] = { name = "Knowledge Raider", grade = 1, points = 3, description = "Your thirst for knowledge is insatiable. In the task of helping your gnomish friends, flawless execution is just the icing on the cake."},
+	[493] = { name = "Phantastic!", grade = 1, points = 3, description = "This mighty pachyderm will march into battle as if just taking its Sunday stroll. The cost of friendship was only a few drome points!"},
+	[494] = { name = "Shell we take a Ride", grade = 1, points = 3, description = "Equipped with the shell of a tortoise and claws of a lobster this insect like companion will help you through every hardship."},
+	[495] = { name = "Some Like It Hot", grade = 1, points = 2, description = "You have braved the searing heat in the tunnels deep below Kazordoon and vanquished the Brainstealer. The voices inside your head are finally silenced."},
+	[496] = { name = "Woodcarver", grade = 1, points = 3, secret = true, description = "You defeated Megasylvan Yselda in the wake of the sleeping carnisylvan menace deep under Bounac."},
+	
+	-- non-secret that were missed earlier
+	[497] = { name = "Reason to Celebrate", grade = 1, points = 1, description = "You met the legendary First Dragon and survived. That's a reason to celebrate for sure."},
+	[498] = { name = "Cobbled and Patched", grade = 2, points = 6, description = "Exploring the depths can be a dangerous task. Surprisingly, some crude wood planks, rusty nails and a tinged pot can offer a sufficient protection against the creatures lurking in the deep."},
+	[499] = { name = "Inquisition's Arm", grade = 1, points = 2, description = "Your special garb, solely awarded to a dedicated hand of the Inquisition, is now complete."},
 
-	--12.60
-	[480] = { name = "Honorary Rascoohan", grade = 1, points = 2, description = "When in Rascacoon, do as the Rascoohans do!" },
-	[481] = { name = "Release the Kraken", grade = 1, points = 3, description = "Riding around on this squishy companion gives you the feeling of flying through the air... uhm... swimming through the seven seas!" },
+	-- 12.80
+	[500] = { name = "Sharp Dressed", grade = 1, points = 1, description = "Just everyone will be crazy about you if you are wearing this formal dress. They will come running, promise!"},
+	[501] = { name = "Engine Driver", grade = 1, points = 1, description = "The glooth-driven locomotive will bring you to any party in the blink of an eye."},
+	
+	-- 12.90
+	[502] = { name = "Friendly Fire", grade = 1, points = 1, description = "You mastered the fire and tamed a supervulcano!"},
+	[503] = { name = "Wedding Planner", grade = 1, points = 3, description = "Alas! What could be more beautiful and satisfying than bringing two loving hearts together? So romantic!"},
+	[504] = { name = "Beaver Away", grade = 1, points = 1, description = "You really were as busy as a beaver in order to help the nagas. Enjoy some eager company!"},
+	[505] = { name = "Snake Pit", grade = 1, points = 1, description = "Mysterious nagas, a vibrant jungle and a sinking island - you really know every corner of Marapur now."},
+	[506] = { name = "Royalty of Hazard", grade = 1, points = 1, description = "For some it can't be hazardous enough."},
+	[507] = { name = "Measuring the World", grade = 1, points = 3, description = "Step by step you discovered many of the secrets hidden in the world, thus gaining the right to wear the Discoverer outfit and hat. Made-to-measure for a brave traveller of the wilds."},
+	[508] = { name = "Ripp-Ripp Hooray!", grade = 1, points = 3, description = "Don't get carried away by your success. Get carried away by your ripptor."},
+	[509] = { name = "First Achievement", grade = 1, points = 1, secret = true, description = "Congratulations to your very first achievement! ... Well, not really. But imagine, it is. Because at this point during your journey into the past, achievements have been introduced."},
+
 	-- 8.60 (Tunnel Secret)
-	[482] = {name = "Unlikely Pathfinder", grade = 1, points = 3, secret = true, description = "Wow - what was that? You don't know you ended up here, but somehow you did. How to get from Beregar to Kazordoon in a jiffly - that's something those dwarves would love to know, but you're not quite sure how to reproduce it."},
+	[510] = { name = "Unlikely Pathfinder", grade = 1, points = 3, secret = true, description = "Wow - what was that? You don't know you ended up here, but somehow you did. How to get from Beregar to Kazordoon in a jiffly - that's something those dwarves would love to know, but you're not quite sure how to reproduce it."},
 }
 
 ACHIEVEMENT_FIRST = 1

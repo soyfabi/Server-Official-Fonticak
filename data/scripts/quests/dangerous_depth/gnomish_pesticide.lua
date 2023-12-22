@@ -22,12 +22,11 @@ function dangerousDepthPesticide.onUse(player, item, fromPosition, target, toPos
 				posTarget:sendMagicEffect(CONST_ME_POISONAREA)
 				local diremaw = Game.createMonster("Diremaw", target:getPosition())
 				player:setStorageValue(Storage.DangerousDepths.Scouts.DiremawsCount, player:getStorageValue(Storage.DangerousDepths.Scouts.DiremawsCount) +1)
-				target:transform(30730)
-
+				target:transform(27495)
 			else
 				posTarget:sendMagicEffect(CONST_ME_POISONAREA)
 				player:setStorageValue(Storage.DangerousDepths.Scouts.DiremawsCount, player:getStorageValue(Storage.DangerousDepths.Scouts.DiremawsCount) +1)
-				target:transform(30730)
+				target:transform(27495)
 			end
 		end
 	elseif (table.contains({27495, 27496, 27497}, target:getId())) then

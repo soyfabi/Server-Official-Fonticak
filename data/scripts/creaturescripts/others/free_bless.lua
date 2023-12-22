@@ -1,10 +1,10 @@
+local freeBless = {
+	level = 50,
+	blesses = {1, 2, 3, 4, 5}
+}
+
 local free_bless = CreatureEvent("free bless")
 function free_bless.onLogin(player)
-    freeBless = {
-        level = 50,
-        blesses = {1, 2, 3, 4, 5}
-    }
-	
 	if player:getLevel() <= freeBless.level then
 		for i = 1, #freeBless.blesses do
 			if player:hasBlessing(i) then
@@ -21,3 +21,18 @@ function free_bless.onLogin(player)
 	return true
 end
 free_bless:register()
+
+local freeblesspk = CreatureEvent("FreeBlessPK")
+function freeblesspk.onKill(player, target)
+	if target:getLevel() <= freeBless.level then
+		if target:getSkull() == SKULL_WHITE or target:isPzLocked() then
+			for i = 1, #freeBless.blesses do
+				target:removeBlessing(freeBless.blesses[i])
+			end
+			target:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You lost the free bless for having PK or PZ.")
+		end
+	end
+	return true
+end
+
+freeblesspk:register()

@@ -16,6 +16,10 @@ function loginMessage.onLogin(player)
 	player:openChannel(7) -- Advertising
 	player:openChannel(8) -- Changelog
 	player:openChannel(9) -- Help Channel
+	
+	if player:getLevel() <= 50 then
+		player:registerEvent("FreeBlessPK") -- Free Bless
+	end
 
 	if player:getGuild() then
 		player:openChannel(10) -- Guild Leaders Channel
