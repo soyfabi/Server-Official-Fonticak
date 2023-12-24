@@ -93,6 +93,8 @@ Storage = {
 	STORAGEVALUE_LOOT_ID = 78003,
 	STORAGEVALUE_LOOT_TEMPO = 78004,
 	
+	STORAGEVALUE_STARTER_EXERCISE = 78005,
+	
 	achievementsBase = 300000,
 	achievementsCounter = 200000,
 	-- General storages

@@ -24,6 +24,10 @@ free_bless:register()
 
 local freeblesspk = CreatureEvent("FreeBlessPK")
 function freeblesspk.onKill(player, target)
+	if target:isMonster() then
+		return false
+	end
+	
 	if target:getLevel() <= freeBless.level then
 		if target:getSkull() == SKULL_WHITE or target:isPzLocked() then
 			for i = 1, #freeBless.blesses do

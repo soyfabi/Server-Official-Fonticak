@@ -256,9 +256,10 @@ local questTable = {
 	--{storage = Storage.BigfootBurden.Shooting, storageValue = 6},
 	--{storage = Storage.BigfootBurden.QuestLineComplete, storageValue = 2},
 	--{storage = Storage.BigfootBurden.Rank, storageValue = 1440},
-	{storage = Storage.BigfootBurden.Warzone1Access, storageValue = 2},
+	--------------????????--------------------
+	--[[{storage = Storage.BigfootBurden.Warzone1Access, storageValue = 2},
 	{storage = Storage.BigfootBurden.Warzone2Access, storageValue = 2},
-	{storage = Storage.BigfootBurden.Warzone3Access, storageValue = 2},
+	{storage = Storage.BigfootBurden.Warzone3Access, storageValue = 2},]]
 	
 	-- Dangerous Depths --
 	--[[{storage = Storage.DangerousDepths.Questline, storageValue = 10},
