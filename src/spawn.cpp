@@ -368,6 +368,8 @@ void Spawn::checkSpawn()
 	checkSpawnEvent = 0;
 
 	cleanup();
+	
+	uint32_t spawnCount = 0;
 
 	for (auto& it : spawnMap) {
 		uint32_t spawnId = it.first;
@@ -385,7 +387,10 @@ void Spawn::checkSpawn()
 				sb.lastSpawn = OTSYS_TIME();
 				continue;
 			}*/
-			scheduleSpawn(spawnId, sb, static_cast<uint32_t>(g_config.getNumber(ConfigManager::RATE_START_EFFECT)));
+			if (++spawnCount >= static_cast<uint32_t>(1)) {
+				scheduleSpawn(spawnId, sb, static_cast<uint32_t>(g_config.getNumber(ConfigManager::RATE_START_EFFECT)));
+				break;
+			}
 		}
 	}
 	
