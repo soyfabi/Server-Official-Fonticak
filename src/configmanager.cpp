@@ -308,7 +308,6 @@ bool ConfigManager::load()
 	integer[BLACK_MONTHLY_LIMIT] = getGlobalNumber(L, "blackMonthlyLimit", 20);
 	integer[BLACK_SKULL_LENGTH] = getGlobalNumber(L, "blackSkullLength", 45 * 24 * 60 * 60);
 	integer[MAX_MESSAGEBUFFER] = getGlobalNumber(L, "maxMessageBuffer", 4);
-	integer[KICK_AFTER_MINUTES] = getGlobalNumber(L, "kickIdlePlayerAfterMinutes", 15);
 	integer[PROTECTION_LEVEL] = getGlobalNumber(L, "protectionLevel", 1);
 	integer[DEATH_LOSE_PERCENT] = getGlobalNumber(L, "deathLosePercent", -1);
 	integer[STATUSQUERY_TIMEOUT] = getGlobalNumber(L, "statusTimeout", 5000);

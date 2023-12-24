@@ -337,6 +337,7 @@ void ProtocolGame::connect(uint32_t playerId, OperatingSystem_t operatingSystem)
 	player->incrementReferenceCounter();
 
 	g_chat->removeUserFromAllChannels(*player);
+	player->clearModalWindows();
 	player->setOperatingSystem(operatingSystem);
 	player->isConnecting = false;
 

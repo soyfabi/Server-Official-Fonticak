@@ -2097,7 +2097,6 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::BLACK_SKULL_LENGTH);
 	
 	registerEnumIn("configKeys", ConfigManager::MAX_MESSAGEBUFFER)
-	registerEnumIn("configKeys", ConfigManager::KICK_AFTER_MINUTES)
 	registerEnumIn("configKeys", ConfigManager::PROTECTION_LEVEL)
 	registerEnumIn("configKeys", ConfigManager::DEATH_LOSE_PERCENT)
 	registerEnumIn("configKeys", ConfigManager::STATUSQUERY_TIMEOUT)
@@ -2643,6 +2642,7 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod("Player", "isPzLocked", LuaScriptInterface::luaPlayerIsPzLocked);
 
+	registerMethod("Player", "hasClient", LuaScriptInterface::luaPlayerHasClient);
 	registerMethod("Player", "getClient", LuaScriptInterface::luaPlayerGetClient);
 
 	registerMethod("Player", "getHouse", LuaScriptInterface::luaPlayerGetHouse);
@@ -2661,6 +2661,10 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Player", "hasChaseMode", LuaScriptInterface::luaPlayerHasChaseMode);
 	registerMethod("Player", "hasSecureMode", LuaScriptInterface::luaPlayerHasSecureMode);
 	registerMethod("Player", "getFightMode", LuaScriptInterface::luaPlayerGetFightMode);
+	
+	registerMethod("Player", "getIdleTime", LuaScriptInterface::luaPlayerGetIdleTime);
+	registerMethod("Player", "setIdleTime", LuaScriptInterface::luaPlayerSetIdleTime);
+	registerMethod("Player", "resetIdleTime", LuaScriptInterface::luaPlayerResetIdleTime);
 
 	// Monster
 	registerClass("Monster", "Creature", LuaScriptInterface::luaMonsterCreate);
@@ -10390,6 +10394,18 @@ int LuaScriptInterface::luaPlayerIsPzLocked(lua_State* L)
 	return 1;
 }
 
+int LuaScriptInterface::luaPlayerHasClient(lua_State* L)
+{
+	// player:hasClient()
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		lua_pushboolean(L, player->hasClient());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int LuaScriptInterface::luaPlayerGetClient(lua_State* L)
 {
 	// player:getClient()
@@ -10642,6 +10658,45 @@ int LuaScriptInterface::luaPlayerGetFightMode(lua_State* L)
 	} else {
 		lua_pushnil(L);
 	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerGetIdleTime(lua_State* L)
+{
+	// player:getIdleTime()
+	const Player* const player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+	lua_pushnumber(L, player->getIdleTime());
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerSetIdleTime(lua_State* L)
+{
+	// player:setIdleTime(time)
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		player->setIdleTime(getNumber<int32_t>(L, 2));
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerResetIdleTime(lua_State* L)
+{
+	// player:resetIdleTime()
+	Player* player = getUserdata<Player>(L, 1);
+	if (!player) {
+		lua_pushnil(L);
+		return 1;
+	}
+
+	player->resetIdleTime();
+	pushBoolean(L, true);
 	return 1;
 }
 
@@ -16574,11 +16629,7 @@ int LuaScriptInterface::luaCreatureEventOnCallback(lua_State* L)
 	// creatureevent:onLogin / logout / etc. (callback)
 	CreatureEvent* creature = getUserdata<CreatureEvent>(L, 1);
 	if (creature) {
-		if (!creature->loadCallback()) {
-			pushBoolean(L, false);
-			return 1;
-		}
-		pushBoolean(L, true);
+		pushBoolean(L, creature->loadCallback());
 	} else {
 		lua_pushnil(L);
 	}
