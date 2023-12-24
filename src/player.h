@@ -846,6 +846,7 @@ class Player final : public Creature, public Cylinder
 				}
 			}
 		}
+		void autoOpenContainers();
 
 		//event methods
 		void onUpdateTileItem(const Tile* tile, const Position& pos, const Item* oldItem,

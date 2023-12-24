@@ -655,7 +655,7 @@ bool IOLoginData::loadPlayer(Player* player, DBResult_ptr result)
 	return true;
 }
 
-bool IOLoginData::saveItems(const Player* player, const ItemBlockList& itemList, DBInsert& query_insert, PropWriteStream& propWriteStream)
+bool IOLoginData::saveItems(const Player* player, const ItemBlockList& itemList, DBInsert& query_insert, PropWriteStream& propWriteStream, std::map<Container*, int>& openContainers)
 {
 	using ContainerBlock = std::pair<Container*, int32_t>;
 	std::vector<ContainerBlock> containers;
@@ -668,6 +668,16 @@ bool IOLoginData::saveItems(const Player* player, const ItemBlockList& itemList,
 		int32_t pid = it.first;
 		Item* item = it.second;
 		++runningId;
+		
+		if (Container* container = item->getContainer()) {
+			auto itContainer = openContainers.find(container);
+			if (itContainer == openContainers.end()) {
+				container->resetAutoOpen();
+			} else {
+				container->setAutoOpen(itContainer->second);
+			}
+			containers.emplace_back(container, runningId);
+		}
 
 		propWriteStream.clear();
 		item->serializeAttr(propWriteStream);
@@ -677,10 +687,6 @@ bool IOLoginData::saveItems(const Player* player, const ItemBlockList& itemList,
 
 		if (!query_insert.addRow(fmt::format("{:d}, {:d}, {:d}, {:d}, {:d}, {:s}", player->getGUID(), pid, runningId, item->getID(), item->getSubType(), db.escapeBlob(attributes, attributesSize)))) {
 			return false;
-		}
-
-		if (Container* container = item->getContainer()) {
-			containers.emplace_back(container, runningId);
 		}
 	}
 
@@ -694,6 +700,12 @@ bool IOLoginData::saveItems(const Player* player, const ItemBlockList& itemList,
 
 			Container* subContainer = item->getContainer();
 			if (subContainer) {
+				auto it = openContainers.find(subContainer);
+				if (it == openContainers.end()) {
+					subContainer->resetAutoOpen();
+				} else {
+					subContainer->setAutoOpen(it->second);
+				}
 				containers.emplace_back(subContainer, runningId);
 			}
 
@@ -850,6 +862,12 @@ bool IOLoginData::savePlayer(Player* player)
 	}
 
 	//item saving
+	std::map<Container*, int> openContainers;
+	for (auto container : player->getOpenContainers()) {
+		if (!container.second.container) continue;
+		openContainers[container.second.container] = container.first;
+	}
+	
 	if (!db.executeQuery(fmt::format("DELETE FROM `player_items` WHERE `player_id` = {:d}", player->getGUID()))) {
 		return false;
 	}
@@ -864,7 +882,7 @@ bool IOLoginData::savePlayer(Player* player)
 		}
 	}
 
-	if (!saveItems(player, itemList, itemsQuery, propWriteStream)) {
+	if (!saveItems(player, itemList, itemsQuery, propWriteStream, openContainers)) {
 		return false;
 	}
 	
@@ -882,7 +900,7 @@ bool IOLoginData::savePlayer(Player* player)
 		}
 	}
 
-	if (!saveItems(player, itemList, depotQuery, propWriteStream)) {
+	if (!saveItems(player, itemList, depotQuery, propWriteStream, openContainers)) {
 		return false;
 	}
 	
@@ -899,7 +917,7 @@ bool IOLoginData::savePlayer(Player* player)
 		itemList.emplace_back(0, item);
 	}
 
-	if (!saveItems(player, itemList, inboxQuery, propWriteStream)) {
+	if (!saveItems(player, itemList, inboxQuery, propWriteStream, openContainers)) {
 		return false;
 	}
 	
@@ -916,7 +934,7 @@ bool IOLoginData::savePlayer(Player* player)
 		itemList.emplace_back(0, item);
 	}
 
-	if (!saveItems(player, itemList, supplystashQuery, propWriteStream)) {
+	if (!saveItems(player, itemList, supplystashQuery, propWriteStream, openContainers)) {
 		return false;
 	}
 	
@@ -941,7 +959,7 @@ bool IOLoginData::savePlayer(Player* player)
 			}
 		}
 
-		if (!saveItems(player, itemList, rewardQuery, propWriteStream)) {	
+		if (!saveItems(player, itemList, rewardQuery, propWriteStream, openContainers)) {	
 			return false;
 		}
 	}
