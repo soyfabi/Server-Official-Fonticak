@@ -120,6 +120,19 @@ event.onLook = function(self, thing, position, distance, description)
 			local speed = thing:getSpeed()
 			description = string.format("%s\nSpeed: %d", description, speed)
 		end
+		
+		if thing:isCreature() then
+			if thing:isPlayer() then
+				local clientOS = thing:getClient().os
+				local clientName = "Desconocido"
+				if clientOS == 2 then
+					clientName = "Tibia"
+				elseif clientOS == 20 then
+					clientName = "OTCV8"
+				end
+				description = string.format("%s\nClient: %s.", description, clientName)
+			end
+		end
 	end
 		-- Look Position -- 
 		local position = thing:getPosition()

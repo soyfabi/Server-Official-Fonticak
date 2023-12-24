@@ -276,6 +276,9 @@ class ProtocolGame final : public Protocol
 		//otclient
 		void parseExtendedOpcode(NetworkMessage& msg);
 		
+		//OTCv8
+		void sendFeatures();
+		
 		friend class Player;
 		friend class ProtocolSpectator;
 
@@ -312,6 +315,8 @@ class ProtocolGame final : public Protocol
 
 		bool debugAssertSent = false;
 		bool acceptPackets = false;
+		
+		uint16_t otclientV8 = 0;
 };
 
 #endif
