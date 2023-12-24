@@ -134,6 +134,8 @@ bool Events::load()
 				info.playerOnNetworkMessage = event;
 			} else if (methodName == "onUpdateStorage") {
 				info.playerOnUpdateStorage = event;
+			} else if (methodName == "onSay") {
+				info.playerOnSay = event;
 			} else {
 				std::cout << "[Warning - Events::load] Unknown player method: " << methodName << std::endl;
 			}
@@ -1174,6 +1176,32 @@ void Events::eventPlayerOnUpdateStorage(Player* player, const uint32_t key, cons
 	LuaScriptInterface::pushBoolean(L, isLogin);
 
 	scriptInterface.callVoidFunction(5);
+}
+
+bool Events::eventPlayerOnSay(Player* player, const std::string& message)
+{
+	// Player:onSay(message) or Player.onSay(self, message)
+	if (info.playerOnSay == -1) {
+		return true;
+	}
+
+	if (!scriptInterface.reserveScriptEnv()) {
+		std::cout << "[Error - Events::eventPlayerOnSay] Call stack overflow" << std::endl;
+		return false;
+	}
+
+	ScriptEnvironment* env = scriptInterface.getScriptEnv();
+	env->setScriptId(info.playerOnSay, &scriptInterface);
+
+	lua_State* L = scriptInterface.getLuaState();
+	scriptInterface.pushFunction(info.playerOnSay);
+
+	LuaScriptInterface::pushUserdata<Player>(L, player);
+	LuaScriptInterface::setCreatureMetatable(L, -1, player);
+
+	LuaScriptInterface::pushString(L, message);
+
+	return scriptInterface.callFunction(2);
 }
 
 void Events::eventMonsterOnDropLoot(Monster* monster, Container* corpse)

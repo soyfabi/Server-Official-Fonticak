@@ -3268,6 +3268,10 @@ void Game::playerSay(uint32_t playerId, uint16_t channelId, SpeakClasses type, c
 	if (!player) {
 		return;
 	}
+	
+	if (!g_events->eventPlayerOnSay(player, text)) {
+		return;
+	}
 
 	player->resetIdleTime();
 

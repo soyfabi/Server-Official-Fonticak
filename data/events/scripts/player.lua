@@ -154,3 +154,10 @@ function Player:onUpdateStorage(key, value, oldValue, isLogin)
 		Event.onUpdateStorage(self, key, value, oldValue, isLogin)
 	end
 end
+
+function Player:onSay(message)
+	if hasEvent.onSay then
+		Event.onSay(self, message)
+		return true
+	end
+end
