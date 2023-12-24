@@ -136,6 +136,8 @@ bool Events::load()
 				info.playerOnUpdateStorage = event;
 			} else if (methodName == "onSay") {
 				info.playerOnSay = event;
+			} else if (methodName == "onChangeGhostMode") {
+				info.playerOnChangeGhostMode = event;
 			} else {
 				std::cout << "[Warning - Events::load] Unknown player method: " << methodName << std::endl;
 			}
@@ -1202,6 +1204,30 @@ bool Events::eventPlayerOnSay(Player* player, const std::string& message)
 	LuaScriptInterface::pushString(L, message);
 
 	return scriptInterface.callFunction(2);
+}
+
+void Events::eventPlayerOnChangeGhostMode(Player* player)
+{
+	// Player:onChangeGhostMode()
+	if (info.playerOnChangeGhostMode == -1) {
+		return;
+	}
+
+	if (!scriptInterface.reserveScriptEnv()) {
+		std::cout << "[Error - Events::eventPlayerOnChangeGhostMode] Call stack overflow" << std::endl;
+		return;
+	}
+
+	ScriptEnvironment* env = scriptInterface.getScriptEnv();
+	env->setScriptId(info.playerOnChangeGhostMode, &scriptInterface);
+
+	lua_State* L = scriptInterface.getLuaState();
+	scriptInterface.pushFunction(info.playerOnChangeGhostMode);
+
+	LuaScriptInterface::pushUserdata<Player>(L, player);
+	LuaScriptInterface::setMetatable(L, -1, "Player");
+
+	scriptInterface.callVoidFunction(1);
 }
 
 void Events::eventMonsterOnDropLoot(Monster* monster, Container* corpse)

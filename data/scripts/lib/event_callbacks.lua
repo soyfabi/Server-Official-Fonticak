@@ -57,6 +57,7 @@ ec.onInventoryUpdate = {}
 ec.onStepTile = {}
 ec.onUpdateStorage = {}
 ec.onSay = {}
+ec.onChangeGhostMode = {}
 -- Monster
 ec.onDropLoot = {}
 ec.onSpawn = {}

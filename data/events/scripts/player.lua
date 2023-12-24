@@ -161,3 +161,9 @@ function Player:onSay(message)
 		return true
 	end
 end
+
+function Player:onChangeGhostMode()
+	if hasEvent.onChangeGhostMode then
+		Event.onChangeGhostMode(self)
+	end
+end
