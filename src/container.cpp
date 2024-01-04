@@ -62,6 +62,12 @@ std::string Container::getName(bool addArticle /* = false*/) const {
 	return getNameDescription(it, this, -1, addArticle);
 }
 
+bool Container::hasParent() const
+{
+	//return getID() != ITEM_BROWSEFIELD && dynamic_cast<const Player*>(getParent()) == nullptr;
+	return dynamic_cast<const Player*>(getParent()) == nullptr;
+}
+
 void Container::addItem(Item* item)
 {
 	itemlist.push_back(item);
@@ -268,6 +274,10 @@ ReturnValue Container::queryAdd(int32_t index, const Thing& thing, uint32_t coun
 		while (cylinder) {
 			if (cylinder == &thing) {
 				return RETURNVALUE_THISISIMPOSSIBLE;
+			}
+			
+			if (dynamic_cast<const Inbox*>(cylinder)) {
+				return RETURNVALUE_CONTAINERNOTENOUGHROOM;
 			}
 
 			cylinder = cylinder->getParent();
