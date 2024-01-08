@@ -8,6 +8,16 @@ function event.onChangeZone(self, fromZone, toZone)
         return false
     end
 	
+	if self:getSummons() then
+		if toZone == ZONE_PROTECTION then
+			local summons = self:getSummons()
+            for _, summon in ipairs(summons) do
+				summon:getPosition():sendMagicEffect(CONST_ME_POFF)
+                summon:remove()
+            end
+		end
+	end
+	
 	local playerId = self:getId()
     local currentTime = os.time()
     if exhaust[playerId] and exhaust[playerId] > currentTime then
