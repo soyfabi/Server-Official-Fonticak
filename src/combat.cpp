@@ -688,6 +688,7 @@ void Combat::combatTileEffects(const SpectatorVec& spectators, Creature* caster,
 		Item* item = Item::CreateItem(itemId);
 		if (caster) {
 			item->setOwner(caster->getID());
+			item->setSpecialDescription("Pulled by " + caster->getName() + ".");
 		}
 
 		ReturnValue ret = g_game.internalAddItem(tile, item);

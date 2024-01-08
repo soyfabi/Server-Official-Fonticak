@@ -19439,7 +19439,8 @@ local items = {
 	{
 		-- rush wood
 		itemid = 2130,
-		type = "stepin"
+		type = "stepin",
+		remove = true
 	},
 	{
 		-- rush wood
@@ -19449,7 +19450,8 @@ local items = {
 	{
 		-- magic wall
 		itemid = 2129,
-		type = "stepin"
+		type = "stepin",
+		remove = true
 	},
 	{
 		-- magic wall
@@ -19459,7 +19461,8 @@ local items = {
 	{
 		-- magic wall
 		itemid = 2128,
-		type = "stepin"
+		type = "stepin",
+		remove = true
 	},
 	{
 		-- magic wall
@@ -19628,5 +19631,15 @@ for _, i in ipairs(items) do
 			movement:vocation(v[1], v[2] or false, v[3] or false)
 		end
 	end
+	
+	if i.remove then
+        movement:onStepIn(function(player, item, position, fromPosition)
+            if item:getId() == i.itemid then
+                item:remove()
+                return true
+            end
+            return false
+        end)
+    end
 	movement:register()
 end

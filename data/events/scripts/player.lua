@@ -46,7 +46,7 @@ function Player:onMoveItem(item, count, fromPosition, toPosition, fromCylinder, 
 	if hasEvent.onMoveItem then
 		return Event.onMoveItem(self, item, count, fromPosition, toPosition, fromCylinder, toCylinder)
 	end
-	return RETURNVALUE_NOERROR
+	return true
 end
 
 function Player:onItemMoved(item, count, fromPosition, toPosition, fromCylinder, toCylinder)

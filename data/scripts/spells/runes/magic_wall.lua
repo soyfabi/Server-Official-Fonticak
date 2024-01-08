@@ -6,6 +6,7 @@ function onCreateMagicWall(creature, tile)
 		magicWall = ITEM_MAGICWALL
 	end
 	local item = Game.createItem(magicWall, 1, tile)
+	item:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, "Pulled by: ".. creature:getName() ..".")
 end
 
 local combat = Combat()

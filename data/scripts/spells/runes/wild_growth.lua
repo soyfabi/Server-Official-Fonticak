@@ -6,6 +6,7 @@ function onCreateWildGrowth(creature, tile)
 		wildGrowth = ITEM_WILDGROWTH
 	end
 	local item = Game.createItem(wildGrowth, 1, tile)
+	item:setAttribute(ITEM_ATTRIBUTE_DESCRIPTION, "Pulled by: ".. creature:getName() ..".")
 end
 
 local combat = Combat()
