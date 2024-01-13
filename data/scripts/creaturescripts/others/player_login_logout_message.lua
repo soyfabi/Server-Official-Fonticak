@@ -26,8 +26,24 @@ function loginMessage.onLogin(player)
 	end
 	
 	-- Bank Balance Text --
-	if player:getBankBalance() > 0 then
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Your Bank Balance is: "..player:getBankBalance()..".")
+	function formatNumber(amount)
+		local formatted = tostring(amount)
+		local k
+
+		while true do  
+			formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1.%2')
+			if k == 0 then
+				break
+			end
+		end
+
+		return formatted
+	end
+	
+	local balance = player:getBankBalance()
+	if balance > 0 then
+		local formattedBalance = formatNumber(balance)
+		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "Your Bank Balance is: $" .. formattedBalance .. ".")
 	end
 	
 	-- Inbox Notice --

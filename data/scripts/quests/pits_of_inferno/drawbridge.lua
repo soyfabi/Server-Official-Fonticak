@@ -42,6 +42,7 @@ function drawbridge.onStepOut(creature, item, position, fromPosition)
 	if bridgeItem then
 		tile:relocateTo(relocatePosition)
 		bridgeItem:transform(21477)
+		bridgeItem:getPosition():sendMagicEffect(CONST_ME_POFF)
 
 		for i = 1, #dirtIds do
 			Game.createItem(dirtIds[i], 1, bridgePosition)

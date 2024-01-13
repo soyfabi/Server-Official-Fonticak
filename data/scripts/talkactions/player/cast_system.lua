@@ -67,41 +67,46 @@ function talkAction.onSay(player, words, param)
 		return false
 	elseif action == "password" then
 		if player:getStorageValue(Storage.isCasting) == 1 then
-		data['password'] = target
-		player:setSpectators(data)
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have set new password for your stream.")
-		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have set new password for your stream.")
-		player:setStorageValue(Storage.isCastingPassword, 1)
+			data['password'] = target
+			player:setSpectators(data)
+			player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have set new password for your stream, but instead you lost 10% exp bonus.")
+			player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have set new password for your stream, but instead you lost 10% exp bonus.")
+			player:setStorageValue(Storage.isCastingPassword, 1)
 		else
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
-		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")
+			player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
+			player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")
 		end
 		return false
 	elseif action == "passwordoff" and player:getStorageValue(Storage.isCastingPassword) == 1 then
-		data['password'] = target
-		player:setSpectators(data)
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have removed password for your stream.")
-		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have removed password for your stream.")
-		player:setStorageValue(Storage.isCastingPassword, -1)
+			data['password'] = target
+			player:setSpectators(data)
+			player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have removed password for your stream.")
+			player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have removed password for your stream.")
+			player:setStorageValue(Storage.isCastingPassword, -1)
 		return false
 	elseif action == "off" then
 		if player:getStorageValue(Storage.isCasting) == 1 then
-		data['broadcast'] = false
-		player:setSpectators(data)
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have stopped casting your gameplay.")
-		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have stopped casting your gameplay.")
-		player:setStorageValue(Storage.isCasting, -1)
+			data['broadcast'] = false
+			player:setSpectators(data)
+			player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have stopped casting your gameplay.")
+			player:sendTextMessage(MESSAGE_STATUS_SMALL, "You have stopped casting your gameplay.")
+			player:setStorageValue(Storage.isCasting, -1)
 		else
-		player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
-		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")
+			player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
+			player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")
 		end
 		return false
 	elseif action == "list" or action == "show" then
 		local spectators_list = ""
-		for k, v in pairs(data['spectators']) do
-			spectators_list = spectators_list .. k .. ", "
+		if player:getStorageValue(Storage.isCasting) == 1 then
+			for k, v in pairs(data['spectators']) do
+				spectators_list = spectators_list .. k .. ", "
+			end
+			player:sendCastChannelMessage('', 'Spectators: ' .. spectators_list, 8)
+		else
+			player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You do not have the cast activated.")
+			player:sendTextMessage(MESSAGE_STATUS_SMALL, "You do not have the cast activated.")
 		end
-		player:sendCastChannelMessage('', 'Spectators: ' .. spectators_list, 8)		
 		return false
 	elseif action == "kick" then
 		local ip = findIP(data['spectators'], target)
@@ -163,6 +168,7 @@ talkAction:register()
 local cast_login = CreatureEvent("cast_login")
 function cast_login.onLogin(player)
 	player:setStorageValue(Storage.isCasting, -1)
+	player:setStorageValue(Storage.isCastingPassword, -1)
 	return true
 end
 
@@ -171,9 +177,8 @@ cast_login:register()
 local event = Event()
 event.onGainExperience = function(self, source, exp, rawExp)
 
-
 	local cast = 0
-	if self:getStorageValue(Storage.isCasting) == 1 then
+	if self:getStorageValue(Storage.isCasting) == 1 and self:getStorageValue(Storage.isCastingPassword) == -1 then
 		cast = exp * 1.17 -- 10% Exp
 	end
 	

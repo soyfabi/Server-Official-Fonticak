@@ -49,7 +49,6 @@ monster.voices = {
 	interval = 5000,
 	chance = 10,
 	{text = "Fonticak the best server!", yell = false},
-	{text = "FABIAN EL MEJOR!", yell = false},
 	{text = "Recommend to others", yell = false},
 	{text = "Visit Discord or Website - www.fonticak-server.com", yell = false}
 }
