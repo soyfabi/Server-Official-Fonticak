@@ -71,6 +71,7 @@ class Events
 		int32_t playerOnUpdateStorage = -1;
 		int32_t playerOnSay = -1;
 		int32_t playerOnChangeGhostMode = -1;
+		int32_t playerOnSpellCheck = -1;
 
 		// Monster
 		int32_t monsterOnDropLoot = -1;
@@ -121,6 +122,7 @@ class Events
 		void eventPlayerOnUpdateStorage(Player* player, const uint32_t key, const int32_t value, const int32_t oldValue, bool isLogin);
 		bool eventPlayerOnSay(Player* player, const std::string& message);
 		void eventPlayerOnChangeGhostMode(Player* player);
+		bool eventPlayerOnSpellCheck(Player* player, const Spell* spell);
 
 		// Monster
 		void eventMonsterOnDropLoot(Monster* monster, Container* corpse);

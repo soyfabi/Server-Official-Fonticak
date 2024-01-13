@@ -167,3 +167,10 @@ function Player:onChangeGhostMode()
 		Event.onChangeGhostMode(self)
 	end
 end
+
+function Player:onSpellCheck(spell)
+	if hasEvent.onSpellCheck then
+		return Event.onSpellCheck(self, spell)
+	end
+	return true
+end

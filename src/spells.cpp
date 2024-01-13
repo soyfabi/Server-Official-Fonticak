@@ -21,6 +21,7 @@
 
 #include "combat.h"
 #include "configmanager.h"
+#include "events.h"
 #include "game.h"
 #include "monster.h"
 #include "pugicast.h"
@@ -28,6 +29,7 @@
 
 extern Game g_game;
 extern Spells* g_spells;
+extern Events* g_events;
 extern Monsters g_monsters;
 extern Vocations g_vocations;
 extern ConfigManager g_config;
@@ -595,6 +597,10 @@ bool Spell::playerSpellCheck(Player* player) const
 	}
 
 	if (!enabled) {
+		return false;
+	}
+	
+	if (!g_events->eventPlayerOnSpellCheck(player, this)) {
 		return false;
 	}
 

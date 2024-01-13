@@ -138,6 +138,8 @@ bool Events::load()
 				info.playerOnSay = event;
 			} else if (methodName == "onChangeGhostMode") {
 				info.playerOnChangeGhostMode = event;
+			} else if (methodName == "onSpellCheck") {
+				info.playerOnSpellCheck = event;
 			} else {
 				std::cout << "[Warning - Events::load] Unknown player method: " << methodName << std::endl;
 			}
@@ -1228,6 +1230,32 @@ void Events::eventPlayerOnChangeGhostMode(Player* player)
 	LuaScriptInterface::setMetatable(L, -1, "Player");
 
 	scriptInterface.callVoidFunction(1);
+}
+
+bool Events::eventPlayerOnSpellCheck(Player* player, const Spell* spell)
+{
+	// Player:onSpellCheck(spell)
+	if (info.playerOnSpellCheck == -1) {
+		return true;
+	}
+
+	if (!scriptInterface.reserveScriptEnv()) {
+		std::cout << "[Error - Events::eventPlayerOnSpellCheck] Call stack overflow" << std::endl;
+		return false;
+	}
+
+	ScriptEnvironment* env = scriptInterface.getScriptEnv();
+	env->setScriptId(info.playerOnSpellCheck, &scriptInterface);
+
+	lua_State* L = scriptInterface.getLuaState();
+	scriptInterface.pushFunction(info.playerOnSpellCheck);
+
+	LuaScriptInterface::pushUserdata<Player>(L, player);
+	LuaScriptInterface::setMetatable(L, -1, "Player");
+
+	LuaScriptInterface::pushSpell(L, *spell);
+
+	return scriptInterface.callFunction(2);
 }
 
 void Events::eventMonsterOnDropLoot(Monster* monster, Container* corpse)

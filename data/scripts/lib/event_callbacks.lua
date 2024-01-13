@@ -58,6 +58,7 @@ ec.onStepTile = {}
 ec.onUpdateStorage = {}
 ec.onSay = {}
 ec.onChangeGhostMode = {}
+ec.onSpellCheck = {}
 -- Monster
 ec.onDropLoot = {}
 ec.onSpawn = {}
