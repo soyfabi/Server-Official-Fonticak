@@ -54238,6 +54238,18 @@
 	<item id="42397" name="stairs">
 		<attribute key="floorchange" value="south"/>
 	</item>
+	<item id="42500" name="diamond bars">
+		<attribute key="description" value="Ingot converted from 100 crystal coins."/>
+		<attribute key="weight" value="120"/>
+	</item>
+	<item id="42501" name="platinum bars">
+		<attribute key="description" value="Ingot converted from 100 crystal coins."/>
+		<attribute key="weight" value="150"/>
+	</item>
+	<item id="42502" name="fonticak token">
+		<attribute key="description" value="Valuable token to buy articles."/>
+		<attribute key="weight" value="150"/>
+	</item>
 	<item id="42618" name="stairs"></item>
 	<item id="42619" name="stairs">
 		<attribute key="floorchange" value="north"/>
