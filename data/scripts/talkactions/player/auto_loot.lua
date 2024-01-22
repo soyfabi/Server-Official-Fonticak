@@ -6,8 +6,6 @@ local autoloot = {
     currencyToBank = true
 }
 
-
-
 local currencyItems = {}
 if autoloot.currencyToBank then
     for index, item in pairs(Game.getCurrencyItems()) do
@@ -140,14 +138,14 @@ function talkAction.onSay(player, words, param, type)
 	local split = param:splitTrimmed(",")
     local action = split[1]
     if not action then
-        player:popupFYI(string.format("Examples of use:\n%s add, gold coin\n%s remove, gold coin\n%s clear\n%s show\n%s edit\n\n~Available slots~\nFree Account: %d\nPremium Account: %d\nCurrency to Bank: %s", words, words, words, words, words, autoloot.freeAccountLimit, autoloot.premiumAccountLimit, autoloot.currencyToBank and "Yes" or "No"), false)
+        player:popupFYI(string.format("[+] Auto Loot Commands [+]\n\nExamples of use:\n%s add, dragon scale mail -> To add item from list.\n%s remove, royal helmet -> To remove item from list.\n%s clear -> To clear the list.\n%s show -> To show the list.\n%s edit -> To edit the list of loot.\n%s message -> To change the message of loot.\n\n[+] Available slots [+]\nFree Account: %d\nPremium Account: %d\nCurrency to Bank: %s", words, words, words, words, words, words, autoloot.freeAccountLimit, autoloot.premiumAccountLimit, autoloot.currencyToBank and "Yes" or "No"), false)
         exhaust[playerId] = currentTime + 2
 		return false
     end
 
     if action == "clear" then
         setPlayerAutolootItems(player, {})
-        player:sendTextMessagee(MESSAGE_STATUS_CONSOLE_BLUE, "Autoloot list cleaned.")
+        player:sendTextMessage(MESSAGE_STATUS_SMALL, "Autoloot list cleaned.")
         return false
     elseif action == "show" then
         local items = getPlayerAutolootItems(player)
@@ -199,7 +197,8 @@ function talkAction.onSay(player, words, param, type)
             end
 
             if addPlayerAutolootItem(player, itemType:getId()) then
-                player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("Perfect you have added to the list: %s", itemType:getName()))
+                player:sendTextMessage(MESSAGE_STATUS_SMALL, string.format("Perfect you have added to the list: %s.", itemType:getName()))
+				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("Perfect you have added to the list: %s.", itemType:getName()))
             else
                 player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, string.format("The item %s already exists!", itemType:getName()))
             end
@@ -210,7 +209,8 @@ function talkAction.onSay(player, words, param, type)
         local itemType = getItemType()
         if itemType then
             if removePlayerAutolootItem(player, itemType:getId()) then
-                player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("Perfect you have removed to the list the article: %s", itemType:getName()))
+				player:sendTextMessage(MESSAGE_STATUS_SMALL, string.format("Perfect you have removed to the list the article: %s.", itemType:getName()))
+				player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("Perfect you have removed to the list the article: %s.", itemType:getName()))
             else
                 player:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED, string.format("The item %s does not exists in the list.", itemType:getName()))
             end
@@ -256,7 +256,8 @@ function creatureEvent.onTextEdit(player, item, text)
         items[#items +1] = itemType:getId()
     until true end
     setPlayerAutolootItems(player, items)
-    player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, string.format("Perfect, you have modified the list of articles manually."))
+    player:sendTextMessage(MESSAGE_STATUS_SMALL, string.format("Perfect, you have modified the list of articles manually."))
+	player:sendTextMessage(MESSAGE_EVENT_ADVANCE, string.format("Perfect, you have modified the list of articles manually."))
     return true
 end
 

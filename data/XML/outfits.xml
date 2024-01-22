@@ -119,8 +119,8 @@
 	
 
 	<!-- Male outfits -->
-	<outfit type="1" looktype="1646" name="Citizen" premium="no" unlocked="yes" enabled="yes" />
-	<outfit type="1" looktype="1647" name="Hunter" premium="no" unlocked="yes" enabled="yes" />
+	<outfit type="1" looktype="128" name="Citizen" premium="no" unlocked="yes" enabled="yes" />
+	<outfit type="1" looktype="129" name="Hunter" premium="no" unlocked="yes" enabled="yes" />
 	<outfit type="1" looktype="130" name="Mage" premium="no" unlocked="yes" enabled="yes" />
 	<outfit type="1" looktype="131" name="Knight" premium="no" unlocked="yes" enabled="yes" />
 	<outfit type="1" looktype="132" name="Nobleman" premium="no" unlocked="yes" enabled="yes" />
