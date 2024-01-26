@@ -453,7 +453,9 @@ static void showUseHotkeyMessage(Player* player, const Item* item, uint32_t coun
 
 bool Actions::useItem(Player* player, const Position& pos, uint8_t index, Item* item, bool isHotkey)
 {
-	player->setNextAction(OTSYS_TIME() + 300);
+	if (!isHotkey) {
+		player->setNextAction(OTSYS_TIME() + 300);
+	}
 
 	if (isHotkey) {
 		uint16_t subType = item->getSubType();
@@ -487,7 +489,9 @@ bool Actions::useItem(Player* player, const Position& pos, uint8_t index, Item* 
 bool Actions::useItemEx(Player* player, const Position& fromPos, const Position& toPos,
                         uint8_t toStackPos, Item* item, bool isHotkey, Creature* creature/* = nullptr*/)
 {
-	player->setNextAction(OTSYS_TIME() + 300);
+	if (!isHotkey) {
+		player->setNextAction(OTSYS_TIME() + 300);
+	}
 
 	Action* action = getAction(item);
 	if (!action) {

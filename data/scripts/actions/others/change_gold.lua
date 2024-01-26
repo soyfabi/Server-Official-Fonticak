@@ -1,7 +1,9 @@
 local config = {
     [ITEM_GOLD_COIN] = {changeTo = ITEM_PLATINUM_COIN},
     [ITEM_PLATINUM_COIN] = {changeBack = ITEM_GOLD_COIN, changeTo = ITEM_CRYSTAL_COIN},
-	[ITEM_CRYSTAL_COIN] = {changeBack = ITEM_PLATINUM_COIN},
+	[ITEM_CRYSTAL_COIN] = {changeBack = ITEM_PLATINUM_COIN, changeTo = ITEM_INGOT_DIAMOND},
+	[ITEM_INGOT_DIAMOND] = {changeBack = ITEM_CRYSTAL_COIN, changeTo = ITEM_INGOT_PLATINUM},
+	[ITEM_INGOT_PLATINUM] = {changeBack = ITEM_INGOT_DIAMOND}
 }
 
 local changeGold = Action()
@@ -21,5 +23,5 @@ function changeGold.onUse(player, item, fromPosition, target, toPosition, isHotk
 	return true
 end
 
-changeGold:id(ITEM_GOLD_COIN, ITEM_PLATINUM_COIN, ITEM_CRYSTAL_COIN) --ITEM_INGOT_DIAMOND, ITEM_INGOT_PLATINUM)
+changeGold:id(ITEM_GOLD_COIN, ITEM_PLATINUM_COIN, ITEM_CRYSTAL_COIN, ITEM_INGOT_DIAMOND, ITEM_INGOT_PLATINUM) --ITEM_INGOT_DIAMOND, ITEM_INGOT_PLATINUM)
 changeGold:register()

@@ -13,6 +13,10 @@ monster.outfit = {
 	lookMount = 0
 }
 
+monster.events = {
+	"BlackKnightDeath",
+}
+
 monster.health = 1800
 monster.maxHealth = 1800
 monster.race = "blood"

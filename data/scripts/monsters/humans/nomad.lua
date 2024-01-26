@@ -45,6 +45,10 @@ monster.flags = {
 	canWalkOnPoison = false
 }
 
+monster.events = {
+	"NomadKill"
+}
+
 monster.light = {
 	level = 0,
 	color = 0
