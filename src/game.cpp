@@ -3904,34 +3904,29 @@ bool Game::combatChangeHealth(Creature* attacker, Creature* target, CombatDamage
 			SpectatorVec spectators;
 			map.getSpectators(spectators, targetPos, false, true);
 			for (Creature* spectator : spectators) {
-				Player* tmpPlayer = spectator->getPlayer();
-				if (tmpPlayer == attackerPlayer && attackerPlayer != targetPlayer) {
+				assert(dynamic_cast<Player*>(spectator) != nullptr);
+
+				Player* spectatorPlayer = static_cast<Player*>(spectator);
+				if (spectatorPlayer == attackerPlayer && attackerPlayer != targetPlayer) {
 					message.type = MESSAGE_STATUS_DEFAULT;
 					message.text = fmt::format("You heal {:s} for {:s}.", target->getNameDescription(), damageString);
-				} else if (tmpPlayer == targetPlayer) {
+				} else if (spectatorPlayer == targetPlayer) {
 					message.type = MESSAGE_STATUS_DEFAULT;
 					if (!attacker) {
-						message.text = fmt::format("You were healed for {:s}.", damageString);
-					} else if (targetPlayer == attackerPlayer) {
-						message.text = fmt::format("You healed yourself for {:s}.", damageString);
+						spectatorMessage =
+						fmt::format("{:s} was healed for {:s}.", target->getNameDescription(), damageString);
+					} else if (attacker == target) {
+						spectatorMessage = fmt::format(
+							"{:s} healed {:s}self for {:s}.", attacker->getNameDescription(),
+							targetPlayer ? (targetPlayer->getSex() == PLAYERSEX_FEMALE ? "her" : "him") : "it",
+							damageString);
 					} else {
-						message.text = fmt::format("You were healed by {:s} for {:s}.", attacker->getNameDescription(), damageString);
+						spectatorMessage = fmt::format("{:s} healed {:s} for {:s}.", attacker->getNameDescription(),
+						target->getNameDescription(), damageString);
 					}
-				} else {
-					message.type = MESSAGE_STATUS_DEFAULT;
-					if (spectatorMessage.empty()) {
-						if (!attacker) {
-							spectatorMessage = fmt::format("{:s} was healed for {:s}.", target->getNameDescription(), damageString);
-						} else if (attacker == target) {
-							spectatorMessage = fmt::format("{:s} healed {:s}self for {:s}.", attacker->getNameDescription(), targetPlayer ? (targetPlayer->getSex() == PLAYERSEX_FEMALE ? "her" : "him") : "it", damageString);
-						} else {
-							spectatorMessage = fmt::format("{:s} healed {:s} for {:s}.", attacker->getNameDescription(), target->getNameDescription(), damageString);
-						}
-						spectatorMessage[0] = std::toupper(spectatorMessage[0]);
-					}
-					message.type = MESSAGE_STATUS_DEFAULT;
+					spectatorMessage[0] = std::toupper(spectatorMessage[0]);
 				}
-				tmpPlayer->sendTextMessage(message);
+				message.text = spectatorMessage;
 			}
 		}
 	} else {
