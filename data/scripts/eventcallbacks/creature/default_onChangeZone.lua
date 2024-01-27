@@ -1,13 +1,14 @@
 local event = Event()
 
 local exhaust = {}
-local exhaustTime = 20
+local exhaustTime = 1
 
 function event.onChangeZone(self, fromZone, toZone)
     if not self then
         return false
     end
 	
+	-- Remove Summons on PZ --
 	if self:getSummons() then
 		if toZone == ZONE_PROTECTION then
 			local summons = self:getSummons()
@@ -19,43 +20,18 @@ function event.onChangeZone(self, fromZone, toZone)
 	end
 	
 	local playerId = self:getId()
-    local currentTime = os.time()
-    if exhaust[playerId] and exhaust[playerId] > currentTime then
-        return false
-    end
-	
-	-- Blessing Protect --
-	if not self:hasBlessing(5) then
-		if not self then return false end
-		if toZone == ZONE_NORMAL then
-			if self:getSlotItem(CONST_SLOT_NECKLACE) and self:getSlotItem(CONST_SLOT_NECKLACE):getId() == 3057 then
-				return false
-			end
-			if self:getBankBalance() > 10000 then
-				self:popupFYI("[PROTECT BLESS]\n\nBe careful you have NO Bless.\nTo buy bless use the command: !bless\nor you could lose everything, or use an Amulet of loss.\nIn the bank you have:\n["..self:getBankBalance().." gold coins].")
-			else
-				self:popupFYI("[PROTECT BLESS]\n\nBe careful you have NO Bless.\nTo buy bless use the command: !bless\nor you could lose everything, or use an Amulet of loss.")
-			end
-			exhaust[playerId] = currentTime + exhaustTime
-		end
-	end
-	
-    local playerId = self:getId()
     local event = staminaBonus.eventsPz[playerId]
 	
-    if configManager.getBoolean(configKeys.STAMINA_PZ) then
-        if toZone == ZONE_PROTECTION then
+	-- Stamina on PZ --
+	if configManager.getBoolean(configKeys.STAMINA_PZ) then
+		if toZone == ZONE_PROTECTION then
             if self:getStamina() < 2520 then
                 if not event then
                     local delay = configManager.getNumber(configKeys.STAMINA_ORANGE_DELAY)
                     if self:getStamina() > 2400 and self:getStamina() <= 2520 then
                         delay = configManager.getNumber(configKeys.STAMINA_GREEN_DELAY)
                     end
-                    self:sendTextMessage(MESSAGE_STATUS_SMALL,
-                                         string.format("In protection zone. Every %i minutes, gain %i stamina.",
-                                                       delay, configManager.getNumber(configKeys.STAMINA_PZ_GAIN)
-                                         )
-                    )
+                    self:sendTextMessage(MESSAGE_STATUS_SMALL, string.format("In protection zone. Every %i minutes, gain %i stamina.", delay, configManager.getNumber(configKeys.STAMINA_PZ_GAIN)))
                     staminaBonus.eventsPz[playerId] = addEvent(addStamina, delay * 60 * 1000, nil, playerId, delay * 60 * 1000)
                 end
             else
@@ -65,10 +41,49 @@ function event.onChangeZone(self, fromZone, toZone)
                     staminaBonus.eventsPz[playerId] = nil
                 end
             end
-            return not configManager.getBoolean(configKeys.STAMINA_PZ)
+		else
+			if event then
+               self:sendTextMessage(MESSAGE_STATUS_SMALL, "You are no longer refilling stamina, since you left a regeneration zone.")
+               stopEvent(event)
+               staminaBonus.eventsPz[playerId] = nil
+            end
         end
+	end
+	
+	local playerId = self:getId()
+    local currentTime = os.time()
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+        return false
     end
+	
+	-- Blessing Protect --
+	if not self then return false end
+	if not self:hasBlessing(5) then
+		if toZone == ZONE_NORMAL then
+			if self:getSlotItem(CONST_SLOT_NECKLACE) and self:getSlotItem(CONST_SLOT_NECKLACE):getId() == 3057 then
+				return false
+			end
+			
+			function formatNumber(n)
+				local result = ""
+				local sep = "."
+				local str = tostring(n)
+				while #str > 3 do
+					result = sep .. str:sub(-3, -1) .. result
+					str = str:sub(1, -4)
+				end
+				return str .. result
+			end
+			
+			if self:getBankBalance() > 10000 then
+				self:popupFYI("[PROTECT BLESS]\n\nBe careful you have NO Bless.\nTo buy bless use the command: !bless\nor you could lose everything, or use an Amulet of loss.\nIn the bank you have:\n[$"..formatNumber(self:getBankBalance()).." gold coins].")
+			else
+				self:popupFYI("[PROTECT BLESS]\n\nBe careful you have NO Bless.\nTo buy bless use the command: !bless\nor you could lose everything, or use an Amulet of loss.")
+			end
+			exhaust[playerId] = currentTime + exhaustTime
+		end
+	end
     return false
 end
 
-event:register()
+event:register(-1)

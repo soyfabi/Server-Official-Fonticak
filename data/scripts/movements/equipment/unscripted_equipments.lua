@@ -231,6 +231,18 @@ local items = {
 		slot = "hand"
 	},
 	{
+		-- hermes boots
+		itemid = 42527,
+		type = "equip",
+		slot = "feet",
+	},
+	{
+		-- hermes boots
+		itemid = 42527,
+		type = "deequip",
+		slot = "feet"
+	},
+	{
 		-- mutant bone kilt
 		itemid = 40595,
 		type = "equip",

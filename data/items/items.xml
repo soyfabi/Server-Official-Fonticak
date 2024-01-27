@@ -54241,14 +54241,26 @@
 	<item id="42500" name="diamond bars">
 		<attribute key="description" value="Ingot converted from 100 crystal coins."/>
 		<attribute key="weight" value="120"/>
+		<attribute key="worth" value="100000" />
 	</item>
 	<item id="42501" name="platinum bars">
-		<attribute key="description" value="Ingot converted from 100 crystal coins."/>
+		<attribute key="description" value="Ingot converted from 100 diamond bars."/>
 		<attribute key="weight" value="150"/>
+		<attribute key="worth" value="1000000" />
 	</item>
 	<item id="42502" name="fonticak token">
 		<attribute key="description" value="Valuable token to buy articles."/>
 		<attribute key="weight" value="150"/>
+	</item>
+	<item id="42527" article="a" name="hermes boots">
+		<attribute key="speed" value="50"/>
+		<attribute key="showAttributes" value="1"/>
+		<attribute key="manaticks" value="3200"/>
+		<attribute key="managain" value="30"/>
+		<attribute key="healthticks" value="2000"/>
+		<attribute key="healthgain" value="10"/>
+		<attribute key="weight" value="800"/>
+		<attribute key="slotType" value="feet" />
 	</item>
 	<item id="42618" name="stairs"></item>
 	<item id="42619" name="stairs">

@@ -345,11 +345,6 @@ ReturnValue Actions::internalUseItem(Player* player, const Position& pos, uint8_
 			if (!bed->getHouse()) {
 				return RETURNVALUE_YOUCANNOTUSETHISBED;
 			}
-
-			if (!player->isPremium()) {
-				return RETURNVALUE_YOUNEEDPREMIUMACCOUNT;
-			}
-			return RETURNVALUE_CANNOTUSETHISOBJECT;
 		}
 
 		if (bed->trySleep(player)) {
