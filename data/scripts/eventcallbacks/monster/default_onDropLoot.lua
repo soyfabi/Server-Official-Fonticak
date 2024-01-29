@@ -21,15 +21,6 @@ event.onDropLoot = function(self, corpse)
 	if not player or player:getStamina() > 840 then
 		local monsterLoot = mType:getLoot()
 		
-		-- Boost Loot
-		local percentLoot = 0
-		if player:getStorageValue(Storage.STORAGEVALUE_LOOT_TEMPO) > os.time() then
-			local potion = lootPotion[player:getStorageValue(Storage.STORAGEVALUE_LOOT_ID)]
-			if potion then
-				percentLoot = (potion.exp / 100)
-			end
-		end
-		
 		-- Guild Level Bonus
 		local lootBonus = 0
 		local guild = player:getGuild()
@@ -49,16 +40,15 @@ event.onDropLoot = function(self, corpse)
 			percent = (boostCreature[1].loot / 100)
 		end
 		
+		-- Boost Creature
 		local percent_boss = 0
 		if (mType:getName():lower() == capitalizeFirstLetter(boostCreature[3].name_boss):lower()) then
 			player:sendTextMessage(MESSAGE_STATUS_DEFAULT, "[Boosted Creature] You have killed a "..mType:getName().." with Bonus Loot.")
 			percent_boss = (boostCreature[1].loot / 100)
 		end
 		
-		
-
 		for i = 1, #monsterLoot do
-			monsterLoot[i].chance = monsterLoot[i].chance + (monsterLoot[i].chance * percent) + (monsterLoot[i].chance * percent_boss) + (monsterLoot[i].chance * percentLoot) + (monsterLoot[i].chance * lootBonus)
+			monsterLoot[i].chance = monsterLoot[i].chance + (monsterLoot[i].chance * percent) + (monsterLoot[i].chance * percent_boss) + (monsterLoot[i].chance * lootBonus)
 			local item = corpse:createLootItem(monsterLoot[i])
 			if not item then
 				print('[Warning] DropLoot:', 'Could not add loot item to corpse.')

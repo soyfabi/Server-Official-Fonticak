@@ -1,5 +1,3 @@
-local fastSpawn = Action()
-
 local fastSpawn = TalkAction("!spawnrate","!spawn", "/spawnrate", "/spawn")
 local exhaust = {}
 local exhaustTime = 2
