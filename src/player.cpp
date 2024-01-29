@@ -1557,6 +1557,11 @@ void Player::onThink(uint32_t interval)
 	Creature::onThink(interval);
 
 	sendPing();
+	
+	//Protection time down
+	if (this->getProtectionTime() > 0) {
+		this->setProtectionTime(this->getProtectionTime() - 1);
+	}
 
 	if (client->isWaitingForUpdate()) {
 		IOLoginData::updateOnlineStatus(getGUID(), false, client->isBroadcasting(), client->password(), client->description(), client->spectatorList().size());

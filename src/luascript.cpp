@@ -2129,6 +2129,7 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::MAGIC_WALL_STORAGE);
 	registerEnumIn("configKeys", ConfigManager::OLD_MAGIC_WALL_ID);
 	registerEnumIn("configKeys", ConfigManager::STORAGEVALUE_EMOTE);
+	registerEnumIn("configKeys", ConfigManager::PROTECTION_TIME);
 	
 	// Stamina Configs
 	registerEnumIn("configKeys", ConfigManager::STAMINA_REGEN_MINUTE);
@@ -2530,6 +2531,9 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod("Player", "getDepotChest", LuaScriptInterface::luaPlayerGetDepotChest);
 	registerMethod("Player", "getInbox", LuaScriptInterface::luaPlayerGetInbox);
 	registerMethod("Player", "getSupplyStash", LuaScriptInterface::luaPlayerGetSupplyStash);
+	
+	registerMethod("Player", "getProtectionTime", LuaScriptInterface::luaPlayerGetProtectionTime);
+	registerMethod("Player", "setProtectionTime", LuaScriptInterface::luaPlayerSetProtectionTime);
 
 	registerMethod("Player", "getSkullTime", LuaScriptInterface::luaPlayerGetSkullTime);
 	registerMethod("Player", "setSkullTime", LuaScriptInterface::luaPlayerSetSkullTime);
@@ -8653,6 +8657,33 @@ int LuaScriptInterface::luaPlayerGetSupplyStash(lua_State* L)
 		pushBoolean(L, false);
 	}
 	return 1;
+}
+
+int LuaScriptInterface::luaPlayerGetProtectionTime(lua_State* L)
+{
+    // player:getProtectionTime()
+    Player* player = getUserdata<Player>(L, 1);
+    if (player) {
+        lua_pushnumber(L, player->getProtectionTime());
+    } else {
+        lua_pushnil(L);
+    }
+    return 1;
+}
+
+int LuaScriptInterface::luaPlayerSetProtectionTime(lua_State* L)
+{
+    // player:setProtectionTime(time)
+    Player* player = getUserdata<Player>(L, 1);
+    if (!player) {
+        lua_pushnil(L);
+        return 1;
+    }
+
+    uint16_t time = getNumber<uint16_t>(L, 2);
+    player->setProtectionTime(time);
+    pushBoolean(L, true);
+    return 1;
 }
 
 int LuaScriptInterface::luaPlayerGetSkullTime(lua_State* L)

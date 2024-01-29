@@ -391,6 +391,12 @@ ReturnValue Combat::canDoCombat(Creature* attacker, Creature* target)
 				return RETURNVALUE_ACTIONNOTPERMITTEDINANOPVPZONE;
 			}
 		} else if (attacker->getMonster()) {
+			// protection time
+			if (attackerPlayer->getProtectionTime() > 0) {
+				Player* player = attacker->getPlayer();
+				player->setProtectionTime(0);
+			}
+		
 			const Creature* targetMaster = target->getMaster();
 
 			if (!targetMaster || !targetMaster->getPlayer()) {

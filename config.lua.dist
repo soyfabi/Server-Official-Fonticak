@@ -24,6 +24,9 @@ experienceByKillingPlayers = false
 expFromPlayersLevelRange = 75
 pzLockSkullAttacker = false
 
+--When the player logs in, he has a certain protection time.
+protectionTime = 10 -- Time in seconds
+
 -- Connection Config
 -- NOTE: maxPlayers set to 0 means no limit
 -- NOTE: allowWalkthrough is only applicable to players

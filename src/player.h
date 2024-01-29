@@ -1075,6 +1075,9 @@ class Player final : public Creature, public Cylinder
 		const std::map<uint8_t, OpenContainer>& getOpenContainers() const {
 			return openContainers;
 		}
+		
+		uint16_t getProtectionTime() const { return protectionTime; }
+		void setProtectionTime(uint16_t newProtectionTime) { protectionTime = newProtectionTime; }
 
 		ProtocolSpectator_ptr client;
 
@@ -1218,6 +1221,7 @@ class Player final : public Creature, public Cylinder
 
 		uint16_t staminaMinutes = 2520;
 		uint16_t maxWriteLen = 0;
+		uint16_t protectionTime = 10;
 
 		uint8_t soul = 0;
 		std::bitset<6> blessings;
