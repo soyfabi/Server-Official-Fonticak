@@ -1,7 +1,7 @@
 local setting = {
 playerTalkactionsCommands = "*Player Commands*" .. "\n"
-		.. "!aol " .. "- Buy Amulet of Loss for each 20K.\n"
-		.. "!bless " .. "- Buy All Bless for 50K.\n"
+		.. "!aol " .. "- Buy Amulet of Loss for each 10K.\n"
+		.. "!bless " .. "- Buy All Bless for 20K.\n"
 		.. "!bp " .. "- Buy a backpack for 30 seconds.\n"
 		.. "!tools " .. "- Buy tools, machete, scythe, shovel, rope, etc.\n"
 		.. "!serverinfo " .. "- Displays all server information, Rates, Players Online, Skill, Host, etc.\n"
