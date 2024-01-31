@@ -823,7 +823,7 @@
 	<item id="622" name="water">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="623" toid="624" article="a" name="beach chair"/>
 	<item fromid="625" toid="627" article="a" name="parasol"/>
@@ -834,7 +834,7 @@
 		<attribute key="type" value="trashholder"/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="635" toid="636" article="a" name="parchment">
 		<attribute key="writeable" value="1"/>
@@ -1317,7 +1317,7 @@
 	<item fromid="727" toid="730" article="a" name="lava">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="fire"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item id="731" article="a" name="bed">
 		<attribute key="type" value="bed"/>
@@ -1885,7 +1885,7 @@
 	<item fromid="837" toid="840" name="tar">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="poff"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item id="841" article="a" name="peanut" plural="peanuts">
 		<attribute key="weight" value="10"/>
@@ -1982,7 +1982,7 @@
 	</item>
 	<item fromid="880" toid="891" name="shallow water">
 		<attribute key="fluidsource" value="water"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item id="892" article="a" name="package of potions">
 		<attribute key="description" value="It contains 5 health and 5 mana potions"/>
@@ -3550,7 +3550,7 @@
 	</item>
 	<item id="2526" article="a" name="dustbin">
 		<attribute key="type" value="trashholder"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="2527" toid="2534" article="a" name="big wine cask">
 		<attribute key="fluidsource" value="wine"/>
@@ -9760,7 +9760,7 @@
 		<attribute key="type" value="trashholder"/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="4603" toid="4608" name="grass"/>
 	<item fromid="4609" toid="4611" name="shallow water">
@@ -9768,13 +9768,13 @@
 		<attribute key="description" value="You see the silvery movement of fish."/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item id="4612" name="shallow water">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 		<attribute key="duration" value="1200"/>
 		<attribute key="decayTo" value="4597"/>
 	</item>
@@ -9782,7 +9782,7 @@
 		<attribute key="type" value="trashholder"/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 		<attribute key="duration" value="1200"/>
 		<attribute key="decayTo" value="4598"/>
 	</item>
@@ -9790,7 +9790,7 @@
 		<attribute key="type" value="trashholder"/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 		<attribute key="duration" value="1200"/>
 		<attribute key="decayTo" value="4599"/>
 	</item>
@@ -9799,7 +9799,7 @@
 	</item>
 	<item fromid="4633" toid="4652" name="shallow water">
 		<attribute key="fluidsource" value="water"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item id="4653" name="RESERVED SPRITE"/>
 	<item fromid="4654" toid="4655" name="shallow water"/>
@@ -9807,13 +9807,13 @@
 	<item fromid="4680" toid="4701" name="swamp">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="greenbubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="4702" toid="4737" name="swamp"/>
 	<item fromid="4738" toid="4744" name="swamp">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="greenbubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="4745" toid="4746" name="grass"/>
 	<item fromid="4747" toid="4748" name="earth"/>
@@ -9823,14 +9823,14 @@
 	<item fromid="4809" toid="4814" name="shallow water">
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="4815" toid="4816" article="a" name="mountain"/>
 	<item fromid="4817" toid="4820" name="shallow water">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="4821" toid="4822" name="dirt"/>
 	<item fromid="4823" toid="4826" name="stairs">
@@ -16505,7 +16505,7 @@
 	<item id="8716" name="swamp">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="greenbubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item id="8717" article="the" name="dust of Boreth">
 		<attribute key="description" value="Julius might be interested in the ashes of this vampire lord"/>
@@ -25441,7 +25441,7 @@
 	<item fromid="16300" toid="16310" name="swamp">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="greenbubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="16311" toid="16332" article="a" name="bog wart"/>
 	<item fromid="16333" toid="16376" article="a" name="muddy stone wall"/>
@@ -26491,7 +26491,7 @@
 	<item id="17950" name="swamp">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="greenbubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="17951" toid="17956" article="a" name="portrait of the merchant"/>
 	<item fromid="17957" toid="17958" article="a" name="statue of the merchant"/>
@@ -31363,7 +31363,7 @@
 		<attribute key="type" value="trashholder"/>
 		<attribute key="fluidsource" value="water"/>
 		<attribute key="effect" value="bluebubble"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item id="21323" article="an" name="imported water pipe">
 		<attribute key="weight" value="200"/>
@@ -31729,7 +31729,7 @@
 	<item id="21477" name="lava">
 		<attribute key="type" value="trashholder"/>
 		<attribute key="effect" value="fire"/>
-		<attribute key="allowpickUpAble" value="1"/>
+		<attribute key="ignoreblocking" value="true"/>
 	</item>
 	<item fromid="21478" toid="21499" article="a" name="lava"/>
 	<item id="21500" article="a" name="water vortex">
