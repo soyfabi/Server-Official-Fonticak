@@ -20602,6 +20602,7 @@
 	<item fromid="11553" toid="11554" article="a" name="magic portal">
 		<attribute key="type" value="teleport"/>
 		<attribute key="description" value="You can see the other side through it."/>
+		<attribute key="effect" value="teleport"/>
 	</item>
 	<item fromid="11555" toid="11570" article="a" name="palisade"/>
 	<item id="11571" article="a" name="dead brimstone bug">

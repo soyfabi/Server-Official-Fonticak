@@ -278,6 +278,50 @@ local questTable = {
 	{storage = Storage.DangerousDepths.Scouts.Growth, storageValue = 2},
 	{storage = Storage.DangerousDepths.Scouts.Diremaw, storageValue = 2},]]
 	
+	-- Cults of Tibia --
+	--[[{storage = Storage.CultsOfTibia.Questline, storageValue = 7},
+	{storage = Storage.CultsOfTibia.Minotaurs.jamesfrancisTask, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Minotaurs.Mission, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Minotaurs.bossTimer, storageValue = 1},
+	{storage = Storage.CultsOfTibia.MotA.Mission, storageValue = 1},
+	{storage = Storage.CultsOfTibia.MotA.Pedra1, storageValue = 1},
+	{storage = Storage.CultsOfTibia.MotA.Pedra2, storageValue = 1},
+	{storage = Storage.CultsOfTibia.MotA.Pedra3, storageValue = 1},
+	{storage = Storage.CultsOfTibia.MotA.Respostas, storageValue = 1},
+	{storage = Storage.CultsOfTibia.MotA.Perguntaid, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Barkless.Mission, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Barkless.sulphur, storageValue = 4},
+	{storage = Storage.CultsOfTibia.Barkless.tar, storageValue = 3},
+	{storage = Storage.CultsOfTibia.Barkless.ice, storageValue = 3},
+	{storage = Storage.CultsOfTibia.Barkless.Objects, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Barkless.Temp, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Barkless.bossTimer, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Orcs.Mission, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Orcs.lookType, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Orcs.bossTimer, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Life.Mission, storageValue = 7},
+	{storage = Storage.CultsOfTibia.Life.bossTimer, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Humans.Mission, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Humans.Vaporized, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Humans.Decaying, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Humans.bossTimer, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Misguided.Mission, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Misguided.Monsters, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Misguided.Exorcisms, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Misguided.Time, storageValue = 1},
+	{storage = Storage.CultsOfTibia.Misguided.bossTimer, storageValue = 1},]]
+	
+	-- A Pirates Tail --
+	--[[{storage = Storage.Quest.U12_60.APiratesTail.TentuglyDoor, storageValue = 1},
+	{storage = Storage.Quest.U12_60.APiratesTail.RascacoonShortcut, storageValue = 1},]]
+	
+	-- The Dream Courts --
+	--[[{storage = Storage.Quest.U12_00.TheDreamCourts.AccessDoors, storageValue = 1},
+	{storage = Storage.Quest.U12_00.TheDreamCourts.HauntedHouseAccess, storageValue = 1},
+	{storage = Storage.Quest.U12_00.TheDreamCourts.BuriedCathedralAccess, storageValue = 1},
+	{storage = Storage.Quest.U12_00.TheDreamCourts.DreamScarAccess, storageValue = 1},
+	{storage = Storage.Quest.U12_00.TheDreamCourts.AndrewDoor, storageValue = 1},]]
+	
 }
 
 local function playerFreeQuestStart(playerId, index)
