@@ -143,3 +143,17 @@ function getMoneyWeight(money)
 	end
 	return weight
 end
+
+local exhaust = {}
+function checkExhaustShop(player)
+    local playerId = player:getId()
+    local currentTime = os.mtime()
+
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+        player:sendCancelMessage("You took an exhaustion to be too quick.")
+        return false
+    end
+
+    exhaust[playerId] = currentTime + configManager.getNumber(configKeys.NPCS_SHOP_DELAY)
+    return true
+end
