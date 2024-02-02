@@ -42,6 +42,9 @@ end
 
 local function onBuy(cid, item, subType, amount, ignoreCap, inBackpacks)
 	local player = Player(cid)
+	if not checkExhaustShop(player) then
+        return false
+    end
 	local items = setNewTradeTable(getTable(player))
 	if not ignoreCap and player:getFreeCapacity() < ItemType(items[item].itemId):getWeight(amount) then
 		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'You don\'t have enough cap.')
@@ -57,6 +60,9 @@ end
 
 local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
 	local player = Player(cid)
+	if not checkExhaustShop(player) then
+        return false
+    end
 	local items = setNewTradeTable(getTable(player))
 	if items[item].sellPrice and player:removeItem(items[item].itemId, amount) then
 		player:addMoney(items[item].sellPrice * amount)
@@ -75,7 +81,7 @@ local function creatureSayCallback(cid, type, msg)
 		local player = Player(cid)
 		local items = setNewTradeTable(getTable(player))
 		openShopWindow(cid, getTable(player), onBuy, onSell)
-		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
+		npcHandler:say("Do you want to send a {parcel} to someone? here I sell it to you..", cid)
 	end
 	local player = Player(cid)
 	if msgcontains(msg, "measurements") then

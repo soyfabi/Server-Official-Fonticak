@@ -62,7 +62,7 @@ end
 local function onBuy(cid, item, subType, amount, ignoreCap, inBackpacks)
 	local player = Player(cid)
 	if not checkExhaustShop(player) then
-        return true
+        return false
     end
 	
 	local items = setNewTradeTable(getTable(player))
@@ -81,7 +81,7 @@ end
 local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
 	local player = Player(cid)
 	if not checkExhaustShop(player) then
-        return true
+        return false
     end
 	
 	local items = setNewTradeTable(getTable(player))
@@ -102,7 +102,7 @@ local function creatureSayCallback(cid, type, msg)
 		local player = Player(cid)
 		local items = setNewTradeTable(getTable(player))
 		openShopWindow(cid, getTable(player), onBuy, onSell)
-		npcHandler:say("Keep in mind you won't find better offers here. Just browse through my wares.", cid)
+		npcHandler:say("Prepared? I have all kinds of {tools} for adventure.", cid)
 	end
 	if msgcontains(msg, "football") then
 		npcHandler:say("Do you want to buy a football for 111 gold?", cid)
