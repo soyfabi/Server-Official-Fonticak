@@ -949,7 +949,7 @@ void Monster::onThinkTarget(uint32_t interval)
 		if (getAttackedCreature() && getAttackedCreature()->getPlayer() && getAttackedCreature()->getPlayer()->getProtectionTime() > 0) {
 			setAttackedCreature(nullptr);
 			updateTargetList();
-			followCreature = false;
+			followCreature = nullptr;
 		}
 		if (mType->info.changeTargetSpeed != 0) {
 			bool canChangeTarget = true;

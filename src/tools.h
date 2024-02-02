@@ -104,7 +104,7 @@ const std::vector<Direction>& getShuffleDirections();
 template <typename E>
 auto format_as(E e)
 {
-	return fmt::underlying(e);
+	return static_cast<int>(e);
 }
 
 #endif
