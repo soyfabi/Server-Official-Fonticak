@@ -2129,6 +2129,7 @@ void LuaScriptInterface::registerFunctions()
 	registerEnumIn("configKeys", ConfigManager::MAGIC_WALL_STORAGE);
 	registerEnumIn("configKeys", ConfigManager::OLD_MAGIC_WALL_ID);
 	registerEnumIn("configKeys", ConfigManager::STORAGEVALUE_EMOTE);
+	registerEnumIn("configKeys", ConfigManager::NPCS_SHOP_DELAY);
 	registerEnumIn("configKeys", ConfigManager::PROTECTION_TIME);
 	
 	// Stamina Configs

@@ -158,6 +158,7 @@ class ConfigManager
 			OLD_MAGIC_WALL_ID,
 			MAGIC_WALL_STORAGE,
 			STORAGEVALUE_EMOTE,
+			NPCS_SHOP_DELAY,
 
 			LAST_INTEGER_CONFIG /* this must be the last one */
 		};

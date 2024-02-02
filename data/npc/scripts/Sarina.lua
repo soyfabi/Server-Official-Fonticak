@@ -59,8 +59,27 @@ local function setNewTradeTable(table)
 	return items
 end
 
+local exhaust = {}
+
+local function checkExhaustShop(player)
+    local playerId = player:getId()
+    local currentTime = os.mtime()
+
+    if exhaust[playerId] and exhaust[playerId] > currentTime then
+        player:sendCancelMessage("You took an exhaustion to be too quick.")
+        return false
+    end
+
+    exhaust[playerId] = currentTime + configManager.getNumber(configKeys.NPCS_SHOP_DELAY)
+    return true
+end
+
 local function onBuy(cid, item, subType, amount, ignoreCap, inBackpacks)
 	local player = Player(cid)
+	if not checkExhaustShop(player) then
+        return true
+    end
+	
 	local items = setNewTradeTable(getTable(player))
 	if not ignoreCap and player:getFreeCapacity() < ItemType(items[item].itemId):getWeight(amount) then
 		return player:sendTextMessage(MESSAGE_INFO_DESCR, 'You don\'t have enough cap.')
@@ -76,6 +95,9 @@ end
 
 local function onSell(cid, item, subType, amount, ignoreCap, inBackpacks)
 	local player = Player(cid)
+	if not checkExhaustShop(player) then
+        return true
+    end
 	local items = setNewTradeTable(getTable(player))
 	if items[item].sellPrice and player:removeItem(items[item].itemId, amount) then
 		player:addMoney(items[item].sellPrice * amount)

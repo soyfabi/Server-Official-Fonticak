@@ -103,6 +103,7 @@ forceMonsterTypesOnLoad = true
 cleanProtectionZones = false
 luaItemDesc = false
 npcsUsingBankMoney = true
+npcsShopDelay = 400 -- Place delay when buying and selling in npcs.
 
 -- VIP and Depot limits
 -- NOTE: you can set custom limits per group in data/XML/groups.xml
