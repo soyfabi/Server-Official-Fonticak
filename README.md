@@ -7,7 +7,7 @@ It will be updated every commit with everything new.
     
     sudo apt install libboost-date-time-dev
     
-    sudo apt install git cmake build-essential libluajit-5.1-dev libmysqlclient-dev libboost-system-dev libboost-iostreams-dev libpugixml-dev libcrypto++-dev libfmt-dev
+    sudo apt-get install cmake build-essential liblua5.4-dev libgmp3-dev libmysqlclient-dev libboost-system-dev libboost-iostreams-dev libboost-filesystem-dev libpugixml-dev libcrypto++-dev libfmt-dev libgmp-dev libboost-date-time-dev g++-10
     mkdir build && cd build
     cmake ..
     make
