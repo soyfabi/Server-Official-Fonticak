@@ -1,7 +1,14 @@
 if not boostCreature then boostCreature = {} end
 
 local BoostedCreature = {
-    monsters_exp = {"Hydra", "Frost Dragon", "Werehyaena", "Dragon Lord"},
+
+    monsters_exp = {
+		"Hydra", 
+		"Frost Dragon",
+		"Werehyaena",
+		"Dragon Lord"
+	},
+	
     monsters_loot = {"Rotworm"},
     monsters_boss = {"Scarlet Etzel"},
     db = true,
