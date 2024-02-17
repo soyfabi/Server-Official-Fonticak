@@ -563,22 +563,41 @@ bool checkSlightLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_t
 
 bool Map::checkSightLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_t z) const
 {
-	if (x0 == x1 && y0 == y1) {
-		return true;
-	}
+    if (x0 == x1 && y0==y1) {
+        return true;
+    }
 
-	if (std::abs(y1 - y0) > std::abs(x1 - x0)) {
-		if (y1 > y0) {
-			return checkSteepLine(y0, x0, y1, x1, z);
-		}
-		return checkSteepLine(y1, x1, y0, x0, z);
-	}
+    Position start(x0,y0,z);
+    Position destination(x1,y1,z);
 
-	if (x0 > x1) {
-		return checkSlightLine(x1, y1, x0, y0, z);
-	}
+    const int8_t mx = start.x < destination.x ? 1 : start.x == destination.x ? 0
+        : -1;
+    const int8_t my = start.y < destination.y ? 1 : start.y == destination.y ? 0
+        : -1;
 
-	return checkSlightLine(x0, y0, x1, y1, z);
+    int32_t A = Position::getOffsetY(destination, start);
+    int32_t B = Position::getOffsetX(start, destination);
+    int32_t C = -(A * destination.x + B * destination.y);
+
+    while (start.x != destination.x || start.y != destination.y) {
+        int32_t move_hor = std::abs(A * (start.x + mx) + B * (start.y) + C);
+        int32_t move_ver = std::abs(A * (start.x) + B * (start.y + my) + C);
+        int32_t move_cross = std::abs(A * (start.x + mx) + B * (start.y + my) + C);
+
+        if (start.y != destination.y && (start.x == destination.x || move_hor > move_ver || move_hor > move_cross)) {
+            start.y += my;
+        }
+
+        if (start.x != destination.x && (start.y == destination.y || move_ver > move_hor || move_ver > move_cross)) {
+            start.x += mx;
+        }
+
+        if (!g_game.map.isTileClear(start.x, start.y, start.z)) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool Map::isSightClear(const Position& fromPos, const Position& toPos, bool sameFloor /*= false*/) const
@@ -591,7 +610,7 @@ bool Map::isSightClear(const Position& fromPos, const Position& toPos, bool same
 		}
 
 		//sight is clear or sameFloor is enabled
-		bool sightClear = checkSightLine(fromPos.x, fromPos.y, toPos.x, toPos.y, fromPos.z);
+		bool sightClear = checkSightLine(fromPos.x, fromPos.y, toPos.x, toPos.y, fromPos.z) || checkSightLine(toPos.x, toPos.y, fromPos.x, fromPos.y, fromPos.z);
 		if (sightClear || sameFloor) {
 			return sightClear;
 		}
