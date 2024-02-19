@@ -124,3 +124,61 @@ end
 
 trainer_leave:aid(65001)
 trainer_leave:register()
+
+staminaEvents = {}
+local config = {
+    timeToAdd = 5,
+    addTime = 1,
+}
+
+local function addStamina(cid)
+    local player = Player(cid)
+    if not player then
+        stopEvent(staminaEvents[cid])
+        staminaEvents[cid] = nil
+        return true
+    end
+    player:setStamina(player:getStamina() + config.addTime)
+    player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You received "..config.addTime.." minutes of stamina.")
+    staminaEvents[cid] = addEvent(addStamina, config.timeToAdd * 60 * 1000, cid)
+end
+
+local staminatile = MoveEvent()
+
+function staminatile.onStepIn(creature)
+    if creature:isPlayer() then
+        creature:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You will receive "..config.addTime.." minute of stamina every "..config.timeToAdd.." minutes for being on the trainer, and you will also receive an extra minute for attacking the trainer.")
+        staminaEvents[creature:getId()] = addEvent(addStamina, config.timeToAdd * 60 * 1000, creature:getId())
+    end
+    return true
+end
+
+staminatile:aid(65020)
+staminatile:register()
+
+local staminatile_out = MoveEvent()
+
+function staminatile_out.onStepOut(creature)
+	if creature:isPlayer() then
+        stopEvent(staminaEvents[creature:getId()])
+        staminaEvents[creature:getId()] = nil
+    end
+    return true
+end
+
+staminatile_out:aid(65020)
+staminatile_out:register()
+
+local staminatile_logout = CreatureEvent("Stamina_Logout")
+
+function staminatile_logout.onLogout(player)
+    local playerId = player:getId()
+    if staminaEvents[playerId] then
+        stopEvent(staminaEvents[player:getId()])
+        staminaEvents[player:getId()] = nil     
+        player:teleportTo(player:getTown():getTemplePosition())
+    end
+    return true
+end
+
+staminatile_logout:register()

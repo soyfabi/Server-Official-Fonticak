@@ -1865,7 +1865,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance,
 				s << "Health Recovery +" << it.abilities->healthGain << " each/" << std::fixed << std::setprecision(1) << it.abilities->healthTicks / 1000. << "s";
             }
             // Show manaGain/manaTicks on item
-            if (it.abilities->healthGain) {
+            if (it.abilities->manaGain) {
                 if (begin) {
                     begin = false;
                     s << " (";
